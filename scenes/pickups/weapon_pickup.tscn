@@ -1,17 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://weapon_pickup_default"]
+[gd_scene load_steps=4 format=3 uid="uid://dcuwqicr7a2lw"]
 
-[ext_resource type="Script" path="res://scripts/pickups/weapon_pickup.gd" id="1_pickup"]
+[ext_resource type="Script" uid="uid://deakwufxos1yx" path="res://scripts/pickups/weapon_pickup.gd" id="1_pickup"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s5sdq"]
+friction = 0.0
+bounce = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape_pickup"]
 radius = 2.0
 
 [node name="WeaponPickup" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_s5sdq")
 script = ExtResource("1_pickup")
-weapon_type = "rocket_launcher"
-pickup_color = Color(1, 0.5, 0, 1)
-gravity_scale = 1.0
-lock_rotation = false
+bob_amplitude = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape_pickup")
-

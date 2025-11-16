@@ -1,34 +1,36 @@
 [Arena/Mount#37966841321] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
-[WeaponSpawner1/WeaponPickup#38973474299] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher
-[WeaponSpawner1/WeaponPickup#38973474299] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5
+[WeaponSpawner1/WeaponPickup#39040583164] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher
+[WeaponSpawner1/WeaponPickup#39040583164] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5
 [WeaponSpawners/WeaponSpawner1#38302385651] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
 [WeaponSpawners/WeaponSpawner1#38302385651] 🐞 DEBUG 🔌 connected pickup to mount: Mount
 [WeaponSpawners/WeaponSpawner1#38302385651] ℹ️ ✨ spawned pickup: type=rocket_launcher, pos=(8.0, 1.0, 8.0)
 [WeaponSpawners/WeaponSpawner1#38302385651] ℹ️ 🏭 weapon spawner ready: type=rocket_launcher, respawn_delay=3.0s, pos=(8.0, 1.0, 8.0)
-[WeaponSpawner2/WeaponPickup#39762003456] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[WeaponSpawner2/WeaponPickup#39762003456] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
+[WeaponSpawner2/WeaponPickup#39829112322] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
+[WeaponSpawner2/WeaponPickup#39829112322] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
 [WeaponSpawners/WeaponSpawner2#38319162868] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(-8.0, 1.0, 10.0)
 [WeaponSpawners/WeaponSpawner2#38319162868] ℹ️ 🏭 weapon spawner ready: type=mine_layer, respawn_delay=3.0s, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawner3/WeaponPickup#40315651597] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
-[WeaponSpawner3/WeaponPickup#40315651597] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0), delay=0.5
+[WeaponSpawner3/WeaponPickup#40382760463] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
+[WeaponSpawner3/WeaponPickup#40382760463] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0), delay=0.5
 [WeaponSpawners/WeaponSpawner3#38335940085] ℹ️ ✨ spawned pickup: type=autocannon, pos=(12.0, 1.0, -5.0)
 [WeaponSpawners/WeaponSpawner3#38335940085] ℹ️ 🏭 weapon spawner ready: type=autocannon, respawn_delay=3.0s, pos=(12.0, 1.0, -5.0)
-[HUD/WeaponDisplayHUD#43536877209] ℹ️ 📺 weapon display HUD ready
-[HUD/WeaponReplacementHUD#44073748146] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[HUD/WeaponDisplayHUD#43905975981] ℹ️ 📺 weapon display HUD ready
+[HUD/WeaponReplacementHUD#44442846918] 🐞 DEBUG 📋 hiding weapon replacement prompt
 [Arena/Mount#37966841321] ℹ️ 📺 HUD created for player mount
+[WeaponSpawner1/WeaponPickup#39040583164] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2)
 [Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon: null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 1
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 1
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null
-[WeaponSpawner1/WeaponPickup#38973474299] 🐞 DEBUG 🏠 pickup landed, freezing physics at y=1.99
-[WeaponSpawner1/WeaponPickup#38973474299] 🐞 DEBUG ✅ pickup enabled after delay
-[WeaponSpawner5/WeaponPickup#41389393448] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[WeaponSpawner1/WeaponPickup#39040583164] 🐞 DEBUG ✅ pickup enabled after delay
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed
+[Arena/Mount#37966841321] 🐞 DEBUG ⚠️ cannot attack: no weapons in slot 1
+[WeaponSpawner5/WeaponPickup#41456502314] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
 [WeaponSpawners/WeaponSpawner5#38369494519] ℹ️ 📦 pickup collected: type=mine_layer, starting respawn timer (3.0s)
 [Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
 [Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
@@ -37,307 +39,841 @@
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
 [Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=null, right=null, picking_up=mine_layer
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=false, right_matches=false
-[root/MineLayer#119017571898] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
-[WeaponMarkerLeft/MineLayer#119017571898] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[root/MineLayer#88097162775] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
+[WeaponMarkerLeft/MineLayer#88097162775] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
 [Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected ammo_changed to _check_upgrade_drops for slot 1 using lambda
 [Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=1
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=119017571898, ammo=20/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=119017571898)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=119017571898, ammo=20/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=119017571898
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   reading ammo from weapon: current=20, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   cached ammo for slot 1: current=20, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=20/20
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=88097162775, ammo=20/20
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=88097162775)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=88097162775, ammo=20/20
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=88097162775
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=20, max=20
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 1: current=20, max=20
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=20/20
 [Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+1 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 2 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 2 … (+1 suppressed)
 [Arena/Mount#37966841321] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft, ammo=20/20, slot=1
-[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed
-[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons)
-[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 20 -> 19
-[root/MineProjectile#135274694347] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/MineProjectile#135274694347] 🐞 DEBUG 📐 initialized: dir=(-0.154291, 0.000201, -0.988026), spread_dir=(-0.108344, 0.080511, -0.990848), vel=(-1.083441, 0.805113, -9.908479)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 🚀 projectile spawned: pos=(0.337386, 0.991539, -11.05337), dir=(-0.154291, 0.000201, -0.988026)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
-[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=19, max_ammo=20
-[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=19/20
-[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=19/20
-[root/MineProjectile#135274694347] 🐞 DEBUG 📏 initial velocity applied: (-1.083441, 0.805113, -9.908479)
-[root/@RigidBody3D@14#138110043702] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/@RigidBody3D@14#138110043702] 🐞 DEBUG 📐 initialized: dir=(0.074488, 0.000406, -0.997222), spread_dir=(0.021287, -0.074443, -0.996998), vel=(0.212867, -0.744429, -9.969981)
-[root/@RigidBody3D@14#138110043702] 🐞 DEBUG 📏 initial velocity applied: (0.212867, -0.744429, -9.969981)
-[root/MineProjectile#135274694347] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/MineProjectile#135274694347] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/MineProjectile#135274694347] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/MineProjectile#135274694347] 🐞 DEBUG 💥 projectile destroyed
-[root/@RigidBody3D@14#138110043702] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/@RigidBody3D@14#138110043702] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/@RigidBody3D@14#138110043702] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/@RigidBody3D@14#138110043702] 🐞 DEBUG 💥 projectile destroyed
-[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 15 -> 14 … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=14, max_ammo=20 … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+4 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+5 suppressed)
-[root/MineProjectile#148964902544] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+1 suppressed)
-[root/MineProjectile#148964902544] 🐞 DEBUG 📐 initialized: dir=(0.673026, 0.000794, -0.739618), spread_dir=(0.722541, -0.061586, -0.688579), vel=(7.225413, -0.615862, -6.885792) … (+1 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 🚀 projectile spawned: pos=(1.292985, 0.996897, -21.40004), dir=(0.673026, 0.000794, -0.739618) … (+5 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+5 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=13/20 … (+5 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=13/20 … (+5 suppressed)
-[root/MineProjectile#148964902544] 🐞 DEBUG 📏 initial velocity applied: (7.225413, -0.615862, -6.885792) … (+1 suppressed)
-[root/@RigidBody3D@18#151263381137] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+3 suppressed)
-[root/@RigidBody3D@19#153394087479] 🐞 DEBUG 📐 initialized: dir=(0.739186, 0.000468, -0.673501), spread_dir=(0.767402, 0.027378, -0.640582), vel=(7.674019, 0.273783, -6.405817) … (+4 suppressed)
-[root/@RigidBody3D@17#146951636539] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+2 suppressed)
-[root/@RigidBody3D@17#146951636539] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+2 suppressed)
-[root/@RigidBody3D@19#153394087479] 🐞 DEBUG 📏 initial velocity applied: (7.674019, 0.273783, -6.405817) … (+4 suppressed)
-[root/MineProjectile#148964902544] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+1 suppressed)
-[root/MineProjectile#148964902544] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+1 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 10 -> 9 … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=9, max_ammo=20 … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+4 suppressed)
-[root/@RigidBody3D@18#151263381137] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+3 suppressed)
-[root/@RigidBody3D@18#151263381137] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
 [WeaponSpawners/WeaponSpawner5#38369494519] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner5/WeaponPickup#158074930833] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer … (+1 suppressed)
-[WeaponSpawner5/WeaponPickup#158074930833] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5 … (+1 suppressed)
+[WeaponSpawner5/WeaponPickup#132707780138] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer … (+1 suppressed)
+[WeaponSpawner5/WeaponPickup#132707780138] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5 … (+1 suppressed)
 [WeaponSpawners/WeaponSpawner5#38369494519] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to … (+4 suppressed)
 [WeaponSpawners/WeaponSpawner5#38369494519] 🐞 DEBUG 🔌 connected pickup to mount: Mount … (+4 suppressed)
 [WeaponSpawners/WeaponSpawner5#38369494519] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(0.0, 1.0, -12.0) … (+1 suppressed)
-[WeaponSpawner5/WeaponPickup#158074930833] 🐞 DEBUG 🏠 pickup landed, freezing physics at y=1.99 … (+4 suppressed)
+[WeaponSpawner5/WeaponPickup#132707780138] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2) … (+4 suppressed)
+[WeaponSpawner2/WeaponPickup#39829112322] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[WeaponSpawners/WeaponSpawner2#38319162868] ℹ️ 📦 pickup collected: type=mine_layer, starting respawn timer (3.0s)
+[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
+[Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=mine_layer, right=null, picking_up=mine_layer
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=true, right_matches=false
+[Arena/Mount#37966841321] ℹ️ ✅ found matching weapon in slot 1: type=mine_layer, ammo=20/20
+[HUD/WeaponReplacementHUD#44442846918] ℹ️ 📋 showing upgrade prompt: mine_layer (upgrade_slots=[1], free_slot=2)
+[Arena/Mount#37966841321] ℹ️ 📋 showing upgrade prompt for: mine_layer (upgrade_slots=[1], free_slot=2)
+[WeaponSpawner5/WeaponPickup#132707780138] 🐞 DEBUG ✅ pickup enabled after delay … (+4 suppressed)
+[HUD/WeaponReplacementHUD#44442846918] ℹ️ 🎯 USER SELECTED: [1] Upgrade weapon in slot 1
+[HUD/WeaponReplacementHUD#44442846918] ℹ️ ⬆️ upgrading weapon in slot 1
+[Arena/Mount#37966841321] ℹ️ ⬆️ UPGRADING weapon in slot 1 with: mine_layer
+[root/MineLayer#142505674457] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
+[WeaponMarkerLeft/@Node3D@15#142505674457] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#37966841321] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 20 -> 40 (+20)
+[Arena/Mount#37966841321] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 20 -> 40 (+20)
+[Arena/Mount#37966841321] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 2 stacked weapons, total ammo=40/40
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 ammo_changed signal connected to _check_upgrade_drops: false
+[Arena/Mount#37966841321] ℹ️ 🔌 connected ammo_changed signal to _check_upgrade_drops for slot 1 using lambda
+[Arena/Mount#37966841321] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=40, max_ammo=40
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=40, max_ammo=40
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 2
+[Arena/Mount#37966841321] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=40, base_weapon.max_ammo=40
+[Arena/Mount#37966841321] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=40
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍   new_ammo (40) >= threshold (40), expected_stack_size=2
+[Arena/Mount#37966841321] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=40
+[Arena/Mount#37966841321] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=40, threshold=40)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=40/40
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=40/40
+[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=2
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=88097162775, ammo=40/40
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=88097162775)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=88097162775, ammo=40/40
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=88097162775
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=40, max=40
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 1: current=40, max=40
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=40/40
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 2
+[HUD/WeaponReplacementHUD#44442846918] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[WeaponSpawners/WeaponSpawner2#38319162868] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
+[WeaponSpawner2/WeaponPickup#178610243225] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
+[WeaponSpawner2/WeaponPickup#178610243225] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
+[WeaponSpawners/WeaponSpawner2#38319162868] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
+[WeaponSpawners/WeaponSpawner2#38319162868] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[WeaponSpawners/WeaponSpawner2#38319162868] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(-8.0, 1.0, 10.0)
+[WeaponSpawner2/WeaponPickup#178610243225] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
+[WeaponSpawner5/WeaponPickup#132707780138] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[WeaponSpawners/WeaponSpawner5#38369494519] ℹ️ 📦 pickup collected: type=mine_layer, starting respawn timer (3.0s)
+[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
+[Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found
+[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=mine_layer, right=null, picking_up=mine_layer
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=true, right_matches=false
+[Arena/Mount#37966841321] ℹ️ ✅ found matching weapon in slot 1: type=mine_layer, ammo=40/40
+[HUD/WeaponReplacementHUD#44442846918] ℹ️ 📋 showing upgrade prompt: mine_layer (upgrade_slots=[1], free_slot=2)
+[Arena/Mount#37966841321] ℹ️ 📋 showing upgrade prompt for: mine_layer (upgrade_slots=[1], free_slot=2)
+[HUD/WeaponReplacementHUD#44442846918] ℹ️ 🎯 USER SELECTED: [1] Upgrade weapon in slot 1
+[HUD/WeaponReplacementHUD#44442846918] ℹ️ ⬆️ upgrading weapon in slot 1
+[Arena/Mount#37966841321] ℹ️ ⬆️ UPGRADING weapon in slot 1 with: mine_layer
+[root/MineLayer#186159990431] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
+[WeaponMarkerLeft/@Node3D@19#186159990431] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#37966841321] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 40 -> 60 (+20)
+[Arena/Mount#37966841321] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 40 -> 60 (+20)
+[Arena/Mount#37966841321] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 3 stacked weapons, total ammo=60/60
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 ammo_changed signal connected to _check_upgrade_drops: false
+[Arena/Mount#37966841321] ℹ️ 🔌 connected ammo_changed signal to _check_upgrade_drops for slot 1 using lambda
+[Arena/Mount#37966841321] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=60, max_ammo=60
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=60, max_ammo=60 … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 3 … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=60, base_weapon.max_ammo=60 … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=60 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍   new_ammo (60) >= threshold (40), expected_stack_size=2 … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 FINAL: expected_stack_size=3, current_stack_size=3, final_threshold=60, new_ammo=60 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ✅ no drops needed: stack_size=3 <= expected=3 (ammo=60, threshold=60) … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=60/60
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=60/60
+[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=3
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=88097162775, ammo=60/60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=88097162775)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=88097162775, ammo=60/60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=88097162775
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=60, max=60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 1: current=60, max=60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=60/60
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 2
+[HUD/WeaponReplacementHUD#44442846918] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[WeaponSpawner2/WeaponPickup#178610243225] 🐞 DEBUG ✅ pickup enabled after delay
+[WeaponSpawner3/WeaponPickup#40382760463] ℹ️ ✨ weapon picked up: type=autocannon, by=Mount
+[WeaponSpawners/WeaponSpawner3#38335940085] ℹ️ 📦 pickup collected: type=autocannon, starting respawn timer (3.0s)
+[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=autocannon
+[Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=mine_layer, right=null, picking_up=autocannon
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=false, right_matches=false
+[root/Autocannon#205386679830] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=150/150
+[WeaponMarkerRight/Autocannon#205386679830] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerRight
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected ammo_changed to _check_upgrade_drops for slot 2 using lambda
+[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=3
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=88097162775, ammo=60/60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=88097162775)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=88097162775, ammo=60/60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=88097162775
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=60, max=60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 1: current=60, max=60
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=60/60
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=1
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon found: type=autocannon, id=205386679830, ammo=150/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=autocannon (id=205386679830)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=autocannon, id=205386679830, ammo=150/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=autocannon, weapon_id=205386679830
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 2: autocannon
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 2: weapon=autocannon, ammo=150/150
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected right weapon signals
+[Arena/Mount#37966841321] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerRight, ammo=150/150, slot=2
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 3 ammo (3 per weapon × 1 weapons): 150 -> 147
+[root/AutocannonProjectile#216409310735] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
+[root/AutocannonProjectile#216409310735] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/AutocannonProjectile#216409310735] 🐞 DEBUG 📐 initialized: dir=(-0.942814, -0.052282, 0.329195), spread_dir=(-0.947532, -0.028926, 0.318349), vel=(-47.37661, -1.446279, 15.91745)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(8.577318, 0.992659, -5.299294), dir=(-0.942814, -0.052282, 0.329195)
+[root/@RigidBody3D@27#216744855068] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
+[root/@RigidBody3D@27#216744855068] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/@RigidBody3D@27#216744855068] 🐞 DEBUG 📐 initialized: dir=(-0.944105, 0.000054, 0.329646), spread_dir=(-0.945989, -0.006823, 0.324128), vel=(-47.29943, -0.34116, 16.20641)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=2, new_ammo=147, max_ammo=150 … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 2: 1 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=147/150
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=147/150
+[root/AutocannonProjectile#216409310735] 🐞 DEBUG 📏 initial velocity applied: (-47.37661, -1.446279, 15.91745)
+[root/@RigidBody3D@27#216744855068] 🐞 DEBUG 📏 initial velocity applied: (-47.29943, -0.34116, 16.20641)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 3 stacked weapons (will consume 3 ammo: 1 per weapon × 3 weapons)
+[root/MineProjectile#217768265236] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#217768265236] 🐞 DEBUG 📐 initialized: dir=(-0.950175, 0.000051, 0.311719), spread_dir=(-0.968654, 0.022041, 0.247436), vel=(-9.686536, 0.220405, 2.474359)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(9.233765, 0.993148, -2.896532), dir=(-0.950175, 0.000051, 0.311719)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 🚀 projectile spawned: pos=(9.233761, 1.293148, -2.896592), dir=(-0.950175, 0.000051, 0.311719)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
+[Arena/Mount#37966841321] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=57, base_weapon.max_ammo=60 … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=57 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍   new_ammo (57) >= threshold (40), expected_stack_size=2 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 FINAL: expected_stack_size=3, current_stack_size=3, final_threshold=60, new_ammo=57 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ✅ no drops needed: stack_size=3 <= expected=3 (ammo=57, threshold=60) … (+2 suppressed)
+[root/MineProjectile#217768265236] 🐞 DEBUG 📏 initial velocity applied: (-9.686536, 0.220405, 2.474359)
+[root/MineProjectile#217768265236] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#217768265236] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#217768265236] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#217768265236] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@33#219328546445] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/@RigidBody3D@33#219328546445] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/@RigidBody3D@33#219328546445] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/@RigidBody3D@33#219328546445] 🐞 DEBUG 💥 projectile destroyed
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 3 stacked weapons (will consume 3 ammo: 1 per weapon × 3 weapons) … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 3 ammo (1 per weapon × 3 weapons): 45 -> 42 … (+9 suppressed)
+[root/MineProjectile#233186526855] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#233186526855] 🐞 DEBUG 📐 initialized: dir=(-0.986811, -0.000023, 0.161879), spread_dir=(-0.978755, 0.011456, 0.204713), vel=(-9.787551, 0.114562, 2.047127)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(4.449823, 0.996805, 0.242381), dir=(-0.986811, -0.000023, 0.161879) … (+4 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+4 suppressed)
+[root/@RigidBody3D@69#233471739553] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+27 suppressed)
+[root/@RigidBody3D@69#233471739553] 🐞 DEBUG 📐 initialized: dir=(-0.986811, -0.000023, 0.161879), spread_dir=(-0.983794, 0.062498, 0.16806), vel=(-9.837936, 0.624981, 1.680598) … (+27 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 🚀 projectile spawned: pos=(4.449763, 1.296805, 0.242061), dir=(-0.986811, -0.000023, 0.161879) … (+9 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+9 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=42, max_ammo=60 … (+19 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 3 … (+19 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=42, base_weapon.max_ammo=60 … (+14 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=42 … (+14 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍   new_ammo (42) >= threshold (40), expected_stack_size=2 … (+29 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 FINAL: expected_stack_size=3, current_stack_size=3, final_threshold=60, new_ammo=42 … (+14 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ✅ no drops needed: stack_size=3 <= expected=3 (ammo=42, threshold=60) … (+14 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=42/60 … (+9 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=42/60 … (+9 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+4 suppressed)
+[root/@RigidBody3D@71#234176382757] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+13 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(4.061315, 0.994208, -2.125964), dir=(-0.985457, -0.052359, 0.161657) … (+14 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+4 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+4 suppressed)
+[root/MineProjectile#233186526855] 🐞 DEBUG 📏 initial velocity applied: (-9.787551, 0.114562, 2.047127)
+[root/@RigidBody3D@69#233471739553] 🐞 DEBUG 📏 initial velocity applied: (-9.837936, 0.624981, 1.680598) … (+27 suppressed)
+[Arena/Mount#37966841321] ℹ️ ⬇️ NEED TO DROP UPGRADES: stack_size=3 > expected=2 (ammo=39, threshold=40)
+[Arena/Mount#37966841321] ℹ️ ⬇️ DROPPING UPGRADE: slot 1, ammo=39/60, stack_size=3 -> 2, top_weapon_type=mine_layer
+[Arena/Mount#37966841321] ℹ️ ✅ removed from stack and _attached_weapons
+[Arena/Mount#37966841321] ℹ️ 🔧 updated base_weapon.max_ammo: 60 -> 40 (subtracted 20)
+[Arena/Mount#37966841321] ℹ️ 💧 calling _drop_weapon_upgrade...
+[Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 20/20
+[Arena/WeaponPickup#236743296835] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
+[Arena/WeaponPickup#236743296835] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=mine_layer at pos=(4.102738, 1.497064, 0.431979)
+[Arena/Mount#37966841321] ℹ️ 🗑️ removing top_weapon from marker children
+[Arena/Mount#37966841321] ℹ️ 🗑️ queued top_weapon for deletion
+[Arena/Mount#37966841321] ℹ️ 📺 emitting ammo_changed and updating HUD
+[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=2
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=88097162775, ammo=39/40
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=88097162775)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=88097162775, ammo=39/40
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=88097162775
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=39, max=40 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 1: current=39, max=40 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=39/40
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=1
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon found: type=autocannon, id=205386679830, ammo=132/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=autocannon (id=205386679830)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=autocannon, id=205386679830, ammo=132/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=autocannon, weapon_id=205386679830
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 2: autocannon
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 2: weapon=autocannon, ammo=132/150
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing right ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing right ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected right weapon signals
+[Arena/Mount#37966841321] ℹ️ ✅ UPGRADE DROP COMPLETE: new stack_size=2
+[Arena/WeaponPickup#236743296835] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
+[root/@RigidBody3D@69#233471739553] ℹ️ 💥 projectile hit: WeaponPickup (shape_index=0)
+[root/@RigidBody3D@69#233471739553] ℹ️ ⚔️ applying damage: 30.0 to WeaponPickup
+[root/@RigidBody3D@67#227549382421] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/@RigidBody3D@29#217030067931] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
+[root/@RigidBody3D@29#217030067931] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 2 stacked weapons (will consume 2 ammo: 1 per weapon × 2 weapons) … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 2 ammo (1 per weapon × 2 weapons): 33 -> 31 … (+9 suppressed)
+[root/@RigidBody3D@115#246339864103] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+25 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=31, max_ammo=40 … (+22 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 2 … (+22 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=31, base_weapon.max_ammo=40 … (+17 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=31 … (+17 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=31 … (+17 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+4 suppressed)
 [Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+5 suppressed)
-[root/@RigidBody3D@23#162571224720] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+3 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 🚀 projectile spawned: pos=(4.734867, 0.995582, -28.07646), dir=(0.788196, 0.000105, -0.615424) … (+5 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
+[root/@RigidBody3D@123#248437016477] 🐞 DEBUG 📐 initialized: dir=(-0.976644, 0.000067, 0.214865), spread_dir=(-0.989535, -0.053908, 0.133844), vel=(-9.895351, -0.53908, 1.338438) … (+30 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(3.40974, 0.995321, 0.926907), dir=(-0.976644, 0.000067, 0.214865) … (+5 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 🚀 projectile spawned: pos=(3.409746, 1.295321, 0.926844), dir=(-0.976644, 0.000067, 0.214865) … (+7 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+7 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍   new_ammo (29) >= threshold (40), expected_stack_size=2 … (+23 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=29, threshold=40) … (+19 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=29/40 … (+12 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=29/40 … (+12 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+5 suppressed)
+[root/@RigidBody3D@125#249057773478] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+17 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(2.894065, 0.994836, -1.417038), dir=(-0.975309, -0.052269, 0.214571) … (+17 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+5 suppressed)
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+5 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=7/20 … (+5 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=7/20 … (+5 suppressed)
-[root/MineProjectile#155239581387] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+2 suppressed)
-[root/MineProjectile#155239581387] 🐞 DEBUG 💥 projectile destroyed … (+2 suppressed)
-[WeaponSpawner5/WeaponPickup#158074930833] 🐞 DEBUG ✅ pickup enabled after delay … (+4 suppressed)
-[root/MineProjectile#165423351432] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+1 suppressed)
-[root/MineProjectile#165423351432] 🐞 DEBUG 📐 initialized: dir=(0.789113, -0.000573, -0.614248), spread_dir=(0.781259, -0.074037, -0.6198), vel=(7.812592, -0.740373, -6.198005) … (+1 suppressed)
-[root/@RigidBody3D@22#160390186555] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+6 suppressed)
-[root/@RigidBody3D@22#160390186555] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+6 suppressed)
-[root/MineProjectile#165423351432] 🐞 DEBUG 📏 initial velocity applied: (7.812592, -0.740373, -6.198005) … (+1 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+3 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 6 -> 5 … (+3 suppressed)
-[root/@RigidBody3D@24#167520503431] 🐞 DEBUG 📐 initialized: dir=(0.789112, -0.000573, -0.614249), spread_dir=(0.82846, -0.087383, -0.553189), vel=(8.284605, -0.873826, -5.531886) … (+3 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=5, max_ammo=20 … (+3 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+3 suppressed)
-[root/@RigidBody3D@24#167520503431] 🐞 DEBUG 📏 initial velocity applied: (8.284605, -0.873826, -5.531886) … (+3 suppressed)
-[root/MineProjectile#165423351432] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+1 suppressed)
-[root/MineProjectile#165423351432] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+1 suppressed)
-[root/@RigidBody3D@24#167520503431] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+10 suppressed)
-[root/@RigidBody3D@24#167520503431] 🐞 DEBUG 💥 projectile destroyed … (+10 suppressed)
-[root/@RigidBody3D@26#173711296049] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+2 suppressed)
+[root/@RigidBody3D@123#248437016477] 🐞 DEBUG 📏 initial velocity applied: (-9.895351, -0.53908, 1.338438) … (+30 suppressed)
+[root/@RigidBody3D@27#216744855068] 🐞 DEBUG 💥 projectile destroyed … (+16 suppressed)
+[root/AutocannonProjectile#216409310735] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/AutocannonProjectile#216409310735] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/AutocannonProjectile#216409310735] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/AutocannonProjectile#216409310735] 🐞 DEBUG 💥 projectile destroyed
+[WeaponSpawners/WeaponSpawner5#38369494519] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
+[WeaponSpawner5/WeaponPickup#251691796048] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
+[WeaponSpawner5/WeaponPickup#251691796048] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5
+[WeaponSpawners/WeaponSpawner5#38369494519] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
+[WeaponSpawners/WeaponSpawner5#38369494519] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[WeaponSpawners/WeaponSpawner5#38369494519] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(0.0, 1.0, -12.0)
+[WeaponSpawner5/WeaponPickup#251691796048] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 2 stacked weapons (will consume 2 ammo: 1 per weapon × 2 weapons) … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 2 ammo (1 per weapon × 2 weapons): 29 -> 27 … (+3 suppressed)
+[root/@RigidBody3D@132#253419849287] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+9 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=27, max_ammo=40 … (+7 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 2 … (+7 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=27, base_weapon.max_ammo=40 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=27 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=27 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+1 suppressed)
+[root/AutocannonProjectile#253990274812] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
+[root/AutocannonProjectile#253990274812] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/AutocannonProjectile#253990274812] 🐞 DEBUG 📐 initialized: dir=(-0.976681, -0.052137, 0.20827), spread_dir=(-0.980446, -0.044565, 0.191673), vel=(-49.02232, -2.228249, 9.583666)
+[root/@RigidBody3D@36#219999635068] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+9 suppressed)
+[root/@RigidBody3D@36#219999635068] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+9 suppressed)
+[root/MineProjectile#233186526855] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#233186526855] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#233186526855] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#233186526855] 🐞 DEBUG 💥 projectile destroyed
+[root/AutocannonProjectile#253990274812] 🐞 DEBUG 📏 initial velocity applied: (-49.02232, -2.228249, 9.583666)
+[root/MineProjectile#255298897530] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#255298897530] 🐞 DEBUG 📐 initialized: dir=(-0.978121, 0.000195, 0.208036), spread_dir=(-0.982861, 0.012196, 0.183942), vel=(-9.828614, 0.121956, 1.839423)
+[root/@RigidBody3D@47#222868538965] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+11 suppressed)
+[root/MineProjectile#255298897530] 🐞 DEBUG 📏 initial velocity applied: (-9.828614, 0.121956, 1.839423)
+[root/@RigidBody3D@148#257496713151] 🐞 DEBUG 📐 initialized: dir=(-0.976885, -0.052138, 0.207309), spread_dir=(-0.980478, -0.082163, 0.178642), vel=(-49.02388, -4.108158, 8.932077) … (+14 suppressed)
+[root/@RigidBody3D@152#257983252424] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+9 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(3.027135, 0.994577, -1.405046), dir=(-0.976865, 0.052533, 0.207305) … (+10 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+2 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=105/150 … (+6 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=105/150 … (+6 suppressed)
+[root/@RigidBody3D@146#257043727950] 🐞 DEBUG 📏 initial velocity applied: (-9.721612, -0.838983, 2.187781) … (+12 suppressed)
+[root/@RigidBody3D@91#239360542263] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+13 suppressed)
+[root/@RigidBody3D@91#239360542263] 🐞 DEBUG 💥 projectile destroyed … (+10 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+3 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(3.585577, 0.993383, 0.931351), dir=(-0.978351, 0.000096, 0.206951) … (+3 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+3 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 🚀 projectile spawned: pos=(3.585634, 1.293383, 0.931484), dir=(-0.978351, 0.000096, 0.206951) … (+3 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+3 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍   new_ammo (21) >= threshold (40), expected_stack_size=2 … (+11 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=21, threshold=40) … (+11 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+3 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 2 stacked weapons (will consume 2 ammo: 1 per weapon × 2 weapons) … (+3 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 2 ammo (1 per weapon × 2 weapons): 21 -> 19 … (+7 suppressed)
+[root/@RigidBody3D@162#260986373939] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+17 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=19, max_ammo=40 … (+15 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 2 … (+15 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=19, base_weapon.max_ammo=40 … (+11 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=19 … (+11 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 FINAL: expected_stack_size=1, current_stack_size=2, final_threshold=20, new_ammo=19 … (+11 suppressed)
+[Arena/Mount#37966841321] ℹ️ ⬇️ NEED TO DROP UPGRADES: stack_size=2 > expected=1 (ammo=19, threshold=20)
+[Arena/Mount#37966841321] ℹ️ ⬇️ DROPPING UPGRADE: slot 1, ammo=19/40, stack_size=2 -> 1, top_weapon_type=mine_layer
+[Arena/Mount#37966841321] ℹ️ ✅ removed from stack and _attached_weapons
+[Arena/Mount#37966841321] ℹ️ 🔧 updated base_weapon.max_ammo: 40 -> 20 (subtracted 20)
+[Arena/Mount#37966841321] ℹ️ 💧 calling _drop_weapon_upgrade...
+[Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 20/20
+[Arena/@RigidBody3D@164#261607131103] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
+[Arena/@RigidBody3D@164#261607131103] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=mine_layer at pos=(3.620148, 1.493261, 0.924471)
+[Arena/Mount#37966841321] ℹ️ 🗑️ removing top_weapon from marker children
+[Arena/Mount#37966841321] ℹ️ 🗑️ queued top_weapon for deletion
+[Arena/Mount#37966841321] ℹ️ 📺 emitting ammo_changed and updating HUD
+[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=1
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=88097162775, ammo=19/20
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=88097162775)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=88097162775, ammo=19/20
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=88097162775
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=19, max=20 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 1: current=19, max=20 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=19/20
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing left ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=1
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon found: type=autocannon, id=205386679830, ammo=102/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=autocannon (id=205386679830)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=autocannon, id=205386679830, ammo=102/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=autocannon, weapon_id=205386679830
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 2: autocannon
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 2: weapon=autocannon, ammo=102/150
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing right ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing right ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected right weapon signals
+[Arena/Mount#37966841321] ℹ️ ✅ UPGRADE DROP COMPLETE: new stack_size=1
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+3 suppressed)
+[root/@RigidBody3D@45#222633657945] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
+[root/@RigidBody3D@45#222633657945] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+3 suppressed)
+[Arena/@RigidBody3D@164#261607131103] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
+[root/@RigidBody3D@155#259593864789] ℹ️ 💥 projectile hit: @RigidBody3D@164 (shape_index=0)
+[root/@RigidBody3D@155#259593864789] ℹ️ ⚔️ applying damage: 30.0 to @RigidBody3D@164
+[root/@RigidBody3D@197#268519343775] 🐞 DEBUG 📐 initialized: dir=(-0.978757, 0.000045, 0.205023), spread_dir=(-0.977905, 0.031112, 0.206724), vel=(-9.779046, 0.311124, 2.067236) … (+24 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+19 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=15/20 … (+11 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=15/20 … (+11 suppressed)
+[root/@RigidBody3D@198#268821334071] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+15 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(3.258802, 0.992629, -1.450401), dir=(-0.977418, -0.052291, 0.204743) … (+15 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+5 suppressed)
+[root/@RigidBody3D@197#268519343775] 🐞 DEBUG 📏 initial velocity applied: (-9.779046, 0.311124, 2.067236) … (+26 suppressed)
 [Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+5 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 🚀 projectile spawned: pos=(4.869953, 0.994889, -28.2768), dir=(0.789331, -0.000596, -0.613968) … (+5 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+5 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=1/20 … (+5 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=1/20 … (+5 suppressed)
-[root/MineProjectile#171882579515] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+4 suppressed)
-[root/MineProjectile#171882579515] 🐞 DEBUG 💥 projectile destroyed … (+4 suppressed)
 [Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 1 -> 0 … (+4 suppressed)
-[root/MineProjectile#178308253320] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+1 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=0, max_ammo=20 … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 15 -> 14 … (+9 suppressed)
+[root/@RigidBody3D@204#269995739213] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+20 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(3.775559, 0.99113, 0.893814), dir=(-0.978765, 0.000104, 0.204984) … (+5 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=14, max_ammo=20 … (+22 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+22 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+5 suppressed)
+[root/@RigidBody3D@77#236005099300] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+1 suppressed)
+[root/@RigidBody3D@77#236005099300] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+1 suppressed)
+[root/@RigidBody3D@77#236005099300] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+9 suppressed)
+[root/@RigidBody3D@77#236005099300] 🐞 DEBUG 💥 projectile destroyed … (+10 suppressed)
+[root/@RigidBody3D@97#240300066680] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+2 suppressed)
+[Arena/WeaponPickup#236743296835] 🐞 DEBUG ✅ pickup enabled after delay
+[root/MineProjectile#255298897530] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#255298897530] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#255298897530] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#255298897530] 🐞 DEBUG 💥 projectile destroyed
+[Arena/WeaponPickup#236743296835] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
+[Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=mine_layer, right=autocannon, picking_up=mine_layer
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=true, right_matches=false
+[Arena/Mount#37966841321] ℹ️ ✅ found matching weapon in slot 1: type=mine_layer, ammo=14/20
+[Arena/Mount#37966841321] ℹ️ 🔋 REFILLING weapon in slot 1: 14/20 -> 20/20
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=20, max_ammo=20 … (+3 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+3 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+7 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=20/20 … (+3 suppressed)
+[Arena/Mount#37966841321] ℹ️ ✅ REFILL COMPLETE: ammo now 20/20
+[WeaponSpawner5/WeaponPickup#251691796048] 🐞 DEBUG ✅ pickup enabled after delay
+[root/@RigidBody3D@132#253419849287] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+11 suppressed)
+[root/@RigidBody3D@132#253419849287] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+11 suppressed)
+[root/@RigidBody3D@75#234679699246] 🐞 DEBUG 💥 projectile destroyed … (+17 suppressed)
+[root/@RigidBody3D@176#264190821962] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+13 suppressed)
+[root/@RigidBody3D@113#244746028602] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+5 suppressed)
+[root/@RigidBody3D@32#218338690720] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+28 suppressed)
+[root/@RigidBody3D@32#218338690720] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+28 suppressed)
+[Arena/@RigidBody3D@164#261607131103] 🐞 DEBUG ✅ pickup enabled after delay
+[root/@RigidBody3D@43#222180673122] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+14 suppressed)
+[root/@RigidBody3D@43#222180673122] 🐞 DEBUG 💥 projectile destroyed … (+35 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 20 -> 19 … (+1 suppressed)
+[root/MineProjectile#282847086177] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#282847086177] 🐞 DEBUG 📐 initialized: dir=(-0.979962, -0.000111, 0.199183), spread_dir=(-0.985941, 0.021946, 0.165647), vel=(-9.85941, 0.21946, 1.656467)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(6.800469, 0.991588, 0.266631), dir=(-0.979962, -0.000111, 0.199183)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=19, max_ammo=20 … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+2 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=19/20
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=19/20 … (+4 suppressed)
+[Arena/@RigidBody3D@164#261607131103] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=@RigidBody3D@164, mount=Mount, weapon_type=mine_layer
+[Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=mine_layer, right=autocannon, picking_up=mine_layer
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=true, right_matches=false
+[Arena/Mount#37966841321] ℹ️ ✅ found matching weapon in slot 1: type=mine_layer, ammo=19/20
+[Arena/Mount#37966841321] ℹ️ 🔋 REFILLING weapon in slot 1: 19/20 -> 20/20
+[Arena/Mount#37966841321] ℹ️ ✅ REFILL COMPLETE: ammo now 20/20
+[root/MineProjectile#282847086177] 🐞 DEBUG 📏 initial velocity applied: (-9.85941, 0.21946, 1.656467)
+[root/@RigidBody3D@211#283920828002] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+3 suppressed)
+[root/@RigidBody3D@211#283920828002] 🐞 DEBUG 📐 initialized: dir=(-0.979969, -0.000111, 0.199151), spread_dir=(-0.986478, -0.079803, 0.143155), vel=(-9.864777, -0.798034, 1.431547) … (+7 suppressed)
+[root/@RigidBody3D@103#242179114817] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+20 suppressed)
+[root/@RigidBody3D@211#283920828002] 🐞 DEBUG 📏 initial velocity applied: (-9.864777, -0.798034, 1.431547) … (+7 suppressed)
+[root/@RigidBody3D@125#249057773478] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+20 suppressed)
+[root/@RigidBody3D@125#249057773478] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+20 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 16 -> 15 … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=15, max_ammo=20 … (+17 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+17 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+5 suppressed)
+[root/@RigidBody3D@216#288987547647] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+4 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(7.292045, 0.991185, 0.163965), dir=(-0.980168, 0.000154, 0.198171) … (+5 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+20 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=14/20 … (+6 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=14/20 … (+6 suppressed)
+[root/AutocannonProjectile#253990274812] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/AutocannonProjectile#253990274812] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/AutocannonProjectile#253990274812] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/AutocannonProjectile#253990274812] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@217#289641859070] 🐞 DEBUG 📐 initialized: dir=(-0.980175, 0.000191, 0.198135), spread_dir=(-0.965921, 0.005779, 0.258771), vel=(-9.659213, 0.057794, 2.587713) … (+5 suppressed)
+[root/@RigidBody3D@217#289641859070] 🐞 DEBUG 📏 initial velocity applied: (-9.659213, 0.057794, 2.587713) … (+5 suppressed)
+[root/@RigidBody3D@198#268821334071] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+13 suppressed)
+[root/@RigidBody3D@198#268821334071] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+13 suppressed)
+[root/@RigidBody3D@198#268821334071] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+16 suppressed)
+[root/@RigidBody3D@198#268821334071] 🐞 DEBUG 💥 projectile destroyed … (+21 suppressed)
+[root/MineProjectile#282847086177] ℹ️ 💥 projectile hit: @RigidBody3D@164 (shape_index=0)
+[root/MineProjectile#282847086177] ℹ️ ⚔️ applying damage: 30.0 to @RigidBody3D@164
+[root/MineProjectile#282847086177] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#282847086177] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@211#283920828002] ℹ️ 💥 projectile hit: @RigidBody3D@164 (shape_index=0) … (+7 suppressed)
+[root/@RigidBody3D@211#283920828002] ℹ️ ⚔️ applying damage: 30.0 to @RigidBody3D@164 … (+7 suppressed)
+[root/@RigidBody3D@211#283920828002] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+3 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 12 -> 11 … (+3 suppressed)
+[root/MineProjectile#292108109391] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#292108109391] 🐞 DEBUG 📐 initialized: dir=(-0.980176, 0.000177, 0.198129), spread_dir=(-0.980505, 0.035647, 0.193233), vel=(-9.805051, 0.356474, 1.932333)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=11, max_ammo=20 … (+11 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+11 suppressed)
+[root/MineProjectile#292108109391] 🐞 DEBUG 📏 initial velocity applied: (-9.805051, 0.356474, 1.932333)
+[root/@RigidBody3D@220#294607915001] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+3 suppressed)
+[WeaponSpawners/WeaponSpawner3#38335940085] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
+[WeaponSpawner3/WeaponPickup#294859573215] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
+[WeaponSpawner3/WeaponPickup#294859573215] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0), delay=0.5
+[WeaponSpawners/WeaponSpawner3#38335940085] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
+[WeaponSpawners/WeaponSpawner3#38335940085] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[WeaponSpawners/WeaponSpawner3#38335940085] ℹ️ ✨ spawned pickup: type=autocannon, pos=(12.0, 1.0, -5.0)
+[WeaponSpawner3/WeaponPickup#294859573215] 🐞 DEBUG 📦 physics collision created: size=(1.1, 0.16, 0.16), center=(-0.0, 0.0, 0.2)
+[root/@RigidBody3D@212#284994570314] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
+[root/@RigidBody3D@212#284994570314] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+4 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+5 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(7.553316, 0.987972, 0.110112), dir=(-0.980519, -0.001045, 0.196422) … (+5 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+17 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=8/20 … (+5 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=8/20 … (+5 suppressed)
+[root/@RigidBody3D@215#287947360310] 🐞 DEBUG 💥 projectile destroyed … (+12 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+3 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 8 -> 7 … (+3 suppressed)
+[root/@RigidBody3D@223#298030466813] 🐞 DEBUG 📐 initialized: dir=(-0.982072, 0.000407, 0.188505), spread_dir=(-0.972142, 0.083454, 0.219032), vel=(-9.721422, 0.834541, 2.19032) … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=7, max_ammo=20 … (+11 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+11 suppressed)
+[root/@RigidBody3D@223#298030466813] 🐞 DEBUG 📏 initial velocity applied: (-9.721422, 0.834541, 2.19032) … (+4 suppressed)
+[root/@RigidBody3D@217#289641859070] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+12 suppressed)
+[root/@RigidBody3D@224#301201360891] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+2 suppressed)
+[root/@RigidBody3D@219#293399955528] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+13 suppressed)
+[root/@RigidBody3D@219#293399955528] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+13 suppressed)
+[root/MineProjectile#292108109391] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#292108109391] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#292108109391] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#292108109391] 🐞 DEBUG 💥 projectile destroyed
+[WeaponSpawner3/WeaponPickup#294859573215] 🐞 DEBUG ✅ pickup enabled after delay
+[root/@RigidBody3D@222#296688289309] 🐞 DEBUG 💥 projectile destroyed … (+11 suppressed)
+[root/@RigidBody3D@223#298030466813] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+8 suppressed)
+[root/@RigidBody3D@223#298030466813] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+8 suppressed)
+[root/@RigidBody3D@223#298030466813] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+10 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 6 -> 5 … (+1 suppressed)
+[root/MineProjectile#310546269861] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#310546269861] 🐞 DEBUG 📐 initialized: dir=(-0.997303, -0.001672, 0.073369), spread_dir=(-0.994052, 0.071736, 0.081946), vel=(-9.940517, 0.717359, 0.819459)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(8.176435, 0.993105, -0.004154), dir=(-0.997303, -0.001672, 0.073369) … (+2 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=5, max_ammo=20 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+5 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+8 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=5/20 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=5/20 … (+2 suppressed)
+[root/MineProjectile#310546269861] 🐞 DEBUG 📏 initial velocity applied: (-9.940517, 0.717359, 0.819459)
+[root/@RigidBody3D@225#312559536128] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/@RigidBody3D@225#312559536128] 🐞 DEBUG 📐 initialized: dir=(-0.995569, -0.001389, 0.094026), spread_dir=(-0.997658, 0.043774, 0.052561), vel=(-9.976579, 0.437742, 0.525615) … (+1 suppressed)
+[root/@RigidBody3D@225#312559536128] 🐞 DEBUG 📏 initial velocity applied: (-9.976579, 0.437742, 0.525615) … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+5 suppressed)
+[root/AutocannonProjectile#314455361022] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
+[root/AutocannonProjectile#314455361022] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/AutocannonProjectile#314455361022] 🐞 DEBUG 📐 initialized: dir=(-0.99282, -0.053499, 0.106985), spread_dir=(-0.995439, -0.026611, 0.091618), vel=(-49.77193, -1.330533, 4.580894)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(6.586671, 0.992116, -2.249571), dir=(-0.99282, -0.053499, 0.106985) … (+5 suppressed)
+[root/@RigidBody3D@228#314790905924] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+5 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+1 suppressed)
+[root/AutocannonProjectile#314455361022] 🐞 DEBUG 📏 initial velocity applied: (-49.77193, -1.330533, 4.580894)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+3 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 2 -> 1 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=1, max_ammo=20 … (+13 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 1: 1 … (+13 suppressed)
 [Arena/Mount#37966841321] ℹ️ ⚠️ weapon ammo depleted: mine_layer
-[root/@RigidBody3D@26#173711296049] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+6 suppressed)
-[root/@RigidBody3D@26#173711296049] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+6 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+5 suppressed)
 [Arena/Mount#37966841321] ℹ️ 🔓 weapon has 0 ammo - detaching all weapons from slot 1
 [Arena/Mount#37966841321] ℹ️ 🔓 DETACHING weapon slot 1 (0 ammo click)
 [Arena/Mount#37966841321] ℹ️ 🔓 dropping 1 weapons from slot 1 as pickups
 [Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 0/20
-[Arena/WeaponPickup#180422182535] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[Arena/WeaponPickup#180422182535] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
+[Arena/WeaponPickup#322307098642] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
+[Arena/WeaponPickup#322307098642] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
 [Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=mine_layer at pos=(5.459729, 1.494365, -28.73569)
+[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=mine_layer at pos=(4.92976, 1.491247, 0.334801)
 [Arena/Mount#37966841321] 🐞 DEBUG 🗑️ queued weapon 0 for deletion
 [Arena/Mount#37966841321] ℹ️ ✅ all weapons detached from slot 1
 [Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon: null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 1
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 1
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=1
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon found: type=autocannon, id=205386679830, ammo=72/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=autocannon (id=205386679830)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=autocannon, id=205386679830, ammo=72/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=autocannon, weapon_id=205386679830
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=72, max=150 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 2: current=72, max=150 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 2: autocannon
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 2: weapon=autocannon, ammo=72/150
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing right ammo signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 disconnected existing right ammo_depleted signal
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected right weapon signals
+[root/@RigidBody3D@256#323347286101] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+15 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+21 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=69/150 … (+9 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=69/150 … (+9 suppressed)
+[Arena/WeaponPickup#322307098642] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
+[Arena/Mount#37966841321] 🐞 DEBUG ⚠️ cannot attack: no weapons in slot 1 … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+4 suppressed)
+[root/@RigidBody3D@262#325511546938] 🐞 DEBUG 📐 initialized: dir=(-0.989217, -0.052919, 0.13656), spread_dir=(-0.993303, -0.034576, 0.110248), vel=(-49.66513, -1.728792, 5.512383) … (+18 suppressed)
+[root/@RigidBody3D@262#325511546938] 🐞 DEBUG 📏 initial velocity applied: (-49.66513, -1.728792, 5.512383) … (+18 suppressed)
+[root/MineProjectile#310546269861] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
+[root/MineProjectile#310546269861] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+3 suppressed)
+[root/MineProjectile#310546269861] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+3 suppressed)
+[root/MineProjectile#310546269861] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+6 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 3 ammo (3 per weapon × 1 weapons): 63 -> 60 … (+6 suppressed)
+[root/@RigidBody3D@274#328850212666] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+19 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(2.811222, 0.990775, -1.839401), dir=(-0.977916, -0.052782, 0.202226) … (+20 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+6 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=2, new_ammo=60, max_ammo=150 … (+10 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 2: 1 … (+10 suppressed)
+[root/@RigidBody3D@226#313901712927] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+7 suppressed)
+[root/@RigidBody3D@226#313901712927] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+7 suppressed)
+[root/@RigidBody3D@226#313901712927] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+7 suppressed)
+[root/@RigidBody3D@226#313901712927] 🐞 DEBUG 💥 projectile destroyed … (+11 suppressed)
+[root/@RigidBody3D@286#332339873755] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+14 suppressed)
+[root/@RigidBody3D@235#317005497945] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+4 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+5 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=51/150 … (+5 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=51/150 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 3 ammo (3 per weapon × 1 weapons): 48 -> 45 … (+4 suppressed)
+[root/@RigidBody3D@304#336953607786] 🐞 DEBUG 📐 initialized: dir=(-0.853517, -0.052561, 0.518408), spread_dir=(-0.850582, -0.064622, 0.521856), vel=(-42.52912, -3.231078, 26.0928) … (+20 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=2, new_ammo=45, max_ammo=150 … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 2: 1 … (+4 suppressed)
+[root/@RigidBody3D@304#336953607786] 🐞 DEBUG 📏 initial velocity applied: (-42.52912, -3.231078, 26.0928) … (+20 suppressed)
+[root/@RigidBody3D@256#323347286101] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+6 suppressed)
+[root/@RigidBody3D@256#323347286101] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+6 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+5 suppressed)
+[root/@RigidBody3D@310#338580998157] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+17 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(-1.194004, 0.990327, -1.056658), dir=(-0.811671, -0.05253, 0.581748) … (+17 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+6 suppressed)
+[root/@RigidBody3D@322#341634451197] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+17 suppressed)
+[root/@RigidBody3D@264#325763205106] 🐞 DEBUG 💥 projectile destroyed … (+8 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+5 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+6 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=30/150 … (+6 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=30/150 … (+6 suppressed)
+[root/@RigidBody3D@310#338580998157] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+4 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 3 ammo (3 per weapon × 1 weapons): 30 -> 27 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=2, new_ammo=27, max_ammo=150 … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 2: 1 … (+5 suppressed)
+[root/@RigidBody3D@282#330813146945] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
+[root/@RigidBody3D@282#330813146945] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+3 suppressed)
+[root/@RigidBody3D@352#349553297462] 🐞 DEBUG 📐 initialized: dir=(-0.645114, -0.052426, 0.762286), spread_dir=(-0.621442, -0.072268, 0.78012), vel=(-31.07211, -3.613384, 39.00599) … (+23 suppressed)
+[root/@RigidBody3D@352#349553297462] 🐞 DEBUG 📏 initial velocity applied: (-31.07211, -3.613384, 39.00599) … (+23 suppressed)
+[Arena/WeaponPickup#322307098642] 🐞 DEBUG ✅ pickup enabled after delay
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+7 suppressed)
+[root/@RigidBody3D@358#350979360473] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+17 suppressed)
+[root/@RigidBody3D@358#350979360473] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+23 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(-5.282339, 0.990157, 0.210068), dir=(-0.655731, -0.052421, 0.753172) … (+23 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+7 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+6 suppressed)
+[root/@RigidBody3D@278#329353529442] 🐞 DEBUG 💥 projectile destroyed … (+11 suppressed)
+[root/AutocannonProjectile#314455361022] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/AutocannonProjectile#314455361022] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/AutocannonProjectile#314455361022] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/AutocannonProjectile#314455361022] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@268#326853724049] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+18 suppressed)
+[root/@RigidBody3D@268#326853724049] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+18 suppressed)
+[root/@RigidBody3D@268#326853724049] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+19 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 3 ammo (3 per weapon × 1 weapons): 9 -> 6 … (+6 suppressed)
+[root/AutocannonProjectile#357992236911] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
+[root/AutocannonProjectile#357992236911] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/AutocannonProjectile#357992236911] 🐞 DEBUG 📐 initialized: dir=(-0.78025, -0.052395, 0.623269), spread_dir=(-0.795327, -0.03835, 0.604966), vel=(-39.76635, -1.917519, 30.24832)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=2, new_ammo=6, max_ammo=150 … (+6 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 2: 1 … (+6 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+7 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=6/150 … (+7 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=6/150 … (+7 suppressed)
+[root/AutocannonProjectile#357992236911] 🐞 DEBUG 📏 initial velocity applied: (-39.76635, -1.917519, 30.24832)
+[root/@RigidBody3D@387#359636404278] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+13 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+3 suppressed)
+[root/@RigidBody3D@393#361414789017] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+16 suppressed)
+[root/@RigidBody3D@393#361414789017] 🐞 DEBUG 📐 initialized: dir=(-0.836322, -0.052379, 0.54573), spread_dir=(-0.82419, -0.085388, 0.559838), vel=(-41.20953, -4.269411, 27.99192) … (+19 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(-7.510074, 0.990145, 0.955216), dir=(-0.836322, -0.052379, 0.54573) … (+17 suppressed)
+[Arena/Mount#37966841321] ℹ️ ⚠️ weapon ammo depleted: autocannon
+[root/@RigidBody3D@393#361414789017] 🐞 DEBUG 📏 initial velocity applied: (-41.20953, -4.269411, 27.99192) … (+19 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔓 weapon has 0 ammo - detaching all weapons from slot 2
+[Arena/Mount#37966841321] ℹ️ 🔓 DETACHING weapon slot 2 (0 ammo click)
+[Arena/Mount#37966841321] ℹ️ 🔓 dropping 1 weapons from slot 2 as pickups
+[Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 0/150
+[Arena/@RigidBody3D@399#363545495575] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
+[Arena/@RigidBody3D@399#363545495575] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
+[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=autocannon at pos=(-7.787602, 1.490139, 1.072093)
+[Arena/Mount#37966841321] 🐞 DEBUG 🗑️ queued weapon 0 for deletion
+[Arena/Mount#37966841321] ℹ️ ✅ all weapons detached from slot 2
+[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon: null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 1
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null
-[root/MineProjectile#178308253320] ℹ️ 💥 projectile hit: WeaponPickup (shape_index=0)
-[root/MineProjectile#178308253320] ℹ️ ⚔️ applying damage: 30.0 to WeaponPickup
-[Arena/Mount#37966841321] 🐞 DEBUG ⚠️ cannot attack: no weapons in slot 1
-[Arena/WeaponPickup#180422182535] 🐞 DEBUG ✅ pickup enabled after delay
-[Arena/WeaponPickup#180422182535] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
-[Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=null, right=null, picking_up=mine_layer
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=false, right_matches=false
-[Arena/Mount#37966841321] ℹ️ 📥 restoring weapon ammo from pickup: 0/20
-[root/MineLayer#191209932334] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=0/20
-[WeaponMarkerLeft/MineLayer#191209932334] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
-[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected ammo_changed to _check_upgrade_drops for slot 1 using lambda
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=191209932334, ammo=0/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=191209932334)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=191209932334, ammo=0/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=191209932334
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   reading ammo from weapon: current=0, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   cached ammo for slot 1: current=0, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=0/20
-[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
-[Arena/Mount#37966841321] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft, ammo=0/20, slot=1
-[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+4 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons) … (+1 suppressed)
-[Arena/Mount#37966841321] ℹ️ 🔓 weapon has 0 ammo - detaching all weapons from slot 1
-[Arena/Mount#37966841321] ℹ️ 🔓 DETACHING weapon slot 1 (0 ammo click)
-[Arena/Mount#37966841321] ℹ️ 🔓 dropping 1 weapons from slot 1 as pickups
-[Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 0/20
-[Arena/WeaponPickup#202601662156] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[Arena/WeaponPickup#202601662156] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
-[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=mine_layer at pos=(13.99916, 1.489933, -32.07085)
-[Arena/Mount#37966841321] 🐞 DEBUG 🗑️ queued weapon 0 for deletion
-[Arena/Mount#37966841321] ℹ️ ✅ all weapons detached from slot 1
-[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+4 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon: null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null … (+2 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 1 … (+2 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+2 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null … (+1 suppressed)
-[Arena/WeaponPickup#202601662156] 🐞 DEBUG ✅ pickup enabled after delay
-[Arena/WeaponPickup#202601662156] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
-[Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=null, right=null, picking_up=mine_layer
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=false, right_matches=false
-[Arena/Mount#37966841321] ℹ️ 📥 restoring weapon ammo from pickup: 0/20
-[root/MineLayer#212735100552] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=0/20
-[WeaponMarkerLeft/MineLayer#212735100552] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
-[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected ammo_changed to _check_upgrade_drops for slot 1 using lambda
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=212735100552, ammo=0/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=212735100552)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=212735100552, ammo=0/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=212735100552
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   reading ammo from weapon: current=0, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   cached ammo for slot 1: current=0, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=0/20
-[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
-[Arena/Mount#37966841321] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft, ammo=0/20, slot=1
-[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed
-[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons)
-[Arena/Mount#37966841321] ℹ️ 🔓 weapon has 0 ammo - detaching all weapons from slot 1
-[Arena/Mount#37966841321] ℹ️ 🔓 DETACHING weapon slot 1 (0 ammo click)
-[Arena/Mount#37966841321] ℹ️ 🔓 dropping 1 weapons from slot 1 as pickups
-[Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 0/20
-[Arena/WeaponPickup#223740954317] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[Arena/WeaponPickup#223740954317] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
-[Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=mine_layer at pos=(18.64118, 1.490674, -31.4061)
-[Arena/Mount#37966841321] 🐞 DEBUG 🗑️ queued weapon 0 for deletion
-[Arena/Mount#37966841321] ℹ️ ✅ all weapons detached from slot 1
-[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+4 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon: null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null … (+2 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 1 … (+2 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+2 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null … (+1 suppressed)
-[Arena/WeaponPickup#223740954317] 🐞 DEBUG ✅ pickup enabled after delay
-[Arena/WeaponPickup#223740954317] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
+[root/@RigidBody3D@286#332339873755] 🐞 DEBUG 💥 projectile destroyed … (+17 suppressed)
+[Arena/@RigidBody3D@399#363545495575] 🐞 DEBUG 📦 physics collision created: size=(1.1, 0.16, 0.16), center=(-0.0, 0.0, 0.2)
+[root/@RigidBody3D@247#320612599352] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+11 suppressed)
+[root/@RigidBody3D@247#320612599352] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+11 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ⚠️ cannot attack: no weapons in slot 2 … (+1 suppressed)
+[root/@RigidBody3D@298#335426881629] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+15 suppressed)
+[root/AutocannonProjectile#357992236911] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/AutocannonProjectile#357992236911] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/AutocannonProjectile#357992236911] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/AutocannonProjectile#357992236911] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@237#317240379162] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+7 suppressed)
+[root/@RigidBody3D@237#317240379162] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+7 suppressed)
+[root/@RigidBody3D@393#361414789017] 🐞 DEBUG 💥 projectile destroyed … (+12 suppressed)
+[root/@RigidBody3D@296#334353139709] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+7 suppressed)
+[root/@RigidBody3D@294#334118258456] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+8 suppressed)
+[root/@RigidBody3D@294#334118258456] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+8 suppressed)
+[root/@RigidBody3D@385#358512330790] 🐞 DEBUG 💥 projectile destroyed … (+10 suppressed)
+[Arena/@RigidBody3D@399#363545495575] 🐞 DEBUG ✅ pickup enabled after delay
+[Arena/@RigidBody3D@399#363545495575] ℹ️ ✨ weapon picked up: type=autocannon, by=Mount
+[Arena/Mount#37966841321] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=@RigidBody3D@399, mount=Mount, weapon_type=autocannon
 [Arena/Mount#37966841321] ℹ️ ✅ pickup confirmed for this mount, processing...
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+1 suppressed)
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
-[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=null, right=null, picking_up=mine_layer
+[Arena/Mount#37966841321] ℹ️ 🔍 pickup check: left=null, right=null, picking_up=autocannon
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 checking matches: left_matches=false, right_matches=false
-[Arena/Mount#37966841321] ℹ️ 📥 restoring weapon ammo from pickup: 0/20
-[root/MineLayer#295715210882] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=0/20
-[WeaponMarkerLeft/MineLayer#295715210882] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#37966841321] ℹ️ 📥 restoring weapon ammo from pickup: 0/150
+[root/Autocannon#377772574432] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=0/150
+[WeaponMarkerLeft/Autocannon#377772574432] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerLeft
 [Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected ammo_changed to _check_upgrade_drops for slot 1 using lambda
 [Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=1
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=295715210882, ammo=0/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=295715210882)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=295715210882, ammo=0/20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=295715210882
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   reading ammo from weapon: current=0, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺   cached ammo for slot 1: current=0, max=20
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=0/20
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon found: type=autocannon, id=377772574432, ammo=0/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=autocannon (id=377772574432)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   weapon details: type=autocannon, id=377772574432, ammo=0/150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=autocannon, weapon_id=377772574432
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   reading ammo from weapon: current=0, max=150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺   cached ammo for slot 1: current=0, max=150
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 🎨 created weapon visual for slot 1: autocannon
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ updated slot 1: weapon=autocannon, ammo=0/150
 [Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected left weapon signals
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+1 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 2 … (+1 suppressed)
-[Arena/Mount#37966841321] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft, ammo=0/20, slot=1
-[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed
-[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 1 ammo: 1 per weapon × 1 weapons)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 2 … (+1 suppressed)
+[Arena/Mount#37966841321] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerLeft, ammo=0/150, slot=1
+[root/@RigidBody3D@383#358277449527] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+5 suppressed)
+[root/@RigidBody3D@383#358277449527] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+5 suppressed)
+[root/@RigidBody3D@383#358277449527] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+10 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ right mouse button pressed … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ⚠️ cannot attack: no weapons in slot 2
+[Arena/Mount#37966841321] 🐞 DEBUG 🖱️ left mouse button pressed … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 left mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+2 suppressed)
 [Arena/Mount#37966841321] ℹ️ 🔓 weapon has 0 ammo - detaching all weapons from slot 1
 [Arena/Mount#37966841321] ℹ️ 🔓 DETACHING weapon slot 1 (0 ammo click)
 [Arena/Mount#37966841321] ℹ️ 🔓 dropping 1 weapons from slot 1 as pickups
-[Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 0/20
-[Arena/WeaponPickup#315864647203] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[Arena/WeaponPickup#315864647203] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
+[Arena/Mount#37966841321] ℹ️ 💾 stored weapon ammo state: 0/150
+[Arena/@RigidBody3D@403#384114362304] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
+[Arena/@RigidBody3D@403#384114362304] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(0.0, 0.0, 0.0), delay=0.8
 [Arena/Mount#37966841321] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=mine_layer at pos=(22.25664, 1.490909, -32.18114)
+[Arena/Mount#37966841321] ℹ️ 💧 DROPPED UPGRADE: type=autocannon at pos=(-14.00508, 1.490031, 6.313892)
 [Arena/Mount#37966841321] 🐞 DEBUG 🗑️ queued weapon 0 for deletion
 [Arena/Mount#37966841321] ℹ️ ✅ all weapons detached from slot 1
-[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+2 suppressed)
 [Arena/Mount#37966841321] 🐞 DEBUG 🔍 Left weapon: null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 1
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null
-[Arena/WeaponPickup#315864647203] 🐞 DEBUG ✅ pickup enabled after delay
-[WeaponSpawner4/WeaponPickup#40919631385] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher … (+1 suppressed)
-[WeaponSpawner4/WeaponPickup#40919631385] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(-12.0, 1.0, -8.0), delay=0.5 … (+1 suppressed)
+[Arena/@RigidBody3D@403#384114362304] 🐞 DEBUG 📦 physics collision created: size=(1.1, 0.16, 0.16), center=(-0.0, 0.0, 0.2)
+[root/@RigidBody3D@324#341886109472] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
+[root/@RigidBody3D@324#341886109472] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+4 suppressed)
+[root/@RigidBody3D@324#341886109472] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+4 suppressed)
+[root/@RigidBody3D@324#341886109472] 🐞 DEBUG 💥 projectile destroyed … (+6 suppressed)
+[root/@RigidBody3D@368#352522864701] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
+[root/@RigidBody3D@368#352522864701] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+4 suppressed)
+[root/@RigidBody3D@378#355391768116] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+7 suppressed)
+[root/@RigidBody3D@378#355391768116] 🐞 DEBUG 💥 projectile destroyed … (+7 suppressed)
+[Arena/@RigidBody3D@403#384114362304] 🐞 DEBUG ✅ pickup enabled after delay
+[root/@RigidBody3D@354#349804955408] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
+[root/@RigidBody3D@354#349804955408] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+4 suppressed)
+[WeaponSpawner4/WeaponPickup#40986740251] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher … (+1 suppressed)
+[WeaponSpawner4/WeaponPickup#40986740251] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(-12.0, 1.0, -8.0), delay=0.5 … (+1 suppressed)
 [WeaponSpawners/WeaponSpawner4#38352717302] ℹ️ ✨ spawned pickup: type=rocket_launcher, pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
 [WeaponSpawners/WeaponSpawner4#38352717302] ℹ️ 🏭 weapon spawner ready: type=rocket_launcher, respawn_delay=3.0s, pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
 [WeaponSpawners/WeaponSpawner5#38369494519] ℹ️ 🏭 weapon spawner ready: type=mine_layer, respawn_delay=3.0s, pos=(0.0, 1.0, -12.0) … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+1 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+1 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG ✅ cleared slot 2 … (+1 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 🚀 projectile spawned: pos=(5.03718, 0.994907, -28.40757), dir=(0.79321, -0.000585, -0.608948) … (+1 suppressed)
-[WeaponMarkerLeft/MineLayer#119017571898] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+1 suppressed)
-[HUD/WeaponDisplayHUD#43536877209] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=0/20 … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=0/20 … (+1 suppressed)
-[root/@RigidBody3D@27#176227878544] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+1 suppressed)
-[root/@RigidBody3D@27#176227878544] 🐞 DEBUG 📐 initialized: dir=(0.789331, -0.000596, -0.613968), spread_dir=(0.824067, -0.026695, -0.565862), vel=(8.240674, -0.266951, -5.658624) … (+3 suppressed)
-[root/@RigidBody3D@27#176227878544] 🐞 DEBUG 📏 initial velocity applied: (8.240674, -0.266951, -5.658624) … (+3 suppressed)
-[root/MineProjectile#178308253320] 🐞 DEBUG 📐 initialized: dir=(0.79321, -0.000585, -0.608948), spread_dir=(0.752514, -0.08751, -0.652736), vel=(7.525144, -0.875098, -6.527359) … (+2 suppressed)
-[root/MineProjectile#178308253320] 🐞 DEBUG 📏 initial velocity applied: (7.525144, -0.875098, -6.527359) … (+2 suppressed)
-[root/@RigidBody3D@27#176227878544] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+1 suppressed)
-[root/@RigidBody3D@27#176227878544] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+1 suppressed)
-[root/@RigidBody3D@27#176227878544] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+3 suppressed)
-[root/@RigidBody3D@27#176227878544] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
-[root/MineProjectile#171882579515] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
-[root/MineProjectile#171882579515] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+4 suppressed)
-[root/MineProjectile#178308253320] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+1 suppressed)
-[root/MineProjectile#178308253320] 🐞 DEBUG 💥 projectile destroyed … (+1 suppressed)
-[Arena/Mount#37966841321] 🐞 DEBUG ⚠️ cannot attack: no weapons in slot 1 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+4 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+2 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG ✅ cleared slot 2 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=2, new_ammo=0, max_ammo=150 … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔍 stack size for slot 2: 1 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍   new_ammo (21) >= threshold (40), expected_stack_size=2 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=21, threshold=40) … (+2 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 🚀 projectile spawned: pos=(-7.510074, 0.990145, 0.955216), dir=(-0.836326, 0.052293, 0.545732) … (+2 suppressed)
+[root/@RigidBody3D@397#361934882889] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+5 suppressed)
+[root/@RigidBody3D@397#361934882889] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+2 suppressed)
+[root/@RigidBody3D@397#361934882889] 🐞 DEBUG 📐 initialized: dir=(-0.836326, 0.052293, 0.545732), spread_dir=(-0.826713, 0.027936, 0.56193), vel=(-41.33565, 1.396804, 28.0965) … (+2 suppressed)
+[root/@RigidBody3D@397#361934882889] 🐞 DEBUG 📏 initial velocity applied: (-41.33565, 1.396804, 28.0965) … (+2 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🔋 consumed 3 ammo (3 per weapon × 1 weapons): 3 -> 0 … (+2 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 🚀 projectile spawned: pos=(3.6202, 1.293261, 0.924424), dir=(-0.978439, -0.000302, 0.206538) … (+1 suppressed)
+[WeaponMarkerLeft/@Node3D@15#142505674457] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+1 suppressed)
+[HUD/WeaponDisplayHUD#43905975981] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=0/150 … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=0/150 … (+2 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 🚀 projectile spawned: pos=(5.403005, 0.99142, 0.284668), dir=(-0.992101, -0.000788, 0.125436) … (+5 suppressed)
+[WeaponMarkerLeft/MineLayer#88097162775] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+5 suppressed)
+[Arena/Mount#37966841321] ℹ️ 🎯 right mouse click detected - attacking with 1 stacked weapons (will consume 3 ammo: 3 per weapon × 1 weapons) … (+1 suppressed)
+[WeaponMarkerRight/Autocannon#205386679830] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+5 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 no upgrades to drop (stack_size=1) … (+2 suppressed)
+[root/@RigidBody3D@239#318196680445] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+4 suppressed)
+[root/@RigidBody3D@354#349804955408] 🐞 DEBUG 💥 projectile destroyed … (+2 suppressed)
+[root/@RigidBody3D@100#241709352509] ℹ️ 💥 projectile hit: WeaponPickup (shape_index=0) … (+9 suppressed)
+[root/@RigidBody3D@100#241709352509] ℹ️ ⚔️ applying damage: 30.0 to WeaponPickup … (+9 suppressed)
+[root/@RigidBody3D@354#349804955408] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+2 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 📺 _update_display_hud() called … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0 … (+1 suppressed)
+[Arena/Mount#37966841321] 🐞 DEBUG 🔍 Right weapon: null … (+1 suppressed)

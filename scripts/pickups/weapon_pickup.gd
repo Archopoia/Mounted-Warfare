@@ -117,24 +117,107 @@ func _setup_visuals() -> void:
 			# Add as child
 			add_child(weapon_visual)
 			_logger.debug("pickup", self, "🎨 weapon visual loaded: %s" % weapon_type)
+			
+			# Set up physics collision shape based on the mesh(es)
+			call_deferred("_setup_physics_collision_from_mesh", weapon_visual)
 		else:
 			_logger.error("pickup", self, "❌ Failed to instantiate weapon visual")
+			_create_fallback_visual()
+			call_deferred("_setup_physics_collision_from_mesh", self)  # Try to use fallback mesh
 	else:
 		_logger.error("pickup", self, "❌ Failed to load weapon scene: %s" % weapon_scene_path)
 		# Fallback to simple box
 		_create_fallback_visual()
+		call_deferred("_setup_physics_collision_from_mesh", self)  # Use fallback mesh
+
+func _setup_physics_collision_from_mesh(root_node: Node) -> void:
+	# Find all MeshInstance3D nodes and calculate their combined AABB
+	var mesh_data: Array[Dictionary] = []  # Array of {mesh_instance: MeshInstance3D, transform: Transform3D}
+	_collect_mesh_instances_with_transform(root_node, Transform3D.IDENTITY, mesh_data)
 	
-	# Ensure RigidBody3D collision shape exists for physics
-	var collision_shape: CollisionShape3D = get_node_or_null("CollisionShape3D")
-	if collision_shape == null:
-		collision_shape = CollisionShape3D.new()
-		collision_shape.name = "CollisionShape3D"
-		add_child(collision_shape)
+	if mesh_data.is_empty():
+		_logger.warn("pickup", self, "⚠️ No mesh instances found, using default box collision")
+		_create_default_physics_collision()
+		return
 	
-	if collision_shape.shape == null:
-		var sphere_shape: SphereShape3D = SphereShape3D.new()
-		sphere_shape.radius = pickup_radius * 0.8  # Slightly smaller than detection radius
-		collision_shape.shape = sphere_shape
+	# Calculate combined AABB from all meshes
+	var aabb: AABB = AABB()
+	var first: bool = true
+	
+	for mesh_info in mesh_data:
+		var mesh_instance: MeshInstance3D = mesh_info.mesh_instance
+		var mesh_transform: Transform3D = mesh_info.transform
+		
+		if mesh_instance.mesh == null:
+			continue
+		
+		var mesh_aabb: AABB = mesh_instance.mesh.get_aabb()
+		# Transform AABB to local space of the pickup
+		mesh_aabb = mesh_transform * mesh_aabb
+		
+		if first:
+			aabb = mesh_aabb
+			first = false
+		else:
+			aabb = aabb.merge(mesh_aabb)
+	
+	if aabb == AABB():
+		_logger.warn("pickup", self, "⚠️ Could not calculate AABB, using default box collision")
+		_create_default_physics_collision()
+		return
+	
+	# Create or get physics collision shape (remove old one if exists)
+	var old_collision: CollisionShape3D = get_node_or_null("CollisionShape3D")
+	if old_collision != null:
+		old_collision.queue_free()
+	
+	var physics_collision_shape: CollisionShape3D = get_node_or_null("PhysicsCollisionShape")
+	if physics_collision_shape == null:
+		physics_collision_shape = CollisionShape3D.new()
+		physics_collision_shape.name = "PhysicsCollisionShape"
+		add_child(physics_collision_shape)
+	
+	# Create a BoxShape3D that matches the AABB
+	var box_shape: BoxShape3D = BoxShape3D.new()
+	box_shape.size = aabb.size
+	
+	# Position the collision shape at the AABB center
+	physics_collision_shape.position = aabb.get_center()
+	physics_collision_shape.shape = box_shape
+	
+	_logger.debug("pickup", self, "📦 physics collision created: size=%s, center=%s" % [aabb.size, aabb.get_center()])
+
+func _collect_mesh_instances(node: Node, mesh_list: Array[MeshInstance3D]) -> void:
+	if node is MeshInstance3D:
+		var mesh_instance: MeshInstance3D = node as MeshInstance3D
+		if mesh_instance.mesh != null:
+			mesh_list.append(mesh_instance)
+	
+	for child in node.get_children():
+		_collect_mesh_instances(child, mesh_list)
+
+func _collect_mesh_instances_with_transform(node: Node, parent_transform: Transform3D, mesh_data: Array) -> void:
+	var current_transform: Transform3D = parent_transform * node.transform
+	
+	if node is MeshInstance3D:
+		var mesh_instance: MeshInstance3D = node as MeshInstance3D
+		if mesh_instance.mesh != null:
+			mesh_data.append({"mesh_instance": mesh_instance, "transform": current_transform})
+	
+	for child in node.get_children():
+		_collect_mesh_instances_with_transform(child, current_transform, mesh_data)
+
+func _create_default_physics_collision() -> void:
+	# Fallback: create a small box collision shape
+	var physics_collision_shape: CollisionShape3D = get_node_or_null("PhysicsCollisionShape")
+	if physics_collision_shape == null:
+		physics_collision_shape = CollisionShape3D.new()
+		physics_collision_shape.name = "PhysicsCollisionShape"
+		add_child(physics_collision_shape)
+	
+	var box_shape: BoxShape3D = BoxShape3D.new()
+	box_shape.size = Vector3(0.5, 0.5, 0.5)
+	physics_collision_shape.shape = box_shape
 
 func _update_weapon_visual_color(node: Node, color: Color) -> void:
 	# Recursively update all MeshInstance3D nodes with the color
