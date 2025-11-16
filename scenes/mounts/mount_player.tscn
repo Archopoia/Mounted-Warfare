@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cflmkpa2qlhgi" path="res://scripts/controllers/mount_controller.gd" id="1_b3j5m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iph8f"]
+rough = true
+bounce = 0.6
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_body"]
 size = Vector3(2, 1, 4)
@@ -20,6 +22,7 @@ continuous_cd = true
 contact_monitor = true
 script = ExtResource("1_b3j5m")
 steer_torque = 1500.0
+balance_factor = 0.5
 is_player = true
 
 [node name="CameraRig" type="Node3D" parent="."]

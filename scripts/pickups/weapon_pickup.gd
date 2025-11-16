@@ -13,10 +13,17 @@ class_name WeaponPickup
 @export var bob_amplitude: float = 0.3
 ## Pickup detection radius
 @export var pickup_radius: float = 2.0
+## Delay in seconds before pickup becomes collectible (prevents immediate re-pickup after dropping)
+@export var pickup_delay: float = 0.5
+## Stored ammo state (if -1, use registry default; otherwise use this value)
+## This preserves ammo state when weapons are dropped and picked up again
+@export var stored_current_ammo: int = -1
+@export var stored_max_ammo: int = -1
 
 var _base_position: Vector3
 var _logger: Node
 var _pickup_used: bool = false
+var _pickup_enabled: bool = false
 
 signal weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String)
 
@@ -31,10 +38,22 @@ func _ready() -> void:
 	# Connect body_entered signal for pickup detection
 	body_entered.connect(_on_body_entered)
 	
+	# Disable monitoring initially to prevent immediate pickup after dropping
+	_pickup_enabled = false
+	monitoring = false
+	
 	# Set up visual representation
 	_setup_visuals()
 	
-	_logger.info("pickup", self, "🎁 weapon pickup spawned: type=%s, color=%s, pos=%s" % [weapon_type, pickup_color, position])
+	_logger.info("pickup", self, "🎁 weapon pickup spawned: type=%s, color=%s, pos=%s, delay=%s" % [weapon_type, pickup_color, position, pickup_delay])
+	
+	# Enable pickup after delay
+	if pickup_delay > 0.0:
+		await get_tree().create_timer(pickup_delay).timeout
+	
+	_pickup_enabled = true
+	monitoring = true
+	_logger.debug("pickup", self, "✅ pickup enabled after delay")
 
 func _setup_visuals() -> void:
 	# Load the appropriate weapon scene for this pickup
@@ -117,6 +136,10 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if _pickup_used:
+		return
+	
+	if not _pickup_enabled:
+		_logger.debug("pickup", self, "⏸️ pickup disabled (still in delay), ignoring collision")
 		return
 	
 	# Check if the body is a mount (RigidBody3D with MountController)

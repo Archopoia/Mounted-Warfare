@@ -177,7 +177,10 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 		# If we have a free slot, attach there
 		if free_marker != null:
 			_logger.info("weapon", self, "➕ attaching to free slot %d (same weapon type, but existing is full)" % free_slot)
-			_attach_weapon(weapon_type, pickup.pickup_color, free_marker)
+			# Use stored ammo if available (from dropped weapon)
+			var free_slot_ammo_current: int = pickup.stored_current_ammo if pickup.stored_current_ammo >= 0 else -1
+			var free_slot_ammo_max: int = pickup.stored_max_ammo if pickup.stored_max_ammo >= 0 else -1
+			_attach_weapon(weapon_type, pickup.pickup_color, free_marker, free_slot_ammo_current, free_slot_ammo_max)
 			return
 	
 	# We don't have this weapon type - check if slots are available
@@ -206,10 +209,12 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 		_logger.error("weapon", self, "❌ No weapon markers available for weapon attachment")
 		return
 	
-	# Create and attach the weapon
-	_attach_weapon(weapon_type, pickup.pickup_color, marker)
+	# Create and attach the weapon (use stored ammo if available)
+	var stored_current: int = pickup.stored_current_ammo if pickup.stored_current_ammo >= 0 else -1
+	var stored_max: int = pickup.stored_max_ammo if pickup.stored_max_ammo >= 0 else -1
+	_attach_weapon(weapon_type, pickup.pickup_color, marker, stored_current, stored_max)
 
-func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) -> void:
+func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D, stored_current_ammo: int = -1, stored_max_ammo: int = -1) -> void:
 	# Load the appropriate weapon scene for this weapon type
 	var weapon_scene_path: String = WeaponRegistry.get_weapon_scene_path(weapon_type)
 	var weapon_scene: PackedScene = load(weapon_scene_path)
@@ -232,9 +237,15 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	else:
 		weapon.weapon_color = weapon_color
 	
-	# Initialize ammo to full capacity
-	weapon.max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
-	weapon.current_ammo = weapon.max_ammo
+	# Initialize ammo: use stored ammo if provided (from dropped weapon), otherwise use registry default
+	if stored_current_ammo >= 0 and stored_max_ammo >= 0:
+		weapon.max_ammo = stored_max_ammo
+		weapon.current_ammo = stored_current_ammo
+		_logger.info("weapon", self, "📥 restoring weapon ammo from pickup: %d/%d" % [stored_current_ammo, stored_max_ammo])
+	else:
+		# Initialize ammo to full capacity (new pickup)
+		weapon.max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
+		weapon.current_ammo = weapon.max_ammo
 	
 	# Signals will be connected in _update_display_hud() after attachment
 	
@@ -721,6 +732,65 @@ func _check_upgrade_drops(slot: int, new_ammo: int, max_ammo: int) -> void:
 		
 		_logger.info("weapon", self, "✅ UPGRADE DROP COMPLETE: new stack_size=%d" % stack.size())
 
+func _detach_weapon_slot(slot: int) -> void:
+	_logger.info("weapon", self, "🔓 DETACHING weapon slot %d (0 ammo click)" % slot)
+	
+	var marker: Marker3D = null
+	if slot == 1:
+		marker = _weapon_marker_left
+	elif slot == 2:
+		marker = _weapon_marker_right
+	else:
+		_logger.error("weapon", self, "❌ Invalid slot for detachment: %d" % slot)
+		return
+	
+	if marker == null:
+		_logger.error("weapon", self, "❌ Marker for slot %d is null" % slot)
+		return
+	
+	# Drop all weapons in the stack as pickups
+	if _stacked_weapons.has(slot):
+		var stack: Array = _stacked_weapons[slot]
+		_logger.info("weapon", self, "🔓 dropping %d weapons from slot %d as pickups" % [stack.size(), slot])
+		
+		# Drop weapons starting from the top (reverse order)
+		for i in range(stack.size() - 1, -1, -1):
+			var weapon: WeaponAttachment = stack[i]
+			if is_instance_valid(weapon):
+				# Drop as pickup
+				_drop_weapon_upgrade(weapon, slot)
+				
+				# Disconnect ammo signals
+				if slot == 1:
+					if weapon.ammo_changed.is_connected(_on_left_weapon_ammo_changed):
+						weapon.ammo_changed.disconnect(_on_left_weapon_ammo_changed)
+				elif slot == 2:
+					if weapon.ammo_changed.is_connected(_on_right_weapon_ammo_changed):
+						weapon.ammo_changed.disconnect(_on_right_weapon_ammo_changed)
+				
+				if weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
+					weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+				
+				# Remove from marker
+				if marker.is_ancestor_of(weapon):
+					marker.remove_child(weapon)
+				
+				# Remove from tracking arrays
+				_attached_weapons.erase(weapon)
+				
+				# Queue for deletion
+				weapon.queue_free()
+				_logger.debug("weapon", self, "🗑️ queued weapon %d for deletion" % i)
+		
+		# Clear the stack
+		_stacked_weapons[slot] = []
+		_logger.info("weapon", self, "✅ all weapons detached from slot %d" % slot)
+		
+		# Update HUD
+		_update_display_hud()
+	else:
+		_logger.debug("weapon", self, "🔍 no weapons in slot %d to detach" % slot)
+
 func _drop_weapon_upgrade(weapon: WeaponAttachment, slot: int) -> void:
 	# Create a weapon pickup at the mount's position
 	var pickup_scene: PackedScene = load("res://scenes/pickups/weapon_pickup.tscn")
@@ -733,19 +803,25 @@ func _drop_weapon_upgrade(weapon: WeaponAttachment, slot: int) -> void:
 		_logger.error("weapon", self, "❌ Failed to instantiate weapon pickup")
 		return
 	
-	# Set pickup properties
+	# Set pickup properties BEFORE adding to scene tree (so they're available in _ready())
 	pickup.weapon_type = weapon.weapon_type
 	pickup.pickup_color = weapon.weapon_color
+	# Set pickup delay to prevent immediate re-collection (dropped weapons need time to move away)
+	pickup.pickup_delay = 0.8
+	# Store weapon's ammo state so it's preserved when picked up again
+	pickup.stored_current_ammo = weapon.current_ammo
+	pickup.stored_max_ammo = weapon.max_ammo
+	_logger.info("weapon", self, "💾 stored weapon ammo state: %d/%d" % [weapon.current_ammo, weapon.max_ammo])
 	
 	# Add to scene tree FIRST (required before setting global_position)
 	get_tree().current_scene.add_child(pickup)
 	
-	# Position the pickup near the mount (slightly behind and to the side)
-	var drop_offset: Vector3 = Vector3(0, 1, 2)  # Behind and above the mount
+	# Position the pickup further away from the mount (eject it with more force/distance)
+	var drop_offset: Vector3 = Vector3(0, 2.0, 5.0)  # Behind, above, and much further from mount
 	if slot == 1:
-		drop_offset.x = -1.5  # Left side
+		drop_offset.x = -3.0  # Left side (further away)
 	else:
-		drop_offset.x = 1.5  # Right side
+		drop_offset.x = 3.0  # Right side (further away)
 	
 	# Set position after node is in tree
 	var target_position: Vector3 = global_position + global_transform.basis * drop_offset
@@ -875,6 +951,12 @@ func _attack_with_left_weapon() -> void:
 		var total_projectiles_needed: int = projectile_count_per_weapon * stack_count
 		_logger.info("weapon", self, "🎯 left mouse click detected - attacking with %d stacked weapons (will consume %d ammo: %d per weapon × %d weapons)" % [stack_count, total_projectiles_needed, projectile_count_per_weapon, stack_count])
 		
+		# Check if we have 0 ammo - detach weapon completely
+		if base_weapon.current_ammo <= 0:
+			_logger.info("weapon", self, "🔓 weapon has 0 ammo - detaching all weapons from slot 1")
+			_detach_weapon_slot(1)
+			return
+		
 		# Check if we have enough ammo for all weapons
 		if base_weapon.current_ammo < total_projectiles_needed:
 			_logger.info("weapon", self, "⚠️ insufficient ammo: have %d, need %d (for %d weapons)" % [base_weapon.current_ammo, total_projectiles_needed, stack_count])
@@ -934,6 +1016,12 @@ func _attack_with_right_weapon() -> void:
 		var projectile_count_per_weapon: int = WeaponRegistry.get_projectile_count(base_weapon.weapon_type)
 		var total_projectiles_needed: int = projectile_count_per_weapon * stack_count
 		_logger.info("weapon", self, "🎯 right mouse click detected - attacking with %d stacked weapons (will consume %d ammo: %d per weapon × %d weapons)" % [stack_count, total_projectiles_needed, projectile_count_per_weapon, stack_count])
+		
+		# Check if we have 0 ammo - detach weapon completely
+		if base_weapon.current_ammo <= 0:
+			_logger.info("weapon", self, "🔓 weapon has 0 ammo - detaching all weapons from slot 2")
+			_detach_weapon_slot(2)
+			return
 		
 		# Check if we have enough ammo for all weapons
 		if base_weapon.current_ammo < total_projectiles_needed:
