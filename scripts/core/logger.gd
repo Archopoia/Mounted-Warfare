@@ -83,6 +83,16 @@ func is_enabled(category: String, wanted_level: Level) -> bool:
 func _fmt(actor: String, msg: String) -> String:
 	return "[%s] %s" % [actor, msg]
 
+func _actor_tag(actor: Variant) -> String:
+	if actor is Node:
+		var n := actor as Node
+		var id := n.get_instance_id()
+		if n is CharacterBody3D or n.get_parent() == null:
+			return "%s#%d" % [n.name, id]
+		else:
+			return "%s/%s#%d" % [n.get_parent().name, n.name, id]
+	return String(actor)
+
 func _write_line(line: String) -> void:
 	var f := FileAccess.open("res://log.txt", FileAccess.READ_WRITE)
 	if f == null:
@@ -92,33 +102,38 @@ func _write_line(line: String) -> void:
 	f.flush()
 	f.close()
 
-func debug(category: String, actor: String, msg: String) -> void:
+func debug(category: String, actor: Variant, msg: String) -> void:
 	if is_enabled(category, Level.DEBUG):
-		var line := _fmt(actor, "🐞 DEBUG " + msg)
+		var tag := _actor_tag(actor)
+		var line := _fmt(tag, "🐞 DEBUG " + msg)
 		print_rich("[color=GRAY]" + line + "[/color]")
 		_write_line(line)
 
-func info(category: String, actor: String, msg: String) -> void:
+func info(category: String, actor: Variant, msg: String) -> void:
 	if is_enabled(category, Level.INFO):
-		var line := _fmt(actor, "ℹ️ " + msg)
+		var tag := _actor_tag(actor)
+		var line := _fmt(tag, "ℹ️ " + msg)
 		print_rich(line)
 		_write_line(line)
 
-func warn(category: String, actor: String, msg: String) -> void:
+func warn(category: String, actor: Variant, msg: String) -> void:
 	if is_enabled(category, Level.WARN):
-		var line := _fmt(actor, "⚠️ " + msg)
+		var tag := _actor_tag(actor)
+		var line := _fmt(tag, "⚠️ " + msg)
 		push_warning(line)
 		_write_line("W " + line)
 
-func error(category: String, actor: String, msg: String) -> void:
+func error(category: String, actor: Variant, msg: String) -> void:
 	if is_enabled(category, Level.ERROR):
-		var line := _fmt(actor, "❌ " + msg)
+		var tag := _actor_tag(actor)
+		var line := _fmt(tag, "❌ " + msg)
 		push_error(line)
 		_write_line("E " + line)
 
-func stat_delta(category: String, actor: String, stat_name: String, before_val: float, after_val: float, emoji: String) -> void:
+func stat_delta(category: String, actor: Variant, stat_name: String, before_val: float, after_val: float, emoji: String) -> void:
 	if is_enabled(category, Level.INFO):
 		var delta := after_val - before_val
-		var line := _fmt(actor, "%s %s %s -> %s (Δ %s)" % [emoji, stat_name, str(before_val), str(after_val), str(delta)])
+		var tag := _actor_tag(actor)
+		var line := _fmt(tag, "%s %s %s -> %s (Δ %s)" % [emoji, stat_name, str(before_val), str(after_val), str(delta)])
 		print_rich(line)
 		_write_line(line)

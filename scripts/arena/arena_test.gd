@@ -15,7 +15,7 @@ func _ready() -> void:
 	# log actors
 	var player := get_tree().get_first_node_in_group("players")
 	if player:
-		_logger.info("scene", name, "🎯 player at %s" % str((player as Node3D).global_transform.origin))
+		_logger.info("scene", "%s#%d" % [player.name, player.get_instance_id()], "🎯 player at %s" % str((player as Node3D).global_transform.origin))
 	else:
 		_logger.error("scene", name, "❌ still no player in group 'players'")
 	var bots := get_tree().get_nodes_in_group("bots")
@@ -23,7 +23,7 @@ func _ready() -> void:
 		_logger.error("scene", name, "❌ still no bots in group 'bots'")
 	for b in bots:
 		if b is Node3D:
-			_logger.info("scene", name, "🤖 bot %s at %s" % [b.name, str(b.global_transform.origin)])
+			_logger.info("scene", "%s#%d" % [b.name, b.get_instance_id()], "🤖 bot %s at %s" % [b.name, str(b.global_transform.origin)])
 
 func _ensure_actors() -> void:
 	var player := get_tree().get_first_node_in_group("players")
@@ -31,10 +31,11 @@ func _ensure_actors() -> void:
 	if player == null and player_scene != null:
 		var p := player_scene.instantiate()
 		p.name = "Player"
+		(p as Node).add_to_group("players")
+		add_child(p)
 		# position at PlayerSpawn if present
 		if sp:
 			(p as Node3D).global_transform = sp.global_transform
-		add_child(p)
 		_logger.info("scene", name, "🧍 spawned Player at %s" % str((p as Node3D).global_transform.origin))
 	# bots: ensure two
 	var bot_markers := []
@@ -59,15 +60,19 @@ func _ensure_actors() -> void:
 		bd.name = "BotDriver"
 		bd.set_script(load("res://scripts/ai/bot_driver.gd"))
 		b.add_child(bd)
+		# if player exists now, set as target to avoid one-frame null target
+		var player_now := get_tree().get_first_node_in_group("players")
+		if player_now and player_now is Node3D:
+			(bd as Node).set("target", player_now)
 		var tc := Node.new()
 		tc.name = "TeamColor"
 		tc.set_script(load("res://scripts/appearance/team_color.gd"))
 		b.add_child(tc)
 		tc.set("color", Color(1,0.1,0.1,1) if i == 0 else Color(0.1,0.3,1,1))
+		add_child(b)
 		# position
 		if i < bot_markers.size():
 			(b as Node3D).global_transform = (bot_markers[i] as Marker3D).global_transform
 		else:
 			(b as Node3D).global_transform.origin = Vector3(0,0,10 + i * 3)
-		add_child(b)
 		_logger.info("scene", name, "🤖 spawned %s at %s" % [b.name, str((b as Node3D).global_transform.origin)])

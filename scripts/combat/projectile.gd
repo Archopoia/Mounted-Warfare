@@ -5,11 +5,11 @@ class_name Projectile
 
 func _ready() -> void:
 	if _logger:
-		_logger.info("projectile", name, "✨ spawned at %s" % str(global_transform.origin))
+		_logger.info("projectile", "%s#%d" % [name, get_instance_id()], "✨ spawned at %s" % str(global_transform.origin))
 
 func _exit_tree() -> void:
 	if _logger:
-		_logger.info("projectile", name, "🌫️ despawn")
+		_logger.info("projectile", "%s#%d" % [name, get_instance_id()], "🌫️ despawn")
 
 @export var speed: float = 40.0
 @export var gravity_accel: float = 0.0

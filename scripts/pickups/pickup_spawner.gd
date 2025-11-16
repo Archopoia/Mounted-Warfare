@@ -17,7 +17,7 @@ func spawn_now() -> void:
 	add_child(p)
 	p.global_transform = global_transform
 	if _logger:
-		_logger.info("pickup", name, "🎁 spawned at pos=%s" % str(global_transform.origin))
+		_logger.info("pickup", "%s#%d" % [name, get_instance_id()], "🎁 spawned at pos=%s" % str(global_transform.origin))
 	p.connect("collected", Callable(self, "_on_pickup_collected"))
 
 func _on_pickup_collected() -> void:

@@ -12,12 +12,12 @@ class_name MountController
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
 
 func _ready() -> void:
-	_logger.info("movement", name, "🎮 ready; is_player=%s" % [str(is_player)])
+	_logger.info("movement", self, "🎮 ready; is_player=%s" % [str(is_player)])
 	# Verify input actions exist (once)
 	var req := ["accelerate","brake","turn_left","turn_right","camera_reset"]
 	for a in req:
 		if not InputMap.has_action(a):
-			_logger.error("movement", name, "❌ missing InputMap action '%s'" % a)
+			_logger.error("movement", self, "❌ missing InputMap action '%s'" % a)
 	if is_player and is_instance_valid(_camera):
 		_camera.current = true
 	else:
@@ -43,14 +43,14 @@ func _get_input_vector() -> Vector2:
 	if not is_player:
 		return Vector2.ZERO
 	if not (InputMap.has_action("accelerate") and InputMap.has_action("brake") and InputMap.has_action("turn_left") and InputMap.has_action("turn_right")):
-		_logger.error("movement", name, "❌ input actions not configured; cannot move")
+		_logger.error("movement", self, "❌ input actions not configured; cannot move")
 		return Vector2.ZERO
 	var f: float = Input.get_action_strength("accelerate") - Input.get_action_strength("brake")
 	var t: float = Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
 	if f == 0.0 and t == 0.0:
 		# Log when player is pressing nothing or mapping broken
 		if is_player:
-			_logger.debug("movement", name, "👣 no input (WASD idle or unmapped)")
+			_logger.debug("movement", self, "👣 no input (WASD idle or unmapped)")
 	return Vector2(t, f)
 
 func _apply_movement(input_dir: Vector2, delta: float) -> void:
@@ -68,4 +68,4 @@ func _apply_movement(input_dir: Vector2, delta: float) -> void:
 	# preserve vertical velocity component
 	velocity.x = horiz_vel.x
 	velocity.z = horiz_vel.z
-	_logger.debug("movement", name, "📏 speed %.2f → %.2f, turn %.2f" % [current_speed, horiz_vel.dot(forward), input_dir.x])
+	_logger.debug("movement", self, "📏 speed %.2f → %.2f, turn %.2f" % [current_speed, horiz_vel.dot(forward), input_dir.x])
