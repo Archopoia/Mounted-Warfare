@@ -10,7 +10,7 @@ class_name WeaponPickup
 ## Bobbing speed for visual effect - only used when landed
 @export var bob_speed: float = 2.0
 ## Bobbing amplitude in units - only used when landed
-@export var bob_amplitude: float = 0.3
+@export var bob_amplitude: float = 0.1
 ## Pickup detection radius
 @export var pickup_radius: float = 2.0
 ## Delay in seconds before pickup becomes collectible (prevents immediate re-pickup after dropping)
@@ -172,22 +172,50 @@ func _process(delta: float) -> void:
 		return
 	
 	# Only apply visual effects when landed (not tumbling through air)
-	# Check if velocity is low (landed)
-	if linear_velocity.length() < 1.0 and _landed == false:
-		_landed = true
-		# Lock rotation when landed for smoother visual rotation
-		lock_rotation = true
-		freeze = true  # Freeze physics when landed
-		_logger.debug("pickup", self, "🏠 pickup landed, freezing physics")
+	# Check if velocity is low (landed) and has been low for a short time to ensure it's actually on ground
+	if linear_velocity.length() < 0.5 and abs(linear_velocity.y) < 0.3 and _landed == false:
+		# Wait a frame to confirm it's really landed (not just bouncing)
+		if not has_node("LandingCheckTimer"):
+			var timer: Timer = Timer.new()
+			timer.name = "LandingCheckTimer"
+			timer.wait_time = 0.2  # Wait 0.2 seconds to confirm landing
+			timer.one_shot = true
+			timer.timeout.connect(_confirm_landing)
+			add_child(timer)
+			timer.start()
 	
 	if _landed:
 		# Rotate the pickup visually (independent of physics)
 		rotate_y(rotation_speed * delta)
 		
-		# Bob up and down
-		var bob_offset: float = sin(Time.get_ticks_msec() / 1000.0 * bob_speed) * bob_amplitude
-		var base_y: float = global_position.y
+		# Bob up and down using visual offset
+		# Store the base Y position when first landing
+		if not has_meta("landed_base_y"):
+			set_meta("landed_base_y", global_position.y)
+		
+		var base_y: float = get_meta("landed_base_y", global_position.y)
+		# Convert sin from [-1, 1] to [0, 1] range so it only bobs upward
+		var sin_value: float = sin(Time.get_ticks_msec() / 1000.0 * bob_speed)
+		var normalized_sin: float = (sin_value + 1.0) * 0.5  # Now in range [0, 1]
+		var bob_offset: float = normalized_sin * bob_amplitude
+		
+		# Apply bobbing (only upward, never below base position)
 		global_position.y = base_y + bob_offset
+
+func _confirm_landing() -> void:
+	if linear_velocity.length() < 0.5 and abs(linear_velocity.y) < 0.3:
+		_landed = true
+		# Lock rotation when landed for smoother visual rotation
+		lock_rotation = true
+		freeze = true  # Freeze physics when landed
+		# Store the landed Y position as the base for bobbing
+		set_meta("landed_base_y", global_position.y)
+		_logger.debug("pickup", self, "🏠 pickup landed, freezing physics at y=%.2f" % global_position.y)
+		
+		# Clean up timer
+		var timer: Timer = get_node_or_null("LandingCheckTimer")
+		if timer != null:
+			timer.queue_free()
 
 func _on_body_entered(body: Node3D) -> void:
 	if _pickup_used:
