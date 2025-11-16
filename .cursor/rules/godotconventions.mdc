@@ -85,8 +85,6 @@ alwaysApply: true
 - Prioritize practical, modular helpers: expose reusable designer APIs instead of duplicating logic across scripts or scenes.
 - Keep data sources centralized: prefer registries (e.g., attribute catalogs, function catalogs) that drive dropdowns and inspector hints across the project.
 - Default all designer inputs to safe values and surface them via dropdowns wherever possible to prevent typos.
-- Ensure runtime and planner simulations stay in lock-step by mirroring SmartObjectContext contents and generator payloads.
-- Pre-seed facts or stats that simulators mutate so planners never have to create them on the fly.
 - When augmenting logs, prefer actionable debug entries that highlight binding, context resolution, and generator effects without spamming errors.
 
 
@@ -96,3 +94,49 @@ alwaysApply: true
 - When generator effects or numeric effects fire, emit `LoggerInstance.info` so logs show precise before/after values.
 - Include mover breadcrumbs (`📏`, `📍`, `🎯`, `👣`, `🚩`) for each action start, detour, and arrival.
 - After each play session, review `res://log.txt` (overwritten on each run) for warnings/errors and spawn/movement breadcrumbs before debugging in code. This is the first place to check for issues.
+
+## Project Development Principles (Mounted Warfare)
+
+These are project-specific rules that all contributors must follow:
+
+- Signals over direct references:
+  - Prefer Node signals and the global `EventBus` to communicate across systems.
+  - Avoid hard-coded tree paths or deep `get_node()` chains for cross-system calls.
+- Centralized services via `Services`:
+  - Access shared systems using `Services`: `Services.logger()`, `Services.bus()`, `Services.config()`.
+  - Do not use direct `/root/...` lookups outside `Services` (except where `Services` is not yet available during boot).
+- Strict typing everywhere:
+  - Add explicit type hints for variables, parameters, return types.
+  - Do not rely on `:=` Variant inference for locals unless you annotate types.
+- Composition over inheritance:
+  - Keep scripts small and focused; prefer composing nodes and signals to extend behavior.
+- Clear naming and method size:
+  - Nodes PascalCase; functions/variables snake_case; methods ~30 lines max where practical.
+- Signal connection policy:
+  - Connect static relationships in the editor; connect dynamic ones in code.
+  - Always disconnect signals in `_exit_tree()` for dynamically connected nodes.
+- Robust, actionable logging:
+  - Use `LoggerInstance` categories and levels; keep logs clear, throttled, and contextual.
+  - Use emojis for stat deltas and movement breadcrumbs as per Logging Standards.
+- Performance-minded defaults:
+  - Keep scene trees shallow; use physics layers; pool frequently spawned objects; prefer packed arrays.
+
+### Core Architecture (Autoloads required)
+
+- `scripts/core/logger.gd` → Autoload as `LoggerInstance`
+- `scripts/core/event_bus.gd` → Autoload as `EventBus`
+- `scripts/core/config.gd` → Autoload as `GameConfig`
+- `scripts/core/services.gd` → Autoload as `Services`
+
+Names must match exactly. Gameplay scripts access these singletons via `Services` whenever possible.
+
+### Usage Patterns (Examples)
+
+- Get logger from Services:
+  - `var logger = Services.logger()`
+- Broadcast decoupled gameplay events:
+  - `Services.bus().emit_ammo_changed(self, ammo_current)`
+  - `Services.bus().emit_player_health_changed(mount_hp, rider_hp)`
+- UI should subscribe to `EventBus` first, and fall back to direct node signals if needed.
+- Always type locals explicitly:
+  - `var player: Node = get_tree().get_first_node_in_group("players")`

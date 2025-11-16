@@ -30,6 +30,14 @@ func _init() -> void:
 		f.store_string("")
 		f.flush()
 		f.close()
+	# Enable engine/editor file logging so ALL messages also go to log.txt
+	# These settings mirror Project Settings → Logging → File Logging
+	ProjectSettings.set_setting("logging/file_logging/enable_file_logging", true)
+	ProjectSettings.set_setting("logging/file_logging/log_path", path)
+	# Keep a single rotating file so the latest log is always at res://log.txt
+	ProjectSettings.set_setting("logging/file_logging/max_log_files", 1)
+	# 0 = Debug in Godot 4 log levels; capture everything
+	ProjectSettings.set_setting("logging/file_logging/log_level", 0)
 
 func _ready() -> void:
 	pass

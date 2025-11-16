@@ -13,12 +13,12 @@ func _ready() -> void:
 	# ensure actors exist
 	_ensure_actors()
 	# log actors
-	var player := get_tree().get_first_node_in_group("players")
+	var player: Node = get_tree().get_first_node_in_group("players")
 	if player:
 		_logger.info("scene", "%s#%d" % [player.name, player.get_instance_id()], "🎯 player at %s" % str((player as Node3D).global_transform.origin))
 	else:
 		_logger.error("scene", name, "❌ still no player in group 'players'")
-	var bots := get_tree().get_nodes_in_group("bots")
+	var bots: Array = get_tree().get_nodes_in_group("bots")
 	if bots.size() == 0:
 		_logger.error("scene", name, "❌ still no bots in group 'bots'")
 	for b in bots:
@@ -26,12 +26,12 @@ func _ready() -> void:
 			_logger.info("scene", "%s#%d" % [b.name, b.get_instance_id()], "🤖 bot %s at %s" % [b.name, str(b.global_transform.origin)])
 
 func _ensure_actors() -> void:
-	var player := get_tree().get_first_node_in_group("players")
+	var player: Node = get_tree().get_first_node_in_group("players")
 	var sp: Marker3D = $SpawnPoints.get_node_or_null("PlayerSpawn") as Marker3D
 	if $SpawnPoints == null:
 		_logger.warn("scene", name, "SpawnPoints node missing; using origin for spawns")
 	if player == null and player_scene != null:
-		var p := player_scene.instantiate()
+		var p: Node = player_scene.instantiate()
 		p.name = "Player"
 		(p as Node).add_to_group("players")
 		if p == null:
@@ -56,7 +56,7 @@ func _ensure_actors() -> void:
 		if bot_scene == null:
 			_logger.error("scene", name, "❌ bot_scene not configured; cannot spawn bot %d" % i)
 			break
-		var b := bot_scene.instantiate()
+		var b: Node = bot_scene.instantiate()
 		if b == null:
 			_logger.error("scene", name, "Failed to instantiate bot_scene for index %d" % i)
 			break
@@ -64,15 +64,15 @@ func _ensure_actors() -> void:
 		(b as Node).add_to_group("bots")
 		(b as Node).set("is_player", false)
 		# attach BotDriver and TeamColor
-		var bd := Node.new()
+		var bd: Node = Node.new()
 		bd.name = "BotDriver"
 		bd.set_script(load("res://scripts/ai/bot_driver.gd"))
 		b.add_child(bd)
 		# if player exists now, set as target to avoid one-frame null target
-		var player_now := get_tree().get_first_node_in_group("players")
+		var player_now: Node = get_tree().get_first_node_in_group("players")
 		if player_now and player_now is Node3D:
 			(bd as Node).set("target", player_now)
-		var tc := Node.new()
+		var tc: Node = Node.new()
 		tc.name = "TeamColor"
 		tc.set_script(load("res://scripts/appearance/team_color.gd"))
 		b.add_child(tc)

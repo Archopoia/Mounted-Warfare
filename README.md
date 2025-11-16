@@ -54,4 +54,57 @@ A fast, stylish vehicular-combat homage to Vigilante 8: 2nd Offense — but inst
 
 ---
 
+## Development Principles (Read Me First)
+
+We design for scalability, modularity, and loose coupling. Follow these core guidelines:
+
+- Signals over direct references: Use node signals and the global `EventBus` to communicate between systems without tight coupling.
+- Centralized services: Access shared systems via the `Services` autoload (logger, event bus, config) instead of hardcoded `/root/...` paths.
+- Strict typing: All variables and function parameters should have explicit types. Avoid Variant inference with `:=` unless you annotate.
+- Composition over inheritance: Prefer small, focused nodes and scripts with clear responsibilities.
+- Clear naming and structure: Node names in PascalCase, functions/variables in snake_case; keep methods under ~30 lines when possible.
+- Editor connections for static relationships; code connections for dynamic ones. Disconnect signals when nodes are freed.
+- Robust logging: Use `LoggerInstance` with categories and levels. Emit meaningful, throttled logs with context and emojis for stat deltas.
+- Performance-minded: Lean scene trees, physics layers, object pooling for frequent spawns, packed arrays for heavy data.
+
+A detailed, canonical set of rules lives in `godotconventions.mdc`. If you’re unsure, defer to those rules.
+
+### Core Architecture
+
+- `scripts/core/services.gd` (autoload: `Services`)
+  - Single access point for shared systems: `logger()`, `bus()`, `config()`.
+- `scripts/core/event_bus.gd` (autoload: `EventBus`)
+  - Global, typed signals for decoupled messaging (e.g., `ammo_changed`, `weapon_fired`, `player_health_changed`, `target_changed`, `movement_intent`, `ai_decision`).
+- `scripts/core/config.gd` (autoload: `GameConfig`)
+  - Defaults and designer toggles; central place for groups, feature flags, and category visibility.
+- `scripts/core/logger.gd` (autoload: `LoggerInstance`)
+  - Category/level gating, throttling, file logging to `res://log.txt`, guard helpers, and dev assertions.
+
+### Autoload Setup (Project → Project Settings → Autoload)
+
+Add these singletons:
+- Path `scripts/core/logger.gd`, Node Name `LoggerInstance` (if not already present)
+- Path `scripts/core/event_bus.gd`, Node Name `EventBus`
+- Path `scripts/core/config.gd`, Node Name `GameConfig`
+- Path `scripts/core/services.gd`, Node Name `Services`
+
+Ensure the names match exactly; gameplay scripts reference these singletons.
+
+### Usage Patterns
+
+- Instead of `get_node("/root/LoggerInstance")`, prefer:
+  - `var logger = Services.logger()`
+- To broadcast gameplay events globally:
+  - `Services.bus().emit_ammo_changed(self, ammo_current)`
+  - `Services.bus().emit_player_health_changed(mount_hp, rider_hp)`
+- UI should subscribe to `EventBus` where possible, and fall back to direct node signals when necessary.
+- Type locals explicitly (example in GDScript):
+  - `var player: Node = get_tree().get_first_node_in_group("players")`
+
+### Contributing
+
+- Read and follow `godotconventions.mdc`.
+- Keep systems autonomous and signal-driven. Avoid hardcoded scene paths or deep tree walks.
+- Prefer adding a new signal or a method on `EventBus` over introducing cross-node dependencies.
+- If you need a shared thing, surface it via `Services` or `GameConfig` instead of adding more singleton lookups.
 

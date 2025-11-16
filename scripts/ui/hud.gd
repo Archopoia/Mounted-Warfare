@@ -6,22 +6,27 @@ class_name HUD
 @onready var _weapon_label: Label = $WeaponLabel
 @onready var _lock_label: Label = $LockOnLabel
 var _weapon: Weapon = null
-@onready var _logger = get_node("/root/LoggerInstance")
+@onready var _services: Services = get_node_or_null("/root/Services")
+@onready var _logger = _services.logger() if _services != null else get_node_or_null("/root/LoggerInstance")
+@onready var _bus: EventBus = _services.bus() if _services != null else get_node_or_null("/root/EventBus")
 
 func _ready() -> void:
 	_logger.info("scene", self, "🧭 HUD ready; binding to player and sub-systems…")
-	var player := get_tree().get_first_node_in_group("players")
+	var player: Node = get_tree().get_first_node_in_group("players")
 	if player == null:
 		_logger.warn("scene", self, "No node in group 'players' found; HUD will show defaults")
 		return
 	# Health hookup
-	var health := player.get_node_or_null("Health")
+	var health: Node = player.get_node_or_null("Health")
 	if health and health.has_signal("health_changed"):
 		if not _logger.safe_connect_signal("scene", self, health, "health_changed", self, "_on_health_changed"):
 			_logger.warn("scene", self, "Failed to connect health_changed; using current values only")
 		_on_health_changed(health.mount_hp, health.rider_hp)
 	else:
 		_logger.warn("scene", self, "No 'Health' node or missing 'health_changed' signal on player")
+	# Global bus health as fallback if provided by game
+	if _bus and _bus.has_signal("player_health_changed"):
+		_bus.connect("player_health_changed", Callable(self, "_on_health_changed"))
 	# Weapon hookup (first child in group "weapons" if any)
 	var weapon_node: Node = get_tree().get_first_node_in_group("weapons")
 	if weapon_node == null:
@@ -41,13 +46,16 @@ func _ready() -> void:
 			_logger.warn("combat", self, "Weapon missing 'ammo_changed' signal; label may not update")
 		_weapon_label.text = "Weapon: None | Ammo: 0"
 	# Lock-on hookup (optional Targeting node emitting target_changed(name: String))
-	var targeting := player.get_node_or_null("Targeting")
+	var targeting: Node = player.get_node_or_null("Targeting")
 	if targeting and targeting.has_signal("target_changed"):
 		_logger.safe_connect_signal("combat", self, targeting, "target_changed", self, "_on_target_changed")
 		_lock_label.text = "Lock: None"
 	else:
 		_logger.debug("combat", self, "No targeting system present; lock label stays 'None'")
 		_lock_label.text = "Lock: None"
+	# Global bus for decoupled targeting updates
+	if _bus and _bus.has_signal("target_changed"):
+		_bus.connect("target_changed", Callable(self, "_on_target_changed"))
 
 func _on_health_changed(mount_hp: float, rider_hp: float) -> void:
 	_mount_bar.value = mount_hp

@@ -7,7 +7,9 @@ class_name MountController
 @export var drift_factor: float = 0.1
 @export var gravity_accel: float = 24.8
 @export var is_player: bool = false
-@onready var _logger = get_node("/root/LoggerInstance")
+@onready var _services: Node = get_node_or_null("/root/Services")
+@onready var _logger = _services.logger() if _services != null else get_node_or_null("/root/LoggerInstance")
+@onready var _bus: Node = _services.bus() if _services != null else get_node_or_null("/root/EventBus")
 @onready var _camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
 
@@ -31,6 +33,10 @@ func _physics_process(delta: float) -> void:
 	# apply player-controlled movement only for player
 	if is_player:
 		_apply_movement(input_dir, delta)
+		if _bus:
+			var forward: Vector3 = -transform.basis.z
+			var speed: float = velocity.dot(forward)
+			_bus.emit_movement_intent(name, speed)
 	# camera reset
 	if is_player and Input.is_action_just_pressed("camera_reset") and is_instance_valid(_spring_arm):
 		_spring_arm.rotation = Vector3(-0.174533, 0.0, 0.0)
