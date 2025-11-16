@@ -6,7 +6,7 @@ class_name Projectile
 ## Damage dealt on impact
 @export var damage: float = 10.0
 ## Projectile lifetime in seconds (0 = infinite)
-@export var lifetime: float = 10.0
+@export var lifetime: float = 100.0
 ## Explosion radius for splash damage (0 = no splash)
 @export var explosion_radius: float = 0.0
 ## Precision spread in degrees (0 = perfectly accurate)

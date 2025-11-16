@@ -22,6 +22,7 @@ class_name MountController
 
 var _attached_weapons: Array[WeaponAttachment] = []
 var _weapon_hud: WeaponReplacementHUD = null
+var _weapon_display_hud: WeaponDisplayHUD = null
 var _pending_weapon_type: String = ""
 var _pending_weapon_color: Color = Color.WHITE
 
@@ -146,15 +147,13 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	# Track the weapon
 	_attached_weapons.append(weapon)
 	
+	# Update display HUD
+	_update_display_hud()
+	
 	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, color=%s, marker=%s" % [weapon_type, weapon.weapon_color, marker.name])
 
 func _create_hud() -> void:
 	if not is_player:
-		return
-	
-	var hud_scene: PackedScene = load("res://scenes/ui/weapon_replacement_hud.tscn")
-	if hud_scene == null:
-		_logger.error("ui", self, "❌ Failed to load weapon replacement HUD scene")
 		return
 	
 	# Create CanvasLayer for HUD
@@ -162,15 +161,38 @@ func _create_hud() -> void:
 	canvas_layer.name = "HUD"
 	get_tree().root.add_child(canvas_layer)
 	
-	# Instantiate HUD
-	var hud_instance: Node = hud_scene.instantiate()
-	if hud_instance == null or not hud_instance is WeaponReplacementHUD:
+	# Create permanent weapon display HUD
+	var display_hud_scene: PackedScene = load("res://scenes/ui/weapon_display_hud.tscn")
+	if display_hud_scene == null:
+		_logger.error("ui", self, "❌ Failed to load weapon display HUD scene")
+		return
+	
+	var display_hud_instance: Node = display_hud_scene.instantiate()
+	if display_hud_instance == null or not display_hud_instance is WeaponDisplayHUD:
+		_logger.error("ui", self, "❌ Failed to instantiate weapon display HUD")
+		return
+	
+	_weapon_display_hud = display_hud_instance as WeaponDisplayHUD
+	_weapon_display_hud.mount_controller = self
+	canvas_layer.add_child(_weapon_display_hud)
+	
+	# Create replacement prompt HUD
+	var replacement_hud_scene: PackedScene = load("res://scenes/ui/weapon_replacement_hud.tscn")
+	if replacement_hud_scene == null:
+		_logger.error("ui", self, "❌ Failed to load weapon replacement HUD scene")
+		return
+	
+	var replacement_hud_instance: Node = replacement_hud_scene.instantiate()
+	if replacement_hud_instance == null or not replacement_hud_instance is WeaponReplacementHUD:
 		_logger.error("ui", self, "❌ Failed to instantiate weapon replacement HUD")
 		return
 	
-	_weapon_hud = hud_instance as WeaponReplacementHUD
+	_weapon_hud = replacement_hud_instance as WeaponReplacementHUD
 	_weapon_hud.mount_controller = self
 	canvas_layer.add_child(_weapon_hud)
+	
+	# Initialize display HUD with current weapon state
+	call_deferred("_update_display_hud")
 	
 	_logger.info("ui", self, "📺 HUD created for player mount")
 
@@ -206,6 +228,9 @@ func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color)
 	
 	# Attach new weapon
 	_attach_weapon(weapon_type, weapon_color, marker)
+	
+	# Update display HUD
+	_update_display_hud()
 	
 	_pending_weapon_type = ""
 	_pending_weapon_color = Color.WHITE
@@ -302,3 +327,15 @@ func _attack_with_right_weapon() -> void:
 	
 	_logger.info("weapon", self, "🎯 right mouse click detected - attacking with right weapon")
 	right_weapon.attack()
+
+func _update_display_hud() -> void:
+	if not is_player or _weapon_display_hud == null:
+		return
+	
+	# Update slot 1 (left weapon)
+	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
+	_weapon_display_hud.update_weapon_slot(1, left_weapon)
+	
+	# Update slot 2 (right weapon)
+	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)
+	_weapon_display_hud.update_weapon_slot(2, right_weapon)
