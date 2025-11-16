@@ -1,0 +1,34 @@
+[Pickup] ℹ️ 🎁 spawned type=ammo value=10
+[@Area3D@2] ℹ️ 🎁 spawned type=ammo value=10
+[PickupSpawner1] ℹ️ 🎁 spawned at pos=(0.0, 0.0, 8.349464)
+[ArenaTest] ℹ️ 🚩 arena ready: res://scenes/arena/arena_test.tscn
+[ArenaTest] ℹ️ 📍 child: NavigationRegion3D (NavigationRegion3D)
+[ArenaTest] ℹ️ 📍 child: Obstacles (Node3D)
+[ArenaTest] ℹ️ 📍 child: Ground (StaticBody3D)
+[ArenaTest] ℹ️ 📍 child: SpawnPoints (Node3D)
+[ArenaTest] ℹ️ 📍 child: PickupSpawners (Node3D)
+[ArenaTest] ℹ️ 📍 child: DirectionalLight3D (DirectionalLight3D)
+[ArenaTest] ℹ️ 📍 child: GroundMesh (MeshInstance3D)
+[ArenaTest] ℹ️ 📍 child: HUD (CanvasLayer)
+[Health] ℹ️ ❤️ initialized mount=200 rider=100
+[Player] ℹ️ 🎮 ready; is_player=true
+[ArenaTest] ℹ️ 🧍 spawned Player at (0.0, 0.0, -15.26117)
+[Health] ℹ️ ❤️ initialized mount=200 rider=100
+[BotDriver] ℹ️ 🤖 ready
+W [BotDriver] ⚠️ ⚠️ no player found in group 'players'
+[BotDriver] ℹ️ 🐎 mount set to parent Bot1
+[Bot1] ℹ️ 🎮 ready; is_player=false
+[ArenaTest] ℹ️ 🤖 spawned Bot1 at (0.0, 0.0, 16.91641)
+[Health] ℹ️ ❤️ initialized mount=200 rider=100
+[BotDriver] ℹ️ 🤖 ready
+W [BotDriver] ⚠️ ⚠️ no player found in group 'players'
+[BotDriver] ℹ️ 🐎 mount set to parent Bot
+[Bot] ℹ️ 🎮 ready; is_player=false
+[ArenaTest] ℹ️ 🤖 spawned Bot at (0.0, 0.0, 13.0)
+E [ArenaTest] ❌ ❌ still no player in group 'players'
+[ArenaTest] ℹ️ 🤖 bot Bot1 at (0.0, 0.0, 16.91641)
+[ArenaTest] ℹ️ 🤖 bot Bot at (0.0, 0.0, 13.0)
+W [BotDriver] ⚠️ 🎯 no target to chase
+W [BotDriver] ⚠️ 🎯 no target to chase
+[@Area3D@2] ℹ️ 🎁 collected type=ammo value=10
+[Pickup] ℹ️ 🎁 collected type=ammo value=10

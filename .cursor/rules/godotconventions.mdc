@@ -95,3 +95,4 @@ alwaysApply: true
   - `❤️` self-health gains, `💀` enemy damage, `🥤` hydration, `💪` stamina, `✨` weapon edge, `🔋` adrenaline.
 - When generator effects or numeric effects fire, emit `LoggerInstance.info` so logs show precise before/after values.
 - Include mover breadcrumbs (`📏`, `📍`, `🎯`, `👣`, `🚩`) for each action start, detour, and arrival.
+- After each play session, review `res://log.txt` (overwritten on each run) for warnings/errors and spawn/movement breadcrumbs before debugging in code. This is the first place to check for issues.

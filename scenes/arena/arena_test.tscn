@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dyjfiyfeds42j"]
+[gd_scene load_steps=14 format=3 uid="uid://dyjfiyfeds42j"]
 
+[ext_resource type="Script" uid="uid://dnb3p1ha84qf7" path="res://scripts/arena/arena_test.gd" id="1_pkhkg"]
 [ext_resource type="Script" uid="uid://h24i43mjwhxn" path="res://scripts/pickups/pickup_spawner.gd" id="1_ujq3r"]
 [ext_resource type="Script" uid="uid://bxhhter7ogcpm" path="res://scripts/pickups/pickup.gd" id="2_mx7fp"]
-[ext_resource type="PackedScene" uid="uid://wig364kod1c3" path="res://scenes/mounts/mastodont.tscn" id="3_k1g9n"]
 [ext_resource type="PackedScene" uid="uid://2q550an2kbr" path="res://scenes/pickups/pickup.tscn" id="4_1p6gu"]
-[ext_resource type="Script" uid="uid://denxexb4t8rem" path="res://scripts/ai/bot_driver.gd" id="5_botdrv"]
+[ext_resource type="PackedScene" uid="uid://b6k5dsgdg03y4" path="res://scenes/ui/hud.tscn" id="6_pkhkg"]
+[ext_resource type="Script" uid="uid://csjtrmwfa0m8l" path="res://scripts/ui/hud.gd" id="7_ghgf5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_01"]
 cell_size = 0.5
@@ -31,11 +32,13 @@ radius = 0.6
 size = Vector3(200, 1, 200)
 
 [node name="ArenaTest" type="Node3D"]
+script = ExtResource("1_pkhkg")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_01")
 
 [node name="Obstacles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.201767)
 
 [node name="Rock1" type="StaticBody3D" parent="Obstacles"]
 
@@ -53,10 +56,13 @@ shape = SubResource("BoxShape3D_ground")
 [node name="SpawnPoints" type="Node3D" parent="."]
 
 [node name="PlayerSpawn" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.261168)
 
 [node name="BotSpawn1" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.916407)
 
 [node name="PickupSpawners" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.349464)
 
 [node name="PickupSpawner1" type="Node3D" parent="PickupSpawners"]
 script = ExtResource("1_ujq3r")
@@ -71,29 +77,12 @@ shape = SubResource("SphereShape3D_pickup")
 [node name="PickupMesh" type="MeshInstance3D" parent="PickupSpawners/PickupSpawner1/Pickup"]
 mesh = SubResource("SphereMesh_pkhkg")
 
-[node name="Player" parent="." instance=ExtResource("3_k1g9n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.735766, 2.5, 0)
-is_player = true
-
-[node name="Bot1" parent="." instance=ExtResource("3_k1g9n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.6070118, 0)
-
-[node name="BotDriver" type="Node" parent="Bot1"]
-script = ExtResource("5_botdrv")
-target = NodePath("../../Player")
-mount = NodePath("..")
-
-[node name="Bot" parent="." instance=ExtResource("3_k1g9n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047286987, 2.5, 7.544194)
-
-[node name="BotDriver" type="Node" parent="Bot"]
-script = ExtResource("5_botdrv")
-target = NodePath("../../Player")
-mount = NodePath("..")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.38783735, 0.92172784, 0, -0.92172784, -0.38783735, 0, 6.1043396, -39.737926)
 
 [node name="GroundMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.048122406, -0.5, 0.028179169)
 mesh = SubResource("BoxMesh_pkhkg")
+
+[node name="HUD" parent="." instance=ExtResource("6_pkhkg")]
+script = ExtResource("7_ghgf5")

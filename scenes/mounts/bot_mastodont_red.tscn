@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciuks1k3bsevc"]
+
+[ext_resource type="Script" uid="uid://c7wuseiqxcayx" path="res://scripts/controllers/mount_controller.gd" id="1_qmg3b"]
+[ext_resource type="Script" uid="uid://cre4lfgo6ovqx" path="res://scripts/combat/health.gd" id="2_qlv4m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 1.2
+height = 4.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lqfs2"]
+radius = 1.2
+height = 2.4
+
+[node name="Mastodont" type="CharacterBody3D"]
+script = ExtResource("1_qmg3b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="Hardpoint_Front" type="Marker3D" parent="."]
+
+[node name="Hardpoint_Top" type="Marker3D" parent="."]
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_qlv4m")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_lqfs2")
+
+[node name="CameraRig" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig"]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364825, 0, -0.17364825, 0.9848077, 0, 0, 0)
+spring_length = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/SpringArm3D"]
+fov = 70.0

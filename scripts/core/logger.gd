@@ -17,13 +17,22 @@ var categories := {
 	"scene": true
 }
 
-@export var ui_panel_enabled: bool = true
+@export var ui_panel_enabled: bool = false
+signal level_changed(new_level: int)
+signal category_toggled(category: String, enabled: bool)
 
 func _ready() -> void:
-	if ui_panel_enabled:
-		_create_debug_panel()
+	# Truncate log file at startup so each run starts fresh
+	var path := "res://log.txt"
+	var f := FileAccess.open(path, FileAccess.WRITE)
+	if f:
+		f.store_string("")
+		f.flush()
+		f.close()
 
 func _create_debug_panel() -> void:
+	# Deprecated: UI should live in HUD/LoggerPanel
+	pass
 	var root := get_tree().root
 	if not root:
 		return
@@ -58,9 +67,11 @@ func _create_debug_panel() -> void:
 
 func set_level(new_level: Level) -> void:
 	level = new_level
+	emit_signal("level_changed", int(new_level))
 
 func enable_category(category: String, enabled_flag: bool) -> void:
 	categories[category] = enabled_flag
+	emit_signal("category_toggled", category, enabled_flag)
 
 func is_enabled(category: String, wanted_level: Level) -> bool:
 	if not enabled:
@@ -72,23 +83,42 @@ func is_enabled(category: String, wanted_level: Level) -> bool:
 func _fmt(actor: String, msg: String) -> String:
 	return "[%s] %s" % [actor, msg]
 
+func _write_line(line: String) -> void:
+	var f := FileAccess.open("res://log.txt", FileAccess.READ_WRITE)
+	if f == null:
+		return
+	f.seek_end()
+	f.store_line(line)
+	f.flush()
+	f.close()
+
 func debug(category: String, actor: String, msg: String) -> void:
 	if is_enabled(category, Level.DEBUG):
-		print_rich(_fmt(actor, "[color=GRAY]🐞 DEBUG[/color] " + msg))
+		var line := _fmt(actor, "🐞 DEBUG " + msg)
+		print_rich("[color=GRAY]" + line + "[/color]")
+		_write_line(line)
 
 func info(category: String, actor: String, msg: String) -> void:
 	if is_enabled(category, Level.INFO):
-		print_rich(_fmt(actor, "ℹ️ " + msg))
+		var line := _fmt(actor, "ℹ️ " + msg)
+		print_rich(line)
+		_write_line(line)
 
 func warn(category: String, actor: String, msg: String) -> void:
 	if is_enabled(category, Level.WARN):
-		push_warning(_fmt(actor, "⚠️ " + msg))
+		var line := _fmt(actor, "⚠️ " + msg)
+		push_warning(line)
+		_write_line("W " + line)
 
 func error(category: String, actor: String, msg: String) -> void:
 	if is_enabled(category, Level.ERROR):
-		push_error(_fmt(actor, "❌ " + msg))
+		var line := _fmt(actor, "❌ " + msg)
+		push_error(line)
+		_write_line("E " + line)
 
 func stat_delta(category: String, actor: String, stat_name: String, before_val: float, after_val: float, emoji: String) -> void:
 	if is_enabled(category, Level.INFO):
 		var delta := after_val - before_val
-		print_rich(_fmt(actor, "%s %s %s -> %s (Δ %s)" % [emoji, stat_name, str(before_val), str(after_val), str(delta)]))
+		var line := _fmt(actor, "%s %s %s -> %s (Δ %s)" % [emoji, stat_name, str(before_val), str(after_val), str(delta)])
+		print_rich(line)
+		_write_line(line)

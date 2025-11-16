@@ -12,6 +12,12 @@ class_name MountController
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
 
 func _ready() -> void:
+	_logger.info("movement", name, "🎮 ready; is_player=%s" % [str(is_player)])
+	# Verify input actions exist (once)
+	var req := ["accelerate","brake","turn_left","turn_right","camera_reset"]
+	for a in req:
+		if not InputMap.has_action(a):
+			_logger.error("movement", name, "❌ missing InputMap action '%s'" % a)
 	if is_player and is_instance_valid(_camera):
 		_camera.current = true
 	else:
@@ -36,8 +42,15 @@ func _physics_process(delta: float) -> void:
 func _get_input_vector() -> Vector2:
 	if not is_player:
 		return Vector2.ZERO
+	if not (InputMap.has_action("accelerate") and InputMap.has_action("brake") and InputMap.has_action("turn_left") and InputMap.has_action("turn_right")):
+		_logger.error("movement", name, "❌ input actions not configured; cannot move")
+		return Vector2.ZERO
 	var f: float = Input.get_action_strength("accelerate") - Input.get_action_strength("brake")
 	var t: float = Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
+	if f == 0.0 and t == 0.0:
+		# Log when player is pressing nothing or mapping broken
+		if is_player:
+			_logger.debug("movement", name, "👣 no input (WASD idle or unmapped)")
 	return Vector2(t, f)
 
 func _apply_movement(input_dir: Vector2, delta: float) -> void:

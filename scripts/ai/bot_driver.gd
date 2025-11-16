@@ -7,6 +7,20 @@ class_name BotDriver
 var _reported_no_mount := false
 var _reported_no_target := false
 
+func _ready() -> void:
+	_logger.info("ai", name, "🤖 ready")
+	if target == null:
+		var p := get_tree().get_first_node_in_group("players")
+		if p and p is Node3D:
+			target = p
+			_logger.info("ai", name, "🎯 target set to %s" % p.name)
+		else:
+			_logger.warn("ai", name, "⚠️ no player found in group 'players'")
+	var mount_parent := get_parent()
+	if mount == null and mount_parent and mount_parent is CharacterBody3D:
+		mount = mount_parent
+		_logger.info("ai", name, "🐎 mount set to parent %s" % mount_parent.name)
+
 func _physics_process(delta: float) -> void:
 	if target == null or mount == null:
 		if mount == null and not _reported_no_mount:
