@@ -76,18 +76,6 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 	if mount != self:
 		return
 	
-	# Check if we already have this weapon type
-	var existing_weapon: WeaponAttachment = null
-	for weapon in _attached_weapons:
-		if weapon.weapon_type == weapon_type:
-			existing_weapon = weapon
-			break
-	
-	if existing_weapon != null:
-		_logger.info("weapon", self, "⚠️ already have weapon type: %s, replacing..." % weapon_type)
-		existing_weapon.detach_from_mount()
-		_attached_weapons.erase(existing_weapon)
-	
 	# Check if both slots are full
 	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
 	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)

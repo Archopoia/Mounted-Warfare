@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6m5plcc1j568"]
 
-[ext_resource type="Script" path="res://scripts/controllers/mount_controller.gd" id="1_b3j5m"]
+[ext_resource type="Script" uid="uid://cflmkpa2qlhgi" path="res://scripts/controllers/mount_controller.gd" id="1_b3j5m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iph8f"]
 
@@ -19,6 +19,7 @@ physics_material_override = SubResource("PhysicsMaterial_iph8f")
 continuous_cd = true
 contact_monitor = true
 script = ExtResource("1_b3j5m")
+steer_torque = 1500.0
 is_player = true
 
 [node name="CameraRig" type="Node3D" parent="."]
@@ -43,4 +44,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, 0)
 
 [node name="WeaponMarkerRight" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, 0)
-

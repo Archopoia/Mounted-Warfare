@@ -6,70 +6,64 @@
 [WeaponPickups/WeaponPickup3#36876322293] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
 [WeaponPickups/WeaponPickup3#36876322293] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0)
 [Arena/Mount#36473669095] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup1
-[HUD/WeaponReplacementHUD#39040583189] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[HUD/WeaponReplacementHUD#39074137619] 🐞 DEBUG 📋 hiding weapon replacement prompt
 [Arena/Mount#36473669095] ℹ️ 📺 HUD created for player mount
 [Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+64 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=6.56 steer=295.08 reign=1.00 … (+59 suppressed)
-[WeaponPickups/WeaponPickup5#36943431161] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[root/MineLayer#83835749935] ℹ️ ⚔️ weapon attachment ready: type=mine_layer
-[WeaponMarkerLeft/MineLayer#83835749935] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
-[Arena/Mount#36473669095] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=12.40 steer=450.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.31 steer=13.77 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=5.55 steer=249.73 reign=1.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=11.66 steer=450.00 reign=1.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=4.63 steer=0.00 reign=1.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=4.87 steer=-219.24 reign=1.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=13.06 steer=-450.00 reign=1.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=7.31 steer=-328.75 reign=1.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=12.45 steer=-450.00 reign=1.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=6.89 steer=-309.99 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=0.00 reign=0.00 … (+61 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=2.16 steer=-97.20 reign=1.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=9.58 steer=-431.32 reign=1.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=12.83 steer=-450.00 reign=1.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=11.34 steer=-450.00 reign=1.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-1.25 steer=56.47 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=8.08 steer=0.00 reign=1.00 … (+61 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=1.22 steer=-183.37 reign=1.00 … (+66 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=7.85 steer=-1177.55 reign=1.00 … (+60 suppressed)
+[WeaponPickups/WeaponPickup3#36876322293] ℹ️ ✨ weapon picked up: type=autocannon, by=Mount
+[root/Autocannon#69826774570] ℹ️ ⚔️ weapon attachment ready: type=autocannon
+[WeaponMarkerLeft/Autocannon#69826774570] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerLeft
+[Arena/Mount#36473669095] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerLeft
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=10.00 steer=-1499.62 reign=0.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.48 steer=71.41 reign=0.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=4.32 steer=-648.56 reign=-1.00 … (+62 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-9.99 steer=-0.00 reign=-1.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=7.53 steer=1129.58 reign=1.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=4.51 steer=0.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=10.60 steer=0.00 reign=1.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=12.54 steer=-1500.00 reign=0.00 … (+60 suppressed)
+[WeaponPickups/WeaponPickup1#36809213425] ℹ️ ✨ weapon picked up: type=rocket_launcher, by=Mount
+[root/RocketLauncher#161262601718] ℹ️ ⚔️ weapon attachment ready: type=rocket_launcher
+[WeaponMarkerRight/RocketLauncher#161262601718] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerRight
+[Arena/Mount#36473669095] ℹ️ ⚔️ weapon attached: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), marker=WeaponMarkerRight
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-1.95 steer=-0.00 reign=0.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=6.21 steer=931.61 reign=1.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=6.23 steer=934.90 reign=1.00 … (+59 suppressed)
 [WeaponPickups/WeaponPickup2#36842767859] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[Arena/Mount#36473669095] ℹ️ ⚠️ already have weapon type: mine_layer, replacing...
-[WeaponMarkerLeft/MineLayer#83835749935] ℹ️ 🔓 weapon detached from mount: type=mine_layer
-[root/MineLayer#272428434937] ℹ️ ⚔️ weapon attachment ready: type=mine_layer
-[WeaponMarkerRight/MineLayer#272428434937] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerRight
+[HUD/WeaponReplacementHUD#39074137619] ℹ️ 📋 showing weapon replacement prompt: mine_layer
+[Arena/Mount#36473669095] ℹ️ 📋 showing replacement prompt for: mine_layer
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-2.04 steer=-305.54 reign=0.00 … (+60 suppressed)
+[HUD/WeaponReplacementHUD#39074137619] ℹ️ 🎯 USER SELECTED: [1] Replace weapon in slot 1
+[HUD/WeaponReplacementHUD#39074137619] ℹ️ 🔄 replacing weapon in slot 1 with mine_layer
+[WeaponMarkerLeft/Autocannon#69826774570] ℹ️ 🔓 weapon detached from mount: type=autocannon
+[root/MineLayer#210721834496] ℹ️ ⚔️ weapon attachment ready: type=mine_layer
+[WeaponMarkerLeft/MineLayer#210721834496] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#36473669095] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft
+[HUD/WeaponReplacementHUD#39074137619] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=4.02 steer=603.35 reign=1.00 … (+59 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=3.33 steer=0.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=8.36 steer=0.00 reign=1.00 … (+60 suppressed)
+[WeaponPickups/WeaponPickup5#36943431161] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[HUD/WeaponReplacementHUD#39074137619] ℹ️ 📋 showing weapon replacement prompt: mine_layer
+[Arena/Mount#36473669095] ℹ️ 📋 showing replacement prompt for: mine_layer
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=13.34 steer=1500.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=7.14 steer=0.00 reign=0.00 … (+60 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+60 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
+[HUD/WeaponReplacementHUD#39074137619] ℹ️ 🎯 USER SELECTED: [2] Replace weapon in slot 2
+[HUD/WeaponReplacementHUD#39074137619] ℹ️ 🔄 replacing weapon in slot 2 with mine_layer
+[WeaponMarkerRight/RocketLauncher#161262601718] ℹ️ 🔓 weapon detached from mount: type=rocket_launcher
+[root/MineLayer#294859572724] ℹ️ ⚔️ weapon attachment ready: type=mine_layer
+[WeaponMarkerRight/MineLayer#294859572724] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerRight
 [Arena/Mount#36473669095] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerRight
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.56 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.95 steer=0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
-… (+1 repeats)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
-… (+1 repeats)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
-… (+1 repeats)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-… (+1 repeats)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+60 suppressed)
-… (+1 repeats)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+60 suppressed)
-[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+59 suppressed)
+[HUD/WeaponReplacementHUD#39074137619] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.01 reign=0.00 … (+58 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+61 suppressed)
+[WeaponPickups/WeaponPickup4#36909876727] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher … (+1 suppressed)
+[WeaponPickups/WeaponPickup4#36909876727] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
+[WeaponPickups/WeaponPickup5#36943431161] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer … (+1 suppressed)
+[WeaponPickups/WeaponPickup5#36943431161] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0) … (+1 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup5 … (+4 suppressed)
+[Arena/Mount#36473669095] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+25 suppressed)
