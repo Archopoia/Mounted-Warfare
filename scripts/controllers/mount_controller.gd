@@ -121,10 +121,12 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 	_attach_weapon(weapon_type, pickup.pickup_color, marker)
 
 func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) -> void:
-	# Load the weapon attachment scene
-	var weapon_scene: PackedScene = load("res://scenes/weapons/weapon_attachment.tscn")
+	# Load the appropriate weapon scene for this weapon type
+	var weapon_scene_path: String = WeaponRegistry.get_weapon_scene_path(weapon_type)
+	var weapon_scene: PackedScene = load(weapon_scene_path)
+	
 	if weapon_scene == null:
-		_logger.error("weapon", self, "❌ Failed to load weapon attachment scene")
+		_logger.error("weapon", self, "❌ Failed to load weapon scene: %s" % weapon_scene_path)
 		return
 	
 	# Instantiate the weapon
@@ -135,7 +137,11 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	
 	var weapon: WeaponAttachment = weapon_instance as WeaponAttachment
 	weapon.weapon_type = weapon_type
-	weapon.weapon_color = weapon_color
+	# Use color from registry if not provided
+	if weapon_color == Color.WHITE:
+		weapon.weapon_color = WeaponRegistry.get_weapon_color(weapon_type)
+	else:
+		weapon.weapon_color = weapon_color
 	
 	# Add to scene tree first (required for reparenting)
 	get_tree().root.add_child(weapon)
@@ -146,7 +152,7 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	# Track the weapon
 	_attached_weapons.append(weapon)
 	
-	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, marker=%s" % [weapon_type, marker.name])
+	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, color=%s, marker=%s" % [weapon_type, weapon.weapon_color, marker.name])
 
 func _create_hud() -> void:
 	if not is_player:

@@ -50,12 +50,15 @@ func _input(event: InputEvent) -> void:
 	# Check for key presses (only handle pressed events, not released)
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_1:
+			_logger.info("ui", self, "🎯 USER SELECTED: [1] Replace weapon in slot 1")
 			_replace_weapon_slot(1)
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_SPACE:
+			_logger.info("ui", self, "🎯 USER SELECTED: [SPACE] Drop new weapon")
 			_drop_weapon()
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_2:
+			_logger.info("ui", self, "🎯 USER SELECTED: [2] Replace weapon in slot 2")
 			_replace_weapon_slot(2)
 			get_viewport().set_input_as_handled()
 

@@ -24,29 +24,42 @@ func _ready() -> void:
 	_base_position = position
 	_logger = get_node_or_null("/root/LoggerInstance")
 	
+	# Get color from weapon registry if not explicitly set
+	if pickup_color == Color(1.0, 0.5, 0.0, 1.0):  # Default orange
+		pickup_color = WeaponRegistry.get_weapon_color(weapon_type)
+	
 	# Connect body_entered signal for pickup detection
 	body_entered.connect(_on_body_entered)
 	
 	# Set up visual representation
 	_setup_visuals()
 	
-	_logger.info("pickup", self, "🎁 weapon pickup spawned: type=%s, pos=%s" % [weapon_type, position])
+	_logger.info("pickup", self, "🎁 weapon pickup spawned: type=%s, color=%s, pos=%s" % [weapon_type, pickup_color, position])
 
 func _setup_visuals() -> void:
-	# Update material color if mesh instance exists
-	var mesh_instance: MeshInstance3D = get_node_or_null("MeshInstance3D")
-	if mesh_instance != null and mesh_instance.mesh != null:
-		# Create or update material with the pickup color
-		var material: StandardMaterial3D = null
-		if mesh_instance.get_surface_override_material(0) != null:
-			material = mesh_instance.get_surface_override_material(0) as StandardMaterial3D
-		if material == null:
-			material = StandardMaterial3D.new()
-		
-		material.albedo_color = pickup_color
-		material.emission_enabled = true
-		material.emission = pickup_color * 0.5
-		mesh_instance.set_surface_override_material(0, material)
+	# Load the appropriate weapon scene for this pickup
+	var weapon_scene_path: String = WeaponRegistry.get_weapon_scene_path(weapon_type)
+	var weapon_scene: PackedScene = load(weapon_scene_path)
+	
+	if weapon_scene != null:
+		# Instantiate the weapon visual
+		var weapon_visual: Node = weapon_scene.instantiate()
+		if weapon_visual != null:
+			# Remove the script from the visual (we don't want weapon attachment behavior on pickup)
+			weapon_visual.set_script(null)
+			
+			# Update color to match pickup color (which should match weapon type color)
+			_update_weapon_visual_color(weapon_visual, pickup_color)
+			
+			# Add as child
+			add_child(weapon_visual)
+			_logger.debug("pickup", self, "🎨 weapon visual loaded: %s" % weapon_type)
+		else:
+			_logger.error("pickup", self, "❌ Failed to instantiate weapon visual")
+	else:
+		_logger.error("pickup", self, "❌ Failed to load weapon scene: %s" % weapon_scene_path)
+		# Fallback to simple box
+		_create_fallback_visual()
 	
 	# Ensure collision shape exists and is set up
 	var collision_shape: CollisionShape3D = get_node_or_null("CollisionShape3D")
@@ -59,6 +72,37 @@ func _setup_visuals() -> void:
 	# Area3D will detect RigidBody3D by default
 	collision_layer = 0
 	collision_mask = 0xFFFFFFFF  # Detect all collision layers (default behavior)
+
+func _update_weapon_visual_color(node: Node, color: Color) -> void:
+	# Recursively update all MeshInstance3D nodes with the color
+	if node is MeshInstance3D:
+		var mesh_instance: MeshInstance3D = node as MeshInstance3D
+		var material: StandardMaterial3D = StandardMaterial3D.new()
+		material.albedo_color = color
+		material.emission_enabled = true
+		material.emission = color * 0.5
+		mesh_instance.set_surface_override_material(0, material)
+	
+	for child in node.get_children():
+		_update_weapon_visual_color(child, color)
+
+func _create_fallback_visual() -> void:
+	# Fallback simple box if weapon scene fails to load
+	var mesh_instance: MeshInstance3D = get_node_or_null("MeshInstance3D")
+	if mesh_instance == null:
+		mesh_instance = MeshInstance3D.new()
+		mesh_instance.name = "MeshInstance3D"
+		add_child(mesh_instance)
+	
+	var box_mesh: BoxMesh = BoxMesh.new()
+	box_mesh.size = Vector3(0.8, 0.8, 0.8)
+	mesh_instance.mesh = box_mesh
+	
+	var material: StandardMaterial3D = StandardMaterial3D.new()
+	material.albedo_color = pickup_color
+	material.emission_enabled = true
+	material.emission = pickup_color * 0.5
+	mesh_instance.set_surface_override_material(0, material)
 
 func _process(delta: float) -> void:
 	if _pickup_used:

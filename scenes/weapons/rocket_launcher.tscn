@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://rocket_launcher_weapon"]
+
+[ext_resource type="Script" path="res://scripts/weapons/weapon_attachment.gd" id="1_weapon"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rocket"]
+top_radius = 0.12
+bottom_radius = 0.12
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_rocket"]
+albedo_color = Color(1, 0.5, 0, 1)
+emission_enabled = true
+emission = Color(0.3, 0.15, 0, 1)
+
+[node name="RocketLauncher" type="Node3D"]
+script = ExtResource("1_weapon")
+weapon_type = "rocket_launcher"
+weapon_name = "Rocket Launcher"
+weapon_color = Color(1, 0.5, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_rocket")
+surface_material_override/0 = SubResource("Mat_rocket")
+rotation_degrees = Vector3(0, 0, 90)
+position = Vector3(0, 0, 0.2)
+
