@@ -97,63 +97,87 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 		weapon_type
 	])
 	
-	# Check if we already have this weapon type
-	var existing_weapon: WeaponAttachment = null
-	var existing_slot: int = 0
-	if left_weapon != null:
-		_logger.debug("weapon", self, "🔍 checking left weapon: type=%s, matches=%s" % [left_weapon.weapon_type, str(left_weapon.weapon_type == weapon_type)])
-		if left_weapon.weapon_type == weapon_type:
-			existing_weapon = left_weapon
-			existing_slot = 1
-			_logger.info("weapon", self, "✅ found matching weapon in slot 1: type=%s, ammo=%d/%d" % [weapon_type, existing_weapon.current_ammo, existing_weapon.max_ammo])
+	# Check if we already have this weapon type in either slot
+	var left_matches: bool = left_weapon != null and left_weapon.weapon_type == weapon_type
+	var right_matches: bool = right_weapon != null and right_weapon.weapon_type == weapon_type
 	
-	if existing_weapon == null and right_weapon != null:
-		_logger.debug("weapon", self, "🔍 checking right weapon: type=%s, matches=%s" % [right_weapon.weapon_type, str(right_weapon.weapon_type == weapon_type)])
-		if right_weapon.weapon_type == weapon_type:
-			existing_weapon = right_weapon
-			existing_slot = 2
-			_logger.info("weapon", self, "✅ found matching weapon in slot 2: type=%s, ammo=%d/%d" % [weapon_type, existing_weapon.current_ammo, existing_weapon.max_ammo])
+	_logger.debug("weapon", self, "🔍 checking matches: left_matches=%s, right_matches=%s" % [str(left_matches), str(right_matches)])
 	
-	if existing_weapon == null:
-		_logger.info("weapon", self, "ℹ️ no matching weapon found, will attach as new weapon")
-	
-	# If we have the same weapon type
-	if existing_weapon != null:
-		_logger.info("weapon", self, "🔍 checking if refill needed: current=%d, max=%d" % [existing_weapon.current_ammo, existing_weapon.max_ammo])
-		# Check if it needs ammo refill
-		if existing_weapon.current_ammo < existing_weapon.max_ammo:
-			# Refill the existing weapon
-			var old_ammo: int = existing_weapon.current_ammo
-			_logger.info("weapon", self, "🔋 REFILLING weapon in slot %d: %d/%d -> %d/%d" % [existing_slot, old_ammo, existing_weapon.max_ammo, existing_weapon.max_ammo, existing_weapon.max_ammo])
-			existing_weapon.current_ammo = existing_weapon.max_ammo
-			existing_weapon.ammo_changed.emit(existing_weapon.current_ammo, existing_weapon.max_ammo)
-			_logger.info("weapon", self, "✅ REFILL COMPLETE: ammo now %d/%d" % [existing_weapon.current_ammo, existing_weapon.max_ammo])
-			return
-		else:
-			# Weapon is already full - try to place in other slot
-			_logger.info("weapon", self, "ℹ️ weapon already at full ammo (%d/%d), checking other slot..." % [existing_weapon.current_ammo, existing_weapon.max_ammo])
-			var other_slot: int = 2 if existing_slot == 1 else 1
-			var other_weapon: WeaponAttachment = left_weapon if other_slot == 1 else right_weapon
+	# If we have matching weapons, check which ones need refill
+	if left_matches or right_matches:
+		var weapons_to_refill: Array[Dictionary] = []  # Array of {weapon: WeaponAttachment, slot: int, ammo: int}
+		
+		if left_matches:
+			_logger.info("weapon", self, "✅ found matching weapon in slot 1: type=%s, ammo=%d/%d" % [weapon_type, left_weapon.current_ammo, left_weapon.max_ammo])
+			if left_weapon.current_ammo < left_weapon.max_ammo:
+				weapons_to_refill.append({"weapon": left_weapon, "slot": 1, "ammo": left_weapon.current_ammo})
+		
+		if right_matches:
+			_logger.info("weapon", self, "✅ found matching weapon in slot 2: type=%s, ammo=%d/%d" % [weapon_type, right_weapon.current_ammo, right_weapon.max_ammo])
+			if right_weapon.current_ammo < right_weapon.max_ammo:
+				weapons_to_refill.append({"weapon": right_weapon, "slot": 2, "ammo": right_weapon.current_ammo})
+		
+		# If any weapon needs refill, refill the one with the least ammo (or just the first one)
+		if weapons_to_refill.size() > 0:
+			# Sort by ammo (lowest first) to refill the one that needs it most
+			weapons_to_refill.sort_custom(func(a, b): return a.ammo < b.ammo)
+			var target: Dictionary = weapons_to_refill[0]
+			var target_weapon: WeaponAttachment = target.weapon
+			var target_slot: int = target.slot
+			var old_ammo: int = target.ammo
 			
-			if other_weapon == null:
-				# Other slot is free - attach there
-				var other_marker: Marker3D = _weapon_marker_left if other_slot == 1 else _weapon_marker_right
-				_logger.info("weapon", self, "➕ attaching to free slot %d (same weapon type, but existing is full)" % other_slot)
-				_attach_weapon(weapon_type, pickup.pickup_color, other_marker)
+			_logger.info("weapon", self, "🔋 REFILLING weapon in slot %d: %d/%d -> %d/%d" % [target_slot, old_ammo, target_weapon.max_ammo, target_weapon.max_ammo, target_weapon.max_ammo])
+			target_weapon.current_ammo = target_weapon.max_ammo
+			target_weapon.ammo_changed.emit(target_weapon.current_ammo, target_weapon.max_ammo)
+			_logger.info("weapon", self, "✅ REFILL COMPLETE: ammo now %d/%d" % [target_weapon.current_ammo, target_weapon.max_ammo])
+			return
+		
+		# Both matching weapons are at full ammo - check if we can place in a free slot
+		if not left_matches or not right_matches:
+			# One slot doesn't have this weapon type - attach there
+			var free_slot: int = 0
+			var free_marker: Marker3D = null
+			if not left_matches and left_weapon == null:
+				free_slot = 1
+				free_marker = _weapon_marker_left
+			elif not right_matches and right_weapon == null:
+				free_slot = 2
+				free_marker = _weapon_marker_right
+			
+			if free_marker != null:
+				_logger.info("weapon", self, "➕ attaching to free slot %d (same weapon type, but existing is full)" % free_slot)
+				_attach_weapon(weapon_type, pickup.pickup_color, free_marker)
+				return
+		
+		# Both slots have this weapon type and both are full - show replacement prompt
+		if left_matches and right_matches:
+			if is_player and _weapon_hud != null:
+				_pending_weapon_type = weapon_type
+				_pending_weapon_color = pickup.pickup_color
+				# Determine which slot to show as refill option (the one with less ammo, or slot 1 if equal)
+				# But only if that slot actually needs refill
+				var refill_slot: int = 0
+				if left_weapon.current_ammo < left_weapon.max_ammo:
+					refill_slot = 1
+				elif right_weapon.current_ammo < right_weapon.max_ammo:
+					refill_slot = 2
+				else:
+					# Both are full - pick the one with less ammo (shouldn't happen, but just in case)
+					refill_slot = 1
+					if right_weapon.current_ammo < left_weapon.current_ammo:
+						refill_slot = 2
+				
+				_weapon_hud.show_replacement_prompt_with_refill(weapon_type, pickup.pickup_color, left_weapon.weapon_type, right_weapon.weapon_type, refill_slot)
+				_logger.info("weapon", self, "📋 showing replacement prompt with refill option for: %s (both slots have this weapon, refill_slot=%d)" % [weapon_type, refill_slot])
 				return
 			else:
-				# Both slots are full - show replacement prompt with refill option
-				if is_player and _weapon_hud != null:
-					_pending_weapon_type = weapon_type
-					_pending_weapon_color = pickup.pickup_color
-					_weapon_hud.show_replacement_prompt_with_refill(weapon_type, pickup.pickup_color, left_weapon.weapon_type, right_weapon.weapon_type, existing_slot)
-					_logger.info("weapon", self, "📋 showing replacement prompt with refill option for: %s" % weapon_type)
-					return
-				else:
-					# For non-player mounts, replace the other weapon automatically
-					_logger.info("weapon", self, "🤖 auto-replacing slot %d weapon with: %s" % [other_slot, weapon_type])
-					replace_weapon_in_slot(other_slot, weapon_type, pickup.pickup_color)
-					return
+				# For non-player mounts, replace the weapon with less ammo
+				var replace_slot: int = 1
+				if right_weapon.current_ammo < left_weapon.current_ammo:
+					replace_slot = 2
+				_logger.info("weapon", self, "🤖 auto-replacing slot %d weapon with: %s" % [replace_slot, weapon_type])
+				replace_weapon_in_slot(replace_slot, weapon_type, pickup.pickup_color)
+				return
 	
 	# We don't have this weapon type - check if slots are available
 	if left_weapon != null and right_weapon != null:
