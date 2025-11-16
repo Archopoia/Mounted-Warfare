@@ -65,3 +65,28 @@ func detach_from_mount() -> void:
 	# Remove weapon from scene
 	queue_free()
 
+func attack() -> void:
+	if _attached_to_mount == null:
+		_logger.error("weapon", self, "❌ Cannot attack: weapon not attached to mount")
+		return
+	
+	if not is_inside_tree():
+		_logger.error("weapon", self, "❌ Cannot attack: weapon not in scene tree")
+		return
+	
+	_logger.info("weapon", self, "💥 attacking with weapon: type=%s, name=%s" % [weapon_type, weapon_name])
+	
+	# TODO: Implement actual weapon attack logic here
+	# For now, just log the attack
+	# This will be expanded to spawn projectiles, apply damage, etc.
+	
+	match weapon_type:
+		"rocket_launcher":
+			_logger.debug("weapon", self, "🚀 firing rocket launcher")
+		"mine_layer":
+			_logger.debug("weapon", self, "💣 deploying mine layer")
+		"autocannon":
+			_logger.debug("weapon", self, "🔫 firing autocannon")
+		_:
+			_logger.warn("weapon", self, "⚠️ unknown weapon type for attack: %s" % weapon_type)
+

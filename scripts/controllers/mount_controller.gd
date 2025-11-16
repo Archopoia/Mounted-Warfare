@@ -34,6 +34,12 @@ func _ready() -> void:
 	for a in req:
 		if not InputMap.has_action(a):
 			_logger.error("movement", self, "❌ missing InputMap action '%s'" % a)
+	
+	# Check for weapon input actions
+	var weapon_actions := ["fire_primary", "fire_alt"]
+	for a in weapon_actions:
+		if not InputMap.has_action(a):
+			_logger.error("weapon", self, "❌ missing InputMap action '%s'" % a)
 	if is_player and is_instance_valid(_camera):
 		_camera.current = true
 	else:
@@ -247,4 +253,52 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		_bus.emit_movement_intent(name, gallop_speed)
 	_logger.debug("movement", self, "📏 v=%.2f steer=%.2f reign=%.2f" % [gallop_speed, steer_torque_applied, reign_input])
 
+func _input(event: InputEvent) -> void:
+	# Only handle weapon input for player mounts
+	if not is_player:
+		return
+	
+	# Check for weapon attacks via mouse clicks
+	# Left mouse button (MOUSE_BUTTON_LEFT = 1) fires left weapon
+	# Right mouse button (MOUSE_BUTTON_RIGHT = 2) fires right weapon
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			_logger.debug("weapon", self, "🖱️ left mouse button pressed")
+			_attack_with_left_weapon()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			_logger.debug("weapon", self, "🖱️ right mouse button pressed")
+			_attack_with_right_weapon()
 
+func _attack_with_left_weapon() -> void:
+	if _weapon_marker_left == null:
+		_logger.debug("weapon", self, "⚠️ cannot attack: left weapon marker is null")
+		return
+	
+	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
+	if left_weapon == null:
+		_logger.debug("weapon", self, "⚠️ cannot attack: no weapon attached to left marker")
+		return
+	
+	if not is_instance_valid(left_weapon):
+		_logger.error("weapon", self, "❌ cannot attack: left weapon is not valid")
+		return
+	
+	_logger.info("weapon", self, "🎯 left mouse click detected - attacking with left weapon")
+	left_weapon.attack()
+
+func _attack_with_right_weapon() -> void:
+	if _weapon_marker_right == null:
+		_logger.debug("weapon", self, "⚠️ cannot attack: right weapon marker is null")
+		return
+	
+	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)
+	if right_weapon == null:
+		_logger.debug("weapon", self, "⚠️ cannot attack: no weapon attached to right marker")
+		return
+	
+	if not is_instance_valid(right_weapon):
+		_logger.error("weapon", self, "❌ cannot attack: right weapon is not valid")
+		return
+	
+	_logger.info("weapon", self, "🎯 right mouse click detected - attacking with right weapon")
+	right_weapon.attack()

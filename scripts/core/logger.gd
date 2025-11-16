@@ -3,7 +3,7 @@ extends Node
 enum Level { DEBUG, INFO, WARN, ERROR }
 
 var enabled: bool = true
-var level: Level = Level.INFO
+var level: Level = Level.DEBUG  # Set to DEBUG to show all logs in console
 var file_captures_all: bool = true
 
 # Per-aspect toggles designers can control at runtime
@@ -15,7 +15,9 @@ var categories := {
 	"progression": true,
 	"health": true,
 	"ai": true,
-	"scene": true
+	"scene": true,
+	"weapon": true,
+	"ui": true
 }
 
 ## If true, displays an on-screen debug panel for logger controls (deprecated: use HUD/LoggerPanel instead)
