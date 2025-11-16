@@ -6,6 +6,8 @@ var mount_controller: MountController = null
 var pending_weapon_type: String = ""
 var pending_weapon_color: Color = Color.WHITE
 var _refill_slot: int = 0  # Slot number that can be refilled (0 = no refill option)
+var _upgrade_slots: Array[int] = []  # Slots that can be upgraded
+var _free_slot: int = 0  # Free slot available (0 = none)
 
 @onready var _prompt_panel: Panel = $PromptPanel
 @onready var _prompt_label: Label = $PromptPanel/VBoxContainer/PromptLabel
@@ -87,13 +89,19 @@ func _input(event: InputEvent) -> void:
 	if not mount_controller.is_player:
 		return
 	
-	# Check for key presses (only handle pressed events, not released)
+		# Check for key presses (only handle pressed events, not released)
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_1:
-			# Check if this is a refill option
+			# Check if this is a refill, upgrade, attach to free slot, or replace option
 			if _refill_slot == 1:
 				_logger.info("ui", self, "🎯 USER SELECTED: [1] Refill weapon in slot 1")
 				_refill_weapon_slot(1)
+			elif _free_slot == 1:
+				_logger.info("ui", self, "🎯 USER SELECTED: [1] Attach to free slot 1")
+				_attach_to_free_slot(1)
+			elif _upgrade_slots.has(1):
+				_logger.info("ui", self, "🎯 USER SELECTED: [1] Upgrade weapon in slot 1")
+				_upgrade_weapon_slot(1)
 			else:
 				_logger.info("ui", self, "🎯 USER SELECTED: [1] Replace weapon in slot 1")
 				_replace_weapon_slot(1)
@@ -103,10 +111,16 @@ func _input(event: InputEvent) -> void:
 			_drop_weapon()
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_2:
-			# Check if this is a refill option
+			# Check if this is a refill, upgrade, attach to free slot, or replace option
 			if _refill_slot == 2:
 				_logger.info("ui", self, "🎯 USER SELECTED: [2] Refill weapon in slot 2")
 				_refill_weapon_slot(2)
+			elif _free_slot == 2:
+				_logger.info("ui", self, "🎯 USER SELECTED: [2] Attach to free slot 2")
+				_attach_to_free_slot(2)
+			elif _upgrade_slots.has(2):
+				_logger.info("ui", self, "🎯 USER SELECTED: [2] Upgrade weapon in slot 2")
+				_upgrade_weapon_slot(2)
 			else:
 				_logger.info("ui", self, "🎯 USER SELECTED: [2] Replace weapon in slot 2")
 				_replace_weapon_slot(2)
@@ -127,6 +141,65 @@ func _refill_weapon_slot(slot: int) -> void:
 	_logger.info("ui", self, "🔋 refilling weapon in slot %d" % slot)
 	mount_controller.refill_weapon_in_slot(slot)
 	hide_prompt()
+
+func _upgrade_weapon_slot(slot: int) -> void:
+	if mount_controller == null:
+		return
+	
+	_logger.info("ui", self, "⬆️ upgrading weapon in slot %d" % slot)
+	mount_controller.upgrade_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color)
+	hide_prompt()
+
+func _attach_to_free_slot(slot: int) -> void:
+	if mount_controller == null:
+		return
+	
+	_logger.info("ui", self, "➕ attaching to free slot %d" % slot)
+	mount_controller.attach_weapon_to_slot(slot, pending_weapon_type, pending_weapon_color)
+	hide_prompt()
+
+func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, upgrade_slots: Array[int], free_slot: int) -> void:
+	pending_weapon_type = weapon_type
+	pending_weapon_color = weapon_color
+	_upgrade_slots = upgrade_slots
+	_free_slot = free_slot
+	_refill_slot = 0  # No refill in upgrade mode
+	
+	# Update labels
+	_prompt_label.text = "Upgrade weapon with: %s?" % weapon_type.replace("_", " ").capitalize()
+	
+	# Determine what options to show
+	if upgrade_slots.size() > 0 and free_slot > 0:
+		# Can upgrade slot(s) OR attach to free slot
+		if upgrade_slots.has(1):
+			_option_1_label.text = "[1] Upgrade %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		else:
+			_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		
+		if upgrade_slots.has(2):
+			_option_2_label.text = "[2] Upgrade %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+		else:
+			_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+	elif upgrade_slots.size() > 0:
+		# Can only upgrade
+		if upgrade_slots.has(1):
+			_option_1_label.text = "[1] Upgrade %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		else:
+			_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		
+		if upgrade_slots.has(2):
+			_option_2_label.text = "[2] Upgrade %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+		else:
+			_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+	else:
+		# Standard replacement
+		_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+	
+	_option_space_label.text = "[SPACE] Drop new weapon"
+	
+	_prompt_panel.visible = true
+	_logger.info("ui", self, "📋 showing upgrade prompt: %s (upgrade_slots=%s, free_slot=%d)" % [weapon_type, str(upgrade_slots), free_slot])
 
 func _drop_weapon() -> void:
 	if mount_controller == null:

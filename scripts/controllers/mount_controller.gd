@@ -24,6 +24,8 @@ var _weapon_hud: WeaponReplacementHUD = null
 var _weapon_display_hud: WeaponDisplayHUD = null
 var _pending_weapon_type: String = ""
 var _pending_weapon_color: Color = Color.WHITE
+# Track stacked weapons per slot: {slot: [WeaponAttachment, ...]}
+var _stacked_weapons: Dictionary = {}  # {1: [weapon1, weapon2, ...], 2: [weapon1, weapon2, ...]}
 
 func _ready() -> void:
 	# Ensure RigidBody3D is in RIGID mode and awake for physics to work
@@ -132,52 +134,51 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 			_logger.info("weapon", self, "✅ REFILL COMPLETE: ammo now %d/%d" % [target_weapon.current_ammo, target_weapon.max_ammo])
 			return
 		
-		# Both matching weapons are at full ammo - check if we can place in a free slot
-		if not left_matches or not right_matches:
-			# One slot doesn't have this weapon type - attach there
-			var free_slot: int = 0
-			var free_marker: Marker3D = null
-			if not left_matches and left_weapon == null:
-				free_slot = 1
-				free_marker = _weapon_marker_left
-			elif not right_matches and right_weapon == null:
-				free_slot = 2
-				free_marker = _weapon_marker_right
-			
-			if free_marker != null:
-				_logger.info("weapon", self, "➕ attaching to free slot %d (same weapon type, but existing is full)" % free_slot)
-				_attach_weapon(weapon_type, pickup.pickup_color, free_marker)
-				return
+		# Both matching weapons are at full ammo - offer upgrade or place in other slot
+		# Check if we can upgrade (stack) or place in free slot
+		var full_weapons: Array[Dictionary] = []  # Array of {weapon: WeaponAttachment, slot: int}
 		
-		# Both slots have this weapon type and both are full - show replacement prompt
-		if left_matches and right_matches:
+		if left_matches and left_weapon.current_ammo >= left_weapon.max_ammo:
+			full_weapons.append({"weapon": left_weapon, "slot": 1})
+		if right_matches and right_weapon.current_ammo >= right_weapon.max_ammo:
+			full_weapons.append({"weapon": right_weapon, "slot": 2})
+		
+		# Check for free slots (not matching weapon type)
+		var free_slot: int = 0
+		var free_marker: Marker3D = null
+		if not left_matches and left_weapon == null:
+			free_slot = 1
+			free_marker = _weapon_marker_left
+		elif not right_matches and right_weapon == null:
+			free_slot = 2
+			free_marker = _weapon_marker_right
+		
+		# If we have full weapons and this is a player, show upgrade/replace prompt
+		if full_weapons.size() > 0:
 			if is_player and _weapon_hud != null:
 				_pending_weapon_type = weapon_type
 				_pending_weapon_color = pickup.pickup_color
-				# Determine which slot to show as refill option (the one with less ammo, or slot 1 if equal)
-				# But only if that slot actually needs refill
-				var refill_slot: int = 0
-				if left_weapon.current_ammo < left_weapon.max_ammo:
-					refill_slot = 1
-				elif right_weapon.current_ammo < right_weapon.max_ammo:
-					refill_slot = 2
-				else:
-					# Both are full - pick the one with less ammo (shouldn't happen, but just in case)
-					refill_slot = 1
-					if right_weapon.current_ammo < left_weapon.current_ammo:
-						refill_slot = 2
 				
-				_weapon_hud.show_replacement_prompt_with_refill(weapon_type, pickup.pickup_color, left_weapon.weapon_type, right_weapon.weapon_type, refill_slot)
-				_logger.info("weapon", self, "📋 showing replacement prompt with refill option for: %s (both slots have this weapon, refill_slot=%d)" % [weapon_type, refill_slot])
+				# Determine which slots can be upgraded
+				var upgrade_slots: Array[int] = []
+				for full_data in full_weapons:
+					upgrade_slots.append(full_data.slot)
+				
+				_weapon_hud.show_upgrade_prompt(weapon_type, pickup.pickup_color, left_weapon.weapon_type if left_weapon != null else "", right_weapon.weapon_type if right_weapon != null else "", upgrade_slots, free_slot)
+				_logger.info("weapon", self, "📋 showing upgrade prompt for: %s (upgrade_slots=%s, free_slot=%d)" % [weapon_type, str(upgrade_slots), free_slot])
 				return
 			else:
-				# For non-player mounts, replace the weapon with less ammo
-				var replace_slot: int = 1
-				if right_weapon.current_ammo < left_weapon.current_ammo:
-					replace_slot = 2
-				_logger.info("weapon", self, "🤖 auto-replacing slot %d weapon with: %s" % [replace_slot, weapon_type])
-				replace_weapon_in_slot(replace_slot, weapon_type, pickup.pickup_color)
+				# For non-player mounts, upgrade the first full weapon automatically
+				var target_data: Dictionary = full_weapons[0]
+				_logger.info("weapon", self, "🤖 auto-upgrading slot %d weapon with: %s" % [target_data.slot, weapon_type])
+				_upgrade_weapon_in_slot(target_data.slot, weapon_type, pickup.pickup_color)
 				return
+		
+		# If we have a free slot, attach there
+		if free_marker != null:
+			_logger.info("weapon", self, "➕ attaching to free slot %d (same weapon type, but existing is full)" % free_slot)
+			_attach_weapon(weapon_type, pickup.pickup_color, free_marker)
+			return
 	
 	# We don't have this weapon type - check if slots are available
 	if left_weapon != null and right_weapon != null:
@@ -243,13 +244,23 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	# Attach to the marker
 	weapon.attach_to_mount(self, marker)
 	
+	# Determine which slot this marker belongs to
+	var slot: int = 1 if marker == _weapon_marker_left else 2
+	
+	# Initialize stack array for this slot if needed
+	if not _stacked_weapons.has(slot):
+		_stacked_weapons[slot] = []
+	
+	# Add as first weapon in stack
+	_stacked_weapons[slot].append(weapon)
+	
 	# Track the weapon
 	_attached_weapons.append(weapon)
 	
 	# Update display HUD
 	_update_display_hud()
 	
-	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, color=%s, marker=%s, ammo=%d/%d" % [weapon_type, weapon.weapon_color, marker.name, weapon.current_ammo, weapon.max_ammo])
+	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, color=%s, marker=%s, ammo=%d/%d, slot=%d" % [weapon_type, weapon.weapon_color, marker.name, weapon.current_ammo, weapon.max_ammo, slot])
 
 func _create_hud() -> void:
 	if not is_player:
@@ -296,6 +307,19 @@ func _create_hud() -> void:
 	_logger.info("ui", self, "📺 HUD created for player mount")
 
 func _get_weapon_at_marker(marker: Marker3D) -> WeaponAttachment:
+	# Get the base weapon (first in stack) for this marker
+	var slot: int = 0
+	if marker == _weapon_marker_left:
+		slot = 1
+	elif marker == _weapon_marker_right:
+		slot = 2
+	
+	if slot > 0 and _stacked_weapons.has(slot) and _stacked_weapons[slot].size() > 0:
+		var base_weapon: WeaponAttachment = _stacked_weapons[slot][0]
+		if is_instance_valid(base_weapon):
+			return base_weapon
+	
+	# Fallback: search marker children (for backwards compatibility)
 	if marker == null:
 		_logger.debug("weapon", self, "🔍 _get_weapon_at_marker: marker is null")
 		return null
@@ -331,41 +355,63 @@ func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color)
 	
 	_logger.debug("weapon", self, "🔍 BEFORE_REMOVAL: marker=%s, child_count=%d" % [marker.name, marker.get_child_count()])
 	
-	# Remove existing weapon at this marker
-	var existing_weapon: WeaponAttachment = _get_weapon_at_marker(marker)
-	if existing_weapon != null:
-		_logger.info("weapon", self, "🗑️ REMOVING_OLD_WEAPON: slot=%d, type=%s, id=%d" % [slot, existing_weapon.weapon_type, existing_weapon.get_instance_id()])
+	# Remove all stacked weapons at this marker (clear the stack)
+	if _stacked_weapons.has(slot):
+		var stack: Array = _stacked_weapons[slot]
+		_logger.info("weapon", self, "🗑️ REMOVING_STACK: slot=%d, stack_size=%d" % [slot, stack.size()])
 		
-		# Disconnect ammo signals before detaching (determine which slot's callbacks to disconnect)
-		if slot == 1:
-			if existing_weapon.ammo_changed.is_connected(_on_left_weapon_ammo_changed):
-				existing_weapon.ammo_changed.disconnect(_on_left_weapon_ammo_changed)
-				_logger.debug("weapon", self, "🔌 disconnected left ammo signal")
-		elif slot == 2:
-			if existing_weapon.ammo_changed.is_connected(_on_right_weapon_ammo_changed):
-				existing_weapon.ammo_changed.disconnect(_on_right_weapon_ammo_changed)
-				_logger.debug("weapon", self, "🔌 disconnected right ammo signal")
+		for weapon in stack:
+			if is_instance_valid(weapon):
+				# Disconnect ammo signals
+				if slot == 1:
+					if weapon.ammo_changed.is_connected(_on_left_weapon_ammo_changed):
+						weapon.ammo_changed.disconnect(_on_left_weapon_ammo_changed)
+				elif slot == 2:
+					if weapon.ammo_changed.is_connected(_on_right_weapon_ammo_changed):
+						weapon.ammo_changed.disconnect(_on_right_weapon_ammo_changed)
+				
+				if weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
+					weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+				
+				# Remove from marker
+				if marker.is_ancestor_of(weapon):
+					marker.remove_child(weapon)
+				
+				weapon.detach_from_mount()
+				_attached_weapons.erase(weapon)
 		
-		if existing_weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
-			existing_weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
-			_logger.debug("weapon", self, "🔌 disconnected ammo_depleted signal")
-		
-		# Explicitly remove the weapon from the marker's children BEFORE detaching
-		# This ensures it's removed immediately, not deferred
-		if marker.is_ancestor_of(existing_weapon):
-			marker.remove_child(existing_weapon)
-			_logger.debug("weapon", self, "🔌 removed weapon from marker's children")
-		
-		existing_weapon.detach_from_mount()
-		_attached_weapons.erase(existing_weapon)
-		_logger.debug("weapon", self, "✅ old weapon detached and removed from array")
-		
-		# Clear HUD cache for this slot to ensure fresh data is loaded for the new weapon
-		if _weapon_display_hud != null:
-			_weapon_display_hud.clear_slot_cache(slot)
-			_logger.debug("weapon", self, "🗑️ HUD cache cleared for slot %d" % slot)
+		# Clear the stack
+		_stacked_weapons[slot] = []
+		_logger.debug("weapon", self, "✅ stack cleared for slot %d" % slot)
 	else:
-		_logger.debug("weapon", self, "ℹ️ no existing weapon to remove at slot %d" % slot)
+		# Fallback: remove single weapon (backwards compatibility)
+		var existing_weapon: WeaponAttachment = _get_weapon_at_marker(marker)
+		if existing_weapon != null:
+			_logger.info("weapon", self, "🗑️ REMOVING_OLD_WEAPON: slot=%d, type=%s, id=%d" % [slot, existing_weapon.weapon_type, existing_weapon.get_instance_id()])
+			
+			# Disconnect ammo signals
+			if slot == 1:
+				if existing_weapon.ammo_changed.is_connected(_on_left_weapon_ammo_changed):
+					existing_weapon.ammo_changed.disconnect(_on_left_weapon_ammo_changed)
+			elif slot == 2:
+				if existing_weapon.ammo_changed.is_connected(_on_right_weapon_ammo_changed):
+					existing_weapon.ammo_changed.disconnect(_on_right_weapon_ammo_changed)
+			
+			if existing_weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
+				existing_weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+			
+			# Remove from marker
+			if marker.is_ancestor_of(existing_weapon):
+				marker.remove_child(existing_weapon)
+			
+			existing_weapon.detach_from_mount()
+			_attached_weapons.erase(existing_weapon)
+			_logger.debug("weapon", self, "✅ old weapon detached and removed from array")
+	
+	# Clear HUD cache for this slot to ensure fresh data is loaded for the new weapon
+	if _weapon_display_hud != null:
+		_weapon_display_hud.clear_slot_cache(slot)
+		_logger.debug("weapon", self, "🗑️ HUD cache cleared for slot %d" % slot)
 	
 	_logger.debug("weapon", self, "🔍 AFTER_REMOVAL: marker=%s, child_count=%d" % [marker.name, marker.get_child_count()])
 	
@@ -412,6 +458,90 @@ func refill_weapon_in_slot(slot: int) -> void:
 	_logger.info("weapon", self, "🔋 refilling weapon in slot %d: %d/%d -> %d/%d" % [slot, weapon.current_ammo, weapon.max_ammo, weapon.max_ammo, weapon.max_ammo])
 	weapon.current_ammo = weapon.max_ammo
 	weapon.ammo_changed.emit(weapon.current_ammo, weapon.max_ammo)
+
+func upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color) -> void:
+	_upgrade_weapon_in_slot(slot, weapon_type, weapon_color)
+
+func attach_weapon_to_slot(slot: int, weapon_type: String, weapon_color: Color) -> void:
+	var marker: Marker3D = null
+	if slot == 1:
+		marker = _weapon_marker_left
+	elif slot == 2:
+		marker = _weapon_marker_right
+	else:
+		_logger.error("weapon", self, "❌ Invalid slot for attachment: %d" % slot)
+		return
+	
+	if marker == null:
+		_logger.error("weapon", self, "❌ Marker for slot %d is null" % slot)
+		return
+	
+	_logger.info("weapon", self, "➕ attaching weapon to free slot %d: %s" % [slot, weapon_type])
+	_attach_weapon(weapon_type, weapon_color, marker)
+
+func _upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color) -> void:
+	_logger.info("weapon", self, "⬆️ UPGRADING weapon in slot %d with: %s" % [slot, weapon_type])
+	
+	var marker: Marker3D = null
+	if slot == 1:
+		marker = _weapon_marker_left
+	elif slot == 2:
+		marker = _weapon_marker_right
+	else:
+		_logger.error("weapon", self, "❌ Invalid slot for upgrade: %d" % slot)
+		return
+	
+	if marker == null:
+		_logger.error("weapon", self, "❌ Marker for slot %d is null" % slot)
+		return
+	
+	# Get current stack count for this slot
+	var stack_count: int = 0
+	if _stacked_weapons.has(slot):
+		stack_count = _stacked_weapons[slot].size()
+	
+	# Load and instantiate the new weapon
+	var weapon_scene_path: String = WeaponRegistry.get_weapon_scene_path(weapon_type)
+	var weapon_scene: PackedScene = load(weapon_scene_path)
+	if weapon_scene == null:
+		_logger.error("weapon", self, "❌ Failed to load weapon scene: %s" % weapon_scene_path)
+		return
+	
+	var weapon_instance: Node = weapon_scene.instantiate()
+	if weapon_instance == null or not weapon_instance is WeaponAttachment:
+		_logger.error("weapon", self, "❌ Failed to instantiate weapon attachment")
+		return
+	
+	var new_weapon: WeaponAttachment = weapon_instance as WeaponAttachment
+	new_weapon.weapon_type = weapon_type
+	if weapon_color == Color.WHITE:
+		new_weapon.weapon_color = WeaponRegistry.get_weapon_color(weapon_type)
+	else:
+		new_weapon.weapon_color = weapon_color
+	
+	new_weapon.max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
+	new_weapon.current_ammo = new_weapon.max_ammo
+	
+	# Add to scene tree
+	get_tree().root.add_child(new_weapon)
+	
+	# Attach to marker with vertical offset for stacking
+	new_weapon.attach_to_mount(self, marker)
+	
+	# Apply vertical offset based on stack count (stack weapons on top of each other)
+	var stack_offset: float = 0.3 * stack_count  # 0.3 units per stack level
+	new_weapon.position.y += stack_offset
+	
+	# Track in stacked weapons array
+	if not _stacked_weapons.has(slot):
+		_stacked_weapons[slot] = []
+	_stacked_weapons[slot].append(new_weapon)
+	_attached_weapons.append(new_weapon)
+	
+	_logger.info("weapon", self, "⬆️ UPGRADE COMPLETE: slot %d now has %d stacked weapons" % [slot, _stacked_weapons[slot].size()])
+	
+	# Update display HUD
+	_update_display_hud()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Apply mount movement controls using real forces/torques
@@ -472,34 +602,28 @@ func _attack_with_left_weapon() -> void:
 		_logger.debug("weapon", self, "⚠️ cannot attack: left weapon marker is null")
 		return
 	
-	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
-	if left_weapon == null:
-		_logger.debug("weapon", self, "⚠️ cannot attack: no weapon attached to left marker")
-		return
-	
-	if not is_instance_valid(left_weapon):
-		_logger.error("weapon", self, "❌ cannot attack: left weapon is not valid")
-		return
-	
-	_logger.info("weapon", self, "🎯 left mouse click detected - attacking with left weapon")
-	left_weapon.attack()
+	# Fire all stacked weapons in slot 1
+	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
+		_logger.info("weapon", self, "🎯 left mouse click detected - attacking with %d stacked weapons" % _stacked_weapons[1].size())
+		for weapon in _stacked_weapons[1]:
+			if is_instance_valid(weapon):
+				weapon.attack()
+	else:
+		_logger.debug("weapon", self, "⚠️ cannot attack: no weapons in slot 1")
 
 func _attack_with_right_weapon() -> void:
 	if _weapon_marker_right == null:
 		_logger.debug("weapon", self, "⚠️ cannot attack: right weapon marker is null")
 		return
 	
-	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)
-	if right_weapon == null:
-		_logger.debug("weapon", self, "⚠️ cannot attack: no weapon attached to right marker")
-		return
-	
-	if not is_instance_valid(right_weapon):
-		_logger.error("weapon", self, "❌ cannot attack: right weapon is not valid")
-		return
-	
-	_logger.info("weapon", self, "🎯 right mouse click detected - attacking with right weapon")
-	right_weapon.attack()
+	# Fire all stacked weapons in slot 2
+	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
+		_logger.info("weapon", self, "🎯 right mouse click detected - attacking with %d stacked weapons" % _stacked_weapons[2].size())
+		for weapon in _stacked_weapons[2]:
+			if is_instance_valid(weapon):
+				weapon.attack()
+	else:
+		_logger.debug("weapon", self, "⚠️ cannot attack: no weapons in slot 2")
 
 func _update_display_hud() -> void:
 	if not is_player or _weapon_display_hud == null:
