@@ -127,10 +127,12 @@ func attack() -> void:
 		_spawn_projectile(spawn_position, forward, i, projectile_count)
 	
 	# Consume ammo
+	var old_ammo: int = current_ammo
 	current_ammo -= projectile_count
-	_logger.info("weapon", self, "🎯 fired %d projectiles, ammo remaining: %d/%d" % [projectile_count, current_ammo, max_ammo])
+	_logger.info("weapon", self, "🎯 fired %d projectiles, ammo: %d -> %d/%d" % [projectile_count, old_ammo, current_ammo, max_ammo])
 	
 	# Emit ammo changed signal
+	_logger.debug("weapon", self, "📡 emitting ammo_changed signal: current_ammo=%d, max_ammo=%d" % [current_ammo, max_ammo])
 	ammo_changed.emit(current_ammo, max_ammo)
 	
 	# Check if ammo is depleted
@@ -179,4 +181,33 @@ func _spawn_projectile(spawn_position: Vector3, direction: Vector3, index: int, 
 	projectile.initialize(fire_direction, _attached_to_mount, weapon_type)
 	
 	_logger.debug("weapon", self, "🚀 projectile spawned: pos=%s, dir=%s" % [spawn_position, fire_direction])
+
+## Fire projectiles without consuming ammo (used for upgraded weapons)
+func fire_without_consuming_ammo() -> void:
+	if _attached_to_mount == null:
+		_logger.error("weapon", self, "❌ Cannot fire: weapon not attached to mount")
+		return
+	
+	if not is_inside_tree():
+		_logger.debug("weapon", self, "⚠️ Cannot fire: weapon not in scene tree (may have been dropped during attack)")
+		return
+	
+	# Get projectile spawn position and direction
+	var mount: RigidBody3D = _attached_to_mount as RigidBody3D
+	if mount == null:
+		_logger.error("weapon", self, "❌ Cannot fire: mount is not a RigidBody3D")
+		return
+	
+	# Calculate spawn position (weapon position + forward offset)
+	var spawn_position: Vector3 = global_position
+	var forward: Vector3 = -mount.global_transform.basis.z  # Mount's forward direction
+	
+	# Get projectile count
+	var projectile_count: int = WeaponRegistry.get_projectile_count(weapon_type)
+	
+	# Spawn projectiles without consuming ammo
+	for i in range(projectile_count):
+		_spawn_projectile(spawn_position, forward, i, projectile_count)
+	
+	_logger.debug("weapon", self, "💥 fired %d projectiles (no ammo consumed): type=%s" % [projectile_count, weapon_type])
 

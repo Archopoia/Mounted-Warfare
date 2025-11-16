@@ -257,6 +257,14 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	# Track the weapon
 	_attached_weapons.append(weapon)
 	
+	# Connect ammo_changed signal to check for upgrade drops (for when upgrades are added later)
+	# Use a lambda to correctly capture the slot parameter
+	var slot_capture: int = slot  # Capture slot in local variable
+	var callable: Callable = func(new_ammo: int, max_ammo: int): _check_upgrade_drops(slot_capture, new_ammo, max_ammo)
+	if not weapon.ammo_changed.is_connected(callable):
+		weapon.ammo_changed.connect(callable)
+		_logger.debug("weapon", self, "🔌 connected ammo_changed to _check_upgrade_drops for slot %d using lambda" % slot)
+	
 	# Update display HUD
 	_update_display_hud()
 	
@@ -519,8 +527,9 @@ func _upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color
 	else:
 		new_weapon.weapon_color = weapon_color
 	
-	new_weapon.max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
-	new_weapon.current_ammo = new_weapon.max_ammo
+	var base_max_ammo: int = WeaponRegistry.get_max_ammo(weapon_type)
+	new_weapon.max_ammo = base_max_ammo
+	new_weapon.current_ammo = base_max_ammo
 	
 	# Add to scene tree
 	get_tree().root.add_child(new_weapon)
@@ -538,10 +547,253 @@ func _upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color
 	_stacked_weapons[slot].append(new_weapon)
 	_attached_weapons.append(new_weapon)
 	
-	_logger.info("weapon", self, "⬆️ UPGRADE COMPLETE: slot %d now has %d stacked weapons" % [slot, _stacked_weapons[slot].size()])
+	# Merge ammo: add the new weapon's ammo to the base weapon
+	var base_weapon: WeaponAttachment = _stacked_weapons[slot][0]
+	if not is_instance_valid(base_weapon):
+		_logger.error("weapon", self, "❌ base_weapon is not valid during upgrade")
+		return
+	
+	var old_max_ammo: int = base_weapon.max_ammo
+	var old_current_ammo: int = base_weapon.current_ammo
+	
+	base_weapon.max_ammo += base_max_ammo
+	base_weapon.current_ammo += base_max_ammo
+	
+	_logger.info("weapon", self, "⬆️ MERGING AMMO: base_weapon.max_ammo %d -> %d (+%d)" % [old_max_ammo, base_weapon.max_ammo, base_max_ammo])
+	_logger.info("weapon", self, "⬆️ MERGING AMMO: base_weapon.current_ammo %d -> %d (+%d)" % [old_current_ammo, base_weapon.current_ammo, base_max_ammo])
+	
+	_logger.info("weapon", self, "⬆️ UPGRADE COMPLETE: slot %d now has %d stacked weapons, total ammo=%d/%d" % [slot, _stacked_weapons[slot].size(), base_weapon.current_ammo, base_weapon.max_ammo])
+	
+	# Connect ammo_changed signal to check for upgrade drops
+	# Use a lambda to correctly capture the slot parameter
+	var slot_capture: int = slot  # Capture slot in local variable
+	var callable: Callable = func(new_ammo: int, max_ammo: int): _check_upgrade_drops(slot_capture, new_ammo, max_ammo)
+	var signal_connected: bool = base_weapon.ammo_changed.is_connected(callable)
+	_logger.debug("weapon", self, "🔌 ammo_changed signal connected to _check_upgrade_drops: %s" % str(signal_connected))
+	if not signal_connected:
+		base_weapon.ammo_changed.connect(callable)
+		_logger.info("weapon", self, "🔌 connected ammo_changed signal to _check_upgrade_drops for slot %d using lambda" % slot)
+	
+	# Emit ammo changed signal to update HUD and trigger drop check
+	_logger.debug("weapon", self, "📡 emitting ammo_changed after upgrade: current_ammo=%d, max_ammo=%d" % [base_weapon.current_ammo, base_weapon.max_ammo])
+	base_weapon.ammo_changed.emit(base_weapon.current_ammo, base_weapon.max_ammo)
 	
 	# Update display HUD
 	_update_display_hud()
+
+func _check_upgrade_drops(slot: int, new_ammo: int, max_ammo: int) -> void:
+	_logger.info("weapon", self, "🔍 _check_upgrade_drops CALLED: slot=%d, new_ammo=%d, max_ammo=%d" % [slot, new_ammo, max_ammo])
+	
+	# Validate slot parameter (should be 1 or 2, not an ammo value)
+	# If slot is wrong (it's receiving ammo value instead), detect the correct slot
+	if slot != 1 and slot != 2:
+		_logger.error("weapon", self, "❌ INVALID SLOT PARAMETER: slot=%d (expected 1 or 2). Signal binding issue detected!" % slot)
+		_logger.info("weapon", self, "🔍 Attempting to detect correct slot from ammo values...")
+		
+		# Try to determine the correct slot by checking which weapon has matching ammo
+		var detected_slot: int = 0
+		if _stacked_weapons.has(1):
+			var left_stack: Array = _stacked_weapons[1]
+			if left_stack.size() > 0:
+				var left_base: WeaponAttachment = left_stack[0]
+				if is_instance_valid(left_base):
+					_logger.debug("weapon", self, "🔍   slot 1: base_weapon.current_ammo=%d, new_ammo=%d" % [left_base.current_ammo, new_ammo])
+					if left_base.current_ammo == new_ammo or abs(left_base.current_ammo - new_ammo) <= 1:
+						detected_slot = 1
+						_logger.info("weapon", self, "✅ DETECTED: slot 1 matches (ammo=%d)" % new_ammo)
+		
+		if detected_slot == 0 and _stacked_weapons.has(2):
+			var right_stack: Array = _stacked_weapons[2]
+			if right_stack.size() > 0:
+				var right_base: WeaponAttachment = right_stack[0]
+				if is_instance_valid(right_base):
+					_logger.debug("weapon", self, "🔍   slot 2: base_weapon.current_ammo=%d, new_ammo=%d" % [right_base.current_ammo, new_ammo])
+					if right_base.current_ammo == new_ammo or abs(right_base.current_ammo - new_ammo) <= 1:
+						detected_slot = 2
+						_logger.info("weapon", self, "✅ DETECTED: slot 2 matches (ammo=%d)" % new_ammo)
+		
+		if detected_slot > 0:
+			var old_slot: int = slot
+			slot = detected_slot
+			_logger.warn("weapon", self, "⚠️ Using detected slot=%d (was incorrectly %d)" % [slot, old_slot])
+		else:
+			_logger.error("weapon", self, "❌ Could not determine correct slot, aborting drop check")
+			return
+	
+	# Check if ammo has dropped below thresholds that would cause upgrade drops
+	# Thresholds: 20, 40, 60, 80... (20 * stack_level)
+	if not _stacked_weapons.has(slot):
+		_logger.debug("weapon", self, "🔍 no stack array for slot %d" % slot)
+		return
+	
+	var stack: Array = _stacked_weapons[slot]
+	_logger.info("weapon", self, "🔍 stack size for slot %d: %d" % [slot, stack.size()])
+	
+	if stack.size() <= 1:
+		_logger.debug("weapon", self, "🔍 no upgrades to drop (stack_size=%d)" % stack.size())
+		return  # No upgrades to drop
+	
+	var base_weapon: WeaponAttachment = stack[0]
+	if not is_instance_valid(base_weapon):
+		_logger.error("weapon", self, "❌ base weapon is not valid")
+		return
+	
+	var base_max_ammo: int = WeaponRegistry.get_max_ammo(base_weapon.weapon_type)
+	_logger.info("weapon", self, "🔍 base_max_ammo=%d, base_weapon.current_ammo=%d, base_weapon.max_ammo=%d" % [base_max_ammo, base_weapon.current_ammo, base_weapon.max_ammo])
+	
+	# Calculate how many upgrades should remain based on current ammo
+	# Each upgrade adds base_max_ammo to the total
+	var expected_stack_size: int = 1  # Base weapon always remains
+	var threshold: int = base_max_ammo
+	
+	_logger.info("weapon", self, "🔍 calculating expected_stack_size: starting threshold=%d, new_ammo=%d" % [threshold, new_ammo])
+	
+	# Calculate expected stack size based on ammo thresholds
+	# With 3 weapons (60 ammo total), thresholds are:
+	# - 1 weapon: 0-19 ammo
+	# - 2 weapons: 20-39 ammo  
+	# - 3 weapons: 40-59 ammo
+	# - 4 weapons: 60-79 ammo
+	# So if new_ammo is 39, we should have 2 weapons (base + 1 upgrade)
+	# If new_ammo is 40, we should have 3 weapons (base + 2 upgrades)
+	
+	while new_ammo >= threshold and expected_stack_size < stack.size():
+		expected_stack_size += 1
+		threshold += base_max_ammo
+		_logger.debug("weapon", self, "🔍   new_ammo (%d) >= threshold (%d), expected_stack_size=%d" % [new_ammo, threshold, expected_stack_size])
+	
+	_logger.info("weapon", self, "🔍 FINAL: expected_stack_size=%d, current_stack_size=%d, final_threshold=%d, new_ammo=%d" % [expected_stack_size, stack.size(), threshold, new_ammo])
+	
+	# If we have more upgrades than we should, drop the excess
+	if stack.size() > expected_stack_size:
+		_logger.info("weapon", self, "⬇️ NEED TO DROP UPGRADES: stack_size=%d > expected=%d (ammo=%d, threshold=%d)" % [stack.size(), expected_stack_size, new_ammo, threshold])
+	else:
+		_logger.debug("weapon", self, "✅ no drops needed: stack_size=%d <= expected=%d (ammo=%d, threshold=%d)" % [stack.size(), expected_stack_size, new_ammo, threshold])
+	
+	while stack.size() > expected_stack_size:
+		var top_weapon: WeaponAttachment = stack[stack.size() - 1]
+		_logger.info("weapon", self, "⬇️ DROPPING UPGRADE: slot %d, ammo=%d/%d, stack_size=%d -> %d, top_weapon_type=%s" % [slot, new_ammo, max_ammo, stack.size(), expected_stack_size, top_weapon.weapon_type])
+		
+		if not is_instance_valid(top_weapon):
+			_logger.error("weapon", self, "❌ top_weapon is not valid, removing from stack")
+			stack.erase(top_weapon)
+			continue
+		
+		# Remove from stack
+		stack.erase(top_weapon)
+		_attached_weapons.erase(top_weapon)
+		_logger.info("weapon", self, "✅ removed from stack and _attached_weapons")
+		
+		# Update base weapon ammo (subtract the dropped weapon's ammo)
+		var old_max_ammo: int = base_weapon.max_ammo
+		base_weapon.max_ammo -= base_max_ammo
+		_logger.info("weapon", self, "🔧 updated base_weapon.max_ammo: %d -> %d (subtracted %d)" % [old_max_ammo, base_weapon.max_ammo, base_max_ammo])
+		
+		# Don't reduce current_ammo below 0, but adjust if needed
+		var old_current_ammo: int = base_weapon.current_ammo
+		if base_weapon.current_ammo > base_weapon.max_ammo:
+			base_weapon.current_ammo = base_weapon.max_ammo
+			_logger.info("weapon", self, "🔧 adjusted base_weapon.current_ammo: %d -> %d (capped at max)" % [old_current_ammo, base_weapon.current_ammo])
+		
+		# Drop the weapon as a pickup
+		_logger.info("weapon", self, "💧 calling _drop_weapon_upgrade...")
+		_drop_weapon_upgrade(top_weapon, slot)
+		
+		# Remove from scene
+		var marker: Marker3D = _weapon_marker_left if slot == 1 else _weapon_marker_right
+		if marker != null:
+			if marker.is_ancestor_of(top_weapon):
+				_logger.info("weapon", self, "🗑️ removing top_weapon from marker children")
+				marker.remove_child(top_weapon)
+			else:
+				_logger.warn("weapon", self, "⚠️ top_weapon is not a child of marker")
+		else:
+			_logger.error("weapon", self, "❌ marker is null for slot %d" % slot)
+		
+		if is_instance_valid(top_weapon):
+			top_weapon.queue_free()
+			_logger.info("weapon", self, "🗑️ queued top_weapon for deletion")
+		
+		# Update HUD
+		_logger.info("weapon", self, "📺 emitting ammo_changed and updating HUD")
+		base_weapon.ammo_changed.emit(base_weapon.current_ammo, base_weapon.max_ammo)
+		_update_display_hud()
+		
+		_logger.info("weapon", self, "✅ UPGRADE DROP COMPLETE: new stack_size=%d" % stack.size())
+
+func _drop_weapon_upgrade(weapon: WeaponAttachment, slot: int) -> void:
+	# Create a weapon pickup at the mount's position
+	var pickup_scene: PackedScene = load("res://scenes/pickups/weapon_pickup.tscn")
+	if pickup_scene == null:
+		_logger.error("weapon", self, "❌ Failed to load weapon pickup scene")
+		return
+	
+	var pickup: WeaponPickup = pickup_scene.instantiate() as WeaponPickup
+	if pickup == null:
+		_logger.error("weapon", self, "❌ Failed to instantiate weapon pickup")
+		return
+	
+	# Set pickup properties
+	pickup.weapon_type = weapon.weapon_type
+	pickup.pickup_color = weapon.weapon_color
+	
+	# Add to scene tree FIRST (required before setting global_position)
+	get_tree().current_scene.add_child(pickup)
+	
+	# Position the pickup near the mount (slightly behind and to the side)
+	var drop_offset: Vector3 = Vector3(0, 1, 2)  # Behind and above the mount
+	if slot == 1:
+		drop_offset.x = -1.5  # Left side
+	else:
+		drop_offset.x = 1.5  # Right side
+	
+	# Set position after node is in tree
+	var target_position: Vector3 = global_position + global_transform.basis * drop_offset
+	if pickup.is_inside_tree():
+		pickup.global_position = target_position
+	else:
+		# If pickup is not in tree yet, use a deferred call
+		call_deferred("_set_pickup_position", pickup, target_position)
+	
+	# Connect pickup to mounts (same as spawner does)
+	_connect_pickup_to_mounts(pickup)
+	
+	_logger.info("weapon", self, "💧 DROPPED UPGRADE: type=%s at pos=%s" % [weapon.weapon_type, pickup.global_position])
+
+func _connect_pickup_to_mounts(pickup: WeaponPickup) -> void:
+	# Find all MountController nodes in the scene and connect the pickup signal
+	var mounts: Array[MountController] = []
+	_find_mount_controllers_recursive(get_tree().current_scene, mounts)
+	
+	for mount in mounts:
+		if not pickup.weapon_picked_up.is_connected(mount._on_weapon_picked_up):
+			pickup.weapon_picked_up.connect(mount._on_weapon_picked_up)
+			_logger.debug("weapon", self, "🔌 connected pickup to mount: %s" % mount.name)
+
+func _set_pickup_position(pickup: WeaponPickup, pos: Vector3) -> void:
+	if is_instance_valid(pickup) and pickup.is_inside_tree():
+		pickup.global_position = pos
+
+func _find_mount_controllers_recursive(node: Node, mounts: Array) -> void:
+	if node is MountController:
+		mounts.append(node)
+	
+	for child in node.get_children():
+		_find_mount_controllers_recursive(child, mounts)
+
+func _attack_with_upgraded_weapon(weapon: WeaponAttachment, _base_weapon: WeaponAttachment) -> void:
+	# Fire the upgraded weapon without consuming its own ammo
+	# The base weapon's attack() already consumed ammo, so we just fire projectiles
+	# Check if weapon is still valid and in scene tree (may have been dropped during attack)
+	if not is_instance_valid(weapon):
+		_logger.debug("weapon", self, "⚠️ upgraded weapon is not valid, skipping fire")
+		return
+	
+	if not weapon.is_inside_tree():
+		_logger.debug("weapon", self, "⚠️ upgraded weapon not in scene tree (may have been dropped), skipping fire")
+		return
+	
+	weapon.fire_without_consuming_ammo()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Apply mount movement controls using real forces/torques
@@ -604,10 +856,34 @@ func _attack_with_left_weapon() -> void:
 	
 	# Fire all stacked weapons in slot 1
 	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
-		_logger.info("weapon", self, "🎯 left mouse click detected - attacking with %d stacked weapons" % _stacked_weapons[1].size())
-		for weapon in _stacked_weapons[1]:
+		var stack: Array = _stacked_weapons[1]
+		# Create a copy of weapons to fire BEFORE iterating (stack may be modified during attack)
+		var weapons_to_fire: Array[WeaponAttachment] = []
+		for weapon in stack:
 			if is_instance_valid(weapon):
+				weapons_to_fire.append(weapon)
+		
+		if weapons_to_fire.size() == 0:
+			_logger.debug("weapon", self, "⚠️ no valid weapons to fire in slot 1")
+			return
+		
+		var base_weapon: WeaponAttachment = weapons_to_fire[0]
+		_logger.info("weapon", self, "🎯 left mouse click detected - attacking with %d stacked weapons" % weapons_to_fire.size())
+		
+		# Fire all weapons, but consume ammo from base weapon only
+		for i in range(weapons_to_fire.size()):
+			var weapon: WeaponAttachment = weapons_to_fire[i]
+			if not is_instance_valid(weapon):
+				_logger.warn("weapon", self, "⚠️ weapon at index %d became invalid during attack" % i)
+				continue
+			
+			if i == 0:
+				# Base weapon consumes ammo normally
 				weapon.attack()
+			else:
+				# Upgraded weapons fire but don't consume their own ammo
+				# They use the base weapon's ammo pool
+				_attack_with_upgraded_weapon(weapon, base_weapon)
 	else:
 		_logger.debug("weapon", self, "⚠️ cannot attack: no weapons in slot 1")
 
@@ -618,10 +894,34 @@ func _attack_with_right_weapon() -> void:
 	
 	# Fire all stacked weapons in slot 2
 	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
-		_logger.info("weapon", self, "🎯 right mouse click detected - attacking with %d stacked weapons" % _stacked_weapons[2].size())
-		for weapon in _stacked_weapons[2]:
+		var stack: Array = _stacked_weapons[2]
+		# Create a copy of weapons to fire BEFORE iterating (stack may be modified during attack)
+		var weapons_to_fire: Array[WeaponAttachment] = []
+		for weapon in stack:
 			if is_instance_valid(weapon):
+				weapons_to_fire.append(weapon)
+		
+		if weapons_to_fire.size() == 0:
+			_logger.debug("weapon", self, "⚠️ no valid weapons to fire in slot 2")
+			return
+		
+		var base_weapon: WeaponAttachment = weapons_to_fire[0]
+		_logger.info("weapon", self, "🎯 right mouse click detected - attacking with %d stacked weapons" % weapons_to_fire.size())
+		
+		# Fire all weapons, but consume ammo from base weapon only
+		for i in range(weapons_to_fire.size()):
+			var weapon: WeaponAttachment = weapons_to_fire[i]
+			if not is_instance_valid(weapon):
+				_logger.warn("weapon", self, "⚠️ weapon at index %d became invalid during attack" % i)
+				continue
+			
+			if i == 0:
+				# Base weapon consumes ammo normally
 				weapon.attack()
+			else:
+				# Upgraded weapons fire but don't consume their own ammo
+				# They use the base weapon's ammo pool
+				_attack_with_upgraded_weapon(weapon, base_weapon)
 	else:
 		_logger.debug("weapon", self, "⚠️ cannot attack: no weapons in slot 2")
 
