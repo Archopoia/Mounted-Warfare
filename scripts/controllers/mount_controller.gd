@@ -28,7 +28,9 @@ func _physics_process(delta: float) -> void:
 	var input_dir: Vector2 = _get_input_vector()
 	if input_dir == Vector2.ZERO:
 		_logger.debug("movement", name, "👣 idle input")
-	_apply_movement(input_dir, delta)
+	# apply player-controlled movement only for player
+	if is_player:
+		_apply_movement(input_dir, delta)
 	# camera reset
 	if is_player and Input.is_action_just_pressed("camera_reset") and is_instance_valid(_spring_arm):
 		_spring_arm.rotation = Vector3(-0.174533, 0.0, 0.0)

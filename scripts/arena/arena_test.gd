@@ -28,10 +28,15 @@ func _ready() -> void:
 func _ensure_actors() -> void:
 	var player := get_tree().get_first_node_in_group("players")
 	var sp: Marker3D = $SpawnPoints.get_node_or_null("PlayerSpawn") as Marker3D
+	if $SpawnPoints == null:
+		_logger.warn("scene", name, "SpawnPoints node missing; using origin for spawns")
 	if player == null and player_scene != null:
 		var p := player_scene.instantiate()
 		p.name = "Player"
 		(p as Node).add_to_group("players")
+		if p == null:
+			_logger.error("scene", name, "Failed to instantiate player_scene")
+			return
 		add_child(p)
 		# position at PlayerSpawn if present
 		if sp:
@@ -52,6 +57,9 @@ func _ensure_actors() -> void:
 			_logger.error("scene", name, "❌ bot_scene not configured; cannot spawn bot %d" % i)
 			break
 		var b := bot_scene.instantiate()
+		if b == null:
+			_logger.error("scene", name, "Failed to instantiate bot_scene for index %d" % i)
+			break
 		b.name = "Bot1" if i == 0 else "Bot"
 		(b as Node).add_to_group("bots")
 		(b as Node).set("is_player", false)

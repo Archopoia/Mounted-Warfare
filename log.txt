@@ -1,6 +1,8 @@
 [Pickup] ℹ️ 🎁 spawned type=ammo value=10
 [@Area3D@2] ℹ️ 🎁 spawned type=ammo value=10
-[PickupSpawner1#37731960301] ℹ️ 🎁 spawned at pos=(0.0, 0.0, 8.349464)
+[PickupSpawner1#37765514734] ℹ️ 🎁 spawned at pos=(0.0, 0.0, 8.349464)
+[ArenaTest/HUD#37866178036] ℹ️ 🧭 HUD ready; binding to player and sub-systems…
+W [ArenaTest/HUD#37866178036] ⚠️ No node in group 'players' found; HUD will show defaults
 [ArenaTest] ℹ️ 🚩 arena ready: res://scenes/arena/arena_test.tscn
 [ArenaTest] ℹ️ 📍 child: NavigationRegion3D (NavigationRegion3D)
 [ArenaTest] ℹ️ 📍 child: Obstacles (Node3D)
@@ -11,20 +13,56 @@
 [ArenaTest] ℹ️ 📍 child: GroundMesh (MeshInstance3D)
 [ArenaTest] ℹ️ 📍 child: HUD (CanvasLayer)
 [Health] ℹ️ ❤️ initialized mount=200 rider=100
-[Player#40063993401] ℹ️ 🎮 ready; is_player=true
+[Player#40131102266] ℹ️ 🎮 ready; is_player=true
 [ArenaTest] ℹ️ 🧍 spawned Player at (0.0, 0.0, -15.26117)
-[Health] ℹ️ ❤️ initialized mount=200 rider=100
-[Bot1/BotDriver#40449869389] ℹ️ 🤖 ready
-[Bot1/BotDriver#40449869389] ℹ️ 🐎 mount set to parent Bot1
-[Bot1#40282097219] ℹ️ 🎮 ready; is_player=false
+[Bot1/BotDriver#40516978254] ℹ️ 🤖 ready
+[Bot1/BotDriver#40516978254] ℹ️ 🐎 mount set to parent Bot1
+[Bot1/TeamColor#40835745359] ℹ️ Applied team color (1.0, 0.1, 0.1, 1.0) to Bot1
+[Bot1#40349206084] ℹ️ 🎮 ready; is_player=false
 [ArenaTest] ℹ️ 🤖 spawned Bot1 at (0.0, 0.0, 16.91641)
-[Health] ℹ️ ❤️ initialized mount=200 rider=100
-[Bot/BotDriver#41523611228] ℹ️ 🤖 ready
-[Bot/BotDriver#41523611228] ℹ️ 🐎 mount set to parent Bot
-[Bot#41355839058] ℹ️ 🎮 ready; is_player=false
+[Bot/BotDriver#41590720093] ℹ️ 🤖 ready
+[Bot/BotDriver#41590720093] ℹ️ 🐎 mount set to parent Bot
+[Bot/TeamColor#41624274526] ℹ️ Applied team color (0.1, 0.3, 1.0, 1.0) to Bot
+[Bot#41422947923] ℹ️ 🎮 ready; is_player=false
 [ArenaTest] ℹ️ 🤖 spawned Bot at (0.0, 0.0, 13.0)
-[Player#40063993401] ℹ️ 🎯 player at (0.0, 0.0, -15.26117)
-[Bot1#40282097219] ℹ️ 🤖 bot Bot1 at (0.0, 0.0, 16.91641)
-[Bot#41355839058] ℹ️ 🤖 bot Bot at (0.0, 0.0, 13.0)
+[Player#40131102266] ℹ️ 🎯 player at (0.0, 0.0, -15.26117)
+[Bot1#40349206084] ℹ️ 🤖 bot Bot1 at (0.0, 0.0, 16.91641)
+[Bot#41422947923] ℹ️ 🤖 bot Bot at (0.0, 0.0, 13.0)
+[Player#40131102266] 🐞 DEBUG 👣 no input (WASD idle or unmapped)
+[Player] 🐞 DEBUG 👣 idle input
+[Player#40131102266] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00
+[Bot1] 🐞 DEBUG 👣 idle input
+[Bot] 🐞 DEBUG 👣 idle input
 [@Area3D@2] ℹ️ 🎁 collected type=ammo value=10
 [Pickup] ℹ️ 🎁 collected type=ammo value=10
+[Bot1/BotDriver#40516978254] ℹ️ 🎯 intent=chase dist=33.64 yaw_delta=-2.89 yaw_step=-0.017 speed=1.06 accel=4.00 mount_pos=(0.012548, 2.500244, 16.78391) target_pos=(0.0, 2.500249, -16.85193)
+[Bot/BotDriver#41590720093] ℹ️ 🎯 intent=chase dist=29.72 yaw_delta=-2.89 yaw_step=-0.017 speed=1.06 accel=4.00 mount_pos=(0.012548, 2.500244, 12.8675) target_pos=(0.0, 2.500249, -16.85193)
+[Bot1/BotDriver#40516978254] ℹ️ 🎯 intent=chase dist=31.75 yaw_delta=-2.07 yaw_step=-0.017 speed=3.52 accel=4.00 mount_pos=(0.764106, 2.500244, 14.8841) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
+[Bot/BotDriver#41590720093] ℹ️ 🎯 intent=chase dist=27.83 yaw_delta=-2.06 yaw_step=-0.017 speed=3.52 accel=4.00 mount_pos=(0.764106, 2.500244, 10.96769) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
+[Player#40131102266] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+65 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+65 suppressed)
+[Player#40131102266] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00 … (+65 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+65 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+65 suppressed)
+[Bot1/BotDriver#40516978254] ℹ️ 🎯 intent=chase dist=28.89 yaw_delta=-1.17 yaw_step=-0.017 speed=3.87 accel=4.00 mount_pos=(3.640209, 2.500244, 11.81222) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
+[Bot/BotDriver#41590720093] ℹ️ 🎯 intent=chase dist=25.01 yaw_delta=-1.15 yaw_step=-0.017 speed=3.87 accel=4.00 mount_pos=(3.640209, 2.500244, 7.895812) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
+[Player#40131102266] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+59 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Player#40131102266] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00 … (+59 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Bot1/BotDriver#40516978254] ℹ️ 🎯 intent=chase dist=27.73 yaw_delta=-0.38 yaw_step=-0.006 speed=3.55 accel=4.00 mount_pos=(8.863012, 2.500244, 9.421545) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
+[Bot/BotDriver#41590720093] ℹ️ 🎯 intent=chase dist=24.05 yaw_delta=-0.35 yaw_step=-0.006 speed=3.69 accel=4.00 mount_pos=(8.866516, 2.500244, 5.500832) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
+[Player#40131102266] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+61 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+61 suppressed)
+[Player#40131102266] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00 … (+61 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+61 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+61 suppressed)
+[Health] ℹ️ ❤️ initialized mount=200 rider=100 … (+2 suppressed)
+[Player#40131102266] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+8 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+8 suppressed)
+[Player#40131102266] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00 … (+8 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+8 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+8 suppressed)
+[Bot1/BotDriver#40516978254] ℹ️ 🎯 intent=chase dist=28.94 yaw_delta=-0.11 yaw_step=-0.002 speed=4.79 accel=4.00 mount_pos=(13.32376, 2.500244, 8.841393) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
+[Bot/BotDriver#41590720093] ℹ️ 🎯 intent=chase dist=25.52 yaw_delta=-0.07 yaw_step=-0.001 speed=5.07 accel=4.00 mount_pos=(13.34801, 2.500244, 4.901866) target_pos=(0.0, 2.500249, -16.85193) … (+2 suppressed)
