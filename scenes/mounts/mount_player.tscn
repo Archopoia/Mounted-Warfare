@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6m5plcc1j568"]
 
-[ext_resource type="Script" uid="uid://db57vlntg2477" path="res://scripts/controllers/mount_rigid_controller.gd" id="1_b3j5m"]
+[ext_resource type="Script" path="res://scripts/controllers/mount_controller.gd" id="1_b3j5m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iph8f"]
 
@@ -13,7 +13,7 @@ size = Vector3(2, 1, 4)
 [sub_resource type="StandardMaterial3D" id="Mat_body"]
 albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
 
-[node name="PlayerRigid" type="RigidBody3D"]
+[node name="Mount" type="RigidBody3D"]
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_iph8f")
 continuous_cd = true
@@ -37,3 +37,4 @@ shape = SubResource("BoxShape3D_body")
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_body")
 surface_material_override/0 = SubResource("Mat_body")
+
