@@ -11,6 +11,8 @@ var mount_controller: MountController = null
 @onready var _slot_2_label: Label = $WeaponSlotsContainer/Slot2Panel/WeaponLabel
 @onready var _slot_1_visual: Control = $WeaponSlotsContainer/Slot1Panel/WeaponVisual
 @onready var _slot_2_visual: Control = $WeaponSlotsContainer/Slot2Panel/WeaponVisual
+@onready var _slot_1_ammo_label: Label = $WeaponSlotsContainer/Slot1Panel/AmmoLabel
+@onready var _slot_2_ammo_label: Label = $WeaponSlotsContainer/Slot2Panel/AmmoLabel
 
 var _logger: Node
 var _weapon_visuals: Dictionary = {}  # Maps slot index to visual node
@@ -30,28 +32,36 @@ func update_weapon_slot(slot: int, weapon: WeaponAttachment) -> void:
 		_logger.error("ui", self, "❌ Invalid weapon slot: %d" % slot)
 		return
 	
+	_logger.debug("ui", self, "📺 update_weapon_slot CALLED: slot=%d, weapon=%s" % [slot, "null" if weapon == null else "%s (id=%d)" % [weapon.weapon_type, weapon.get_instance_id()]])
+	
+	if weapon != null:
+		_logger.debug("ui", self, "📺   weapon details: type=%s, id=%d, ammo=%d/%d" % [weapon.weapon_type, weapon.get_instance_id(), weapon.current_ammo, weapon.max_ammo])
+	
 	_update_slot_display(slot, weapon)
 	
 	if weapon != null:
-		_logger.debug("ui", self, "🎨 updated slot %d: weapon=%s" % [slot, weapon.weapon_type])
+		_logger.debug("ui", self, "✅ updated slot %d: weapon=%s, ammo=%d/%d" % [slot, weapon.weapon_type, weapon.current_ammo, weapon.max_ammo])
 	else:
-		_logger.debug("ui", self, "🎨 cleared slot %d" % slot)
+		_logger.debug("ui", self, "✅ cleared slot %d" % slot)
 
 func _update_slot_display(slot: int, weapon: WeaponAttachment) -> void:
 	var panel: Panel = null
 	var label: Label = null
 	var visual_container: Control = null
+	var ammo_label: Label = null
 	
 	if slot == 1:
 		panel = _slot_1_panel
 		label = _slot_1_label
 		visual_container = _slot_1_visual
+		ammo_label = _slot_1_ammo_label
 	elif slot == 2:
 		panel = _slot_2_panel
 		label = _slot_2_label
 		visual_container = _slot_2_visual
+		ammo_label = _slot_2_ammo_label
 	
-	if panel == null or label == null or visual_container == null:
+	if panel == null or label == null or visual_container == null or ammo_label == null:
 		_logger.error("ui", self, "❌ HUD slot %d UI elements not found" % slot)
 		return
 	
@@ -70,20 +80,29 @@ func _update_slot_display(slot: int, weapon: WeaponAttachment) -> void:
 		label.text = "[Slot %d]\nEmpty" % slot
 		label.modulate = Color(0.5, 0.5, 0.5, 1.0)
 		panel.modulate = Color(0.3, 0.3, 0.3, 0.8)
+		ammo_label.text = "Ammo: --/--"
+		ammo_label.modulate = Color(0.5, 0.5, 0.5, 0.5)
+		ammo_label.visible = false
 		_weapon_ammo.erase(slot)
 	else:
 		# Weapon attached - show weapon info and visual
-		var weapon_name: String = WeaponRegistry.get_weapon_name(weapon.weapon_type)
-		var ammo_text: String = ""
-		if _weapon_ammo.has(slot):
-			ammo_text = "\nAmmo: %d/%d" % [_weapon_ammo[slot]["current"], _weapon_ammo[slot]["max"]]
-		else:
-			# Initialize ammo from weapon
-			_weapon_ammo[slot] = {"current": weapon.current_ammo, "max": weapon.max_ammo}
-			ammo_text = "\nAmmo: %d/%d" % [weapon.current_ammo, weapon.max_ammo]
+		_logger.debug("ui", self, "📺 _update_slot_display: slot=%d, weapon_type=%s, weapon_id=%d" % [slot, weapon.weapon_type, weapon.get_instance_id()])
 		
-		label.text = "[Slot %d]\n%s%s" % [slot, weapon_name.replace("_", " ").capitalize(), ammo_text]
+		var weapon_name: String = WeaponRegistry.get_weapon_name(weapon.weapon_type)
+		label.text = "[Slot %d]\n%s" % [slot, weapon_name.replace("_", " ").capitalize()]
 		label.modulate = Color.WHITE
+		
+		# Always initialize ammo from the actual weapon instance (not cached values)
+		# This ensures each weapon instance has its own ammo tracking
+		var weapon_ammo_current: int = weapon.current_ammo
+		var weapon_ammo_max: int = weapon.max_ammo
+		_logger.debug("ui", self, "📺   reading ammo from weapon: current=%d, max=%d" % [weapon_ammo_current, weapon_ammo_max])
+		
+		_weapon_ammo[slot] = {"current": weapon_ammo_current, "max": weapon_ammo_max}
+		_update_ammo_display(slot, weapon_ammo_current, weapon_ammo_max, ammo_label)
+		
+		var cached_data: Dictionary = _weapon_ammo[slot]
+		_logger.debug("ui", self, "📺   cached ammo for slot %d: current=%d, max=%d" % [slot, cached_data.get("current", 0), cached_data.get("max", 0)])
 		
 		# Get weapon color
 		var weapon_color: Color = weapon.weapon_color
@@ -148,36 +167,48 @@ func update_weapon_ammo(slot: int, current_ammo: int, max_ammo: int) -> void:
 	# Update ammo tracking
 	_weapon_ammo[slot] = {"current": current_ammo, "max": max_ammo}
 	
-	# Update label
-	var label: Label = null
-	var panel: Panel = null
+	# Get ammo label
+	var ammo_label: Label = null
 	if slot == 1:
-		label = _slot_1_label
-		panel = _slot_1_panel
+		ammo_label = _slot_1_ammo_label
 	elif slot == 2:
-		label = _slot_2_label
-		panel = _slot_2_panel
+		ammo_label = _slot_2_ammo_label
 	
-	if label == null:
-		_logger.error("ui", self, "❌ HUD slot %d label not found for ammo update" % slot)
+	if ammo_label == null:
+		_logger.error("ui", self, "❌ HUD slot %d ammo label not found" % slot)
 		return
 	
-	# Update label text with ammo
-	var label_lines: PackedStringArray = label.text.split("\n")
-	if label_lines.size() >= 2:
-		var slot_text: String = label_lines[0]
-		var weapon_name: String = label_lines[1]
-		var ammo_text: String = "Ammo: %d/%d" % [current_ammo, max_ammo]
-		
-		# Change color based on ammo level
-		if current_ammo == 0:
-			label.modulate = Color(1.0, 0.3, 0.3, 1.0)  # Red when empty
-		elif current_ammo <= max_ammo * 0.2:
-			label.modulate = Color(1.0, 0.6, 0.3, 1.0)  # Orange when low
-		else:
-			label.modulate = Color.WHITE  # White when normal
-		
-		label.text = "%s\n%s\n%s" % [slot_text, weapon_name, ammo_text]
+	# Update ammo display
+	_update_ammo_display(slot, current_ammo, max_ammo, ammo_label)
 	
 	_logger.debug("ui", self, "📊 updated ammo display: slot=%d, ammo=%d/%d" % [slot, current_ammo, max_ammo])
 
+## Clear cached ammo data for a slot (used when replacing weapons)
+func clear_slot_cache(slot: int) -> void:
+	if _weapon_ammo.has(slot):
+		_weapon_ammo.erase(slot)
+		_logger.debug("ui", self, "🗑️ cleared cache for slot %d" % slot)
+
+func _update_ammo_display(slot: int, current_ammo: int, max_ammo: int, ammo_label: Label) -> void:
+	if ammo_label == null:
+		return
+	
+	# Update ammo text
+	ammo_label.text = "Ammo: %d/%d" % [current_ammo, max_ammo]
+	ammo_label.visible = true
+	
+	# Change color based on ammo level
+	if current_ammo == 0:
+		ammo_label.modulate = Color(1.0, 0.3, 0.3, 1.0)  # Red when empty
+	elif current_ammo <= max_ammo * 0.2:
+		ammo_label.modulate = Color(1.0, 0.7, 0.3, 1.0)  # Orange when low
+	else:
+		ammo_label.modulate = Color.WHITE  # White when normal
+	
+	# Make ammo label more prominent with larger font
+	var font_size: int = 14
+	if current_ammo <= max_ammo * 0.2:
+		font_size = 16  # Slightly larger when low
+	
+	# Note: Font size changes would require a DynamicFont or theme setup
+	# For now, we'll use the color modulation which is more immediate

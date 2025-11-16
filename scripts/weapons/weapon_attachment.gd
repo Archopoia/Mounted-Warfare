@@ -78,6 +78,8 @@ func detach_from_mount() -> void:
 	_attached_to_mount = null
 	
 	# Remove weapon from scene
+	# Note: If the weapon was already removed from its parent (e.g., by replace_weapon_in_slot),
+	# queue_free() will still work correctly to clean up the node
 	queue_free()
 
 func attack() -> void:

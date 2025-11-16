@@ -203,15 +203,25 @@ func _create_hud() -> void:
 
 func _get_weapon_at_marker(marker: Marker3D) -> WeaponAttachment:
 	if marker == null:
+		_logger.debug("weapon", self, "🔍 _get_weapon_at_marker: marker is null")
 		return null
 	
-	for child in marker.get_children():
-		if child is WeaponAttachment:
-			return child as WeaponAttachment
+	var child_count: int = marker.get_child_count()
+	_logger.debug("weapon", self, "🔍 _get_weapon_at_marker: marker=%s, child_count=%d" % [marker.name, child_count])
 	
+	for child in marker.get_children():
+		_logger.debug("weapon", self, "🔍   checking child: %s, type=%s, is_WeaponAttachment=%s" % [child.name, child.get_class(), str(child is WeaponAttachment)])
+		if child is WeaponAttachment:
+			var weapon: WeaponAttachment = child as WeaponAttachment
+			_logger.debug("weapon", self, "🔍   found weapon: type=%s, id=%d" % [weapon.weapon_type, weapon.get_instance_id()])
+			return weapon
+	
+	_logger.debug("weapon", self, "🔍 _get_weapon_at_marker: no weapon found")
 	return null
 
 func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color) -> void:
+	_logger.info("weapon", self, "🔄 REPLACE_WEAPON_START: slot=%d, type=%s" % [slot, weapon_type])
+	
 	var marker: Marker3D = null
 	if slot == 1:
 		marker = _weapon_marker_left
@@ -225,20 +235,65 @@ func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color)
 		_logger.error("weapon", self, "❌ Marker for slot %d is null" % slot)
 		return
 	
+	_logger.debug("weapon", self, "🔍 BEFORE_REMOVAL: marker=%s, child_count=%d" % [marker.name, marker.get_child_count()])
+	
 	# Remove existing weapon at this marker
 	var existing_weapon: WeaponAttachment = _get_weapon_at_marker(marker)
 	if existing_weapon != null:
+		_logger.info("weapon", self, "🗑️ REMOVING_OLD_WEAPON: slot=%d, type=%s, id=%d" % [slot, existing_weapon.weapon_type, existing_weapon.get_instance_id()])
+		
+		# Disconnect ammo signals before detaching (determine which slot's callbacks to disconnect)
+		if slot == 1:
+			if existing_weapon.ammo_changed.is_connected(_on_left_weapon_ammo_changed):
+				existing_weapon.ammo_changed.disconnect(_on_left_weapon_ammo_changed)
+				_logger.debug("weapon", self, "🔌 disconnected left ammo signal")
+		elif slot == 2:
+			if existing_weapon.ammo_changed.is_connected(_on_right_weapon_ammo_changed):
+				existing_weapon.ammo_changed.disconnect(_on_right_weapon_ammo_changed)
+				_logger.debug("weapon", self, "🔌 disconnected right ammo signal")
+		
+		if existing_weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
+			existing_weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+			_logger.debug("weapon", self, "🔌 disconnected ammo_depleted signal")
+		
+		# Explicitly remove the weapon from the marker's children BEFORE detaching
+		# This ensures it's removed immediately, not deferred
+		if marker.is_ancestor_of(existing_weapon):
+			marker.remove_child(existing_weapon)
+			_logger.debug("weapon", self, "🔌 removed weapon from marker's children")
+		
 		existing_weapon.detach_from_mount()
 		_attached_weapons.erase(existing_weapon)
+		_logger.debug("weapon", self, "✅ old weapon detached and removed from array")
+		
+		# Clear HUD cache for this slot to ensure fresh data is loaded for the new weapon
+		if _weapon_display_hud != null:
+			_weapon_display_hud.clear_slot_cache(slot)
+			_logger.debug("weapon", self, "🗑️ HUD cache cleared for slot %d" % slot)
+	else:
+		_logger.debug("weapon", self, "ℹ️ no existing weapon to remove at slot %d" % slot)
+	
+	_logger.debug("weapon", self, "🔍 AFTER_REMOVAL: marker=%s, child_count=%d" % [marker.name, marker.get_child_count()])
 	
 	# Attach new weapon
+	_logger.info("weapon", self, "➕ ATTACHING_NEW_WEAPON: slot=%d, type=%s" % [slot, weapon_type])
 	_attach_weapon(weapon_type, weapon_color, marker)
 	
-	# Update display HUD
+	_logger.debug("weapon", self, "🔍 AFTER_ATTACHMENT: marker=%s, child_count=%d" % [marker.name, marker.get_child_count()])
+	var verify_weapon: WeaponAttachment = _get_weapon_at_marker(marker)
+	if verify_weapon != null:
+		_logger.info("weapon", self, "✅ VERIFIED_NEW_WEAPON: slot=%d, type=%s, id=%d, ammo=%d/%d" % [slot, verify_weapon.weapon_type, verify_weapon.get_instance_id(), verify_weapon.current_ammo, verify_weapon.max_ammo])
+	else:
+		_logger.error("weapon", self, "❌ VERIFICATION_FAILED: no weapon found at marker after attachment!")
+	
+	# Update display HUD (must happen after attachment)
+	_logger.info("weapon", self, "📺 UPDATING_HUD: slot=%d" % slot)
 	_update_display_hud()
 	
 	_pending_weapon_type = ""
 	_pending_weapon_color = Color.WHITE
+	
+	_logger.info("weapon", self, "✅ REPLACE_WEAPON_COMPLETE: slot=%d" % slot)
 
 func drop_pending_weapon() -> void:
 	_logger.info("weapon", self, "🚫 dropped pending weapon: %s" % _pending_weapon_type)
@@ -337,8 +392,20 @@ func _update_display_hud() -> void:
 	if not is_player or _weapon_display_hud == null:
 		return
 	
+	_logger.debug("weapon", self, "📺 _update_display_hud() called")
+	
 	# Update slot 1 (left weapon)
+	var left_marker_name: String = "null"
+	var left_marker_children: int = 0
+	if _weapon_marker_left != null:
+		left_marker_name = _weapon_marker_left.name
+		left_marker_children = _weapon_marker_left.get_child_count()
+	_logger.debug("weapon", self, "🔍 Checking left marker: %s, child_count=%d" % [left_marker_name, left_marker_children])
 	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
+	if left_weapon != null:
+		_logger.debug("weapon", self, "🔍 Left weapon found: type=%s, id=%d, ammo=%d/%d" % [left_weapon.weapon_type, left_weapon.get_instance_id(), left_weapon.current_ammo, left_weapon.max_ammo])
+	else:
+		_logger.debug("weapon", self, "🔍 Left weapon: null")
 	_weapon_display_hud.update_weapon_slot(1, left_weapon)
 	
 	# Connect ammo signal if weapon exists
@@ -346,15 +413,28 @@ func _update_display_hud() -> void:
 		# Disconnect previous connections if any
 		if left_weapon.ammo_changed.is_connected(_on_left_weapon_ammo_changed):
 			left_weapon.ammo_changed.disconnect(_on_left_weapon_ammo_changed)
+			_logger.debug("weapon", self, "🔌 disconnected existing left ammo signal")
 		if left_weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
 			left_weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+			_logger.debug("weapon", self, "🔌 disconnected existing left ammo_depleted signal")
 		
 		# Connect new signals
 		left_weapon.ammo_changed.connect(_on_left_weapon_ammo_changed)
 		left_weapon.ammo_depleted.connect(_on_weapon_ammo_depleted)
+		_logger.debug("weapon", self, "🔌 connected left weapon signals")
 	
 	# Update slot 2 (right weapon)
+	var right_marker_name: String = "null"
+	var right_marker_children: int = 0
+	if _weapon_marker_right != null:
+		right_marker_name = _weapon_marker_right.name
+		right_marker_children = _weapon_marker_right.get_child_count()
+	_logger.debug("weapon", self, "🔍 Checking right marker: %s, child_count=%d" % [right_marker_name, right_marker_children])
 	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)
+	if right_weapon != null:
+		_logger.debug("weapon", self, "🔍 Right weapon found: type=%s, id=%d, ammo=%d/%d" % [right_weapon.weapon_type, right_weapon.get_instance_id(), right_weapon.current_ammo, right_weapon.max_ammo])
+	else:
+		_logger.debug("weapon", self, "🔍 Right weapon: null")
 	_weapon_display_hud.update_weapon_slot(2, right_weapon)
 	
 	# Connect ammo signal if weapon exists
@@ -362,12 +442,15 @@ func _update_display_hud() -> void:
 		# Disconnect previous connections if any
 		if right_weapon.ammo_changed.is_connected(_on_right_weapon_ammo_changed):
 			right_weapon.ammo_changed.disconnect(_on_right_weapon_ammo_changed)
+			_logger.debug("weapon", self, "🔌 disconnected existing right ammo signal")
 		if right_weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
 			right_weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+			_logger.debug("weapon", self, "🔌 disconnected existing right ammo_depleted signal")
 		
 		# Connect new signals
 		right_weapon.ammo_changed.connect(_on_right_weapon_ammo_changed)
 		right_weapon.ammo_depleted.connect(_on_weapon_ammo_depleted)
+		_logger.debug("weapon", self, "🔌 connected right weapon signals")
 
 func _on_left_weapon_ammo_changed(new_ammo: int, max_ammo: int) -> void:
 	if not is_player or _weapon_display_hud == null:
