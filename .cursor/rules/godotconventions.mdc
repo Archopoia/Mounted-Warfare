@@ -107,14 +107,9 @@ alwaysApply: true
 
 ## Project Development Principles 
 
-These are project-specific rules that all contributors must follow:
-
 - Signals over direct references:
-  - Prefer Node signals and the global `EventBus` to communicate across systems.
+  - Prefer Node signals to communicate across systems.
   - Avoid hard-coded tree paths or deep `get_node()` chains for cross-system calls.
-- Centralized services via `Services`:
-  - Access shared systems using `Services`: `Services.logger()`, `Services.bus()`, `Services.config()`.
-  - Do not use direct `/root/...` lookups outside `Services` (except where `Services` is not yet available during boot).
 - Strict typing everywhere:
   - Add explicit type hints for variables, parameters, return types.
   - Do not rely on `:=` Variant inference for locals unless you annotate types.
@@ -131,22 +126,3 @@ These are project-specific rules that all contributors must follow:
 - Performance-minded defaults:
   - Keep scene trees shallow; use physics layers; pool frequently spawned objects; prefer packed arrays.
 
-### Core Architecture (Autoloads required)
-
-- `scripts/core/logger.gd` → Autoload as `LoggerInstance`
-- `scripts/core/event_bus.gd` → Autoload as `EventBus`
-- `scripts/core/config.gd` → Autoload as `GameConfig`
-- `scripts/core/services.gd` → Autoload as `Services`
-
-Names must match exactly. Gameplay scripts access these singletons via `Services` whenever possible.
-
-### Usage Patterns (Examples)
-
-- Get logger from Services:
-  - `var logger = Services.logger()`
-- Broadcast decoupled gameplay events:
-  - `Services.bus().emit_ammo_changed(self, ammo_current)`
-  - `Services.bus().emit_player_health_changed(mount_hp, rider_hp)`
-- UI should subscribe to `EventBus` first, and fall back to direct node signals if needed.
-- Always type locals explicitly:
-  - `var player: Node = get_tree().get_first_node_in_group("players")`
