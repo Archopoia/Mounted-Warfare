@@ -54,7 +54,7 @@ func _get_input_vector() -> Vector2:
 		_logger.error("movement", self, "❌ input actions not configured; cannot move")
 		return Vector2.ZERO
 	var f: float = Input.get_action_strength("accelerate") - Input.get_action_strength("brake")
-	var t: float = Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
+	var t: float = Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right")
 	if f == 0.0 and t == 0.0:
 		# Log when player is pressing nothing or mapping broken
 		if is_player:

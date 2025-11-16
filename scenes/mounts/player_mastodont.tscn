@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb5y2g24qjcg1"]
+[gd_scene load_steps=5 format=3 uid="uid://bb5y2g24qjcg1"]
 
 [ext_resource type="Script" uid="uid://c7wuseiqxcayx" path="res://scripts/controllers/mount_controller.gd" id="1_315fh"]
-[ext_resource type="Script" uid="uid://clqxaqbywoivo" path="res://scripts/combat/weapon.gd" id="2_315fh"]
-[ext_resource type="Script" uid="uid://cre4lfgo6ovqx" path="res://scripts/combat/health.gd" id="3_2aawe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_315fh"]
 size = Vector3(2, 1, 4)
@@ -27,8 +25,7 @@ spring_length = 6.0
 transform = Transform3D(1, 0, 0, 0, 0.94521135, 0.32645917, 0, -0.32645917, 0.94521135, 0, 1.5892075, 3.975709)
 near = 0.2
 
-[node name="Weapon" type="Node" parent="."]
-script = ExtResource("2_315fh")
+; Weapon node removed
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_315fh")
@@ -37,5 +34,4 @@ shape = SubResource("BoxShape3D_315fh")
 mesh = SubResource("BoxMesh_315fh")
 surface_material_override/0 = SubResource("StandardMaterial3D_315fh")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("3_2aawe")
+; Health node removed
