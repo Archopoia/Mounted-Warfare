@@ -1,16 +1,13 @@
-[PlayerMastodont#35215377887] ℹ️ 🎮 ready; is_player=true
-[PlayerMastodont#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped)
-[PlayerMastodont] 🐞 DEBUG 👣 idle input
-[PlayerMastodont#35215377887] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00
-[PlayerMastodont#35215377887] 🐞 DEBUG 📏 speed 3.00 → 3.50, turn 0.00 … (+62 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 📏 speed 13.91 → 14.00, turn -1.00 … (+60 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+56 suppressed)
-[PlayerMastodont] 🐞 DEBUG 👣 idle input … (+56 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 📏 speed 0.01 → 0.00, turn 1.00 … (+59 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 1.00 … (+60 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+4 suppressed)
-[PlayerMastodont] 🐞 DEBUG 👣 idle input … (+4 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+60 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+31 suppressed)
-[PlayerMastodont] 🐞 DEBUG 👣 idle input … (+31 suppressed)
-[PlayerMastodont#35215377887] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+25 suppressed)
+[Player#35215377887] ℹ️ 🎮 ready; is_player=true
+[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped)
+[Player] 🐞 DEBUG 👣 idle input
+[Player#35215377887] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00
+[Player#35215377887] 🐞 DEBUG 📏 speed 13.94 → 14.00, turn 1.00 … (+62 suppressed)
+[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+31 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+31 suppressed)
+[Player#35215377887] 🐞 DEBUG 📏 speed -0.00 → 0.00, turn 0.00 … (+60 suppressed)
+[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+59 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+32 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+31 suppressed)
+[Player#35215377887] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+49 suppressed)

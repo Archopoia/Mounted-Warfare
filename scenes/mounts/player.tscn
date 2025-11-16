@@ -11,7 +11,7 @@ size = Vector3(2, 1, 4)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_315fh"]
 albedo_color = Color(0.50928617, 0.50928617, 0.50928617, 1)
 
-[node name="PlayerMastodont" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_315fh")
 is_player = true
 
@@ -35,3 +35,4 @@ mesh = SubResource("BoxMesh_315fh")
 surface_material_override/0 = SubResource("StandardMaterial3D_315fh")
 
 ; Health node removed
+
