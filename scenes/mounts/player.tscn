@@ -13,6 +13,9 @@ albedo_color = Color(0.50928617, 0.50928617, 0.50928617, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_315fh")
+max_speed = 100.0
+acceleration = 2000.0
+gravity_accel = 100.0
 is_player = true
 
 [node name="CameraRig" type="Node3D" parent="."]
@@ -25,16 +28,9 @@ spring_length = 6.0
 transform = Transform3D(1, 0, 0, 0, 0.94521135, 0.32645917, 0, -0.32645917, 0.94521135, 0, 1.5892075, 3.975709)
 near = 0.2
 
-; Weapon node removed
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_315fh")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_315fh")
 surface_material_override/0 = SubResource("StandardMaterial3D_315fh")
-
-; Health node removed
-
-
-

@@ -1,13 +1,7 @@
-[Player#35215377887] ℹ️ 🎮 ready; is_player=true
-[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped)
-[Player] 🐞 DEBUG 👣 idle input
-[Player#35215377887] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00
-[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+61 suppressed)
-[Player] 🐞 DEBUG 👣 idle input … (+61 suppressed)
-[Player#35215377887] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00 … (+61 suppressed)
-[Player#35215377887] 🐞 DEBUG 📏 speed 14.00 → 14.00, turn 0.00 … (+61 suppressed)
-[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+1 suppressed)
-[Player] 🐞 DEBUG 👣 idle input … (+1 suppressed)
-[Player#35215377887] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+30 suppressed)
-[Player] 🐞 DEBUG 👣 idle input … (+30 suppressed)
-[Player#35215377887] 🐞 DEBUG 📏 speed -0.00 → 0.00, turn 0.00 … (+31 suppressed)
+[Arena/PlayerRigid#35215377887] ℹ️ 🎮 rigid ready; is_player=true
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=0.00 yaw=0.00 thr=0.00
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=5.42 yaw=0.00 thr=1.00 … (+60 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=12.32 yaw=450.00 thr=1.00 … (+61 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=3.54 yaw=0.00 thr=0.00 … (+59 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=-8.47 yaw=-0.00 thr=0.00 … (+60 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=-1.55 yaw=-0.00 thr=0.00 … (+24 suppressed)

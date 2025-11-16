@@ -1,12 +1,12 @@
 extends CharacterBody3D
 class_name MountController
 
-@export var max_speed: float = 14.0
-@export var acceleration: float = 30.0
-@export var turn_speed_deg: float = 90.0
-@export var drift_factor: float = 0.1
-@export var gravity_accel: float = 24.8
-@export var is_player: bool = false
+@export var max_speed: float = 14.0  # Maximum forward speed in units per second
+@export var acceleration: float = 30.0  # Rate of speed change in units per second squared
+@export var turn_speed_deg: float = 90.0  # Maximum turning rate in degrees per second
+@export var drift_factor: float = 0.1  # Lateral velocity damping factor (0.0 = no damping, 1.0 = full damping)
+@export var gravity_accel: float = 24.8  # Downward acceleration applied when not on floor (units: units/s²)
+@export var is_player: bool = false  # If true, this mount responds to player input actions (accelerate, brake, turn_left, turn_right)
 @onready var _services: Node = get_node_or_null("/root/Services")
 @onready var _logger = _services.logger() if _services != null else get_node_or_null("/root/LoggerInstance")
 @onready var _bus: Node = _services.bus() if _services != null else get_node_or_null("/root/EventBus")

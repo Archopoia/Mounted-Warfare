@@ -18,7 +18,7 @@ var categories := {
 	"scene": true
 }
 
-@export var ui_panel_enabled: bool = false
+@export var ui_panel_enabled: bool = false  # If true, displays an on-screen debug panel for logger controls (deprecated: use HUD/LoggerPanel instead)
 signal level_changed(new_level: int)
 signal category_toggled(category: String, enabled: bool)
 
