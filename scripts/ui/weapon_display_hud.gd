@@ -189,7 +189,7 @@ func clear_slot_cache(slot: int) -> void:
 		_weapon_ammo.erase(slot)
 		_logger.debug("ui", self, "🗑️ cleared cache for slot %d" % slot)
 
-func _update_ammo_display(slot: int, current_ammo: int, max_ammo: int, ammo_label: Label) -> void:
+func _update_ammo_display(_slot: int, current_ammo: int, max_ammo: int, ammo_label: Label) -> void:
 	if ammo_label == null:
 		return
 	
@@ -204,11 +204,6 @@ func _update_ammo_display(slot: int, current_ammo: int, max_ammo: int, ammo_labe
 		ammo_label.modulate = Color(1.0, 0.7, 0.3, 1.0)  # Orange when low
 	else:
 		ammo_label.modulate = Color.WHITE  # White when normal
-	
-	# Make ammo label more prominent with larger font
-	var font_size: int = 14
-	if current_ammo <= max_ammo * 0.2:
-		font_size = 16  # Slightly larger when low
 	
 	# Note: Font size changes would require a DynamicFont or theme setup
 	# For now, we'll use the color modulation which is more immediate

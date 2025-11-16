@@ -1,7 +1,7 @@
 extends Node3D
 class_name WeaponSpawner
 
-const WeaponRegistry = preload("res://scripts/core/weapon_registry.gd")
+const WeaponRegistryClass = preload("res://scripts/core/weapon_registry.gd")
 
 ## Weapon type to spawn (rocket_launcher, mine_layer, autocannon, etc.)
 @export var weapon_type: String = "rocket_launcher"
@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	# Get color from weapon registry if not explicitly set
 	if pickup_color == Color(1.0, 0.5, 0.0, 1.0):  # Default orange
-		pickup_color = WeaponRegistry.get_weapon_color(weapon_type)
+		pickup_color = WeaponRegistryClass.get_weapon_color(weapon_type)
 	
 	# Create spawn timer
 	_spawn_timer = Timer.new()
@@ -59,20 +59,24 @@ func spawn_pickup() -> void:
 	pickup.weapon_type = weapon_type
 	pickup.pickup_color = pickup_color
 	
-	# Position the pickup at the spawner's position
-	pickup.position = Vector3.ZERO  # Relative to spawner
-	pickup.global_position = global_position
-	
 	# Connect to pickup signal to know when it's picked up
 	pickup.weapon_picked_up.connect(_on_pickup_collected)
 	
-	# Add to scene tree (add as child of spawner for organization)
+	# Add to scene tree FIRST (required before setting global_position)
 	add_child(pickup)
+	
+	# Position the pickup at the spawner's position (after adding to tree)
+	pickup.global_position = global_position
+	
+	# Connect the pickup to all mount controllers in the scene
+	# This ensures dynamically spawned pickups are connected
+	_connect_pickup_to_mounts(pickup)
+	
 	_current_pickup = pickup
 	
 	_logger.info("spawner", self, "✨ spawned pickup: type=%s, pos=%s" % [weapon_type, global_position])
 
-func _on_pickup_collected(pickup: WeaponPickup, mount: Node, collected_weapon_type: String) -> void:
+func _on_pickup_collected(pickup: WeaponPickup, _mount: Node, collected_weapon_type: String) -> void:
 	# Only handle if this is our current pickup
 	if pickup != _current_pickup:
 		return
@@ -89,7 +93,29 @@ func _update_timer_delay() -> void:
 	if _spawn_timer != null:
 		_spawn_timer.wait_time = respawn_delay
 
+func _connect_pickup_to_mounts(pickup: WeaponPickup) -> void:
+	# Find all mount controllers in the scene and connect the pickup to them
+	var mounts: Array[Node] = []
+	_find_mount_controllers_recursive(get_tree().root, mounts)
+	
+	_logger.debug("spawner", self, "🔍 found %d mount controllers to connect pickup to" % mounts.size())
+	
+	for mount in mounts:
+		if mount is MountController:
+			var mount_controller: MountController = mount as MountController
+			if not pickup.weapon_picked_up.is_connected(mount_controller._on_weapon_picked_up):
+				pickup.weapon_picked_up.connect(mount_controller._on_weapon_picked_up)
+				_logger.debug("spawner", self, "🔌 connected pickup to mount: %s" % mount_controller.name)
+			else:
+				_logger.debug("spawner", self, "⚠️ pickup already connected to mount: %s" % mount_controller.name)
+
+func _find_mount_controllers_recursive(node: Node, mounts: Array) -> void:
+	if node is MountController:
+		mounts.append(node)
+	
+	for child in node.get_children():
+		_find_mount_controllers_recursive(child, mounts)
+
 func _on_spawn_timer_timeout() -> void:
 	_logger.debug("spawner", self, "⏰ respawn timer expired, spawning new pickup")
 	spawn_pickup()
-
