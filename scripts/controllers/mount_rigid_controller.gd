@@ -19,7 +19,10 @@ class_name MountRigidController
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
 
 func _ready() -> void:
-	_logger.info("movement", self, "🎮 rigid ready; is_player=%s" % [str(is_player)])
+	# Ensure RigidBody3D is in RIGID mode and awake for physics to work
+	freeze = false
+	sleeping = false
+	_logger.info("movement", self, "🎮 rigid ready; is_player=%s, freeze=%s, sleeping=%s" % [str(is_player), str(freeze), str(sleeping)])
 	var req := ["accelerate","brake","turn_left","turn_right","camera_reset"]
 	for a in req:
 		if not InputMap.has_action(a):

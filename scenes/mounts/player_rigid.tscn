@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6m5plcc1j568"]
+[gd_scene load_steps=6 format=3 uid="uid://b6m5plcc1j568"]
 
 [ext_resource type="Script" uid="uid://db57vlntg2477" path="res://scripts/controllers/mount_rigid_controller.gd" id="1_b3j5m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iph8f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_body"]
 size = Vector3(2, 1, 4)
@@ -13,6 +15,7 @@ albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
 
 [node name="PlayerRigid" type="RigidBody3D"]
 mass = 100.0
+physics_material_override = SubResource("PhysicsMaterial_iph8f")
 continuous_cd = true
 contact_monitor = true
 script = ExtResource("1_b3j5m")
