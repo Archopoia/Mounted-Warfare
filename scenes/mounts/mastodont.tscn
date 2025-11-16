@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://wig364kod1c3"]
+
+[ext_resource type="Script" uid="uid://cre4lfgo6ovqx" path="res://scripts/combat/health.gd" id="1_15che"]
+[ext_resource type="Script" uid="uid://c7wuseiqxcayx" path="res://scripts/controllers/mount_controller.gd" id="1_lqfs2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 1.2
+height = 4.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lqfs2"]
+radius = 1.2
+height = 2.4
+
+[node name="Mastodont" type="CharacterBody3D"]
+script = ExtResource("1_lqfs2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+spring_length = 6.5
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+current = true
+
+[node name="Hardpoint_Front" type="Marker3D" parent="."]
+
+[node name="Hardpoint_Top" type="Marker3D" parent="."]
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_15che")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_lqfs2")

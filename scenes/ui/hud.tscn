@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b6k5dsgdg03y4"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="MountHealth" type="ProgressBar" parent="."]
+
+[node name="RiderHealth" type="ProgressBar" parent="."]
+
+[node name="AmmoLabel" type="Label" parent="."]

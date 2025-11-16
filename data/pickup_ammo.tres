@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PickupDef" load_steps=2 format=3 uid="uid://dyjpsp4eyfonf"]
+
+[ext_resource type="Script" uid="uid://dhid3ijbqkl0" path="res://data/pickup_def.gd" id="1_fq1h2"]
+
+[resource]
+script = ExtResource("1_fq1h2")
+id = "ammo"
+type = "ammo"
+value = 20

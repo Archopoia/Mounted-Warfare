@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://dyjfiyfeds42j"]
+
+[ext_resource type="Script" uid="uid://h24i43mjwhxn" path="res://scripts/pickups/pickup_spawner.gd" id="1_ujq3r"]
+[ext_resource type="Script" uid="uid://bxhhter7ogcpm" path="res://scripts/pickups/pickup.gd" id="2_mx7fp"]
+[ext_resource type="PackedScene" uid="uid://wig364kod1c3" path="res://scenes/mounts/mastodont.tscn" id="3_k1g9n"]
+[ext_resource type="PackedScene" uid="uid://2q550an2kbr" path="res://scenes/pickups/pickup.tscn" id="4_1p6gu"]
+[ext_resource type="Script" uid="uid://denxexb4t8rem" path="res://scripts/ai/bot_driver.gd" id="5_botdrv"]
+[ext_resource type="Script" uid="uid://c7wuseiqxcayx" path="res://scripts/controllers/mount_controller.gd" id="6_pkhkg"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_01"]
+cell_size = 0.5
+agent_height = 2.0
+agent_radius = 0.8
+agent_max_climb = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_de1n1"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ghgf5"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pickup"]
+radius = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_pkhkg"]
+radius = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_pkhkg"]
+size = Vector3(200, 1, 200)
+
+[node name="ArenaTest" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_01")
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Rock1" type="StaticBody3D" parent="Obstacles"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Rock1"]
+shape = SubResource("BoxShape3D_de1n1")
+
+[node name="Rock1Mesh" type="MeshInstance3D" parent="Obstacles/Rock1"]
+mesh = SubResource("BoxMesh_ghgf5")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_ground")
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="PlayerSpawn" type="Marker3D" parent="SpawnPoints"]
+
+[node name="BotSpawn1" type="Marker3D" parent="SpawnPoints"]
+
+[node name="PickupSpawners" type="Node3D" parent="."]
+
+[node name="PickupSpawner1" type="Node3D" parent="PickupSpawners"]
+script = ExtResource("1_ujq3r")
+pickup_scene = ExtResource("4_1p6gu")
+
+[node name="Pickup" type="Area3D" parent="PickupSpawners/PickupSpawner1"]
+script = ExtResource("2_mx7fp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupSpawners/PickupSpawner1/Pickup"]
+shape = SubResource("SphereShape3D_pickup")
+
+[node name="PickupMesh" type="MeshInstance3D" parent="PickupSpawners/PickupSpawner1/Pickup"]
+mesh = SubResource("SphereMesh_pkhkg")
+
+[node name="Player" parent="." instance=ExtResource("3_k1g9n")]
+
+[node name="Bot1" parent="." instance=ExtResource("3_k1g9n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="BotDriver" type="Node" parent="Bot1"]
+script = ExtResource("5_botdrv")
+target = NodePath("../../Player")
+mount = NodePath("..")
+
+[node name="Bot" type="CharacterBody3D" parent="." instance=ExtResource("3_k1g9n")]
+script = ExtResource("6_pkhkg")
+
+[node name="BotDriver" type="Node" parent="Bot" node_paths=PackedStringArray("target", "mount")]
+script = ExtResource("5_botdrv")
+target = NodePath("../../Player")
+mount = NodePath("..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_pkhkg")

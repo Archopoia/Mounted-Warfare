@@ -1,0 +1,25 @@
+extends Node
+class_name BotDriver
+
+@export var target: Node3D
+@export var mount: CharacterBody3D
+
+func _physics_process(delta: float) -> void:
+	if target == null or mount == null:
+		if mount == null:
+			LoggerInstance.error("ai", name, "🤖 bot has no mount")
+		if target == null:
+			LoggerInstance.warn("ai", name, "🎯 no target to chase")
+		return
+	var dir := (target.global_transform.origin - mount.global_transform.origin)
+	dir.y = 0.0
+	if dir.length() > 0.1:
+		dir = dir.normalized()
+		# face target
+		var desired_yaw := atan2(dir.x, dir.z)
+		var yaw_delta := wrapf(desired_yaw - mount.rotation.y, -PI, PI)
+		mount.rotation.y += clamp(yaw_delta, -1.0, 1.0) * delta
+		# throttle forward
+		var forward := -mount.transform.basis.z
+		mount.velocity += forward * 4.0 * delta
+		LoggerInstance.debug("ai", name, "👣 pursuing %s, yaw_delta=%.2f" % [target.name, yaw_delta])

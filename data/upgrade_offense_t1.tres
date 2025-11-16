@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeDef" load_steps=2 format=3 uid="uid://bvab3rvkupebo"]
+
+[ext_resource type="Script" uid="uid://cwikvy4csd2if" path="res://data/upgrade_def.gd" id="1_aslv1"]
+
+[resource]
+script = ExtResource("1_aslv1")
+id = "offense_t1"
+slot = "offense"
+tier = 1
+salvage_cost = 50
