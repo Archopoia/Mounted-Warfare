@@ -1,204 +1,283 @@
-[Arena/Mount#37044094441] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
-[WeaponPickups/WeaponPickup1#37379638771] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher
-[WeaponPickups/WeaponPickup1#37379638771] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0)
-[WeaponPickups/WeaponPickup2#37413193205] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[WeaponPickups/WeaponPickup2#37413193205] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0)
-[WeaponPickups/WeaponPickup3#37446747639] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
-[WeaponPickups/WeaponPickup3#37446747639] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0)
-[Arena/Mount#37044094441] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup1
-[HUD/WeaponDisplayHUD#39611008535] ℹ️ 📺 weapon display HUD ready
-[HUD/WeaponReplacementHUD#40080770603] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[Arena/Mount#37044094441] ℹ️ 📺 HUD created for player mount
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 cleared slot 1
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ left mouse button pressed
-[Arena/Mount#37044094441] 🐞 DEBUG ⚠️ cannot attack: no weapon attached to left marker
-[WeaponPickups/WeaponPickup5#37513856507] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[root/MineLayer#82392909379] ℹ️ ⚔️ weapon attachment ready: type=mine_layer
-[WeaponMarkerLeft/MineLayer#82392909379] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 updated slot 1: weapon=mine_layer
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 cleared slot 2 … (+1 suppressed)
-[Arena/Mount#37044094441] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft
-[WeaponPickups/WeaponPickup3#37446747639] ℹ️ ✨ weapon picked up: type=autocannon, by=Mount
-[root/Autocannon#201242707452] ℹ️ ⚔️ weapon attachment ready: type=autocannon
-[WeaponMarkerRight/Autocannon#201242707452] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerRight
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 updated slot 1: weapon=mine_layer
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 created weapon visual for slot 2: autocannon
-[HUD/WeaponDisplayHUD#39611008535] 🐞 DEBUG 🎨 updated slot 2: weapon=autocannon
-[Arena/Mount#37044094441] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerRight
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ right mouse button pressed
-[Arena/Mount#37044094441] ℹ️ 🎯 right mouse click detected - attacking with right weapon
-[WeaponMarkerRight/Autocannon#201242707452] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🔫 firing autocannon burst
-[root/AutocannonProjectile#221677356553] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
-[root/AutocannonProjectile#221677356553] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
-[root/AutocannonProjectile#221677356553] 🐞 DEBUG 📐 initialized: dir=(-0.944374, -0.052335, 0.324684), spread_dir=(-0.942741, -0.083841, 0.322816), vel=(-47.13705, -4.192031, 16.1408)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🚀 projectile spawned: pos=(18.49935, 0.989998, -16.86369), dir=(-0.944374, -0.052335, 0.324684)
-[root/@RigidBody3D@9#222012900926] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
-[root/@RigidBody3D@9#222012900926] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
-[root/@RigidBody3D@9#222012900926] 🐞 DEBUG 📐 initialized: dir=(-0.94567, 0.000001, 0.325129), spread_dir=(-0.951767, -0.016565, 0.306374), vel=(-47.58837, -0.82826, 15.31868)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🎯 spawned 3 projectiles
-[root/AutocannonProjectile#221677356553] 🐞 DEBUG 📏 initial velocity applied: (-47.13705, -4.192031, 16.1408)
-[root/@RigidBody3D@9#222012900926] 🐞 DEBUG 📏 initial velocity applied: (-47.58837, -0.82826, 15.31868)
-[root/@RigidBody3D@11#222298113605] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/@RigidBody3D@11#222298113605] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
-[root/@RigidBody3D@11#222298113605] 🐞 DEBUG 🎯 direct hit: 15.0 damage
-[root/@RigidBody3D@11#222298113605] 🐞 DEBUG 💥 projectile destroyed
-[root/AutocannonProjectile#221677356553] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/AutocannonProjectile#221677356553] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
-[root/AutocannonProjectile#221677356553] 🐞 DEBUG 🎯 direct hit: 15.0 damage
-[root/AutocannonProjectile#221677356553] 🐞 DEBUG 💥 projectile destroyed
-[Arena/Mount#37044094441] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+1 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon … (+1 suppressed)
-[root/AutocannonProjectile#234377709066] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
-[root/@RigidBody3D@20#234629367358] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+4 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ right mouse button pressed … (+2 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🔫 firing autocannon burst … (+2 suppressed)
-[root/@RigidBody3D@24#237246613083] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+6 suppressed)
-[root/@RigidBody3D@24#237246613083] 🐞 DEBUG 📐 initialized: dir=(-0.332019, -0.05234, 0.94182), spread_dir=(-0.3528, -0.060602, 0.933734), vel=(-17.64001, -3.03009, 46.68671) … (+6 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🚀 projectile spawned: pos=(16.9824, 0.990009, -18.64344), dir=(-0.332019, -0.05234, 0.94182) … (+8 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🎯 spawned 3 projectiles … (+2 suppressed)
-[root/@RigidBody3D@24#237246613083] 🐞 DEBUG 📏 initial velocity applied: (-17.64001, -3.03009, 46.68671) … (+6 suppressed)
-[root/AutocannonProjectile#234377709066] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0)
-[root/AutocannonProjectile#234377709066] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3
-[root/@RigidBody3D@20#234629367358] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0)
-[root/@RigidBody3D@20#234629367358] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3
-[root/AutocannonProjectile#242850203205] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+1 suppressed)
-[root/AutocannonProjectile#242850203205] 🐞 DEBUG 📐 initialized: dir=(-0.332018, -0.052339, 0.94182), spread_dir=(-0.306657, -0.066606, 0.949487), vel=(-15.33283, -3.330314, 47.47435) … (+1 suppressed)
-[root/@RigidBody3D@28#237766706801] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+5 suppressed)
-[root/@RigidBody3D@28#237766706801] 🐞 DEBUG 💥 projectile destroyed … (+5 suppressed)
-[root/AutocannonProjectile#242850203205] 🐞 DEBUG 📏 initial velocity applied: (-15.33283, -3.330314, 47.47435) … (+1 suppressed)
-[root/@RigidBody3D@22#234881025623] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
-[root/@RigidBody3D@22#234881025623] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+4 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ left mouse button pressed
-[Arena/Mount#37044094441] ℹ️ 🎯 left mouse click detected - attacking with left weapon
-[WeaponMarkerLeft/MineLayer#82392909379] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 💣 deploying mine layer
-[root/MineProjectile#247380051591] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/MineProjectile#247380051591] 🐞 DEBUG 📐 initialized: dir=(-0.337385, -0.000001, 0.941367), spread_dir=(-0.291203, -0.005418, 0.956646), vel=(-2.912029, -0.054177, 9.566461)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 🚀 projectile spawned: pos=(19.17599, 0.990016, -17.64505), dir=(-0.337385, -0.000001, 0.941367)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 🎯 spawned 1 projectiles
-[Arena/Mount#37044094441] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+4 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon … (+4 suppressed)
-[root/@RigidBody3D@47#247749150356] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+12 suppressed)
-[root/MineProjectile#247380051591] 🐞 DEBUG 📏 initial velocity applied: (-2.912029, -0.054177, 9.566461)
-[root/AutocannonProjectile#242850203205] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+1 suppressed)
-[root/AutocannonProjectile#242850203205] 🐞 DEBUG 💥 projectile destroyed … (+1 suppressed)
-[root/AutocannonProjectile#250970375821] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+1 suppressed)
-[root/@RigidBody3D@51#248235689630] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0) … (+4 suppressed)
-[root/@RigidBody3D@51#248235689630] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3 … (+4 suppressed)
-[root/MineProjectile#247380051591] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/MineProjectile#247380051591] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/MineProjectile#247380051591] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/MineProjectile#247380051591] 🐞 DEBUG 💥 projectile destroyed
-[root/@RigidBody3D@32#240283289187] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
-[root/@RigidBody3D@32#240283289187] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+4 suppressed)
-[root/@RigidBody3D@53#249997297245] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/@RigidBody3D@60#257379272298] 🐞 DEBUG 📐 initialized: dir=(-0.497835, 0.0, 0.867272), spread_dir=(-0.555011, 0.058797, 0.829762), vel=(-5.550112, 0.587968, 8.297624) … (+17 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ right mouse button pressed … (+5 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🔫 firing autocannon burst … (+5 suppressed)
-[root/@RigidBody3D@61#257664484960] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+15 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🚀 projectile spawned: pos=(16.13311, 0.989998, -16.27375), dir=(-0.497153, -0.052336, 0.866083) … (+17 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🎯 spawned 3 projectiles … (+5 suppressed)
-[root/@RigidBody3D@60#257379272298] 🐞 DEBUG 📏 initial velocity applied: (-5.550112, 0.587968, 8.297624) … (+17 suppressed)
-[root/@RigidBody3D@57#251456915058] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+10 suppressed)
-[root/@RigidBody3D@57#251456915058] 🐞 DEBUG 💥 projectile destroyed … (+15 suppressed)
-[Arena/Mount#37044094441] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+4 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer … (+4 suppressed)
-[root/@RigidBody3D@67#260315285079] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+10 suppressed)
-[Arena/Mount#37044094441] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+2 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon … (+2 suppressed)
-[root/AutocannonProjectile#250970375821] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/AutocannonProjectile#250970375821] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
-[root/AutocannonProjectile#262932530816] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
-[root/AutocannonProjectile#262932530816] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+1 suppressed)
-[root/AutocannonProjectile#262932530816] 🐞 DEBUG 📐 initialized: dir=(-0.624655, -0.052337, 0.779145), spread_dir=(-0.638243, -0.021062, 0.769547), vel=(-31.91216, -1.053107, 38.47733) … (+1 suppressed)
-[root/AutocannonProjectile#262932530816] 🐞 DEBUG 📏 initial velocity applied: (-31.91216, -1.053107, 38.47733) … (+1 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ left mouse button pressed … (+6 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 💣 deploying mine layer … (+6 suppressed)
-[root/MineProjectile#265801434774] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+1 suppressed)
-[root/MineProjectile#265801434774] 🐞 DEBUG 📐 initialized: dir=(-0.634442, -0.000001, 0.772971), spread_dir=(-0.696056, -0.033239, 0.717218), vel=(-6.960556, -0.332391, 7.172181) … (+1 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 🚀 projectile spawned: pos=(17.8565, 0.990014, -14.09513), dir=(-0.634442, -0.000001, 0.772971) … (+6 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 🎯 spawned 1 projectiles … (+6 suppressed)
-[root/MineProjectile#265801434774] 🐞 DEBUG 📏 initial velocity applied: (-6.960556, -0.332391, 7.172181) … (+1 suppressed)
-[root/@RigidBody3D@61#257664484960] ℹ️ 💥 projectile hit: Obstacle1 (shape_index=0)
-[root/@RigidBody3D@61#257664484960] ℹ️ ⚔️ applying damage: 15.0 to Obstacle1
-[root/@RigidBody3D@70#260835378795] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+14 suppressed)
-[root/@RigidBody3D@70#260835378795] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+14 suppressed)
-[root/MineProjectile#265801434774] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+7 suppressed)
-[root/MineProjectile#265801434774] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+7 suppressed)
-[root/MineProjectile#265801434774] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+7 suppressed)
-[root/MineProjectile#265801434774] 🐞 DEBUG 💥 projectile destroyed … (+7 suppressed)
-[Arena/Mount#37044094441] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+5 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer … (+5 suppressed)
-[root/@RigidBody3D@106#276673070745] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+20 suppressed)
-[root/@RigidBody3D@106#276673070745] 🐞 DEBUG 📐 initialized: dir=(-0.634472, -0.0, 0.772946), spread_dir=(-0.674615, -0.061503, 0.735603), vel=(-6.746154, -0.615026, 7.356029) … (+24 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ right mouse button pressed … (+6 suppressed)
-[Arena/Mount#37044094441] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+5 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon … (+5 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🔫 firing autocannon burst … (+6 suppressed)
-[root/@RigidBody3D@107#277008615099] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+19 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🚀 projectile spawned: pos=(16.00131, 0.990002, -15.61785), dir=(-0.633602, -0.052336, 0.771887) … (+20 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🎯 spawned 3 projectiles … (+6 suppressed)
-[root/@RigidBody3D@106#276673070745] 🐞 DEBUG 📏 initial velocity applied: (-6.746154, -0.615026, 7.356029) … (+24 suppressed)
-[root/@RigidBody3D@86#268502566555] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+10 suppressed)
-[root/@RigidBody3D@91#269207209648] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+11 suppressed)
-[root/@RigidBody3D@91#269207209648] 🐞 DEBUG 💥 projectile destroyed … (+18 suppressed)
-[root/MineProjectile#282310215280] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+1 suppressed)
-[root/AutocannonProjectile#262932530816] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/AutocannonProjectile#262932530816] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
-[root/AutocannonProjectile#262932530816] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+1 suppressed)
-[root/AutocannonProjectile#262932530816] 🐞 DEBUG 💥 projectile destroyed … (+1 suppressed)
-[root/AutocannonProjectile#285162342002] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
-[root/AutocannonProjectile#285162342002] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
-[root/AutocannonProjectile#285162342002] 🐞 DEBUG 📐 initialized: dir=(-0.633601, -0.052336, 0.771887), spread_dir=(-0.645697, -0.02724, 0.763108), vel=(-32.28483, -1.361979, 38.15541)
-[root/AutocannonProjectile#285162342002] 🐞 DEBUG 📏 initial velocity applied: (-32.28483, -1.361979, 38.15541)
-[root/@RigidBody3D@96#271807678043] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+17 suppressed)
-[root/@RigidBody3D@96#271807678043] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+17 suppressed)
-[root/MineProjectile#282310215280] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+1 suppressed)
-[root/MineProjectile#282310215280] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+1 suppressed)
-[root/@RigidBody3D@129#285682435759] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+19 suppressed)
-[root/@RigidBody3D@129#285682435759] 🐞 DEBUG 💥 projectile destroyed … (+25 suppressed)
-[root/AutocannonProjectile#285162342002] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/AutocannonProjectile#285162342002] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
-[root/@RigidBody3D@116#279978182242] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+17 suppressed)
-[root/@RigidBody3D@116#279978182242] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+17 suppressed)
-[root/@RigidBody3D@124#283031635564] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+3 suppressed)
-[root/@RigidBody3D@124#283031635564] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
-[WeaponPickups/WeaponPickup4#37480302073] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher … (+1 suppressed)
-[WeaponPickups/WeaponPickup4#37480302073] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
-[WeaponPickups/WeaponPickup5#37513856507] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer … (+1 suppressed)
-[WeaponPickups/WeaponPickup5#37513856507] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0) … (+1 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup5 … (+4 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🚀 projectile spawned: pos=(16.00131, 0.990004, -15.61785), dir=(-0.633601, 0.052336, 0.771887) … (+11 suppressed)
-[root/@RigidBody3D@129#285682435759] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+12 suppressed)
-[root/@RigidBody3D@129#285682435759] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+10 suppressed)
-[root/@RigidBody3D@129#285682435759] 🐞 DEBUG 📐 initialized: dir=(-0.633601, 0.052336, 0.771887), spread_dir=(-0.654814, 0.036327, 0.754917), vel=(-32.7407, 1.816341, 37.74584) … (+12 suppressed)
-[root/@RigidBody3D@129#285682435759] 🐞 DEBUG 📏 initial velocity applied: (-32.7407, 1.816341, 37.74584) … (+12 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ right mouse button pressed … (+3 suppressed)
-[Arena/Mount#37044094441] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+3 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon … (+3 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🔫 firing autocannon burst … (+3 suppressed)
-[WeaponMarkerRight/Autocannon#201242707452] 🐞 DEBUG 🎯 spawned 3 projectiles … (+3 suppressed)
-[root/@RigidBody3D@124#283031635564] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+1 suppressed)
-[root/@RigidBody3D@124#283031635564] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+1 suppressed)
-[root/AutocannonProjectile#285162342002] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+1 suppressed)
-[root/AutocannonProjectile#285162342002] 🐞 DEBUG 💥 projectile destroyed … (+1 suppressed)
-[root/@RigidBody3D@68#260600497752] ℹ️ 💥 projectile hit: Obstacle1 (shape_index=0) … (+2 suppressed)
-[root/@RigidBody3D@68#260600497752] ℹ️ ⚔️ applying damage: 15.0 to Obstacle1 … (+2 suppressed)
-[root/AutocannonProjectile#242850203205] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0) … (+1 suppressed)
-[root/AutocannonProjectile#242850203205] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3 … (+1 suppressed)
-[Arena/Mount#37044094441] 🐞 DEBUG 🖱️ left mouse button pressed … (+6 suppressed)
-[Arena/Mount#37044094441] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+2 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer … (+2 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 💣 deploying mine layer … (+6 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 🚀 projectile spawned: pos=(17.85639, 0.990014, -14.09512), dir=(-0.63447, -0.0, 0.772948) … (+6 suppressed)
-[WeaponMarkerLeft/MineLayer#82392909379] 🐞 DEBUG 🎯 spawned 1 projectiles … (+6 suppressed)
-[root/MineProjectile#282310215280] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
-[root/MineProjectile#282310215280] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+3 suppressed)
-[root/MineProjectile#282310215280] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+5 suppressed)
-[root/MineProjectile#282310215280] 🐞 DEBUG 💥 projectile destroyed … (+5 suppressed)
-[root/MineProjectile#282310215280] 🐞 DEBUG 📐 initialized: dir=(-0.63447, -0.0, 0.772948), spread_dir=(-0.623762, -0.050184, 0.780002), vel=(-6.237616, -0.501844, 7.800021) … (+2 suppressed)
-[root/MineProjectile#282310215280] 🐞 DEBUG 📏 initial velocity applied: (-6.237616, -0.501844, 7.800021) … (+2 suppressed)
-[root/@RigidBody3D@113#279508420115] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+6 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
+[WeaponPickups/WeaponPickup1#37480302067] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher
+[WeaponPickups/WeaponPickup1#37480302067] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0)
+[WeaponPickups/WeaponPickup2#37513856501] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
+[WeaponPickups/WeaponPickup2#37513856501] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0)
+[WeaponPickups/WeaponPickup3#37547410935] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
+[WeaponPickups/WeaponPickup3#37547410935] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0)
+[Arena/Mount#37144757737] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup1
+[HUD/WeaponDisplayHUD#39812335129] ℹ️ 📺 weapon display HUD ready
+[HUD/WeaponReplacementHUD#40282097198] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[Arena/Mount#37144757737] ℹ️ 📺 HUD created for player mount
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 cleared slot 1
+[WeaponPickups/WeaponPickup5#37614519803] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[root/MineLayer#73165440577] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 updated slot 1: weapon=mine_layer
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 cleared slot 2 … (+1 suppressed)
+[Arena/Mount#37144757737] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft, ammo=20/20
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=20/20
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 💣 deploying mine layer
+[root/MineProjectile#90831849026] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#90831849026] 🐞 DEBUG 📐 initialized: dir=(-0.391416, -0.000005, 0.920214), spread_dir=(-0.461089, 0.007283, 0.887324), vel=(-4.61089, 0.072834, 8.87324)
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 🚀 projectile spawned: pos=(5.141569, 0.989989, -17.68665), dir=(-0.391416, -0.000005, 0.920214)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 19/20
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=19/20
+[Arena/Mount#37144757737] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=19/20
+[root/MineProjectile#90831849026] 🐞 DEBUG 📏 initial velocity applied: (-4.61089, 0.072834, 8.87324)
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=19/20
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 💣 deploying mine layer
+[root/@RigidBody3D@4#100076095066] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/@RigidBody3D@4#100076095066] 🐞 DEBUG 📐 initialized: dir=(-0.559607, -0.0, 0.828758), spread_dir=(-0.564394, -0.08535, 0.821081), vel=(-5.643941, -0.853497, 8.210814)
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 🚀 projectile spawned: pos=(5.301229, 0.990018, -16.64225), dir=(-0.559607, -0.0, 0.828758)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 18/20
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=18/20
+[Arena/Mount#37144757737] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=18/20
+[root/@RigidBody3D@4#100076095066] 🐞 DEBUG 📏 initial velocity applied: (-5.643941, -0.853497, 8.210814)
+[root/MineProjectile#90831849026] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#90831849026] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#90831849026] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#90831849026] 🐞 DEBUG 💥 projectile destroyed
+[root/MineProjectile#101871257111] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#101871257111] 🐞 DEBUG 📐 initialized: dir=(-0.542021, 0.0, 0.840365), spread_dir=(-0.529068, 0.03098, 0.848014), vel=(-5.29068, 0.309797, 8.480137)
+[root/MineProjectile#101871257111] 🐞 DEBUG 📏 initial velocity applied: (-5.29068, 0.309797, 8.480137)
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+3 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=15/20 … (+3 suppressed)
+[root/@RigidBody3D@7#106149447262] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+2 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 14/20 … (+3 suppressed)
+[root/@RigidBody3D@4#100076095066] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/@RigidBody3D@4#100076095066] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/@RigidBody3D@4#100076095066] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/@RigidBody3D@4#100076095066] 🐞 DEBUG 💥 projectile destroyed
+[root/MineProjectile#101871257111] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
+[root/MineProjectile#101871257111] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+3 suppressed)
+[root/MineProjectile#101871257111] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+3 suppressed)
+[root/MineProjectile#101871257111] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed … (+4 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=14/20
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 💣 deploying mine layer … (+4 suppressed)
+[root/MineProjectile#113095214672] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#113095214672] 🐞 DEBUG 📐 initialized: dir=(-0.621169, 0.0, 0.783676), spread_dir=(-0.644425, -0.028266, 0.764145), vel=(-6.444249, -0.282659, 7.64145)
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 🚀 projectile spawned: pos=(2.836422, 0.990007, -12.31661), dir=(-0.621169, 0.0, 0.783676) … (+4 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 13/20
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=13/20 … (+4 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=13/20 … (+4 suppressed)
+[root/MineProjectile#113095214672] 🐞 DEBUG 📏 initial velocity applied: (-6.444249, -0.282659, 7.64145)
+[root/@RigidBody3D@7#106149447262] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+2 suppressed)
+[root/@RigidBody3D@7#106149447262] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+2 suppressed)
+[root/@RigidBody3D@7#106149447262] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+2 suppressed)
+[root/@RigidBody3D@7#106149447262] 🐞 DEBUG 💥 projectile destroyed … (+2 suppressed)
+[root/@RigidBody3D@8#114772936215] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/@RigidBody3D@8#114772936215] 🐞 DEBUG 📐 initialized: dir=(-0.61082, 0.0, 0.791769), spread_dir=(-0.597956, -0.021952, 0.801228), vel=(-5.979559, -0.219523, 8.012283) … (+3 suppressed)
+[root/@RigidBody3D@8#114772936215] 🐞 DEBUG 📏 initial velocity applied: (-5.979559, -0.219523, 8.012283) … (+3 suppressed)
+[root/MineProjectile#113095214672] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#113095214672] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#113095214672] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#113095214672] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@8#114772936215] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/@RigidBody3D@8#114772936215] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/@RigidBody3D@8#114772936215] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/@RigidBody3D@8#114772936215] 🐞 DEBUG 💥 projectile destroyed
+[WeaponPickups/WeaponPickup2#37513856501] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[root/MineLayer#137220851289] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
+[WeaponMarkerRight/MineLayer#137220851289] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerRight
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 updated slot 1: weapon=mine_layer
+[Arena/Mount#37144757737] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerRight, ammo=20/20
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ right mouse button pressed
+[Arena/Mount#37144757737] ℹ️ 🎯 right mouse click detected - attacking with right weapon
+[WeaponMarkerRight/MineLayer#137220851289] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=20/20
+[WeaponMarkerRight/MineLayer#137220851289] 🐞 DEBUG 💣 deploying mine layer
+[root/MineProjectile#143059322437] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#143059322437] 🐞 DEBUG 📐 initialized: dir=(0.992397, 0.0, -0.123076), spread_dir=(0.986341, -0.029434, -0.162064), vel=(9.863412, -0.29434, -1.620645)
+[WeaponMarkerRight/MineLayer#137220851289] 🐞 DEBUG 🚀 projectile spawned: pos=(-10.07306, 0.989998, 11.91201), dir=(0.992397, 0.0, -0.123076)
+[WeaponMarkerRight/MineLayer#137220851289] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 19/20
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=19/20 … (+2 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=19/20 … (+2 suppressed)
+[root/MineProjectile#143059322437] 🐞 DEBUG 📏 initial velocity applied: (9.863412, -0.29434, -1.620645)
+[root/@RigidBody3D@14#144770598396] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+1 suppressed)
+[root/@RigidBody3D@14#144770598396] 🐞 DEBUG 📐 initialized: dir=(0.938331, 0.000001, -0.345738), spread_dir=(0.915363, 0.05699, -0.398576), vel=(9.153627, 0.569903, -3.985763) … (+1 suppressed)
+[root/@RigidBody3D@14#144770598396] 🐞 DEBUG 📏 initial velocity applied: (9.153627, 0.569903, -3.985763) … (+1 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed … (+2 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+2 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=11/20 … (+2 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 💣 deploying mine layer … (+2 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 🚀 projectile spawned: pos=(-11.53206, 0.989998, 11.59919), dir=(0.86259, 0.0, -0.505904) … (+2 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 10/20 … (+2 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+4 suppressed)
+[WeaponMarkerRight/MineLayer#137220851289] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=15/20 … (+4 suppressed)
+[WeaponMarkerRight/MineLayer#137220851289] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 14/20 … (+4 suppressed)
+[root/MineProjectile#143059322437] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#143059322437] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#143059322437] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#143059322437] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@15#146465097302] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
+[root/@RigidBody3D@15#146465097302] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+4 suppressed)
+[root/@RigidBody3D@15#146465097302] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+4 suppressed)
+[root/@RigidBody3D@15#146465097302] 🐞 DEBUG 💥 projectile destroyed … (+4 suppressed)
+[root/@RigidBody3D@22#151632479867] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+25 suppressed)
+[root/@RigidBody3D@22#151632479867] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+25 suppressed)
+[WeaponPickups/WeaponPickup1#37480302067] ℹ️ ✨ weapon picked up: type=rocket_launcher, by=Mount
+[HUD/WeaponReplacementHUD#40282097198] ℹ️ 📋 showing weapon replacement prompt: rocket_launcher
+[Arena/Mount#37144757737] ℹ️ 📋 showing replacement prompt for: rocket_launcher
+[HUD/WeaponReplacementHUD#40282097198] ℹ️ 🎯 USER SELECTED: [1] Replace weapon in slot 1
+[HUD/WeaponReplacementHUD#40282097198] ℹ️ 🔄 replacing weapon in slot 1 with rocket_launcher
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🔓 weapon detached from mount: type=mine_layer
+[root/RocketLauncher#217902483013] ℹ️ ⚔️ weapon attachment ready: type=rocket_launcher, ammo=30/30
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerLeft
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer … (+1 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 updated slot 1: weapon=mine_layer … (+1 suppressed)
+[Arena/Mount#37144757737] ℹ️ ⚔️ weapon attached: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), marker=WeaponMarkerLeft, ammo=30/30
+[HUD/WeaponReplacementHUD#40282097198] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed … (+3 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+3 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 💥 attacking with weapon: type=rocket_launcher, name=Rocket Launcher, ammo=30/30
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 firing rocket launcher
+[root/RocketProjectile#222784652911] ℹ️ 🚀 projectile spawned: type=, speed=30.00, damage=50.0, gravity=0.50
+[root/RocketProjectile#222784652911] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds
+[root/RocketProjectile#222784652911] 🐞 DEBUG 📐 initialized: dir=(0.429211, 0.000002, -0.903204), spread_dir=(0.421769, -0.010815, -0.906639), vel=(12.65308, -0.324449, -27.19916)
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 projectile spawned: pos=(7.314126, 0.990209, 8.673167), dir=(0.429211, 0.000002, -0.903204)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 29/30
+[root/RocketProjectile#222784652911] 🐞 DEBUG 📏 initial velocity applied: (12.65308, -0.324449, -27.19916)
+[root/@RigidBody3D@32#223875171924] ℹ️ 🚀 projectile spawned: type=, speed=30.00, damage=50.0, gravity=0.50 … (+8 suppressed)
+[root/@RigidBody3D@32#223875171924] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds
+[root/@RigidBody3D@32#223875171924] 🐞 DEBUG 📐 initialized: dir=(0.429198, 0.000002, -0.90321), spread_dir=(0.422059, -0.012648, -0.90648), vel=(12.66176, -0.379451, -27.19441) … (+8 suppressed)
+[root/@RigidBody3D@32#223875171924] 🐞 DEBUG 📏 initial velocity applied: (12.66176, -0.379451, -27.19441) … (+8 suppressed)
+[root/RocketProjectile#222784652911] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0)
+[root/RocketProjectile#222784652911] ℹ️ ⚔️ applying damage: 50.0 to Obstacle3
+[root/RocketProjectile#222784652911] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0
+[root/RocketProjectile#222784652911] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@32#223875171924] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0)
+[root/@RigidBody3D@32#223875171924] ℹ️ ⚔️ applying damage: 50.0 to Obstacle3
+[root/@RigidBody3D@32#223875171924] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0 … (+26 suppressed)
+[root/@RigidBody3D@32#223875171924] 🐞 DEBUG 💥 projectile destroyed … (+26 suppressed)
+[WeaponPickups/WeaponPickup3#37547410935] ℹ️ ✨ weapon picked up: type=autocannon, by=Mount
+[HUD/WeaponReplacementHUD#40282097198] ℹ️ 📋 showing weapon replacement prompt: autocannon
+[Arena/Mount#37144757737] ℹ️ 📋 showing replacement prompt for: autocannon
+[HUD/WeaponReplacementHUD#40282097198] ℹ️ 🎯 USER SELECTED: [2] Replace weapon in slot 2
+[HUD/WeaponReplacementHUD#40282097198] ℹ️ 🔄 replacing weapon in slot 2 with autocannon
+[WeaponMarkerRight/MineLayer#137220851289] ℹ️ 🔓 weapon detached from mount: type=mine_layer
+[root/Autocannon#261892343287] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=150/150
+[WeaponMarkerRight/Autocannon#261892343287] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerRight
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 created weapon visual for slot 1: rocket_launcher
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 updated slot 1: weapon=rocket_launcher
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 created weapon visual for slot 2: mine_layer … (+3 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 updated slot 2: weapon=mine_layer … (+3 suppressed)
+[Arena/Mount#37144757737] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerRight, ammo=150/150
+[HUD/WeaponReplacementHUD#40282097198] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ right mouse button pressed … (+5 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 right mouse click detected - attacking with right weapon
+[WeaponMarkerRight/Autocannon#261892343287] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon, ammo=150/150
+[WeaponMarkerRight/Autocannon#261892343287] 🐞 DEBUG 🔫 firing autocannon burst
+[root/AutocannonProjectile#266204087912] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
+[root/AutocannonProjectile#266204087912] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/AutocannonProjectile#266204087912] 🐞 DEBUG 📐 initialized: dir=(0.798468, -0.05234, -0.599757), spread_dir=(0.805024, -0.083612, -0.587321), vel=(40.2512, -4.180611, -29.36603)
+[WeaponMarkerRight/Autocannon#261892343287] 🐞 DEBUG 🚀 projectile spawned: pos=(10.04964, 0.99025, -6.182744), dir=(0.798468, -0.05234, -0.599757)
+[root/@RigidBody3D@45#266539632208] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+1 suppressed)
+[root/@RigidBody3D@45#266539632208] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+1 suppressed)
+[root/@RigidBody3D@45#266539632208] 🐞 DEBUG 📐 initialized: dir=(0.799564, -0.000004, -0.600581), spread_dir=(0.814246, -0.023828, -0.580031), vel=(40.7123, -1.191382, -29.00155) … (+1 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] ℹ️ 🎯 fired 3 projectiles, ammo remaining: 147/150
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed … (+2 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+2 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 💥 attacking with weapon: type=rocket_launcher, name=Rocket Launcher, ammo=27/30 … (+2 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 firing rocket launcher … (+2 suppressed)
+[root/RocketProjectile#267193943641] ℹ️ 🚀 projectile spawned: type=, speed=30.00, damage=50.0, gravity=0.50
+[root/RocketProjectile#267193943641] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds
+[root/RocketProjectile#267193943641] 🐞 DEBUG 📐 initialized: dir=(0.799564, -0.000004, -0.600581), spread_dir=(0.803782, 0.008829, -0.594858), vel=(24.11346, 0.264861, -17.84575)
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 projectile spawned: pos=(8.608243, 0.990219, -8.101698), dir=(0.799564, -0.000004, -0.600581) … (+2 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 26/30 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=26/30 … (+9 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=26/30 … (+9 suppressed)
+[root/AutocannonProjectile#266204087912] 🐞 DEBUG 📏 initial velocity applied: (40.2512, -4.180611, -29.36603)
+[root/@RigidBody3D@45#266539632208] 🐞 DEBUG 📏 initial velocity applied: (40.7123, -1.191382, -29.00155) … (+1 suppressed)
+[root/RocketProjectile#267193943641] 🐞 DEBUG 📏 initial velocity applied: (24.11346, 0.264861, -17.84575)
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+2 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 💥 attacking with weapon: type=rocket_launcher, name=Rocket Launcher, ammo=24/30 … (+2 suppressed)
+[root/@RigidBody3D@66#275867764332] ℹ️ 🚀 projectile spawned: type=, speed=30.00, damage=50.0, gravity=0.50 … (+9 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 23/30 … (+2 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+2 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon, ammo=141/150 … (+2 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] ℹ️ 🎯 fired 3 projectiles, ammo remaining: 138/150 … (+2 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed … (+3 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 firing rocket launcher … (+3 suppressed)
+[root/@RigidBody3D@74#277914584744] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds … (+13 suppressed)
+[root/@RigidBody3D@74#277914584744] 🐞 DEBUG 📐 initialized: dir=(0.799651, -0.000004, -0.600465), spread_dir=(0.800224, 0.0129, -0.599562), vel=(24.00672, 0.387008, -17.98687) … (+13 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 projectile spawned: pos=(8.626551, 0.990217, -8.115475), dir=(0.799651, -0.000004, -0.600465) … (+3 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=22/30 … (+3 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=22/30 … (+3 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ right mouse button pressed … (+3 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] 🐞 DEBUG 🔫 firing autocannon burst … (+3 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] 🐞 DEBUG 🚀 projectile spawned: pos=(10.06767, 0.990248, -6.196311), dir=(0.798555, -0.05234, -0.599642) … (+11 suppressed)
+[root/@RigidBody3D@74#277914584744] 🐞 DEBUG 📏 initial velocity applied: (24.00672, 0.387008, -17.98687) … (+13 suppressed)
+[root/@RigidBody3D@50#271740569188] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/@RigidBody3D@50#271740569188] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/@RigidBody3D@50#271740569188] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/@RigidBody3D@50#271740569188] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
+[root/RocketProjectile#267193943641] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/RocketProjectile#267193943641] ℹ️ ⚔️ applying damage: 50.0 to StaticBody3D
+[root/RocketProjectile#267193943641] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0 … (+1 suppressed)
+[root/RocketProjectile#267193943641] 🐞 DEBUG 💥 projectile destroyed … (+1 suppressed)
+[root/AutocannonProjectile#266204087912] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/AutocannonProjectile#266204087912] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/AutocannonProjectile#266204087912] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/AutocannonProjectile#266204087912] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@58#273602840052] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
+[root/@RigidBody3D@58#273602840052] ℹ️ ⚔️ applying damage: 50.0 to StaticBody3D … (+3 suppressed)
+[root/@RigidBody3D@58#273602840052] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0 … (+3 suppressed)
+[root/@RigidBody3D@58#273602840052] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
+[root/@RigidBody3D@88#280699602637] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+3 suppressed)
+[root/@RigidBody3D@96#282612205278] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+30 suppressed)
+[root/@RigidBody3D@96#282612205278] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+30 suppressed)
+[root/@RigidBody3D@70#276421412505] 🐞 DEBUG 💥 projectile destroyed … (+34 suppressed)
+[WeaponPickups/WeaponPickup4#37580965369] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher … (+1 suppressed)
+[WeaponPickups/WeaponPickup4#37580965369] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
+[WeaponPickups/WeaponPickup5#37614519803] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer … (+1 suppressed)
+[WeaponPickups/WeaponPickup5#37614519803] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0) … (+1 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup5 … (+4 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ left mouse button pressed … (+3 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 left mouse click detected - attacking with left weapon … (+4 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 💥 attacking with weapon: type=mine_layer, name=Mine Layer, ammo=8/20 … (+3 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 💣 deploying mine layer … (+3 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] 🐞 DEBUG 🚀 projectile spawned: pos=(-12.18394, 0.990119, 13.49912), dir=(0.581485, -0.000088, -0.813557) … (+3 suppressed)
+[WeaponMarkerLeft/MineLayer#73165440577] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 7/20 … (+3 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=19/30 … (+3 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=19/30 … (+3 suppressed)
+[root/@RigidBody3D@104#284256372471] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+19 suppressed)
+[root/@RigidBody3D@104#284256372471] 🐞 DEBUG 📐 initialized: dir=(0.800933, 0.052332, -0.596463), spread_dir=(0.79524, 0.084819, -0.600332), vel=(39.762, 4.24096, -30.01662) … (+15 suppressed)
+[root/@RigidBody3D@104#284256372471] 🐞 DEBUG 📏 initial velocity applied: (39.762, 4.24096, -30.01662) … (+15 suppressed)
+[root/@RigidBody3D@102#284021491442] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+8 suppressed)
+[root/@RigidBody3D@102#284021491442] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+8 suppressed)
+[root/@RigidBody3D@98#283534952037] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0 … (+27 suppressed)
+[root/@RigidBody3D@102#284021491442] 🐞 DEBUG 💥 projectile destroyed … (+4 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 created weapon visual for slot 2: mine_layer … (+1 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 updated slot 2: weapon=mine_layer … (+1 suppressed)
+[Arena/Mount#37144757737] 🐞 DEBUG 🖱️ right mouse button pressed … (+3 suppressed)
+[Arena/Mount#37144757737] ℹ️ 🎯 right mouse click detected - attacking with right weapon … (+4 suppressed)
+[WeaponMarkerRight/MineLayer#137220851289] 🐞 DEBUG 💣 deploying mine layer … (+5 suppressed)
+[WeaponMarkerRight/MineLayer#137220851289] 🐞 DEBUG 🚀 projectile spawned: pos=(-10.2314, 0.990793, 14.89468), dir=(0.581485, -0.000088, -0.813557) … (+5 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 💥 attacking with weapon: type=rocket_launcher, name=Rocket Launcher, ammo=20/30 … (+4 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 firing rocket launcher … (+3 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] 🐞 DEBUG 🚀 projectile spawned: pos=(8.753059, 0.990218, -8.211285), dir=(0.802032, -0.000004, -0.597281) … (+3 suppressed)
+[WeaponMarkerLeft/RocketLauncher#217902483013] ℹ️ 🎯 fired 1 projectiles, ammo remaining: 19/30 … (+4 suppressed)
+[root/@RigidBody3D@104#284256372471] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+15 suppressed)
+[root/RocketProjectile#222784652911] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0) … (+1 suppressed)
+[root/RocketProjectile#222784652911] ℹ️ ⚔️ applying damage: 50.0 to Obstacle3 … (+1 suppressed)
+[root/RocketProjectile#267193943641] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0 … (+3 suppressed)
+[root/RocketProjectile#267193943641] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
+[root/@RigidBody3D@34#224764364284] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0) … (+3 suppressed)
+[root/@RigidBody3D@34#224764364284] ℹ️ ⚔️ applying damage: 50.0 to Obstacle3 … (+3 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 created weapon visual for slot 1: rocket_launcher … (+1 suppressed)
+[HUD/WeaponDisplayHUD#39812335129] 🐞 DEBUG 🎨 updated slot 1: weapon=rocket_launcher … (+1 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] 🐞 DEBUG 🚀 projectile spawned: pos=(10.18653, 0.990251, -6.286408), dir=(0.800933, 0.052332, -0.596463) … (+11 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] ℹ️ 💥 attacking with weapon: type=autocannon, name=Autocannon, ammo=129/150 … (+4 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] 🐞 DEBUG 🔫 firing autocannon burst … (+3 suppressed)
+[WeaponMarkerRight/Autocannon#261892343287] ℹ️ 🎯 fired 3 projectiles, ammo remaining: 126/150 … (+4 suppressed)
+[root/@RigidBody3D@102#284021491442] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+11 suppressed)
+[root/RocketProjectile#267193943641] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
+[root/RocketProjectile#267193943641] ℹ️ ⚔️ applying damage: 50.0 to StaticBody3D … (+3 suppressed)

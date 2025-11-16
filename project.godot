@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 LoggerInstance="*res://scripts/core/logger.gd"
 
+[editor]
+
+movie_writer/movie_file="/home/soundboost/Bureau/Cursor/mounted-warfare/records/movie.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gdai-mcp-plugin-godot/plugin.cfg")

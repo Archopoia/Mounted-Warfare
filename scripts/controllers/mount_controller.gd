@@ -14,7 +14,6 @@ class_name MountController
 
 @onready var _services: Node = get_node_or_null("/root/Services")
 @onready var _logger = _services.logger() if _services != null else get_node_or_null("/root/LoggerInstance")
-@onready var _bus: Node = _services.bus() if _services != null else get_node_or_null("/root/EventBus")
 @onready var _camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
 @onready var _weapon_marker_left: Marker3D = $WeaponMarkerLeft
@@ -138,6 +137,12 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	else:
 		weapon.weapon_color = weapon_color
 	
+	# Initialize ammo to full capacity
+	weapon.max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
+	weapon.current_ammo = weapon.max_ammo
+	
+	# Signals will be connected in _update_display_hud() after attachment
+	
 	# Add to scene tree first (required for reparenting)
 	get_tree().root.add_child(weapon)
 	
@@ -150,7 +155,7 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	# Update display HUD
 	_update_display_hud()
 	
-	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, color=%s, marker=%s" % [weapon_type, weapon.weapon_color, marker.name])
+	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, color=%s, marker=%s, ammo=%d/%d" % [weapon_type, weapon.weapon_color, marker.name, weapon.current_ammo, weapon.max_ammo])
 
 func _create_hud() -> void:
 	if not is_player:
@@ -336,6 +341,45 @@ func _update_display_hud() -> void:
 	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
 	_weapon_display_hud.update_weapon_slot(1, left_weapon)
 	
+	# Connect ammo signal if weapon exists
+	if left_weapon != null:
+		# Disconnect previous connections if any
+		if left_weapon.ammo_changed.is_connected(_on_left_weapon_ammo_changed):
+			left_weapon.ammo_changed.disconnect(_on_left_weapon_ammo_changed)
+		if left_weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
+			left_weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+		
+		# Connect new signals
+		left_weapon.ammo_changed.connect(_on_left_weapon_ammo_changed)
+		left_weapon.ammo_depleted.connect(_on_weapon_ammo_depleted)
+	
 	# Update slot 2 (right weapon)
 	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)
 	_weapon_display_hud.update_weapon_slot(2, right_weapon)
+	
+	# Connect ammo signal if weapon exists
+	if right_weapon != null:
+		# Disconnect previous connections if any
+		if right_weapon.ammo_changed.is_connected(_on_right_weapon_ammo_changed):
+			right_weapon.ammo_changed.disconnect(_on_right_weapon_ammo_changed)
+		if right_weapon.ammo_depleted.is_connected(_on_weapon_ammo_depleted):
+			right_weapon.ammo_depleted.disconnect(_on_weapon_ammo_depleted)
+		
+		# Connect new signals
+		right_weapon.ammo_changed.connect(_on_right_weapon_ammo_changed)
+		right_weapon.ammo_depleted.connect(_on_weapon_ammo_depleted)
+
+func _on_left_weapon_ammo_changed(new_ammo: int, max_ammo: int) -> void:
+	if not is_player or _weapon_display_hud == null:
+		return
+	_weapon_display_hud.update_weapon_ammo(1, new_ammo, max_ammo)
+	_logger.debug("weapon", self, "📊 ammo updated: slot=1, ammo=%d/%d" % [new_ammo, max_ammo])
+
+func _on_right_weapon_ammo_changed(new_ammo: int, max_ammo: int) -> void:
+	if not is_player or _weapon_display_hud == null:
+		return
+	_weapon_display_hud.update_weapon_ammo(2, new_ammo, max_ammo)
+	_logger.debug("weapon", self, "📊 ammo updated: slot=2, ammo=%d/%d" % [new_ammo, max_ammo])
+
+func _on_weapon_ammo_depleted(weapon_type: String) -> void:
+	_logger.info("weapon", self, "⚠️ weapon ammo depleted: %s" % weapon_type)

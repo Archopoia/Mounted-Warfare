@@ -9,6 +9,15 @@ class_name WeaponAttachment
 @export var weapon_color: Color = Color(1.0, 0.5, 0.0, 1.0)
 ## Weapon size scale (for visual representation)
 @export var weapon_scale: float = 0.5
+## Maximum ammunition capacity for this weapon
+@export var max_ammo: int = 30
+## Current ammunition count
+@export var current_ammo: int = 30
+
+## Signal emitted when ammo changes (new_ammo, max_ammo)
+signal ammo_changed(new_ammo: int, max_ammo: int)
+## Signal emitted when ammo is depleted (weapon_type)
+signal ammo_depleted(weapon_type: String)
 
 var _logger: Node
 var _attached_to_mount: Node = null
@@ -16,7 +25,13 @@ var _attached_to_mount: Node = null
 func _ready() -> void:
 	_logger = get_node_or_null("/root/LoggerInstance")
 	_update_visuals()
-	_logger.info("weapon", self, "⚔️ weapon attachment ready: type=%s" % weapon_type)
+	
+	# Initialize ammo if not already set
+	if max_ammo == 30 and current_ammo == 30:  # Default values, initialize from registry
+		max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
+		current_ammo = max_ammo
+	
+	_logger.info("weapon", self, "⚔️ weapon attachment ready: type=%s, ammo=%d/%d" % [weapon_type, current_ammo, max_ammo])
 
 func _update_visuals() -> void:
 	# Update material colors for all mesh instances to match weapon color
@@ -74,7 +89,15 @@ func attack() -> void:
 		_logger.error("weapon", self, "❌ Cannot attack: weapon not in scene tree")
 		return
 	
-	_logger.info("weapon", self, "💥 attacking with weapon: type=%s, name=%s" % [weapon_type, weapon_name])
+	# Check ammo
+	var projectile_count: int = WeaponRegistry.get_projectile_count(weapon_type)
+	if current_ammo < projectile_count:
+		_logger.info("weapon", self, "⚠️ out of ammo: current=%d, needed=%d" % [current_ammo, projectile_count])
+		if current_ammo == 0:
+			ammo_depleted.emit(weapon_type)
+		return
+	
+	_logger.info("weapon", self, "💥 attacking with weapon: type=%s, name=%s, ammo=%d/%d" % [weapon_type, weapon_name, current_ammo, max_ammo])
 	
 	# Get projectile spawn position and direction
 	var mount: RigidBody3D = _attached_to_mount as RigidBody3D
@@ -86,17 +109,13 @@ func attack() -> void:
 	var spawn_position: Vector3 = global_position
 	var forward: Vector3 = -mount.global_transform.basis.z  # Mount's forward direction
 	
-	# Determine projectile count and spread based on weapon type
-	var projectile_count: int = 1
+	# Log weapon-specific attack
 	match weapon_type:
 		"rocket_launcher":
-			projectile_count = 1
 			_logger.debug("weapon", self, "🚀 firing rocket launcher")
 		"mine_layer":
-			projectile_count = 1  # Mines deploy one at a time
 			_logger.debug("weapon", self, "💣 deploying mine layer")
 		"autocannon":
-			projectile_count = 3  # Autocannon fires burst
 			_logger.debug("weapon", self, "🔫 firing autocannon burst")
 		_:
 			_logger.warn("weapon", self, "⚠️ unknown weapon type for attack: %s" % weapon_type)
@@ -105,7 +124,17 @@ func attack() -> void:
 	for i in range(projectile_count):
 		_spawn_projectile(spawn_position, forward, i, projectile_count)
 	
-	_logger.debug("weapon", self, "🎯 spawned %d projectiles" % projectile_count)
+	# Consume ammo
+	current_ammo -= projectile_count
+	_logger.info("weapon", self, "🎯 fired %d projectiles, ammo remaining: %d/%d" % [projectile_count, current_ammo, max_ammo])
+	
+	# Emit ammo changed signal
+	ammo_changed.emit(current_ammo, max_ammo)
+	
+	# Check if ammo is depleted
+	if current_ammo <= 0:
+		ammo_depleted.emit(weapon_type)
+		_logger.info("weapon", self, "⚠️ weapon ammo depleted: %s" % weapon_type)
 
 func _spawn_projectile(spawn_position: Vector3, direction: Vector3, index: int, total_count: int) -> void:
 	# Load projectile scene based on weapon type
