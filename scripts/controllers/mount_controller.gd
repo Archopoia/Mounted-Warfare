@@ -868,22 +868,44 @@ func _attack_with_left_weapon() -> void:
 			return
 		
 		var base_weapon: WeaponAttachment = weapons_to_fire[0]
-		_logger.info("weapon", self, "🎯 left mouse click detected - attacking with %d stacked weapons" % weapons_to_fire.size())
+		var stack_count: int = weapons_to_fire.size()
 		
-		# Fire all weapons, but consume ammo from base weapon only
+		# Calculate total ammo consumption (projectile_count per weapon in stack)
+		var projectile_count_per_weapon: int = WeaponRegistry.get_projectile_count(base_weapon.weapon_type)
+		var total_projectiles_needed: int = projectile_count_per_weapon * stack_count
+		_logger.info("weapon", self, "🎯 left mouse click detected - attacking with %d stacked weapons (will consume %d ammo: %d per weapon × %d weapons)" % [stack_count, total_projectiles_needed, projectile_count_per_weapon, stack_count])
+		
+		# Check if we have enough ammo for all weapons
+		if base_weapon.current_ammo < total_projectiles_needed:
+			_logger.info("weapon", self, "⚠️ insufficient ammo: have %d, need %d (for %d weapons)" % [base_weapon.current_ammo, total_projectiles_needed, stack_count])
+			# Don't fire if we don't have enough ammo
+			return
+		
+		# Consume ammo based on stack count (1 per weapon)
+		var old_ammo: int = base_weapon.current_ammo
+		base_weapon.current_ammo -= total_projectiles_needed
+		_logger.info("weapon", self, "🔋 consumed %d ammo (%d per weapon × %d weapons): %d -> %d" % [total_projectiles_needed, projectile_count_per_weapon, stack_count, old_ammo, base_weapon.current_ammo])
+		
+		# Fire all weapons
 		for i in range(weapons_to_fire.size()):
 			var weapon: WeaponAttachment = weapons_to_fire[i]
 			if not is_instance_valid(weapon):
 				_logger.warn("weapon", self, "⚠️ weapon at index %d became invalid during attack" % i)
 				continue
 			
-			if i == 0:
-				# Base weapon consumes ammo normally
-				weapon.attack()
-			else:
-				# Upgraded weapons fire but don't consume their own ammo
-				# They use the base weapon's ammo pool
-				_attack_with_upgraded_weapon(weapon, base_weapon)
+			if not weapon.is_inside_tree():
+				_logger.debug("weapon", self, "⚠️ weapon at index %d not in scene tree, skipping" % i)
+				continue
+			
+			# All weapons fire their projectiles (ammo already consumed above)
+			_attack_with_upgraded_weapon(weapon, base_weapon)
+		
+		# Emit ammo changed signal after all weapons have fired
+		base_weapon.ammo_changed.emit(base_weapon.current_ammo, base_weapon.max_ammo)
+		
+		# Check if ammo is depleted
+		if base_weapon.current_ammo <= 0:
+			base_weapon.ammo_depleted.emit(base_weapon.weapon_type)
 	else:
 		_logger.debug("weapon", self, "⚠️ cannot attack: no weapons in slot 1")
 
@@ -906,22 +928,44 @@ func _attack_with_right_weapon() -> void:
 			return
 		
 		var base_weapon: WeaponAttachment = weapons_to_fire[0]
-		_logger.info("weapon", self, "🎯 right mouse click detected - attacking with %d stacked weapons" % weapons_to_fire.size())
+		var stack_count: int = weapons_to_fire.size()
 		
-		# Fire all weapons, but consume ammo from base weapon only
+		# Calculate total ammo consumption (projectile_count per weapon in stack)
+		var projectile_count_per_weapon: int = WeaponRegistry.get_projectile_count(base_weapon.weapon_type)
+		var total_projectiles_needed: int = projectile_count_per_weapon * stack_count
+		_logger.info("weapon", self, "🎯 right mouse click detected - attacking with %d stacked weapons (will consume %d ammo: %d per weapon × %d weapons)" % [stack_count, total_projectiles_needed, projectile_count_per_weapon, stack_count])
+		
+		# Check if we have enough ammo for all weapons
+		if base_weapon.current_ammo < total_projectiles_needed:
+			_logger.info("weapon", self, "⚠️ insufficient ammo: have %d, need %d (for %d weapons)" % [base_weapon.current_ammo, total_projectiles_needed, stack_count])
+			# Don't fire if we don't have enough ammo
+			return
+		
+		# Consume ammo based on stack count (1 per weapon)
+		var old_ammo: int = base_weapon.current_ammo
+		base_weapon.current_ammo -= total_projectiles_needed
+		_logger.info("weapon", self, "🔋 consumed %d ammo (%d per weapon × %d weapons): %d -> %d" % [total_projectiles_needed, projectile_count_per_weapon, stack_count, old_ammo, base_weapon.current_ammo])
+		
+		# Fire all weapons
 		for i in range(weapons_to_fire.size()):
 			var weapon: WeaponAttachment = weapons_to_fire[i]
 			if not is_instance_valid(weapon):
 				_logger.warn("weapon", self, "⚠️ weapon at index %d became invalid during attack" % i)
 				continue
 			
-			if i == 0:
-				# Base weapon consumes ammo normally
-				weapon.attack()
-			else:
-				# Upgraded weapons fire but don't consume their own ammo
-				# They use the base weapon's ammo pool
-				_attack_with_upgraded_weapon(weapon, base_weapon)
+			if not weapon.is_inside_tree():
+				_logger.debug("weapon", self, "⚠️ weapon at index %d not in scene tree, skipping" % i)
+				continue
+			
+			# All weapons fire their projectiles (ammo already consumed above)
+			_attack_with_upgraded_weapon(weapon, base_weapon)
+		
+		# Emit ammo changed signal after all weapons have fired
+		base_weapon.ammo_changed.emit(base_weapon.current_ammo, base_weapon.max_ammo)
+		
+		# Check if ammo is depleted
+		if base_weapon.current_ammo <= 0:
+			base_weapon.ammo_depleted.emit(base_weapon.weapon_type)
 	else:
 		_logger.debug("weapon", self, "⚠️ cannot attack: no weapons in slot 2")
 
