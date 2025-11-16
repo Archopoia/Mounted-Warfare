@@ -3,13 +3,14 @@ class_name BotDriver
 
 @export var target: Node3D
 @export var mount: CharacterBody3D
+@onready var _logger = get_node("/root/LoggerInstance")
 
 func _physics_process(delta: float) -> void:
 	if target == null or mount == null:
 		if mount == null:
-			LoggerInstance.error("ai", name, "🤖 bot has no mount")
+			_logger.error("ai", name, "🤖 bot has no mount")
 		if target == null:
-			LoggerInstance.warn("ai", name, "🎯 no target to chase")
+			_logger.warn("ai", name, "🎯 no target to chase")
 		return
 	var dir := (target.global_transform.origin - mount.global_transform.origin)
 	dir.y = 0.0
@@ -22,4 +23,4 @@ func _physics_process(delta: float) -> void:
 		# throttle forward
 		var forward := -mount.transform.basis.z
 		mount.velocity += forward * 4.0 * delta
-		LoggerInstance.debug("ai", name, "👣 pursuing %s, yaw_delta=%.2f" % [target.name, yaw_delta])
+		_logger.debug("ai", name, "👣 pursuing %s, yaw_delta=%.2f" % [target.name, yaw_delta])
