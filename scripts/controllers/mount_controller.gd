@@ -21,6 +21,9 @@ class_name MountController
 @onready var _weapon_marker_right: Marker3D = $WeaponMarkerRight
 
 var _attached_weapons: Array[WeaponAttachment] = []
+var _weapon_hud: WeaponReplacementHUD = null
+var _pending_weapon_type: String = ""
+var _pending_weapon_color: Color = Color.WHITE
 
 func _ready() -> void:
 	# Ensure RigidBody3D is in RIGID mode and awake for physics to work
@@ -39,6 +42,10 @@ func _ready() -> void:
 	
 	# Connect to weapon pickups in the scene (deferred to ensure scene tree is fully built)
 	call_deferred("_connect_to_weapon_pickups")
+	
+	# Create HUD for player mount
+	if is_player:
+		call_deferred("_create_hud")
 
 func _connect_to_weapon_pickups() -> void:
 	# Find all weapon pickups in the scene and connect to their signals
@@ -81,17 +88,29 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 		existing_weapon.detach_from_mount()
 		_attached_weapons.erase(existing_weapon)
 	
+	# Check if both slots are full
+	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
+	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)
+	
+	if left_weapon != null and right_weapon != null:
+		# Both slots are full - show replacement prompt for player
+		if is_player and _weapon_hud != null:
+			_pending_weapon_type = weapon_type
+			_pending_weapon_color = pickup.pickup_color
+			_weapon_hud.show_replacement_prompt(weapon_type, pickup.pickup_color, left_weapon.weapon_type, right_weapon.weapon_type)
+			_logger.info("weapon", self, "📋 showing replacement prompt for: %s" % weapon_type)
+			return
+		else:
+			# For non-player mounts, replace the left weapon automatically
+			_logger.info("weapon", self, "🤖 auto-replacing left weapon with: %s" % weapon_type)
+			replace_weapon_in_slot(1, weapon_type, pickup.pickup_color)
+			return
+	
 	# Find an available weapon marker
 	var marker: Marker3D = null
 	if _weapon_marker_left != null and _weapon_marker_left.get_child_count() == 0:
 		marker = _weapon_marker_left
 	elif _weapon_marker_right != null and _weapon_marker_right.get_child_count() == 0:
-		marker = _weapon_marker_right
-	elif _weapon_marker_left != null:
-		# Use left marker if right is occupied
-		marker = _weapon_marker_left
-	elif _weapon_marker_right != null:
-		# Use right marker if left is occupied
 		marker = _weapon_marker_right
 	
 	if marker == null:
@@ -128,6 +147,73 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) 
 	_attached_weapons.append(weapon)
 	
 	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, marker=%s" % [weapon_type, marker.name])
+
+func _create_hud() -> void:
+	if not is_player:
+		return
+	
+	var hud_scene: PackedScene = load("res://scenes/ui/weapon_replacement_hud.tscn")
+	if hud_scene == null:
+		_logger.error("ui", self, "❌ Failed to load weapon replacement HUD scene")
+		return
+	
+	# Create CanvasLayer for HUD
+	var canvas_layer: CanvasLayer = CanvasLayer.new()
+	canvas_layer.name = "HUD"
+	get_tree().root.add_child(canvas_layer)
+	
+	# Instantiate HUD
+	var hud_instance: Node = hud_scene.instantiate()
+	if hud_instance == null or not hud_instance is WeaponReplacementHUD:
+		_logger.error("ui", self, "❌ Failed to instantiate weapon replacement HUD")
+		return
+	
+	_weapon_hud = hud_instance as WeaponReplacementHUD
+	_weapon_hud.mount_controller = self
+	canvas_layer.add_child(_weapon_hud)
+	
+	_logger.info("ui", self, "📺 HUD created for player mount")
+
+func _get_weapon_at_marker(marker: Marker3D) -> WeaponAttachment:
+	if marker == null:
+		return null
+	
+	for child in marker.get_children():
+		if child is WeaponAttachment:
+			return child as WeaponAttachment
+	
+	return null
+
+func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color) -> void:
+	var marker: Marker3D = null
+	if slot == 1:
+		marker = _weapon_marker_left
+	elif slot == 2:
+		marker = _weapon_marker_right
+	else:
+		_logger.error("weapon", self, "❌ Invalid weapon slot: %d" % slot)
+		return
+	
+	if marker == null:
+		_logger.error("weapon", self, "❌ Marker for slot %d is null" % slot)
+		return
+	
+	# Remove existing weapon at this marker
+	var existing_weapon: WeaponAttachment = _get_weapon_at_marker(marker)
+	if existing_weapon != null:
+		existing_weapon.detach_from_mount()
+		_attached_weapons.erase(existing_weapon)
+	
+	# Attach new weapon
+	_attach_weapon(weapon_type, weapon_color, marker)
+	
+	_pending_weapon_type = ""
+	_pending_weapon_color = Color.WHITE
+
+func drop_pending_weapon() -> void:
+	_logger.info("weapon", self, "🚫 dropped pending weapon: %s" % _pending_weapon_type)
+	_pending_weapon_type = ""
+	_pending_weapon_color = Color.WHITE
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Apply mount movement controls using real forces/torques
