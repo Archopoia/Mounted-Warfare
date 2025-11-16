@@ -98,8 +98,14 @@ alwaysApply: true
 - When generator effects or numeric effects fire, emit `LoggerInstance.info` so logs show precise before/after values.
 - Include mover breadcrumbs (`📏`, `📍`, `🎯`, `👣`, `🚩`) for each action start, detour, and arrival.
 - After each play session, review `res://log.txt` (overwritten on each run) for warnings/errors and spawn/movement breadcrumbs before debugging in code. This is the first place to check for issues.
+- Verification-first instrumentation: For every new feature/change, add lightweight, useful debug to confirm it behaves as intended even when no errors are thrown. Prefer:
+  - Contextual `LoggerInstance` entries (category, node name/id, key params/outputs)
+  - Temporary on-screen diagnostics (HUD labels, 3D labels) when visual confirmation helps
+  - Assertions for invariants that must hold during development
+  - Throttle or gate verbose logs via `GameConfig.enable_throttled_debug` and categories
+  - Remove or reduce noisy logs before shipping while keeping core breadcrumbs
 
-## Project Development Principles (Mounted Warfare)
+## Project Development Principles 
 
 These are project-specific rules that all contributors must follow:
 

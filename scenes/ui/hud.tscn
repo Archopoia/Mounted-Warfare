@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6k5dsgdg03y4"]
+
+[ext_resource type="Script" uid="uid://bb3xtskodggq7" path="res://scripts/ui/bot_debug_label_3d.gd" id="1_0mwgc"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="AIDebug" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
+script = ExtResource("1_0mwgc")
+
+[node name="MountHealth" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(400, 28)
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 20.0
+offset_bottom = 43.0
+value = 100.0
+
+[node name="RiderHealth" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(400, 24)
+offset_left = 16.0
+offset_top = 44.0
+offset_right = 20.0
+offset_bottom = 71.0
+value = 100.0
+
+[node name="WeaponLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 22)
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 416.0
+offset_bottom = 95.0
+
+[node name="LockOnLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 22)
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 17.0
+offset_bottom = 119.0
+
+[node name="SpeedLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 22)
+offset_left = 16.0
+offset_top = 120.0
+offset_right = 17.0
+offset_bottom = 143.0
+
+[node name="ControlsPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(440, 140)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -411.0
+offset_right = 456.0
+offset_bottom = -271.0
+grow_vertical = 0
+
+[node name="Controls" type="RichTextLabel" parent="ControlsPanel"]
+custom_minimum_size = Vector2(420, 120)
+layout_mode = 0
+bbcode_enabled = true
