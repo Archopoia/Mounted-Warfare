@@ -5,10 +5,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape_pickup"]
 radius = 2.0
 
-[node name="WeaponPickup" type="Area3D"]
+[node name="WeaponPickup" type="RigidBody3D"]
 script = ExtResource("1_pickup")
 weapon_type = "rocket_launcher"
 pickup_color = Color(1, 0.5, 0, 1)
+gravity_scale = 1.0
+lock_rotation = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape_pickup")

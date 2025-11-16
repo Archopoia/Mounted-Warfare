@@ -816,20 +816,37 @@ func _drop_weapon_upgrade(weapon: WeaponAttachment, slot: int) -> void:
 	# Add to scene tree FIRST (required before setting global_position)
 	get_tree().current_scene.add_child(pickup)
 	
-	# Position the pickup further away from the mount (eject it with more force/distance)
-	var drop_offset: Vector3 = Vector3(0, 2.0, 5.0)  # Behind, above, and much further from mount
+	# Calculate ejection direction and velocity
+	# Get mount's forward direction
+	var mount_forward: Vector3 = -global_transform.basis.z  # Mount's forward
+	var mount_up: Vector3 = global_transform.basis.y  # Mount's up
+	var mount_right: Vector3 = global_transform.basis.x  # Mount's right
+	
+	# Calculate ejection direction (backward and to the side, with upward arc)
+	var ejection_direction: Vector3 = Vector3.ZERO
+	ejection_direction -= mount_forward * 0.7  # Backward component
+	ejection_direction += mount_up * 0.4  # Upward component
 	if slot == 1:
-		drop_offset.x = -3.0  # Left side (further away)
+		ejection_direction -= mount_right * 0.6  # Left side
 	else:
-		drop_offset.x = 3.0  # Right side (further away)
+		ejection_direction += mount_right * 0.6  # Right side
+	
+	ejection_direction = ejection_direction.normalized()
+	
+	# Set ejection velocity in the pickup
+	pickup._ejection_velocity = ejection_direction * pickup.ejection_speed
+	
+	# Set initial position at the weapon marker (or slightly offset)
+	var marker: Marker3D = _weapon_marker_left if slot == 1 else _weapon_marker_right
+	var spawn_position: Vector3 = marker.global_position if marker != null else global_position
+	spawn_position += mount_up * 0.5  # Slightly above
 	
 	# Set position after node is in tree
-	var target_position: Vector3 = global_position + global_transform.basis * drop_offset
 	if pickup.is_inside_tree():
-		pickup.global_position = target_position
+		pickup.global_position = spawn_position
 	else:
 		# If pickup is not in tree yet, use a deferred call
-		call_deferred("_set_pickup_position", pickup, target_position)
+		call_deferred("_set_pickup_position", pickup, spawn_position)
 	
 	# Connect pickup to mounts (same as spawner does)
 	_connect_pickup_to_mounts(pickup)
