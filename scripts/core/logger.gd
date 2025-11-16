@@ -35,7 +35,7 @@ func _create_debug_panel() -> void:
 	panel.offset_left = -260
 	panel.offset_top = 10
 	panel.offset_bottom = 120
-	root.add_child(panel)
+	root.call_deferred("add_child", panel)
 	var vb := VBoxContainer.new()
 	panel.add_child(vb)
 	var title := Label.new()
@@ -59,8 +59,8 @@ func _create_debug_panel() -> void:
 func set_level(new_level: Level) -> void:
 	level = new_level
 
-func enable_category(category: String, is_enabled: bool) -> void:
-	categories[category] = is_enabled
+func enable_category(category: String, enabled_flag: bool) -> void:
+	categories[category] = enabled_flag
 
 func is_enabled(category: String, wanted_level: Level) -> bool:
 	if not enabled:
@@ -92,4 +92,3 @@ func stat_delta(category: String, actor: String, stat_name: String, before_val: 
 	if is_enabled(category, Level.INFO):
 		var delta := after_val - before_val
 		print_rich(_fmt(actor, "%s %s %s -> %s (Δ %s)" % [emoji, stat_name, str(before_val), str(after_val), str(delta)]))
-

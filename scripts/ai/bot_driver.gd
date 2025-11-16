@@ -4,13 +4,17 @@ class_name BotDriver
 @export var target: Node3D
 @export var mount: CharacterBody3D
 @onready var _logger = get_node("/root/LoggerInstance")
+var _reported_no_mount := false
+var _reported_no_target := false
 
 func _physics_process(delta: float) -> void:
 	if target == null or mount == null:
-		if mount == null:
+		if mount == null and not _reported_no_mount:
 			_logger.error("ai", name, "🤖 bot has no mount")
-		if target == null:
+			_reported_no_mount = true
+		if target == null and not _reported_no_target:
 			_logger.warn("ai", name, "🎯 no target to chase")
+			_reported_no_target = true
 		return
 	var dir := (target.global_transform.origin - mount.global_transform.origin)
 	dir.y = 0.0
