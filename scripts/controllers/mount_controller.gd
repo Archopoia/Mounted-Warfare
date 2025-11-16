@@ -34,6 +34,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _get_input_vector() -> Vector2:
+	if not is_player:
+		return Vector2.ZERO
 	var f: float = Input.get_action_strength("accelerate") - Input.get_action_strength("brake")
 	var t: float = Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
 	return Vector2(t, f)

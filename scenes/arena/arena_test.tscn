@@ -80,11 +80,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.6070118, 0)
 
 [node name="BotDriver" type="Node" parent="Bot1"]
 script = ExtResource("5_botdrv")
+target = NodePath("../../Player")
+mount = NodePath("..")
 
 [node name="Bot" parent="." instance=ExtResource("3_k1g9n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047286987, 2.5, 7.544194)
 
-[node name="BotDriver" type="Node" parent="Bot" node_paths=PackedStringArray("target", "mount")]
+[node name="BotDriver" type="Node" parent="Bot"]
 script = ExtResource("5_botdrv")
 target = NodePath("../../Player")
 mount = NodePath("..")
