@@ -1,73 +1,107 @@
-[Pickup] ℹ️ 🎁 spawned type=ammo value=10
-[@Area3D@2] ℹ️ 🎁 spawned type=ammo value=10
-[PickupSpawner1#38419826161] ℹ️ 🎁 spawned at pos=(0.0, 0.0, 8.349464)
-[ArenaTest/HUD#38520489463] ℹ️ 🧭 HUD ready; binding to player and sub-systems…
-W [ArenaTest/HUD#38520489463] ⚠️ No node in group 'players' found; HUD will show defaults
-[ArenaTest] ℹ️ 🚩 arena ready: res://scenes/arena/arena_test.tscn
-[ArenaTest] ℹ️ 📍 child: NavigationRegion3D (NavigationRegion3D)
-[ArenaTest] ℹ️ 📍 child: Obstacles (Node3D)
-[ArenaTest] ℹ️ 📍 child: Ground (StaticBody3D)
-[ArenaTest] ℹ️ 📍 child: SpawnPoints (Node3D)
-[ArenaTest] ℹ️ 📍 child: PickupSpawners (Node3D)
-[ArenaTest] ℹ️ 📍 child: DirectionalLight3D (DirectionalLight3D)
-[ArenaTest] ℹ️ 📍 child: GroundMesh (MeshInstance3D)
-[ArenaTest] ℹ️ 📍 child: HUD (CanvasLayer)
+[Arena] ℹ️ 🚩 arena ready: res://scenes/arena/arena_main.tscn
+[Arena] ℹ️ 📍 child: SpawnPoints (Node3D)
+[Arena] ℹ️ 📍 child: Floor (Node3D)
+[Arena] ℹ️ 📍 child: Obstacle1 (StaticBody3D)
+[Arena] ℹ️ 📍 child: DirectionalLight3D (DirectionalLight3D)
+[Player/Weapon#36708550126] ℹ️ 🔫 weapon ready, ammo 10
+[Player#36624664025] ℹ️ 🎮 ready; is_player=true
+[Arena] ℹ️ 🧍 spawned Player at (0.0, 1.5, 0.0)
 [Health] ℹ️ ❤️ initialized mount=200 rider=100
-[Player#40785413693] ℹ️ 🎮 ready; is_player=true
-[ArenaTest] ℹ️ 🧍 spawned Player at (0.0, 0.0, -15.26117)
-[Bot1/BotDriver#41171289681] ℹ️ 🤖 utility AI ready
-[Bot1/BotDriver#41171289681] ℹ️ 🐎 mount set to parent Bot1
-[Bot1/TeamColor#42161145426] ℹ️ Applied team color (1.0, 0.1, 0.1, 1.0) to Bot1
-[Bot1#41003517511] ℹ️ 🎮 ready; is_player=false
-[ArenaTest] ℹ️ 🤖 spawned Bot1 at (0.0, 0.0, 16.91641)
-[Bot/BotDriver#42949674596] ℹ️ 🤖 utility AI ready
-[Bot/BotDriver#42949674596] ℹ️ 🐎 mount set to parent Bot
-[Bot/TeamColor#42983229029] ℹ️ Applied team color (0.1, 0.3, 1.0, 1.0) to Bot
-[Bot#42781902426] ℹ️ 🎮 ready; is_player=false
-[ArenaTest] ℹ️ 🤖 spawned Bot at (0.0, 0.0, 13.0)
-[Player#40785413693] ℹ️ 🎯 player at (0.0, 0.0, -15.26117)
-[Bot1#41003517511] ℹ️ 🤖 bot Bot1 at (0.0, 0.0, 16.91641)
-[Bot#42781902426] ℹ️ 🤖 bot Bot at (0.0, 0.0, 13.0)
-[Player#40785413693] 🐞 DEBUG 👣 no input (WASD idle or unmapped)
+[Bot1/Weapon#36976985595] ℹ️ 🔫 weapon ready, ammo 10
+[Bot1/BotDriver#36993762812] ℹ️ 🤖 utility AI ready
+[Bot1/BotDriver#36993762812] ℹ️ 🐎 mount set to parent Bot1
+[Bot1/TeamColor#37983618557] ℹ️ Applied team color (1.0, 0.1, 0.1, 1.0) to Bot1
+[Bot1#36809213425] ℹ️ 🎮 ready; is_player=false
+[Arena] ℹ️ 🤖 spawned Bot1 at (-6.0, 1.5, 6.0)
+[Bot/Weapon#38805702159] ℹ️ 🔫 weapon ready, ammo 10
+[Bot/BotDriver#38822479376] ℹ️ 🤖 utility AI ready
+[Bot/BotDriver#38822479376] ℹ️ 🐎 mount set to parent Bot
+[Bot/TeamColor#38856033809] ℹ️ Applied team color (0.1, 0.3, 1.0, 1.0) to Bot
+[Bot#38637929989] ℹ️ 🎮 ready; is_player=false
+[Arena] ℹ️ 🤖 spawned Bot at (0.0, 0.0, 13.0)
+[Player#36624664025] ℹ️ 🎯 player at (0.0, 1.5, 0.0)
+[Bot1#36809213425] ℹ️ 🤖 bot Bot1 at (-6.0, 1.5, 6.0)
+[Bot#38637929989] ℹ️ 🤖 bot Bot at (0.0, 0.0, 13.0)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped)
 [Player] 🐞 DEBUG 👣 idle input
-[Player#40785413693] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00
+[Player#36624664025] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00
 [Bot1] 🐞 DEBUG 👣 idle input
+[Bot1/Weapon#36976985595] ℹ️ 🔫 fired, ammo 9
 [Bot] 🐞 DEBUG 👣 idle input
-[@Area3D@2] ℹ️ 🎁 collected type=ammo value=10
-[Pickup] ℹ️ 🎁 collected type=ammo value=10
-[Bot1/BotDriver#41171289681] ℹ️ 🎯 chose=chase scores={"attack":0.0,"chase":0.77607536315918,"evade":0.0,"idle":0.05,"patrol":0.0,"strafe":0.0}
-[Bot/BotDriver#42949674596] ℹ️ 🎯 chose=chase scores={"attack":0.0,"chase":0.449709256490072,"evade":0.0,"idle":0.05,"patrol":0.0,"strafe":0.0}
-[Player#40785413693] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+65 suppressed)
-[Player] 🐞 DEBUG 👣 idle input … (+65 suppressed)
-[Player#40785413693] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00 … (+65 suppressed)
-[Bot1] 🐞 DEBUG 👣 idle input … (+65 suppressed)
-[Bot] 🐞 DEBUG 👣 idle input … (+65 suppressed)
-[Bot/BotDriver#42949674596] ℹ️ 🎯 chose=idle scores={"attack":0.0,"chase":0.0269899368286133,"evade":0.0,"idle":0.05,"patrol":0.0,"strafe":0.0}
-[Player#40785413693] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+60 suppressed)
-[Player] 🐞 DEBUG 👣 idle input … (+60 suppressed)
-[Player#40785413693] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 0.00 … (+60 suppressed)
+[Bot/Weapon#38805702159] ℹ️ 🔫 fired, ammo 9
+[Bot1/BotDriver#36993762812] ℹ️ 🎯 chose=evade scores={"attack":0.0,"chase":0.2,"evade":0.8,"idle":0.05,"patrol":0.0,"strafe":0.6}
+[Bot/BotDriver#38822479376] ℹ️ 🎯 chose=evade scores={"attack":0.5,"chase":0.0,"evade":0.8,"idle":0.05,"patrol":0.0,"strafe":0.0}
+[Player#36624664025] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn -1.00 … (+66 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+66 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+66 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed 13.23 → 13.73, turn 0.00 … (+60 suppressed)
 [Bot1] 🐞 DEBUG 👣 idle input … (+60 suppressed)
 [Bot] 🐞 DEBUG 👣 idle input … (+60 suppressed)
-[Bot/BotDriver#42949674596] ℹ️ 🎯 chose=chase scores={"attack":0.0,"chase":0.053778330485026,"evade":0.0,"idle":0.05,"patrol":0.0,"strafe":0.0}
-[Player#40785413693] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn 1.00 … (+60 suppressed)
+[Bot/Weapon#38805702159] ℹ️ 🔫 fired, ammo 8
+[Player#36624664025] 🐞 DEBUG 📏 speed -0.00 → -0.00, turn -1.00 … (+60 suppressed)
 [Bot1] 🐞 DEBUG 👣 idle input … (+60 suppressed)
 [Bot] 🐞 DEBUG 👣 idle input … (+60 suppressed)
-[Player#40785413693] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 1.00 … (+59 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+63 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+63 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+59 suppressed)
 [Bot1] 🐞 DEBUG 👣 idle input … (+59 suppressed)
 [Bot] 🐞 DEBUG 👣 idle input … (+59 suppressed)
-[Player#40785413693] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+11 suppressed)
-[Player] 🐞 DEBUG 👣 idle input … (+11 suppressed)
-[Player#40785413693] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+59 suppressed)
+[Bot1/BotDriver#36993762812] ℹ️ 🎯 chose=chase scores={"attack":0.0,"chase":0.182322978973389,"evade":0.0,"idle":0.05,"patrol":0.0,"strafe":0.0}
+[Player#36624664025] 🐞 DEBUG 📏 speed 11.42 → 11.92, turn 0.00 … (+60 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Bot/BotDriver#38822479376] ℹ️ 🎯 chose=chase scores={"attack":0.0,"chase":0.316067536671956,"evade":0.0,"idle":0.05,"patrol":0.0,"strafe":0.0}
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+19 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+19 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed -14.00 → -14.00, turn 0.00 … (+59 suppressed)
 [Bot1] 🐞 DEBUG 👣 idle input … (+59 suppressed)
 [Bot] 🐞 DEBUG 👣 idle input … (+59 suppressed)
-[Player#40785413693] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+60 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+28 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+28 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed -0.00 → 0.00, turn 0.00 … (+60 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+59 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed 11.50 → 12.00, turn 0.00 … (+59 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+20 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+20 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed -9.50 → -9.00, turn 0.00 … (+61 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+61 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+61 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+39 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+39 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed 1.00 → 0.50, turn 0.00 … (+59 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+36 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+37 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed 0.00 → -0.00, turn 0.00 … (+60 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+60 suppressed)
 [Player] 🐞 DEBUG 👣 idle input … (+60 suppressed)
-[Player#40785413693] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+58 suppressed)
-[Bot1] 🐞 DEBUG 👣 idle input … (+58 suppressed)
-[Bot] 🐞 DEBUG 👣 idle input … (+58 suppressed)
-[Health] ℹ️ ❤️ initialized mount=200 rider=100 … (+2 suppressed)
-[Player#40785413693] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+41 suppressed)
-[Player] 🐞 DEBUG 👣 idle input … (+41 suppressed)
-[Player#40785413693] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+18 suppressed)
-[Bot1] 🐞 DEBUG 👣 idle input … (+18 suppressed)
-[Bot] 🐞 DEBUG 👣 idle input … (+18 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed -0.00 → 0.00, turn 0.00 … (+59 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+60 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed -6.00 → -6.50, turn 0.00 … (+59 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+59 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+24 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+24 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed 0.00 → -0.00, turn 0.00 … (+60 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+60 suppressed)
+[Arena] ℹ️ 📍 child: Obstacle3 (StaticBody3D) … (+2 suppressed)
+[Health] ℹ️ ❤️ initialized mount=200 rider=100 … (+1 suppressed)
+[Player#36624664025] 🐞 DEBUG 👣 no input (WASD idle or unmapped) … (+32 suppressed)
+[Player] 🐞 DEBUG 👣 idle input … (+32 suppressed)
+[Player#36624664025] 🐞 DEBUG 📏 speed 0.00 → 0.00, turn 0.00 … (+2 suppressed)
+[Bot1] 🐞 DEBUG 👣 idle input … (+2 suppressed)
+[Bot1/Weapon#36976985595] ℹ️ 🔫 fired, ammo 0 … (+9 suppressed)
+[Bot] 🐞 DEBUG 👣 idle input … (+2 suppressed)
+[Bot/Weapon#38805702159] ℹ️ 🔫 fired, ammo 0 … (+8 suppressed)

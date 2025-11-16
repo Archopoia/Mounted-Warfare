@@ -16,8 +16,8 @@ var categories := {
 	"scene": true
 }
 
-func is_category_enabled(name: String) -> bool:
-	return bool(categories.get(name, false))
+func is_category_enabled(category_name: String) -> bool:
+	return bool(categories.get(category_name, false))
 
-func set_category(name: String, enabled: bool) -> void:
-	categories[name] = enabled
+func set_category(category_name: String, enabled: bool) -> void:
+	categories[category_name] = enabled

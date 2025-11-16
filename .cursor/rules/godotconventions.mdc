@@ -38,6 +38,10 @@ alwaysApply: true
 - Implement proper scene cleanup on queue_free()
 - Use SubViewport nodes carefully due to performance impact
 - Provide step-by-step instructions to create Godot scene(s) instead of providing scene source code
+- All gameplay-relevant 3D nodes must include both:
+  - A visible MeshInstance3D for readability/debugging
+  - An appropriate CollisionShape3D/CollisionObject3D for physics and signals
+  (Examples: mounts, projectiles, obstacles, floors, pickups)
 
 ## Signal Best Practices
 

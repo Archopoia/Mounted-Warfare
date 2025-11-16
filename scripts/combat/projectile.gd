@@ -1,15 +1,7 @@
 extends Area3D
-
-@onready var _logger = get_node("/root/LoggerInstance")
 class_name Projectile
 
-func _ready() -> void:
-	if _logger:
-		_logger.info("projectile", "%s#%d" % [name, get_instance_id()], "✨ spawned at %s" % str(global_transform.origin))
-
-func _exit_tree() -> void:
-	if _logger:
-		_logger.info("projectile", "%s#%d" % [name, get_instance_id()], "🌫️ despawn")
+@onready var _logger = get_node("/root/LoggerInstance")
 
 @export var speed: float = 40.0
 @export var gravity_accel: float = 0.0
@@ -18,14 +10,19 @@ func _exit_tree() -> void:
 @export var splash_radius: float = 0.0
 
 var _vel: Vector3
-@onready var _logger = get_node("/root/LoggerInstance")
 
 func _ready() -> void:
+	if _logger:
+		_logger.info("projectile", "%s#%d" % [name, get_instance_id()], "✨ spawned at %s" % str(global_transform.origin))
 	_vel = -transform.basis.z * speed
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	set_physics_process(true)
 	await get_tree().create_timer(life_time).timeout
 	_queue_explode()
+
+func _exit_tree() -> void:
+	if _logger:
+		_logger.info("projectile", "%s#%d" % [name, get_instance_id()], "🌫️ despawn")
 
 func _physics_process(delta: float) -> void:
 	_vel.y -= gravity_accel * delta

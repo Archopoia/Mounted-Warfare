@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://wig364kod1c3"]
+[gd_scene load_steps=6 format=3 uid="uid://b32m8uxglm6y0"]
 
 [ext_resource type="Script" uid="uid://cre4lfgo6ovqx" path="res://scripts/combat/health.gd" id="1_15che"]
 [ext_resource type="Script" uid="uid://c7wuseiqxcayx" path="res://scripts/controllers/mount_controller.gd" id="1_lqfs2"]
+[ext_resource type="Script" uid="uid://clqxaqbywoivo" path="res://scripts/combat/weapon.gd" id="3_ul4w3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
 radius = 1.2
@@ -36,3 +37,6 @@ spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/SpringArm3D"]
 fov = 70.0
+
+[node name="Weapon" type="Node" parent="."]
+script = ExtResource("3_ul4w3")

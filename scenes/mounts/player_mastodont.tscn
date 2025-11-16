@@ -1,39 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://hx4382ipukne"]
+[gd_scene load_steps=5 format=3 uid="uid://bb5y2g24qjcg1"]
 
 [ext_resource type="Script" uid="uid://c7wuseiqxcayx" path="res://scripts/controllers/mount_controller.gd" id="1_315fh"]
-[ext_resource type="Script" uid="uid://cre4lfgo6ovqx" path="res://scripts/combat/health.gd" id="2_2aawe"]
+[ext_resource type="Script" uid="uid://clqxaqbywoivo" path="res://scripts/combat/weapon.gd" id="2_315fh"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
-radius = 1.2
-height = 4.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_315fh"]
+size = Vector3(2, 1, 4)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lqfs2"]
-radius = 1.2
-height = 2.4
+[sub_resource type="BoxMesh" id="BoxMesh_315fh"]
+size = Vector3(2, 1, 4)
 
-[node name="Mastodont" type="CharacterBody3D"]
+[node name="PlayerMastodont" type="CharacterBody3D"]
 script = ExtResource("1_315fh")
 is_player = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_body")
-
-[node name="Hardpoint_Front" type="Marker3D" parent="."]
-
-[node name="Hardpoint_Top" type="Marker3D" parent="."]
-
-[node name="Health" type="Node" parent="."]
-script = ExtResource("2_2aawe")
-
-[node name="BodyMesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_lqfs2")
-
 [node name="CameraRig" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraRig"]
-transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364825, 0, -0.17364825, 0.9848077, 0, 0, 0)
-spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/SpringArm3D"]
-fov = 70.0
+transform = Transform3D(1, 0, 0, 0, 0.94521135, 0.32645917, 0, -0.32645917, 0.94521135, 0, 1.5892075, 3.975709)
+
+[node name="Weapon" type="Node" parent="."]
+script = ExtResource("2_315fh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_315fh")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_315fh")
