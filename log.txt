@@ -1,7 +1,9 @@
 [Arena/PlayerRigid#35215377887] ℹ️ 🎮 rigid ready; is_player=true
 [Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=0.00 yaw=0.00 thr=0.00
-[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=5.42 yaw=0.00 thr=1.00 … (+60 suppressed)
-[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=12.32 yaw=450.00 thr=1.00 … (+61 suppressed)
-[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=3.54 yaw=0.00 thr=0.00 … (+59 suppressed)
-[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=-8.47 yaw=-0.00 thr=0.00 … (+60 suppressed)
-[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=-1.55 yaw=-0.00 thr=0.00 … (+24 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=2.95 yaw=132.87 thr=1.00 … (+60 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=10.19 yaw=450.00 thr=1.00 … (+59 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=9.71 yaw=436.77 thr=1.00 … (+61 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=1.14 yaw=0.00 thr=1.00 … (+60 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=6.41 yaw=0.00 thr=0.00 … (+60 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=-0.00 yaw=-0.00 thr=0.00 … (+59 suppressed)
+[Arena/PlayerRigid#35215377887] 🐞 DEBUG 📏 v=0.00 yaw=0.00 thr=0.00 … (+4 suppressed)

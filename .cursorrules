@@ -19,10 +19,18 @@
 
 ## Exported Variables
 
-- **ALWAYS add descriptions to @export variables**: Every @export variable MUST have a comment description that explains its purpose, units, range, or usage. This comment appears as a tooltip in the Godot editor inspector, making it easier for designers and other developers to understand and configure the property.
-  - Format: `@export var variable_name: type = default_value  # Description explaining purpose, units, or behavior`
-  - Example: `@export var max_speed: float = 14.0  # Maximum forward speed in units/second`
-  - Example: `@export var is_player: bool = false  # If true, this mount responds to player input`
+- **ALWAYS add descriptions to @export variables**: Every @export variable MUST have a documentation comment on the line immediately before it that explains its purpose, units, range, or usage. This comment appears as a tooltip in the Godot editor inspector, making it easier for designers and other developers to understand and configure the property.
+  - Format: The description must be on a separate line above the @export declaration using `##` (double hash) documentation comment syntax.
+  - Example:
+    ```
+    ## Maximum forward speed in units per second
+    @export var max_speed: float = 14.0
+    ```
+  - Example:
+    ```
+    ## If true, this mount responds to player input actions (accelerate, brake, turn_left, turn_right)
+    @export var is_player: bool = false
+    ```
 
 ## Naming Conventions
 

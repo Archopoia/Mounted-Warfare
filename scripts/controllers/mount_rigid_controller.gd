@@ -1,11 +1,16 @@
 extends RigidBody3D
 class_name MountRigidController
 
-@export var engine_force: float = 1800.0  # Forward acceleration force applied when accelerating (units: Newtons)
-@export var brake_force: float = 2200.0  # Backward deceleration force applied when braking (units: Newtons)
-@export var turn_torque: float = 450.0  # Yaw rotation torque applied for turning, scales with forward speed (units: N⋅m)
-@export var lateral_damping: float = 0.15  # Damping factor to reduce sideways sliding (0.0 = no damping, 1.0 = full damping)
-@export var is_player: bool = false  # If true, this mount responds to player input actions (accelerate, brake, turn_left, turn_right)
+## Forward acceleration force applied when accelerating (units: Newtons)
+@export var engine_force: float = 1800.0
+## Backward deceleration force applied when braking (units: Newtons)
+@export var brake_force: float = 2200.0
+## Yaw rotation torque applied for turning, scales with forward speed (units: N⋅m)
+@export var turn_torque: float = 450.0
+## Damping factor to reduce sideways sliding (0.0 = no damping, 1.0 = full damping)
+@export var lateral_damping: float = 0.15
+## If true, this mount responds to player input actions (accelerate, brake, turn_left, turn_right)
+@export var is_player: bool = false
 
 @onready var _services: Node = get_node_or_null("/root/Services")
 @onready var _logger = _services.logger() if _services != null else get_node_or_null("/root/LoggerInstance")
