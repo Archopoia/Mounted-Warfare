@@ -35,3 +35,15 @@ static func get_weapon_name(weapon_type: String) -> String:
 		return weapon_definitions[weapon_type]["name"]
 	return weapon_type.replace("_", " ").capitalize()
 
+static func get_projectile_scene_path(weapon_type: String) -> String:
+	# Map weapon types to their projectile scenes
+	var projectile_map := {
+		"rocket_launcher": "res://scenes/projectiles/rocket_projectile.tscn",
+		"mine_layer": "res://scenes/projectiles/mine_projectile.tscn",
+		"autocannon": "res://scenes/projectiles/autocannon_projectile.tscn"
+	}
+	
+	if projectile_map.has(weapon_type):
+		return projectile_map[weapon_type]
+	return "res://scenes/projectiles/rocket_projectile.tscn"  # Default fallback
+

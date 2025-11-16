@@ -76,17 +76,76 @@ func attack() -> void:
 	
 	_logger.info("weapon", self, "💥 attacking with weapon: type=%s, name=%s" % [weapon_type, weapon_name])
 	
-	# TODO: Implement actual weapon attack logic here
-	# For now, just log the attack
-	# This will be expanded to spawn projectiles, apply damage, etc.
+	# Get projectile spawn position and direction
+	var mount: RigidBody3D = _attached_to_mount as RigidBody3D
+	if mount == null:
+		_logger.error("weapon", self, "❌ Cannot attack: mount is not a RigidBody3D")
+		return
 	
+	# Calculate spawn position (weapon position + forward offset)
+	var spawn_position: Vector3 = global_position
+	var forward: Vector3 = -mount.global_transform.basis.z  # Mount's forward direction
+	
+	# Determine projectile count and spread based on weapon type
+	var projectile_count: int = 1
 	match weapon_type:
 		"rocket_launcher":
+			projectile_count = 1
 			_logger.debug("weapon", self, "🚀 firing rocket launcher")
 		"mine_layer":
+			projectile_count = 1  # Mines deploy one at a time
 			_logger.debug("weapon", self, "💣 deploying mine layer")
 		"autocannon":
-			_logger.debug("weapon", self, "🔫 firing autocannon")
+			projectile_count = 3  # Autocannon fires burst
+			_logger.debug("weapon", self, "🔫 firing autocannon burst")
 		_:
 			_logger.warn("weapon", self, "⚠️ unknown weapon type for attack: %s" % weapon_type)
+	
+	# Spawn projectiles
+	for i in range(projectile_count):
+		_spawn_projectile(spawn_position, forward, i, projectile_count)
+	
+	_logger.debug("weapon", self, "🎯 spawned %d projectiles" % projectile_count)
+
+func _spawn_projectile(spawn_position: Vector3, direction: Vector3, index: int, total_count: int) -> void:
+	# Load projectile scene based on weapon type
+	var projectile_scene_path: String = WeaponRegistry.get_projectile_scene_path(weapon_type)
+	var projectile_scene: PackedScene = load(projectile_scene_path)
+	
+	if projectile_scene == null:
+		_logger.error("weapon", self, "❌ Failed to load projectile scene: %s" % projectile_scene_path)
+		return
+	
+	# Instantiate projectile
+	var projectile_instance: Node = projectile_scene.instantiate()
+	if projectile_instance == null or not projectile_instance is Projectile:
+		_logger.error("weapon", self, "❌ Failed to instantiate projectile")
+		return
+	
+	var projectile: Projectile = projectile_instance as Projectile
+	
+	# Add to scene tree
+	var scene_root: Node = get_tree().root
+	if scene_root == null:
+		_logger.error("weapon", self, "❌ Cannot spawn projectile: scene root is null")
+		return
+	
+	scene_root.add_child(projectile)
+	
+	# Position projectile
+	projectile.global_position = spawn_position
+	
+	# Apply burst spread for autocannon
+	var fire_direction: Vector3 = direction
+	if total_count > 1:
+		var spread_angle: float = deg_to_rad((index - (total_count - 1) / 2.0) * 3.0)  # 3 degree spread per projectile
+		var right: Vector3 = direction.cross(Vector3.UP).normalized()
+		if right.length() < 0.1:
+			right = Vector3.RIGHT
+		fire_direction = direction.rotated(right, spread_angle).normalized()
+	
+	# Initialize projectile
+	projectile.initialize(fire_direction, _attached_to_mount, weapon_type)
+	
+	_logger.debug("weapon", self, "🚀 projectile spawned: pos=%s, dir=%s" % [spawn_position, fire_direction])
 

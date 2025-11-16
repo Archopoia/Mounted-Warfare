@@ -249,9 +249,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	apply_central_impulse(balance_impulse)
 
 	# Movement breadcrumbs
-	if _bus != null:
-		_bus.emit_movement_intent(name, gallop_speed)
-	_logger.debug("movement", self, "📏 v=%.2f steer=%.2f reign=%.2f" % [gallop_speed, steer_torque_applied, reign_input])
+	#if _bus != null:
+		#_bus.emit_movement_intent(name, gallop_speed)
+	#_logger.debug("movement", self, "📏 v=%.2f steer=%.2f reign=%.2f" % [gallop_speed, steer_torque_applied, reign_input])
 
 func _input(event: InputEvent) -> void:
 	# Only handle weapon input for player mounts
