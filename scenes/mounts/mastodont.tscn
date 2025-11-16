@@ -32,7 +32,7 @@ mesh = SubResource("CapsuleMesh_lqfs2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraRig"]
-transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364825, 0, -0.17364825, 0.9848077, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.97814757, 0.20791169, 0, -0.20791169, 0.97814757, 0, 2, 0)
 spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/SpringArm3D"]

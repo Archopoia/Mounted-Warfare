@@ -16,9 +16,12 @@ is_player = true
 [node name="CameraRig" type="Node3D" parent="."]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraRig"]
+transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 2, 0)
+spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.94521135, 0.32645917, 0, -0.32645917, 0.94521135, 0, 1.5892075, 3.975709)
+near = 0.2
 
 [node name="Weapon" type="Node" parent="."]
 script = ExtResource("2_315fh")
