@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://weapon_spawner_default"]
+
+[ext_resource type="Script" path="res://scripts/pickups/weapon_spawner.gd" id="1_spawner"]
+
+[node name="WeaponSpawner" type="Node3D"]
+script = ExtResource("1_spawner")
+weapon_type = "rocket_launcher"
+pickup_color = Color(1, 0.5, 0, 1)
+respawn_delay = 3.0
+

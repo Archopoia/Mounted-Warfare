@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cshsnxckgrty0"]
+[gd_scene load_steps=7 format=3 uid="uid://cshsnxckgrty0"]
 
 [ext_resource type="PackedScene" path="res://scenes/mounts/mount_player.tscn" id="1_kic2s"]
-[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_pickup.tscn" id="2_pickup1"]
-[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_pickup.tscn" id="3_pickup2"]
-[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_pickup.tscn" id="4_pickup3"]
-[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_pickup.tscn" id="5_pickup4"]
-[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_pickup.tscn" id="6_pickup5"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_spawner.tscn" id="2_spawner1"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_spawner.tscn" id="3_spawner2"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_spawner.tscn" id="4_spawner3"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_spawner.tscn" id="5_spawner4"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/weapon_spawner.tscn" id="6_spawner5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kgjki"]
 size = Vector2(80, 80)
@@ -70,29 +70,34 @@ shadow_enabled = true
 [node name="Mount" parent="." instance=ExtResource("1_kic2s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7467442, 1, 3.187521)
 
-[node name="WeaponPickups" type="Node3D" parent="."]
+[node name="WeaponSpawners" type="Node3D" parent="."]
 
-[node name="WeaponPickup1" parent="WeaponPickups" instance=ExtResource("2_pickup1")]
+[node name="WeaponSpawner1" parent="WeaponSpawners" instance=ExtResource("2_spawner1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 8)
 weapon_type = "rocket_launcher"
 pickup_color = Color(1, 0.5, 0, 1)
+respawn_delay = 3.0
 
-[node name="WeaponPickup2" parent="WeaponPickups" instance=ExtResource("3_pickup2")]
+[node name="WeaponSpawner2" parent="WeaponSpawners" instance=ExtResource("3_spawner2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 10)
 weapon_type = "mine_layer"
 pickup_color = Color(0, 0.8, 1, 1)
+respawn_delay = 3.0
 
-[node name="WeaponPickup3" parent="WeaponPickups" instance=ExtResource("4_pickup3")]
+[node name="WeaponSpawner3" parent="WeaponSpawners" instance=ExtResource("4_spawner3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -5)
 weapon_type = "autocannon"
 pickup_color = Color(1, 0, 0.5, 1)
+respawn_delay = 3.0
 
-[node name="WeaponPickup4" parent="WeaponPickups" instance=ExtResource("5_pickup4")]
+[node name="WeaponSpawner4" parent="WeaponSpawners" instance=ExtResource("5_spawner4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -8)
 weapon_type = "rocket_launcher"
 pickup_color = Color(1, 0.5, 0, 1)
+respawn_delay = 3.0
 
-[node name="WeaponPickup5" parent="WeaponPickups" instance=ExtResource("6_pickup5")]
+[node name="WeaponSpawner5" parent="WeaponSpawners" instance=ExtResource("6_spawner5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -12)
 weapon_type = "mine_layer"
 pickup_color = Color(0, 0.8, 1, 1)
+respawn_delay = 3.0
