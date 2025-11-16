@@ -1,3 +1,53 @@
-[Arena/Mount#35232155104] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
-[Arena/Mount#35232155104] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00
-[Arena/Mount#35232155104] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+54 suppressed)
+[Arena/Mount#35936798183] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
+[WeaponPickups/WeaponPickup1#36272342513] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, pos=(8.0, 1.0, 8.0)
+[WeaponPickups/WeaponPickup2#36490446324] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, pos=(-8.0, 1.0, 10.0)
+[WeaponPickups/WeaponPickup3#36540777975] ℹ️ 🎁 weapon pickup spawned: type=autocannon, pos=(12.0, 1.0, -5.0)
+[Arena/Mount#35936798183] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup1
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=0.00 … (+67 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=7.66 steer=344.77 reign=1.00 … (+60 suppressed)
+[WeaponPickups/WeaponPickup5#36641441277] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[root/WeaponAttachment#83600869009] ℹ️ ⚔️ weapon attachment ready: type=mine_layer
+[WeaponMarkerLeft/WeaponAttachment#83600869009] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#35936798183] ℹ️ ⚔️ weapon attached: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=14.02 steer=-450.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=4.08 steer=-183.57 reign=0.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=3.48 steer=-156.66 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=0.89 steer=-40.05 reign=0.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=5.29 steer=-238.24 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=11.46 steer=-450.00 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=5.75 steer=-258.61 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=4.42 steer=199.07 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=12.98 steer=0.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=16.77 steer=0.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=23.07 steer=-450.00 reign=1.00 … (+60 suppressed)
+[WeaponPickups/WeaponPickup1#36272342513] ℹ️ ✨ weapon picked up: type=rocket_launcher, by=Mount
+[root/WeaponAttachment#201729246717] ℹ️ ⚔️ weapon attachment ready: type=rocket_launcher
+[WeaponMarkerRight/WeaponAttachment#201729246717] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerRight
+[Arena/Mount#35936798183] ℹ️ ⚔️ weapon attached: type=rocket_launcher, marker=WeaponMarkerRight
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=5.77 steer=-259.65 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=-3.11 steer=-140.07 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=7.09 steer=319.17 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=13.16 steer=-450.00 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=18.17 steer=0.00 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=0.00 steer=0.00 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=-6.15 steer=-0.00 reign=-1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=0.48 steer=21.50 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=8.44 steer=379.94 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=12.01 steer=450.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=1.65 steer=74.37 reign=1.00 … (+59 suppressed)
+[WeaponPickups/WeaponPickup2#36490446324] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
+[Arena/Mount#35936798183] ℹ️ ⚠️ already have weapon type: mine_layer, replacing...
+[WeaponMarkerLeft/WeaponAttachment#83600869009] ℹ️ 🔓 weapon detached from mount: type=mine_layer
+[root/WeaponAttachment#339436635633] ℹ️ ⚔️ weapon attachment ready: type=mine_layer
+[WeaponMarkerLeft/@Node3D@2#339436635633] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#35936798183] ℹ️ ⚔️ weapon attached: type=mine_layer, marker=WeaponMarkerLeft
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=4.29 steer=193.24 reign=1.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=10.05 steer=0.00 reign=1.00 … (+60 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=9.53 steer=0.00 reign=0.00 … (+59 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+60 suppressed)
+[WeaponPickups/WeaponPickup4#36591109626] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
+[WeaponPickups/WeaponPickup5#36641441277] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, pos=(0.0, 1.0, -12.0) … (+1 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 🔌 connected to weapon pickup: WeaponPickup5 … (+4 suppressed)
+[Arena/Mount#35936798183] 🐞 DEBUG 📏 v=-0.00 steer=-0.00 reign=0.00 … (+3 suppressed)

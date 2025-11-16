@@ -17,6 +17,10 @@ class_name MountController
 @onready var _bus: Node = _services.bus() if _services != null else get_node_or_null("/root/EventBus")
 @onready var _camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
+@onready var _weapon_marker_left: Marker3D = $WeaponMarkerLeft
+@onready var _weapon_marker_right: Marker3D = $WeaponMarkerRight
+
+var _attached_weapons: Array[WeaponAttachment] = []
 
 func _ready() -> void:
 	# Ensure RigidBody3D is in RIGID mode and awake for physics to work
@@ -32,6 +36,98 @@ func _ready() -> void:
 	else:
 		if is_instance_valid(_camera):
 			_camera.current = false
+	
+	# Connect to weapon pickups in the scene (deferred to ensure scene tree is fully built)
+	call_deferred("_connect_to_weapon_pickups")
+
+func _connect_to_weapon_pickups() -> void:
+	# Find all weapon pickups in the scene and connect to their signals
+	var weapon_pickups: Array[Node] = get_tree().get_nodes_in_group("weapon_pickups")
+	if weapon_pickups.is_empty():
+		# If no group, search for WeaponPickup nodes manually
+		weapon_pickups = _find_weapon_pickups_recursive(get_tree().root)
+	
+	for pickup in weapon_pickups:
+		if pickup is WeaponPickup:
+			var pickup_node: WeaponPickup = pickup as WeaponPickup
+			if not pickup_node.weapon_picked_up.is_connected(_on_weapon_picked_up):
+				pickup_node.weapon_picked_up.connect(_on_weapon_picked_up)
+				_logger.debug("weapon", self, "🔌 connected to weapon pickup: %s" % pickup_node.name)
+
+func _find_weapon_pickups_recursive(node: Node) -> Array[Node]:
+	var pickups: Array[Node] = []
+	if node is WeaponPickup:
+		pickups.append(node)
+	
+	for child in node.get_children():
+		pickups.append_array(_find_weapon_pickups_recursive(child))
+	
+	return pickups
+
+func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String) -> void:
+	# Only attach if this weapon was picked up by THIS mount
+	if mount != self:
+		return
+	
+	# Check if we already have this weapon type
+	var existing_weapon: WeaponAttachment = null
+	for weapon in _attached_weapons:
+		if weapon.weapon_type == weapon_type:
+			existing_weapon = weapon
+			break
+	
+	if existing_weapon != null:
+		_logger.info("weapon", self, "⚠️ already have weapon type: %s, replacing..." % weapon_type)
+		existing_weapon.detach_from_mount()
+		_attached_weapons.erase(existing_weapon)
+	
+	# Find an available weapon marker
+	var marker: Marker3D = null
+	if _weapon_marker_left != null and _weapon_marker_left.get_child_count() == 0:
+		marker = _weapon_marker_left
+	elif _weapon_marker_right != null and _weapon_marker_right.get_child_count() == 0:
+		marker = _weapon_marker_right
+	elif _weapon_marker_left != null:
+		# Use left marker if right is occupied
+		marker = _weapon_marker_left
+	elif _weapon_marker_right != null:
+		# Use right marker if left is occupied
+		marker = _weapon_marker_right
+	
+	if marker == null:
+		_logger.error("weapon", self, "❌ No weapon markers available for weapon attachment")
+		return
+	
+	# Create and attach the weapon
+	_attach_weapon(weapon_type, pickup.pickup_color, marker)
+
+func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D) -> void:
+	# Load the weapon attachment scene
+	var weapon_scene: PackedScene = load("res://scenes/weapons/weapon_attachment.tscn")
+	if weapon_scene == null:
+		_logger.error("weapon", self, "❌ Failed to load weapon attachment scene")
+		return
+	
+	# Instantiate the weapon
+	var weapon_instance: Node = weapon_scene.instantiate()
+	if weapon_instance == null or not weapon_instance is WeaponAttachment:
+		_logger.error("weapon", self, "❌ Failed to instantiate weapon attachment")
+		return
+	
+	var weapon: WeaponAttachment = weapon_instance as WeaponAttachment
+	weapon.weapon_type = weapon_type
+	weapon.weapon_color = weapon_color
+	
+	# Add to scene tree first (required for reparenting)
+	get_tree().root.add_child(weapon)
+	
+	# Attach to the marker
+	weapon.attach_to_mount(self, marker)
+	
+	# Track the weapon
+	_attached_weapons.append(weapon)
+	
+	_logger.info("weapon", self, "⚔️ weapon attached: type=%s, marker=%s" % [weapon_type, marker.name])
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Apply mount movement controls using real forces/torques

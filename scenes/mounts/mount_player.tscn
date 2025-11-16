@@ -38,3 +38,9 @@ shape = SubResource("BoxShape3D_body")
 mesh = SubResource("BoxMesh_body")
 surface_material_override/0 = SubResource("Mat_body")
 
+[node name="WeaponMarkerLeft" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, 0)
+
+[node name="WeaponMarkerRight" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, 0)
+
