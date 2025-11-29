@@ -1183,26 +1183,20 @@ func _update_secondary_charge_level(weapon: WeaponAttachment, charge_level: int)
 	# Get the stack for this slot
 	var stack: Array = _stacked_weapons[slot]
 	
-	# Stop flickering previous level (if any)
-	if charge_level > 1:
-		var prev_weapon_index: int = charge_level - 2  # Previous level
-		if prev_weapon_index >= 0 and prev_weapon_index < stack.size():
-			var prev_weapon: WeaponAttachment = stack[prev_weapon_index]
-			if is_instance_valid(prev_weapon):
-				prev_weapon._stop_charging_visual_feedback()
+	# Flicker ALL weapons up to and including the current charge level
+	# Level 1 = weapon 0, Level 2 = weapons 0+1, Level 3 = weapons 0+1+2, etc.
+	for level in range(1, charge_level + 1):
+		var weapon_index: int = level - 1  # Convert 1-indexed level to 0-indexed array
+		
+		if weapon_index >= 0 and weapon_index < stack.size():
+			var weapon_to_flicker: WeaponAttachment = stack[weapon_index]
+			if is_instance_valid(weapon_to_flicker):
+				# Stop any existing flicker (in case it was already flickering)
+				weapon_to_flicker._stop_charging_visual_feedback()
+				# Start flickering this weapon
+				weapon_to_flicker._start_charging_visual_feedback()
 	
-	# Flicker the weapon at the current charge level (level 1 = index 0, level 2 = index 1, etc.)
-	# Charge level is 1-indexed, array is 0-indexed
-	var weapon_index: int = charge_level - 1
-	
-	if weapon_index >= 0 and weapon_index < stack.size():
-		var weapon_to_flicker: WeaponAttachment = stack[weapon_index]
-		if is_instance_valid(weapon_to_flicker):
-			# Stop any existing flicker on this weapon (in case it was already flickering)
-			weapon_to_flicker._stop_charging_visual_feedback()
-			# Start flickering this weapon
-			weapon_to_flicker._start_charging_visual_feedback()
-			_logger.info("weapon", self, "⚡ charge level %d reached - flickering weapon at index %d in slot %d" % [charge_level, weapon_index, slot])
+	_logger.info("weapon", self, "⚡ charge level %d reached - flickering weapons 0-%d in slot %d" % [charge_level, charge_level - 1, slot])
 
 func _release_left_secondary_attack() -> void:
 	if not _stacked_weapons.has(1) or _stacked_weapons[1].size() == 0:
