@@ -26,6 +26,12 @@ var _pending_weapon_type: String = ""
 var _pending_weapon_color: Color = Color.WHITE
 # Track stacked weapons per slot: {slot: [WeaponAttachment, ...]}
 var _stacked_weapons: Dictionary = {}  # {1: [weapon1, weapon2, ...], 2: [weapon1, weapon2, ...]}
+# Track secondary attack state
+var _left_button_held: bool = false
+var _right_button_held: bool = false
+var _left_button_press_time: float = 0.0
+var _right_button_press_time: float = 0.0
+var _click_threshold: float = 0.2  # Time in seconds to distinguish click from hold
 
 func _ready() -> void:
 	# Ensure RigidBody3D is in RIGID mode and awake for physics to work
@@ -931,16 +937,74 @@ func _input(event: InputEvent) -> void:
 	if not is_player:
 		return
 	
-	# Check for weapon attacks via mouse clicks
-	# Left mouse button (MOUSE_BUTTON_LEFT = 1) fires left weapon
-	# Right mouse button (MOUSE_BUTTON_RIGHT = 2) fires right weapon
-	if event is InputEventMouseButton and event.pressed:
+	# Handle mouse button events for primary and secondary attacks
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			_logger.debug("weapon", self, "🖱️ left mouse button pressed")
-			_attack_with_left_weapon()
+			if event.pressed:
+				# Button just pressed - start tracking
+				_left_button_held = true
+				_left_button_press_time = 0.0
+				_logger.debug("weapon", self, "🖱️ left mouse button pressed")
+			else:
+				# Button released
+				if _left_button_held:
+					# Check if it was a click (quick press/release) or hold
+					if _left_button_press_time < _click_threshold:
+						# Quick click - primary attack
+						_logger.debug("weapon", self, "🖱️ left mouse button released (click) - primary attack")
+						_attack_with_left_weapon()
+					else:
+						# Hold - secondary attack release
+						_logger.debug("weapon", self, "🖱️ left mouse button released (hold) - secondary attack")
+						_release_left_secondary_attack()
+					_left_button_held = false
+					_left_button_press_time = 0.0
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			_logger.debug("weapon", self, "🖱️ right mouse button pressed")
-			_attack_with_right_weapon()
+			if event.pressed:
+				# Button just pressed - start tracking
+				_right_button_held = true
+				_right_button_press_time = 0.0
+				_logger.debug("weapon", self, "🖱️ right mouse button pressed")
+			else:
+				# Button released
+				if _right_button_held:
+					# Check if it was a click (quick press/release) or hold
+					if _right_button_press_time < _click_threshold:
+						# Quick click - primary attack
+						_logger.debug("weapon", self, "🖱️ right mouse button released (click) - primary attack")
+						_attack_with_right_weapon()
+					else:
+						# Hold - secondary attack release
+						_logger.debug("weapon", self, "🖱️ right mouse button released (hold) - secondary attack")
+						_release_right_secondary_attack()
+					_right_button_held = false
+					_right_button_press_time = 0.0
+
+func _process(delta: float) -> void:
+	# Only handle weapon input for player mounts
+	if not is_player:
+		return
+	
+	# Update button hold timers
+	if _left_button_held:
+		var old_time: float = _left_button_press_time
+		_left_button_press_time += delta
+		# If we just crossed the threshold, start secondary attack
+		if old_time < _click_threshold and _left_button_press_time >= _click_threshold:
+			_start_left_secondary_attack()
+		# Update secondary charge if already started
+		if _left_button_press_time >= _click_threshold:
+			_update_left_secondary_charge(delta)
+	
+	if _right_button_held:
+		var old_time: float = _right_button_press_time
+		_right_button_press_time += delta
+		# If we just crossed the threshold, start secondary attack
+		if old_time < _click_threshold and _right_button_press_time >= _click_threshold:
+			_start_right_secondary_attack()
+		# Update secondary charge if already started
+		if _right_button_press_time >= _click_threshold:
+			_update_right_secondary_charge(delta)
 
 func _attack_with_left_weapon() -> void:
 	if _weapon_marker_left == null:
@@ -1062,6 +1126,9 @@ func _attack_with_right_weapon() -> void:
 				_logger.debug("weapon", self, "⚠️ weapon at index %d not in scene tree, skipping" % i)
 				continue
 			
+			# Visual feedback for all weapons
+			weapon._flicker_weapon_red()
+			
 			# All weapons fire their projectiles (ammo already consumed above)
 			_attack_with_upgraded_weapon(weapon, base_weapon)
 		
@@ -1073,6 +1140,68 @@ func _attack_with_right_weapon() -> void:
 			base_weapon.ammo_depleted.emit(base_weapon.weapon_type)
 	else:
 		_logger.debug("weapon", self, "⚠️ cannot attack: no weapons in slot 2")
+
+func _start_left_secondary_attack() -> void:
+	if _weapon_marker_left == null:
+		return
+	
+	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
+		# Start secondary attack for all stacked weapons
+		for weapon in _stacked_weapons[1]:
+			if is_instance_valid(weapon):
+				weapon.start_secondary_attack()
+		_logger.info("weapon", self, "⚡ started left secondary attack charge")
+
+func _update_left_secondary_charge(delta: float) -> void:
+	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
+		# Update charge for all stacked weapons (only base weapon consumes ammo, but all show visual feedback)
+		var base_weapon: WeaponAttachment = _stacked_weapons[1][0]
+		if is_instance_valid(base_weapon):
+			base_weapon.update_secondary_charge(delta)
+
+func _release_left_secondary_attack() -> void:
+	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
+		# Release secondary attack for all stacked weapons
+		var base_weapon: WeaponAttachment = _stacked_weapons[1][0]
+		if is_instance_valid(base_weapon):
+			base_weapon.release_secondary_attack()
+		# Stop visual feedback for all other weapons
+		for i in range(1, _stacked_weapons[1].size()):
+			var weapon: WeaponAttachment = _stacked_weapons[1][i]
+			if is_instance_valid(weapon):
+				weapon._stop_charging_visual_feedback()
+		_logger.info("weapon", self, "⚡ released left secondary attack")
+
+func _start_right_secondary_attack() -> void:
+	if _weapon_marker_right == null:
+		return
+	
+	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
+		# Start secondary attack for all stacked weapons
+		for weapon in _stacked_weapons[2]:
+			if is_instance_valid(weapon):
+				weapon.start_secondary_attack()
+		_logger.info("weapon", self, "⚡ started right secondary attack charge")
+
+func _update_right_secondary_charge(delta: float) -> void:
+	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
+		# Update charge for all stacked weapons (only base weapon consumes ammo, but all show visual feedback)
+		var base_weapon: WeaponAttachment = _stacked_weapons[2][0]
+		if is_instance_valid(base_weapon):
+			base_weapon.update_secondary_charge(delta)
+
+func _release_right_secondary_attack() -> void:
+	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
+		# Release secondary attack for all stacked weapons
+		var base_weapon: WeaponAttachment = _stacked_weapons[2][0]
+		if is_instance_valid(base_weapon):
+			base_weapon.release_secondary_attack()
+		# Stop visual feedback for all other weapons
+		for i in range(1, _stacked_weapons[2].size()):
+			var weapon: WeaponAttachment = _stacked_weapons[2][i]
+			if is_instance_valid(weapon):
+				weapon._stop_charging_visual_feedback()
+		_logger.info("weapon", self, "⚡ released right secondary attack")
 
 func _update_display_hud() -> void:
 	if not is_player or _weapon_display_hud == null:
