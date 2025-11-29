@@ -4,7 +4,8 @@
 
 [node name="WeaponSpawner" type="Node3D"]
 script = ExtResource("1_spawner")
-weapon_type = "rocket_launcher"
-pickup_color = Color(1, 0.5, 0, 1)
+include_rocket_launcher = true
+include_mine_layer = false
+include_autocannon = false
 respawn_delay = 3.0
 

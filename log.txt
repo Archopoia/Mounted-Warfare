@@ -1,265 +1,35 @@
 [Arena/Mount#38335940073] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
-[WeaponSpawner1/WeaponPickup#39359350268] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher
-[WeaponSpawner1/WeaponPickup#39359350268] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5
+[WeaponSpawners/WeaponSpawner1#38671484403] 🐞 DEBUG 🔧 built weapon pool from flags: rocket_launcher
+[WeaponSpawner1/WeaponPickup#39376127484] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher
+[WeaponSpawner1/WeaponPickup#39376127484] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5
 [WeaponSpawners/WeaponSpawner1#38671484403] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
 [WeaponSpawners/WeaponSpawner1#38671484403] 🐞 DEBUG 🔌 connected pickup to mount: Mount
 [WeaponSpawners/WeaponSpawner1#38671484403] ℹ️ ✨ spawned pickup: type=rocket_launcher, pos=(8.0, 1.0, 8.0)
-[WeaponSpawners/WeaponSpawner1#38671484403] ℹ️ 🏭 weapon spawner ready: type=rocket_launcher, respawn_delay=3.0s, pos=(8.0, 1.0, 8.0)
-[WeaponSpawner2/WeaponPickup#40147879426] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[WeaponSpawner2/WeaponPickup#40147879426] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
-[WeaponSpawners/WeaponSpawner2#38688261620] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawners/WeaponSpawner2#38688261620] ℹ️ 🏭 weapon spawner ready: type=mine_layer, respawn_delay=3.0s, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawner3/WeaponPickup#40701527567] 🐞 DEBUG 🎨 weapon visual loaded: autocannon
-[WeaponSpawner3/WeaponPickup#40701527567] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0), delay=0.5
-[WeaponSpawners/WeaponSpawner3#38705038837] ℹ️ ✨ spawned pickup: type=autocannon, pos=(12.0, 1.0, -5.0)
-[WeaponSpawners/WeaponSpawner3#38705038837] ℹ️ 🏭 weapon spawner ready: type=autocannon, respawn_delay=3.0s, pos=(12.0, 1.0, -5.0)
-[HUD/WeaponDisplayHUD#42345694779] ℹ️ 📺 weapon display HUD ready
-[HUD/WeaponReplacementHUD#42882565718] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[WeaponSpawners/WeaponSpawner1#38671484403] ℹ️ 🏭 weapon spawner ready: pool=["rocket_launcher"], respawn_delay=3.0s, pos=(8.0, 1.0, 8.0)
+[HUD/WeaponDisplayHUD#42144368182] ℹ️ 📺 weapon display HUD ready
+[HUD/WeaponReplacementHUD#42681239121] 🐞 DEBUG 📋 hiding weapon replacement prompt
 [Arena/Mount#38335940073] ℹ️ 📺 HUD created for player mount
-[WeaponSpawner1/WeaponPickup#39359350268] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2)
+[WeaponSpawner1/WeaponPickup#39376127484] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2)
 [Arena/Mount#38335940073] 🐞 DEBUG 📺 _update_display_hud() called
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=0
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 Left weapon: null
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG ✅ cleared slot 1
+[HUD/WeaponDisplayHUD#42144368182] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
+[HUD/WeaponDisplayHUD#42144368182] 🐞 DEBUG ✅ cleared slot 1
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 Right weapon: null
-[WeaponSpawner1/WeaponPickup#39359350268] 🐞 DEBUG ✅ pickup enabled after delay
-[WeaponSpawner5/WeaponPickup#41775269418] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[WeaponSpawners/WeaponSpawner5#38738593271] ℹ️ 📦 pickup collected: type=mine_layer, starting respawn timer (3.0s)
-[Arena/Mount#38335940073] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
-[Arena/Mount#38335940073] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerLeft, child_count=0
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+1 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
-[Arena/Mount#38335940073] ℹ️ 🔍 pickup check: left=null, right=null, picking_up=mine_layer
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 checking matches: left_matches=false, right_matches=false
-[root/MineLayer#70934070808] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
-[WeaponMarkerLeft/MineLayer#70934070808] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
-[Arena/Mount#38335940073] 🐞 DEBUG 🔌 connected ammo_changed to _check_upgrade_drops for slot 1 using lambda
-[Arena/Mount#38335940073] 🐞 DEBUG 📺 _update_display_hud() called
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=1
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=70934070808, ammo=20/20
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=70934070808)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=70934070808, ammo=20/20
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=70934070808
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺   reading ammo from weapon: current=20, max=20
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺   cached ammo for slot 1: current=20, max=20
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=20/20
-[Arena/Mount#38335940073] 🐞 DEBUG 🔌 connected left weapon signals
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Right weapon: null
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+1 suppressed)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG ✅ cleared slot 2 … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerLeft, ammo=20/20, slot=1
-[WeaponSpawners/WeaponSpawner5#38738593271] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner5/WeaponPickup#105243477635] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer … (+1 suppressed)
-[WeaponSpawner5/WeaponPickup#105243477635] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5 … (+1 suppressed)
+[WeaponSpawner1/WeaponPickup#39376127484] 🐞 DEBUG ✅ pickup enabled after delay
+[WeaponSpawners/WeaponSpawner5#38738593271] 🐞 DEBUG 🔧 built weapon pool from flags: rocket_launcher … (+4 suppressed)
+[WeaponSpawner5/WeaponPickup#41573942821] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher … (+4 suppressed)
+[WeaponSpawner5/WeaponPickup#41573942821] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5 … (+4 suppressed)
 [WeaponSpawners/WeaponSpawner5#38738593271] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to … (+4 suppressed)
 [WeaponSpawners/WeaponSpawner5#38738593271] 🐞 DEBUG 🔌 connected pickup to mount: Mount … (+4 suppressed)
-[WeaponSpawners/WeaponSpawner5#38738593271] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(0.0, 1.0, -12.0) … (+1 suppressed)
-[WeaponSpawner5/WeaponPickup#105243477635] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2) … (+4 suppressed)
-[WeaponSpawner2/WeaponPickup#40147879426] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[WeaponSpawners/WeaponSpawner2#38688261620] ℹ️ 📦 pickup collected: type=mine_layer, starting respawn timer (3.0s)
-[Arena/Mount#38335940073] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
-[Arena/Mount#38335940073] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+1 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+2 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 pickup check: left=mine_layer, right=null, picking_up=mine_layer
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 checking matches: left_matches=true, right_matches=false
-[Arena/Mount#38335940073] ℹ️ ✅ found matching weapon in slot 1: type=mine_layer, ammo=20/20
-[HUD/WeaponReplacementHUD#42882565718] ℹ️ 📋 showing upgrade prompt: mine_layer (upgrade_slots=[1], free_slot=2)
-[Arena/Mount#38335940073] ℹ️ 📋 showing upgrade prompt for: mine_layer (upgrade_slots=[1], free_slot=2)
-[WeaponSpawner5/WeaponPickup#105243477635] 🐞 DEBUG ✅ pickup enabled after delay … (+4 suppressed)
-[HUD/WeaponReplacementHUD#42882565718] ℹ️ 🎯 USER SELECTED: [1] Upgrade weapon in slot 1
-[HUD/WeaponReplacementHUD#42882565718] ℹ️ ⬆️ upgrading weapon in slot 1
-[Arena/Mount#38335940073] ℹ️ ⬆️ UPGRADING weapon in slot 1 with: mine_layer
-[root/MineLayer#115276252684] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
-[WeaponMarkerLeft/@Node3D@15#115276252684] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerLeft
-[Arena/Mount#38335940073] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 20 -> 40 (+20)
-[Arena/Mount#38335940073] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 20 -> 40 (+20)
-[Arena/Mount#38335940073] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 2 stacked weapons, total ammo=40/40
-[Arena/Mount#38335940073] 🐞 DEBUG 🔌 ammo_changed signal connected to _check_upgrade_drops: false
-[Arena/Mount#38335940073] ℹ️ 🔌 connected ammo_changed signal to _check_upgrade_drops for slot 1 using lambda
-[Arena/Mount#38335940073] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=40, max_ammo=40
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=40, max_ammo=40
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=40, base_weapon.max_ammo=40
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=40
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (40) >= threshold (40), expected_stack_size=2
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=40
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=40, threshold=40)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=40/40
-[Arena/Mount#38335940073] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=40/40
-[Arena/Mount#38335940073] 🐞 DEBUG 📺 _update_display_hud() called
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Checking left marker: WeaponMarkerLeft, child_count=2
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Left weapon found: type=mine_layer, id=70934070808, ammo=40/40
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=mine_layer (id=70934070808)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=70934070808, ammo=40/40
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=mine_layer, weapon_id=70934070808
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺   reading ammo from weapon: current=40, max=40
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺   cached ammo for slot 1: current=40, max=40
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 🎨 created weapon visual for slot 1: mine_layer
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG ✅ updated slot 1: weapon=mine_layer, ammo=40/40
-[Arena/Mount#38335940073] 🐞 DEBUG 🔌 disconnected existing left ammo signal
-[Arena/Mount#38335940073] 🐞 DEBUG 🔌 disconnected existing left ammo_depleted signal
-[Arena/Mount#38335940073] 🐞 DEBUG 🔌 connected left weapon signals
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Checking right marker: WeaponMarkerRight, child_count=0
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 Right weapon: null
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG ✅ cleared slot 2
-[HUD/WeaponReplacementHUD#42882565718] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[Arena/Mount#38335940073] 🐞 DEBUG 🖱️ left mouse button pressed
-[WeaponMarkerLeft/MineLayer#70934070808] ℹ️ ⚡ starting secondary attack charge: type=mine_layer, ammo=40/40
-[Arena/Mount#38335940073] ℹ️ ⚡ started left secondary attack charge
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=39, max_ammo=40 … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2 … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=39, base_weapon.max_ammo=40 … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=39 … (+1 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (39) >= threshold (40), expected_stack_size=2 … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=39 … (+1 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=39, threshold=40) … (+1 suppressed)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=39/40
-[Arena/Mount#38335940073] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=39/40
-[Arena/Mount#38335940073] ℹ️ ⚡ charge level 1 reached - flickering weapons 0-0 in slot 1
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=36, max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=36, base_weapon.max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=36 … (+5 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (36) >= threshold (40), expected_stack_size=2 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=36 … (+5 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=36, threshold=40) … (+5 suppressed)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=36/40 … (+2 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=36/40 … (+2 suppressed)
-[WeaponSpawners/WeaponSpawner2#38688261620] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner2/WeaponPickup#143529084544] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[WeaponSpawner2/WeaponPickup#143529084544] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
-[WeaponSpawners/WeaponSpawner2#38688261620] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner2#38688261620] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner2#38688261620] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawner2/WeaponPickup#143529084544] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
-[Arena/Mount#38335940073] ℹ️ ⚡ charge level 3 reached - flickering weapons 0-2 in slot 1 … (+1 suppressed)
-[WeaponSpawner2/WeaponPickup#143529084544] 🐞 DEBUG ✅ pickup enabled after delay
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=33, max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=33, base_weapon.max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=33 … (+5 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (33) >= threshold (40), expected_stack_size=2 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=33 … (+5 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=33, threshold=40) … (+5 suppressed)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=33/40 … (+2 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=33/40 … (+2 suppressed)
-[WeaponSpawner2/WeaponPickup#143529084544] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[WeaponSpawners/WeaponSpawner2#38688261620] ℹ️ 📦 pickup collected: type=mine_layer, starting respawn timer (3.0s)
-[Arena/Mount#38335940073] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
-[Arena/Mount#38335940073] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0 … (+1 suppressed)
+[WeaponSpawners/WeaponSpawner5#38738593271] ℹ️ ✨ spawned pickup: type=rocket_launcher, pos=(0.0, 1.0, -12.0) … (+4 suppressed)
+[WeaponSpawners/WeaponSpawner5#38738593271] ℹ️ 🏭 weapon spawner ready: pool=["rocket_launcher"], respawn_delay=3.0s, pos=(0.0, 1.0, -12.0) … (+4 suppressed)
+[WeaponSpawner5/WeaponPickup#41573942821] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2) … (+4 suppressed)
 [Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 pickup check: left=mine_layer, right=null, picking_up=mine_layer
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 checking matches: left_matches=true, right_matches=false
-[Arena/Mount#38335940073] ℹ️ ✅ found matching weapon in slot 1: type=mine_layer, ammo=31/40
-[Arena/Mount#38335940073] ℹ️ 🔋 REFILLING weapon in slot 1: 31/40 -> 40/40
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=40, max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=40, base_weapon.max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (40) >= threshold (40), expected_stack_size=2 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=40, threshold=40) … (+5 suppressed)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=40/40 … (+2 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=40/40 … (+2 suppressed)
-[Arena/Mount#38335940073] ℹ️ ✅ REFILL COMPLETE: ammo now 40/40
-[Arena/Mount#38335940073] ℹ️ ⚡ charge level 5 reached - flickering weapons 0-4 in slot 1 … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=36, max_ammo=40 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=36, base_weapon.max_ammo=40 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=36 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=36 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ ⚡ charge level 7 reached - flickering weapons 0-6 in slot 1 … (+1 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (35) >= threshold (40), expected_stack_size=2 … (+9 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=35, threshold=40) … (+9 suppressed)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=35/40 … (+4 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=35/40 … (+4 suppressed)
-[WeaponSpawner5/WeaponPickup#105243477635] ℹ️ ✨ weapon picked up: type=mine_layer, by=Mount
-[WeaponSpawners/WeaponSpawner5#38738593271] ℹ️ 📦 pickup collected: type=mine_layer, starting respawn timer (3.0s)
-[Arena/Mount#38335940073] ℹ️ 📥 _on_weapon_picked_up CALLED: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer
-[Arena/Mount#38335940073] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: marker=WeaponMarkerRight, child_count=0
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 _get_weapon_at_marker: no weapon found
-[Arena/Mount#38335940073] ℹ️ 🔍 pickup check: left=mine_layer, right=null, picking_up=mine_layer
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍 checking matches: left_matches=true, right_matches=false
-[Arena/Mount#38335940073] ℹ️ ✅ found matching weapon in slot 1: type=mine_layer, ammo=34/40
-[Arena/Mount#38335940073] ℹ️ 🔋 REFILLING weapon in slot 1: 34/40 -> 40/40
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=40, max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=40, base_weapon.max_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=40 … (+5 suppressed)
-[Arena/Mount#38335940073] ℹ️ ✅ REFILL COMPLETE: ammo now 40/40
-[Arena/Mount#38335940073] ℹ️ ⚡ charge level 9 reached - flickering weapons 0-8 in slot 1 … (+1 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (37) >= threshold (40), expected_stack_size=2 … (+9 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=37, threshold=40) … (+9 suppressed)
-[HUD/WeaponDisplayHUD#42345694779] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=37/40 … (+4 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=37/40 … (+4 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🖱️ left mouse button released (hold) - secondary attack
-[WeaponMarkerLeft/MineLayer#70934070808] ℹ️ 💥 releasing secondary attack: type=mine_layer, charge_time=6.13, ammo_consumed=18, levels_charged=2, stack_count=2, base_count=8, scaled_count=36, level_power=3.00x, total_power=4.50x
-[root/MineProjectile#194598930054] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/MineProjectile#194598930054] 🐞 DEBUG 📐 initialized: dir=(-0.11572, -0.681811, 0.722318), spread_dir=(-0.116277, -0.724415, 0.679488), vel=(-1.162768, -7.244145, 6.794876)
-[WeaponMarkerLeft/MineLayer#70934070808] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(5.937358, 0.990044, -19.76372), dir=(-0.11572, -0.681811, 0.722318), color=(0.0, 1.0, 1.0, 1.0), scale=1.20
-[root/@RigidBody3D@19#194900919864] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/@RigidBody3D@19#194900919864] 🐞 DEBUG 📐 initialized: dir=(-0.124198, -0.619335, 0.775241), spread_dir=(-0.138265, -0.612688, 0.778136), vel=(-1.382645, -6.126883, 7.781363)
-[Arena/Mount#38335940073] ℹ️ ⚡ released left secondary attack with 2 stacked weapons
-[root/MineProjectile#194598930054] 🐞 DEBUG 📏 initial velocity applied: (-1.162768, -7.244145, 6.794876)
-[root/@RigidBody3D@19#194900919864] 🐞 DEBUG 📏 initial velocity applied: (-1.382645, -6.126883, 7.781363)
-[root/@RigidBody3D@20#195152578161] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/@RigidBody3D@20#195152578161] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/@RigidBody3D@20#195152578161] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/@RigidBody3D@20#195152578161] 🐞 DEBUG 💥 projectile destroyed
-[WeaponSpawners/WeaponSpawner2#38688261620] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner2/WeaponPickup#204849809028] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[WeaponSpawner2/WeaponPickup#204849809028] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
-[WeaponSpawners/WeaponSpawner2#38688261620] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner2#38688261620] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner2#38688261620] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawner2/WeaponPickup#204849809028] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
-[root/MineProjectile#194598930054] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/MineProjectile#194598930054] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/MineProjectile#194598930054] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/MineProjectile#194598930054] 🐞 DEBUG 💥 projectile destroyed
-[WeaponSpawner2/WeaponPickup#204849809028] 🐞 DEBUG ✅ pickup enabled after delay
-[root/@RigidBody3D@35#198424135351] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+16 suppressed)
-[root/@RigidBody3D@35#198424135351] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+16 suppressed)
-[root/@RigidBody3D@46#200823277283] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+22 suppressed)
-[root/@RigidBody3D@46#200823277283] 🐞 DEBUG 💥 projectile destroyed … (+22 suppressed)
-[WeaponSpawners/WeaponSpawner5#38738593271] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner5/WeaponPickup#226223982335] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer
-[WeaponSpawner5/WeaponPickup#226223982335] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5
-[WeaponSpawners/WeaponSpawner5#38738593271] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner5#38738593271] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner5#38738593271] ℹ️ ✨ spawned pickup: type=mine_layer, pos=(0.0, 1.0, -12.0)
-[WeaponSpawner5/WeaponPickup#226223982335] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.4, 0.4), center=(0.0, 0.0, 0.2)
-[WeaponSpawner5/WeaponPickup#226223982335] 🐞 DEBUG ✅ pickup enabled after delay
-[WeaponSpawner4/WeaponPickup#41305507355] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher … (+1 suppressed)
-[WeaponSpawner4/WeaponPickup#41305507355] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(-12.0, 1.0, -8.0), delay=0.5 … (+1 suppressed)
-[WeaponSpawners/WeaponSpawner4#38721816054] ℹ️ ✨ spawned pickup: type=rocket_launcher, pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
-[WeaponSpawners/WeaponSpawner4#38721816054] ℹ️ 🏭 weapon spawner ready: type=rocket_launcher, respawn_delay=3.0s, pos=(-12.0, 1.0, -8.0) … (+1 suppressed)
-[WeaponSpawners/WeaponSpawner5#38738593271] ℹ️ 🏭 weapon spawner ready: type=mine_layer, respawn_delay=3.0s, pos=(0.0, 1.0, -12.0) … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 _check_upgrade_drops CALLED: slot=1, new_ammo=37, max_ammo=40 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 stack size for slot 1: 2 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 base_max_ammo=20, base_weapon.current_ammo=37, base_weapon.max_ammo=40 … (+7 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 calculating expected_stack_size: starting threshold=20, new_ammo=37 … (+7 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG 🔍   new_ammo (37) >= threshold (40), expected_stack_size=2 … (+1 suppressed)
-[Arena/Mount#38335940073] ℹ️ 🔍 FINAL: expected_stack_size=2, current_stack_size=2, final_threshold=40, new_ammo=37 … (+7 suppressed)
-[Arena/Mount#38335940073] 🐞 DEBUG ✅ no drops needed: stack_size=2 <= expected=2 (ammo=37, threshold=40) … (+1 suppressed)
-[WeaponMarkerLeft/MineLayer#70934070808] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(5.937358, 0.990044, -19.76372), dir=(-0.058106, 0.930093, 0.362698), color=(0.0, 1.0, 1.0, 1.0), scale=1.20 … (+35 suppressed)
-[root/@RigidBody3D@53#202350003967] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+34 suppressed)
-[root/@RigidBody3D@53#202350003967] 🐞 DEBUG 📐 initialized: dir=(-0.058106, 0.930093, 0.362698), spread_dir=(-0.035433, 0.909722, 0.413703), vel=(-0.354331, 9.097222, 4.137028) … (+34 suppressed)
-[root/@RigidBody3D@53#202350003967] 🐞 DEBUG 📏 initial velocity applied: (-0.354331, 9.097222, 4.137028) … (+34 suppressed)
-[root/@RigidBody3D@53#202350003967] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+17 suppressed)
-[root/@RigidBody3D@53#202350003967] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+17 suppressed)
-[root/@RigidBody3D@53#202350003967] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+11 suppressed)
-[root/@RigidBody3D@53#202350003967] 🐞 DEBUG 💥 projectile destroyed … (+11 suppressed)
+[HUD/WeaponDisplayHUD#42144368182] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null … (+1 suppressed)
+[HUD/WeaponDisplayHUD#42144368182] 🐞 DEBUG ✅ cleared slot 2 … (+1 suppressed)
+[WeaponSpawner5/WeaponPickup#41573942821] 🐞 DEBUG ✅ pickup enabled after delay … (+4 suppressed)

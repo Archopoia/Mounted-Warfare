@@ -1,6 +1,13 @@
 extends RefCounted
 class_name WeaponRegistry
 
+## Enum of available weapon types for editor dropdowns
+enum WeaponType {
+	ROCKET_LAUNCHER,
+	MINE_LAYER,
+	AUTOCANNON
+}
+
 ## Registry of weapon definitions including visual scenes, colors, and ammo
 static var weapon_definitions: Dictionary = {
 	"rocket_launcher": {
@@ -91,4 +98,25 @@ static func get_secondary_color(weapon_type: String) -> Color:
 	if weapon_definitions.has(weapon_type):
 		return weapon_definitions[weapon_type].get("secondary_color", Color.WHITE)
 	return Color.WHITE  # Default fallback
+
+## Get all available weapon type strings as an array
+## Useful for validation and editor hints
+static func get_all_weapon_types() -> Array[String]:
+	return ["rocket_launcher", "mine_layer", "autocannon"]
+
+## Get weapon type string from enum value
+static func get_weapon_type_string(weapon_enum: WeaponType) -> String:
+	match weapon_enum:
+		WeaponType.ROCKET_LAUNCHER:
+			return "rocket_launcher"
+		WeaponType.MINE_LAYER:
+			return "mine_layer"
+		WeaponType.AUTOCANNON:
+			return "autocannon"
+		_:
+			return "rocket_launcher"
+
+## Validate if a weapon type string is valid
+static func is_valid_weapon_type(weapon_type: String) -> bool:
+	return weapon_definitions.has(weapon_type)
 
