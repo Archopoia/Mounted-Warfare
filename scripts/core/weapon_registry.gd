@@ -100,9 +100,19 @@ static func get_secondary_color(weapon_type: String) -> Color:
 	return Color.WHITE  # Default fallback
 
 ## Get all available weapon type strings as an array
-## Useful for validation and editor hints
+## Dynamically returns all weapon types from the registry dictionary
+## Useful for validation and editor hints - automatically updates when new weapons are added
 static func get_all_weapon_types() -> Array[String]:
-	return ["rocket_launcher", "mine_layer", "autocannon"]
+	var types: Array[String] = []
+	for weapon_type in weapon_definitions.keys():
+		types.append(weapon_type)
+	return types
+
+## Get all available weapon type strings as a comma-separated string
+## Used for property hints in the editor (e.g., enum dropdowns)
+static func get_weapon_types_hint_string() -> String:
+	var types: Array[String] = get_all_weapon_types()
+	return ",".join(types)
 
 ## Get weapon type string from enum value
 static func get_weapon_type_string(weapon_enum: WeaponType) -> String:

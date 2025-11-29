@@ -25,7 +25,7 @@ movie_writer/movie_file="/home/soundboost/Bureau/Cursor/mounted-warfare/records/
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdai-mcp-plugin-godot/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdai-mcp-plugin-godot/plugin.cfg", "res://addons/weapon_spawner_editor/plugin.cfg")
 
 [input]
 

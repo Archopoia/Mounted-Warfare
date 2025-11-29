@@ -4,8 +4,6 @@
 
 [node name="WeaponSpawner" type="Node3D"]
 script = ExtResource("1_spawner")
-include_rocket_launcher = true
-include_mine_layer = false
-include_autocannon = false
+weapon_pool = PackedStringArray("rocket_launcher")
 respawn_delay = 3.0
 

@@ -85,8 +85,8 @@ func _find_weapon_pickups_recursive(node: Node) -> Array[Node]:
 	
 	return pickups
 
-func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String) -> void:
-	_logger.info("weapon", self, "📥 _on_weapon_picked_up CALLED: pickup=%s, mount=%s, weapon_type=%s" % [pickup.name, mount.name, weapon_type])
+func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String, weapon_level: int = 1) -> void:
+	_logger.info("weapon", self, "📥 _on_weapon_picked_up CALLED: pickup=%s, mount=%s, weapon_type=%s, level=%d" % [pickup.name, mount.name, weapon_type, weapon_level])
 	
 	# Only attach if this weapon was picked up by THIS mount
 	if mount != self:
@@ -186,7 +186,7 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 			# Use stored ammo if available (from dropped weapon)
 			var free_slot_ammo_current: int = pickup.stored_current_ammo if pickup.stored_current_ammo >= 0 else -1
 			var free_slot_ammo_max: int = pickup.stored_max_ammo if pickup.stored_max_ammo >= 0 else -1
-			_attach_weapon(weapon_type, pickup.pickup_color, free_marker, free_slot_ammo_current, free_slot_ammo_max)
+			_attach_weapon_at_level(weapon_type, pickup.pickup_color, free_marker, weapon_level, free_slot_ammo_current, free_slot_ammo_max)
 			return
 	
 	# We don't have this weapon type - check if slots are available
@@ -218,7 +218,29 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 	# Create and attach the weapon (use stored ammo if available)
 	var stored_current: int = pickup.stored_current_ammo if pickup.stored_current_ammo >= 0 else -1
 	var stored_max: int = pickup.stored_max_ammo if pickup.stored_max_ammo >= 0 else -1
-	_attach_weapon(weapon_type, pickup.pickup_color, marker, stored_current, stored_max)
+	_attach_weapon_at_level(weapon_type, pickup.pickup_color, marker, weapon_level, stored_current, stored_max)
+
+## Attach a weapon at a specific level (creates stacked weapons)
+## If level > 1, creates multiple weapons stacked on top of each other
+func _attach_weapon_at_level(weapon_type: String, weapon_color: Color, marker: Marker3D, level: int = 1, stored_current_ammo: int = -1, stored_max_ammo: int = -1) -> void:
+	# Validate level
+	if level < 1:
+		level = 1
+		if _logger:
+			_logger.warn("weapon", self, "⚠️ weapon level was < 1, setting to 1")
+	
+	# Attach multiple weapons to create the stack
+	for i in range(level):
+		if i == 0:
+			# First weapon - attach normally
+			_attach_weapon(weapon_type, weapon_color, marker, stored_current_ammo, stored_max_ammo)
+		else:
+			# Additional weapons - upgrade the stack (these are stacked automatically)
+			var slot: int = 1 if marker == _weapon_marker_left else 2
+			_upgrade_weapon_in_slot(slot, weapon_type, weapon_color)
+	
+	if _logger:
+		_logger.info("weapon", self, "⚔️ weapon stack attached: type=%s, level=%d, marker=%s" % [weapon_type, level, marker.name])
 
 func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D, stored_current_ammo: int = -1, stored_max_ammo: int = -1) -> void:
 	# Load the appropriate weapon scene for this weapon type

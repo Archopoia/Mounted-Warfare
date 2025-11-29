@@ -3,6 +3,9 @@ class_name WeaponPickup
 
 ## Weapon type identifier (can be any string, used for spawning weapons on mounts)
 @export var weapon_type: String = "rocket_launcher"
+## Level of the weapon (1 = single weapon, 2 = two stacked, 3 = three stacked, etc.)
+## The visual will show this many weapons stacked on top of each other
+@export var weapon_level: int = 1
 ## Visual color for the pickup (for different weapon types)
 @export var pickup_color: Color = Color(1.0, 0.5, 0.0, 1.0)
 ## Rotation speed for visual effect (radians per second) - only used when landed
@@ -29,7 +32,7 @@ var _landed: bool = false
 var _ejection_velocity: Vector3 = Vector3.ZERO
 var _detection_area: Area3D = null
 
-signal weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String)
+signal weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String, weapon_level: int)
 
 func _ready() -> void:
 	_logger = get_node_or_null("/root/LoggerInstance")
@@ -100,35 +103,55 @@ func _apply_ejection_velocity() -> void:
 		_logger.debug("pickup", self, "🚀 ejection velocity applied: %s, angular: %s" % [_ejection_velocity, angular_velocity])
 
 func _setup_visuals() -> void:
+	# Validate weapon level
+	if weapon_level < 1:
+		weapon_level = 1
+		if _logger:
+			_logger.warn("pickup", self, "⚠️ weapon_level was < 1, setting to 1")
+	
 	# Load the appropriate weapon scene for this pickup
 	var weapon_scene_path: String = WeaponRegistry.get_weapon_scene_path(weapon_type)
 	var weapon_scene: PackedScene = load(weapon_scene_path)
 	
 	if weapon_scene != null:
-		# Instantiate the weapon visual
-		var weapon_visual: Node = weapon_scene.instantiate()
-		if weapon_visual != null:
-			# Remove the script from the visual (we don't want weapon attachment behavior on pickup)
-			weapon_visual.set_script(null)
-			
-			# Update color to match pickup color (which should match weapon type color)
-			_update_weapon_visual_color(weapon_visual, pickup_color)
-			
-			# Add as child
-			add_child(weapon_visual)
-			_logger.debug("pickup", self, "🎨 weapon visual loaded: %s" % weapon_type)
-			
-			# Set up physics collision shape based on the mesh(es)
-			call_deferred("_setup_physics_collision_from_mesh", weapon_visual)
+		# Create multiple weapon visuals stacked on top of each other based on level
+		var stack_offset: float = 0.3  # Same offset as mount controller uses
+		var all_visuals: Array[Node] = []
+		
+		for i in range(weapon_level):
+			# Instantiate a weapon visual
+			var weapon_visual: Node = weapon_scene.instantiate()
+			if weapon_visual != null:
+				# Remove the script from the visual (we don't want weapon attachment behavior on pickup)
+				weapon_visual.set_script(null)
+				
+				# Update color to match pickup color (which should match weapon type color)
+				_update_weapon_visual_color(weapon_visual, pickup_color)
+				
+				# Position with vertical stacking offset
+				weapon_visual.position.y = i * stack_offset
+				
+				# Add as child
+				add_child(weapon_visual)
+				all_visuals.append(weapon_visual)
+				
+				if _logger:
+					_logger.debug("pickup", self, "🎨 weapon visual loaded: %s (level %d/%d)" % [weapon_type, i + 1, weapon_level])
+		
+		if all_visuals.size() > 0:
+			# Set up physics collision shape based on all stacked meshes
+			call_deferred("_setup_physics_collision_from_mesh", self)
 		else:
-			_logger.error("pickup", self, "❌ Failed to instantiate weapon visual")
+			if _logger:
+				_logger.error("pickup", self, "❌ Failed to instantiate any weapon visuals")
 			_create_fallback_visual()
-			call_deferred("_setup_physics_collision_from_mesh", self)  # Try to use fallback mesh
+			call_deferred("_setup_physics_collision_from_mesh", self)
 	else:
-		_logger.error("pickup", self, "❌ Failed to load weapon scene: %s" % weapon_scene_path)
+		if _logger:
+			_logger.error("pickup", self, "❌ Failed to load weapon scene: %s" % weapon_scene_path)
 		# Fallback to simple box
 		_create_fallback_visual()
-		call_deferred("_setup_physics_collision_from_mesh", self)  # Use fallback mesh
+		call_deferred("_setup_physics_collision_from_mesh", self)
 
 func _setup_physics_collision_from_mesh(root_node: Node) -> void:
 	# Find all MeshInstance3D nodes and calculate their combined AABB
@@ -333,10 +356,11 @@ func _handle_pickup(mount: MountController) -> void:
 	
 	_pickup_used = true
 	
-	_logger.info("pickup", self, "✨ weapon picked up: type=%s, by=%s" % [weapon_type, mount.name])
+	if _logger:
+		_logger.info("pickup", self, "✨ weapon picked up: type=%s, level=%d, by=%s" % [weapon_type, weapon_level, mount.name])
 	
 	# Emit signal for other systems to handle (e.g., attaching weapon to mount)
-	weapon_picked_up.emit(self, mount, weapon_type)
+	weapon_picked_up.emit(self, mount, weapon_type, weapon_level)
 	
 	# Visual/audio feedback could go here (particles, sound, etc.)
 	
