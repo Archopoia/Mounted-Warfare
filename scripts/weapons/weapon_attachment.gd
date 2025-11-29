@@ -28,6 +28,8 @@ var _fractional_ammo_accumulator: float = 0.0  # Accumulate fractional ammo cons
 var _mesh_instances: Array[MeshInstance3D] = []  # Cache mesh instances for visual feedback
 var _base_materials: Array[StandardMaterial3D] = []  # Cache base materials
 var _flicker_tween: Tween = null
+var _current_charge_level: int = 0  # Current charge level (0 = not charged, 1 = first level, etc.)
+var _base_max_ammo: int = 0  # Store base max ammo for level calculation
 
 func _ready() -> void:
 	_logger = get_node_or_null("/root/LoggerInstance")
@@ -38,6 +40,9 @@ func _ready() -> void:
 	if max_ammo == 30 and current_ammo == 30:  # Default values, initialize from registry
 		max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
 		current_ammo = max_ammo
+	
+	# Store base max ammo for level calculation (always use registry value, not upgraded value)
+	_base_max_ammo = WeaponRegistry.get_max_ammo(weapon_type)
 	
 	_logger.info("weapon", self, "⚔️ weapon attachment ready: type=%s, ammo=%d/%d" % [weapon_type, current_ammo, max_ammo])
 
@@ -257,7 +262,7 @@ func start_secondary_attack() -> void:
 	_charge_time = 0.0
 	_charged_ammo_consumed = 0
 	_fractional_ammo_accumulator = 0.0
-	_start_charging_visual_feedback()
+	_current_charge_level = 0
 	_logger.info("weapon", self, "⚡ starting secondary attack charge: type=%s, ammo=%d/%d" % [weapon_type, current_ammo, max_ammo])
 
 ## Update secondary attack charge (called every frame while charging)
@@ -289,6 +294,20 @@ func update_secondary_charge(delta: float) -> void:
 		_fractional_ammo_accumulator -= float(ammo_consumed_this_frame)  # Subtract consumed amount
 		_charge_time += delta
 		
+		# Calculate new charge level (10% of base max ammo per level)
+		var ammo_per_level: int = int(_base_max_ammo * 0.1)
+		if ammo_per_level <= 0:
+			ammo_per_level = 1  # Minimum 1 ammo per level
+		
+		var new_charge_level: int = _charged_ammo_consumed / ammo_per_level
+		
+		# If charge level increased, update visual feedback
+		if new_charge_level > _current_charge_level:
+			_current_charge_level = new_charge_level
+			# Signal to mount controller to update visual feedback for this level
+			if _attached_to_mount != null and _attached_to_mount.has_method("_update_secondary_charge_level"):
+				_attached_to_mount._update_secondary_charge_level(self, _current_charge_level)
+		
 		# Emit ammo changed signal
 		ammo_changed.emit(current_ammo, max_ammo)
 		
@@ -302,7 +321,8 @@ func update_secondary_charge(delta: float) -> void:
 		_charge_time += delta
 
 ## Release secondary attack (called when mouse button is released)
-func release_secondary_attack() -> void:
+## stack_multiplier: Number of stacked weapons (scales the attack power)
+func release_secondary_attack(stack_multiplier: int = 1) -> void:
 	if not _is_charging_secondary:
 		return
 	
@@ -329,22 +349,29 @@ func release_secondary_attack() -> void:
 	var secondary_color: Color = WeaponRegistry.get_secondary_color(weapon_type)
 	var ammo_per_second: float = WeaponRegistry.get_secondary_ammo_per_second(weapon_type)
 	
-	# Calculate power multiplier based on ammo consumed
-	# Base charge time for minimum effect (0.5 seconds)
-	var base_charge_time: float = 0.5
-	var base_ammo_for_min_effect: float = ammo_per_second * base_charge_time
+	# Calculate power based on charge levels (10% of base max ammo per level)
+	var ammo_per_level: int = int(_base_max_ammo * 0.1)
+	if ammo_per_level <= 0:
+		ammo_per_level = 1  # Minimum 1 ammo per level
 	
-	# Calculate power multiplier (minimum 1.0, scales with ammo consumed)
-	var power_multiplier: float = 1.0
-	if _charged_ammo_consumed > 0:
-		power_multiplier = max(1.0, float(_charged_ammo_consumed) / base_ammo_for_min_effect)
+	# Calculate number of levels charged
+	var levels_charged: int = _charged_ammo_consumed / ammo_per_level
+	# Cap levels at stack multiplier (can't charge more levels than weapons in stack)
+	levels_charged = min(levels_charged, stack_multiplier)
 	
-	# Scale projectile count based on power multiplier
+	# Power multiplier based on levels charged (each level adds 1.0x power)
+	# Level 0 = 1.0x, Level 1 = 2.0x, Level 2 = 3.0x, etc.
+	var level_power_multiplier: float = 1.0 + float(levels_charged)
+	
+	# Combined power multiplier (levels charged × stack multiplier)
+	var power_multiplier: float = level_power_multiplier * (1.0 + (float(stack_multiplier) - 1.0) * 0.5)
+	
+	# Scale projectile count based on combined power multiplier
 	var scaled_projectile_count: int = int(base_secondary_projectile_count * power_multiplier)
-	# Cap at reasonable maximum (3x base)
-	scaled_projectile_count = min(scaled_projectile_count, base_secondary_projectile_count * 3)
+	# Cap at reasonable maximum (5x base to account for both ammo and stack scaling)
+	scaled_projectile_count = min(scaled_projectile_count, base_secondary_projectile_count * 5)
 	
-	_logger.info("weapon", self, "💥 releasing secondary attack: type=%s, charge_time=%.2f, ammo_consumed=%d, base_count=%d, scaled_count=%d, power=%.2fx" % [weapon_type, _charge_time, _charged_ammo_consumed, base_secondary_projectile_count, scaled_projectile_count, power_multiplier])
+	_logger.info("weapon", self, "💥 releasing secondary attack: type=%s, charge_time=%.2f, ammo_consumed=%d, levels_charged=%d, stack_count=%d, base_count=%d, scaled_count=%d, level_power=%.2fx, total_power=%.2fx" % [weapon_type, _charge_time, _charged_ammo_consumed, levels_charged, stack_multiplier, base_secondary_projectile_count, scaled_projectile_count, level_power_multiplier, power_multiplier])
 	
 	# Weapon-specific secondary attack behavior (scaled by power)
 	match weapon_type:
@@ -364,6 +391,7 @@ func release_secondary_attack() -> void:
 	_charge_time = 0.0
 	_charged_ammo_consumed = 0
 	_fractional_ammo_accumulator = 0.0
+	_current_charge_level = 0
 	_stop_charging_visual_feedback()
 
 ## Rocket launcher secondary attack: volley spread (scaled by power)

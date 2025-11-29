@@ -1146,62 +1146,121 @@ func _start_left_secondary_attack() -> void:
 		return
 	
 	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
-		# Start secondary attack for all stacked weapons
-		for weapon in _stacked_weapons[1]:
-			if is_instance_valid(weapon):
-				weapon.start_secondary_attack()
+		# Start secondary attack for base weapon only (it will track charge levels)
+		var base_weapon: WeaponAttachment = _stacked_weapons[1][0]
+		if is_instance_valid(base_weapon):
+			base_weapon.start_secondary_attack()
+			# Start flickering the first weapon (level 1)
+			base_weapon._start_charging_visual_feedback()
 		_logger.info("weapon", self, "⚡ started left secondary attack charge")
 
 func _update_left_secondary_charge(delta: float) -> void:
 	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
-		# Update charge for all stacked weapons (only base weapon consumes ammo, but all show visual feedback)
+		# Update charge for base weapon (consumes ammo and calculates levels)
 		var base_weapon: WeaponAttachment = _stacked_weapons[1][0]
 		if is_instance_valid(base_weapon):
 			base_weapon.update_secondary_charge(delta)
 
+## Called by weapon when charge level increases
+func _update_secondary_charge_level(weapon: WeaponAttachment, charge_level: int) -> void:
+	# Find which slot this weapon belongs to
+	var slot: int = 0
+	if _stacked_weapons.has(1):
+		for i in range(_stacked_weapons[1].size()):
+			if _stacked_weapons[1][i] == weapon:
+				slot = 1
+				break
+	
+	if slot == 0 and _stacked_weapons.has(2):
+		for i in range(_stacked_weapons[2].size()):
+			if _stacked_weapons[2][i] == weapon:
+				slot = 2
+				break
+	
+	if slot == 0:
+		return
+	
+	# Get the stack for this slot
+	var stack: Array = _stacked_weapons[slot]
+	
+	# Stop flickering previous level (if any)
+	if charge_level > 1:
+		var prev_weapon_index: int = charge_level - 2  # Previous level
+		if prev_weapon_index >= 0 and prev_weapon_index < stack.size():
+			var prev_weapon: WeaponAttachment = stack[prev_weapon_index]
+			if is_instance_valid(prev_weapon):
+				prev_weapon._stop_charging_visual_feedback()
+	
+	# Flicker the weapon at the current charge level (level 1 = index 0, level 2 = index 1, etc.)
+	# Charge level is 1-indexed, array is 0-indexed
+	var weapon_index: int = charge_level - 1
+	
+	if weapon_index >= 0 and weapon_index < stack.size():
+		var weapon_to_flicker: WeaponAttachment = stack[weapon_index]
+		if is_instance_valid(weapon_to_flicker):
+			# Stop any existing flicker on this weapon (in case it was already flickering)
+			weapon_to_flicker._stop_charging_visual_feedback()
+			# Start flickering this weapon
+			weapon_to_flicker._start_charging_visual_feedback()
+			_logger.info("weapon", self, "⚡ charge level %d reached - flickering weapon at index %d in slot %d" % [charge_level, weapon_index, slot])
+
 func _release_left_secondary_attack() -> void:
-	if _stacked_weapons.has(1) and _stacked_weapons[1].size() > 0:
-		# Release secondary attack for all stacked weapons
-		var base_weapon: WeaponAttachment = _stacked_weapons[1][0]
-		if is_instance_valid(base_weapon):
-			base_weapon.release_secondary_attack()
-		# Stop visual feedback for all other weapons
-		for i in range(1, _stacked_weapons[1].size()):
-			var weapon: WeaponAttachment = _stacked_weapons[1][i]
+	if not _stacked_weapons.has(1) or _stacked_weapons[1].size() == 0:
+		return
+	
+	var stack: Array = _stacked_weapons[1]
+	var stack_count: int = stack.size()
+	
+	# Release secondary attack with stack count multiplier
+	var base_weapon: WeaponAttachment = stack[0]
+	if is_instance_valid(base_weapon):
+		base_weapon.release_secondary_attack(stack_count)
+		
+		# Stop visual feedback for all weapons
+		for i in range(stack_count):
+			var weapon: WeaponAttachment = stack[i]
 			if is_instance_valid(weapon):
 				weapon._stop_charging_visual_feedback()
-		_logger.info("weapon", self, "⚡ released left secondary attack")
+		_logger.info("weapon", self, "⚡ released left secondary attack with %d stacked weapons" % stack_count)
 
 func _start_right_secondary_attack() -> void:
 	if _weapon_marker_right == null:
 		return
 	
 	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
-		# Start secondary attack for all stacked weapons
-		for weapon in _stacked_weapons[2]:
-			if is_instance_valid(weapon):
-				weapon.start_secondary_attack()
+		# Start secondary attack for base weapon only (it will track charge levels)
+		var base_weapon: WeaponAttachment = _stacked_weapons[2][0]
+		if is_instance_valid(base_weapon):
+			base_weapon.start_secondary_attack()
+			# Start flickering the first weapon (level 1)
+			base_weapon._start_charging_visual_feedback()
 		_logger.info("weapon", self, "⚡ started right secondary attack charge")
 
 func _update_right_secondary_charge(delta: float) -> void:
 	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
-		# Update charge for all stacked weapons (only base weapon consumes ammo, but all show visual feedback)
+		# Update charge for base weapon (consumes ammo and calculates levels)
 		var base_weapon: WeaponAttachment = _stacked_weapons[2][0]
 		if is_instance_valid(base_weapon):
 			base_weapon.update_secondary_charge(delta)
 
 func _release_right_secondary_attack() -> void:
-	if _stacked_weapons.has(2) and _stacked_weapons[2].size() > 0:
-		# Release secondary attack for all stacked weapons
-		var base_weapon: WeaponAttachment = _stacked_weapons[2][0]
-		if is_instance_valid(base_weapon):
-			base_weapon.release_secondary_attack()
-		# Stop visual feedback for all other weapons
-		for i in range(1, _stacked_weapons[2].size()):
-			var weapon: WeaponAttachment = _stacked_weapons[2][i]
+	if not _stacked_weapons.has(2) or _stacked_weapons[2].size() == 0:
+		return
+	
+	var stack: Array = _stacked_weapons[2]
+	var stack_count: int = stack.size()
+	
+	# Release secondary attack with stack count multiplier
+	var base_weapon: WeaponAttachment = stack[0]
+	if is_instance_valid(base_weapon):
+		base_weapon.release_secondary_attack(stack_count)
+		
+		# Stop visual feedback for all weapons
+		for i in range(stack_count):
+			var weapon: WeaponAttachment = stack[i]
 			if is_instance_valid(weapon):
 				weapon._stop_charging_visual_feedback()
-		_logger.info("weapon", self, "⚡ released right secondary attack")
+		_logger.info("weapon", self, "⚡ released right secondary attack with %d stacked weapons" % stack_count)
 
 func _update_display_hud() -> void:
 	if not is_player or _weapon_display_hud == null:
