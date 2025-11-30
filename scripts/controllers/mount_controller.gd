@@ -584,9 +584,8 @@ func _upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color
 	_update_display_hud()
 
 func _check_upgrade_drops(slot: int, new_ammo: int, max_ammo: int) -> void:
-	_logger.info("weapon", self, "🔍 _check_upgrade_drops CALLED: slot=%d, new_ammo=%d, max_ammo=%d" % [slot, new_ammo, max_ammo])
-	
 	# Validate slot parameter (should be 1 or 2, not an ammo value)
+	# Reduced logging for performance - only log errors
 	# If slot is wrong (it's receiving ammo value instead), detect the correct slot
 	if slot != 1 and slot != 2:
 		_logger.error("weapon", self, "❌ INVALID SLOT PARAMETER: slot=%d (expected 1 or 2). Signal binding issue detected!" % slot)
@@ -629,10 +628,8 @@ func _check_upgrade_drops(slot: int, new_ammo: int, max_ammo: int) -> void:
 		return
 	
 	var stack: Array = _stacked_weapons[slot]
-	_logger.info("weapon", self, "🔍 stack size for slot %d: %d" % [slot, stack.size()])
 	
 	if stack.size() <= 1:
-		_logger.debug("weapon", self, "🔍 no upgrades to drop (stack_size=%d)" % stack.size())
 		return  # No upgrades to drop
 	
 	var base_weapon: WeaponAttachment = stack[0]
@@ -641,36 +638,27 @@ func _check_upgrade_drops(slot: int, new_ammo: int, max_ammo: int) -> void:
 		return
 	
 	var base_max_ammo: int = WeaponRegistry.get_max_ammo(base_weapon.weapon_type)
-	_logger.info("weapon", self, "🔍 base_max_ammo=%d, base_weapon.current_ammo=%d, base_weapon.max_ammo=%d" % [base_max_ammo, base_weapon.current_ammo, base_weapon.max_ammo])
 	
 	# Calculate how many upgrades should remain based on current ammo
 	# Each upgrade adds base_max_ammo to the total
+	# Direct calculation: expected_stack_size = ceil(new_ammo / base_max_ammo)
+	# This is O(1) instead of O(n) - much faster for large stacks (11+ weapons)
+	# Formula: if ammo is 20, expect 1 weapon; if 40, expect 2; if 60, expect 3, etc.
 	var expected_stack_size: int = 1  # Base weapon always remains
-	var threshold: int = base_max_ammo
-	
-	_logger.info("weapon", self, "🔍 calculating expected_stack_size: starting threshold=%d, new_ammo=%d" % [threshold, new_ammo])
-	
-	# Calculate expected stack size based on ammo thresholds
-	# With 3 weapons (60 ammo total), thresholds are:
-	# - 1 weapon: 0-19 ammo
-	# - 2 weapons: 20-39 ammo  
-	# - 3 weapons: 40-59 ammo
-	# - 4 weapons: 60-79 ammo
-	# So if new_ammo is 39, we should have 2 weapons (base + 1 upgrade)
-	# If new_ammo is 40, we should have 3 weapons (base + 2 upgrades)
-	
-	while new_ammo >= threshold and expected_stack_size < stack.size():
-		expected_stack_size += 1
-		threshold += base_max_ammo
-		_logger.debug("weapon", self, "🔍   new_ammo (%d) >= threshold (%d), expected_stack_size=%d" % [new_ammo, threshold, expected_stack_size])
-	
-	_logger.info("weapon", self, "🔍 FINAL: expected_stack_size=%d, current_stack_size=%d, final_threshold=%d, new_ammo=%d" % [expected_stack_size, stack.size(), threshold, new_ammo])
+	if base_max_ammo > 0:
+		# Calculate directly: each stack level represents base_max_ammo ammo
+		# new_ammo = base_max_ammo * stack_size
+		# stack_size = new_ammo / base_max_ammo (rounded up, minimum 1)
+		var calculated_size: float = float(new_ammo) / float(base_max_ammo)
+		var rounded_size: int = ceili(calculated_size)  # Round up
+		expected_stack_size = max(1, min(rounded_size, stack.size()))  # Between 1 and current stack size
+	else:
+		expected_stack_size = 1
 	
 	# If we have more upgrades than we should, drop the excess
 	if stack.size() > expected_stack_size:
-		_logger.info("weapon", self, "⬇️ NEED TO DROP UPGRADES: stack_size=%d > expected=%d (ammo=%d, threshold=%d)" % [stack.size(), expected_stack_size, new_ammo, threshold])
-	else:
-		_logger.debug("weapon", self, "✅ no drops needed: stack_size=%d <= expected=%d (ammo=%d, threshold=%d)" % [stack.size(), expected_stack_size, new_ammo, threshold])
+		if _logger:
+			_logger.info("weapon", self, "⬇️ NEED TO DROP UPGRADES: stack_size=%d > expected=%d (ammo=%d/%d)" % [stack.size(), expected_stack_size, new_ammo, max_ammo])
 	
 	while stack.size() > expected_stack_size:
 		var top_weapon: WeaponAttachment = stack[stack.size() - 1]
