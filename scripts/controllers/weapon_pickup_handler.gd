@@ -89,11 +89,21 @@ func process_pickup(weapon_type: String, weapon_level: int, _pickup_color: Color
 					decision.result = PickupResult.REFILLED_EXISTING
 				return decision
 			
-			# Player mounts need choice if level > 1
-			if weapon_level > 1:
+			# Player mounts: if there's a free slot, ask for choice (refill or attach to free slot)
+			# Otherwise, auto-refill if level == 1, or ask for choice if level > 1
+			if empty_slot != null:
+				# There's a free slot - always ask player to choose
+				decision.result = PickupResult.NEEDS_PLAYER_CHOICE
+				decision.can_attach_to_free = true
+				decision.free_slot = empty_slot.slot_id
+				if weapon_level > 1:
+					decision.upgrade_slots.append(existing_slot.slot_id)
+			elif weapon_level > 1:
+				# No free slot, but level > 1 - ask for choice (upgrade or replace)
 				decision.result = PickupResult.NEEDS_PLAYER_CHOICE
 				decision.upgrade_slots.append(existing_slot.slot_id)
 			else:
+				# No free slot, level == 1 - auto-refill
 				decision.result = PickupResult.REFILLED_EXISTING
 			
 			return decision

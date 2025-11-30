@@ -26,34 +26,43 @@ func show_replacement_prompt(weapon_type: String, weapon_color: Color, weapon_1_
 	pending_weapon_type = weapon_type
 	pending_weapon_color = weapon_color
 	pending_weapon_level = weapon_level
-	_refill_slot = 0  # No refill option for standard replacement
+	_refill_slot = 0  # Will be set if we find a slot that needs refilling
 	
-	# Check if the new weapon matches either existing weapon
-	var matches_slot_1: bool = weapon_1_type == weapon_type
-	var matches_slot_2: bool = weapon_2_type == weapon_type
+	# Check which slots need refilling (same weapon type but depleted)
+	if mount_controller != null:
+		var slot1_weapon: WeaponAttachment = mount_controller._slot_manager.get_weapon_at_slot(1)
+		var slot2_weapon: WeaponAttachment = mount_controller._slot_manager.get_weapon_at_slot(2)
+		
+		# Check if slot 1 has same weapon type and needs refill
+		if slot1_weapon != null and slot1_weapon.weapon_type == weapon_type:
+			if slot1_weapon.current_ammo < slot1_weapon.max_ammo:
+				_refill_slot = 1
+		
+		# Check if slot 2 has same weapon type and needs refill (only if slot 1 doesn't)
+		if _refill_slot == 0 and slot2_weapon != null and slot2_weapon.weapon_type == weapon_type:
+			if slot2_weapon.current_ammo < slot2_weapon.max_ammo:
+				_refill_slot = 2
 	
 	# Update labels with current weapon info
 	_prompt_label.text = "Replace weapon with: %s?" % weapon_type.replace("_", " ").capitalize()
 	
-	if matches_slot_1:
-		# New weapon matches slot 1 - show refill option for slot 1, replace option for slot 2
+	if _refill_slot == 1:
+		# Slot 1 needs refilling
 		_option_1_label.text = "[1] Refill %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
-		_refill_slot = 1
-	elif matches_slot_2:
-		# New weapon matches slot 2 - show replace option for slot 1, refill option for slot 2
+	elif _refill_slot == 2:
+		# Slot 2 needs refilling
 		_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		_option_2_label.text = "[2] Refill %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
-		_refill_slot = 2
 	else:
-		# New weapon doesn't match either - standard replacement
+		# No refill needed - standard replacement
 		_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 	
 	_option_space_label.text = "[SPACE] Drop new weapon"
 	
 	_prompt_panel.visible = true
-	_logger.info("ui", self, "📋 showing weapon replacement prompt: %s" % weapon_type)
+	_logger.info("ui", self, "📋 showing weapon replacement prompt: %s (refill_slot=%d)" % [weapon_type, _refill_slot])
 
 func show_replacement_prompt_with_refill(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, refill_slot: int, weapon_level: int = 1) -> void:
 	pending_weapon_type = weapon_type
@@ -142,8 +151,41 @@ func _refill_weapon_slot(slot: int) -> void:
 	if mount_controller == null:
 		return
 	
-	_logger.info("ui", self, "🔋 refilling weapon in slot %d" % slot)
-	mount_controller.refill_weapon_in_slot(slot)
+	# Check if weapon needs refill and if there are remaining levels for upgrades
+	var weapon: WeaponAttachment = null
+	if slot == 1:
+		weapon = mount_controller._slot_manager.get_weapon_at_slot(1)
+	elif slot == 2:
+		weapon = mount_controller._slot_manager.get_weapon_at_slot(2)
+	
+	var needs_refill: bool = false
+	if weapon != null:
+		needs_refill = weapon.current_ammo < weapon.max_ammo
+	
+	# If weapon level > 1, refill first (uses 1 level), then apply remaining levels as upgrades
+	if pending_weapon_level > 1:
+		if needs_refill:
+			# Refill first (consumes 1 level), then apply remaining levels as upgrades
+			_logger.info("ui", self, "🔋⬆️ refilling and upgrading weapon in slot %d: refill (1 level) + %d upgrades" % [slot, pending_weapon_level - 1])
+			
+			# Step 1: Refill missing ammo (consumes 1 level conceptually)
+			mount_controller.refill_weapon_in_slot(slot)
+			
+			# Step 2: Apply remaining levels as upgrades (weapon_level - 1, since 1 was used for refill)
+			var remaining_levels: int = pending_weapon_level - 1
+			if remaining_levels > 0:
+				for i in range(remaining_levels):
+					mount_controller.upgrade_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color)
+		else:
+			# Weapon is at full ammo, apply all levels as upgrades
+			_logger.info("ui", self, "⬆️ upgrading weapon in slot %d with %d levels (weapon already at full ammo)" % [slot, pending_weapon_level])
+			for i in range(pending_weapon_level):
+				mount_controller.upgrade_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color)
+	else:
+		# Level 1 pickup - just refill
+		_logger.info("ui", self, "🔋 refilling weapon in slot %d" % slot)
+		mount_controller.refill_weapon_in_slot(slot)
+	
 	hide_prompt()
 
 func _upgrade_weapon_slot(slot: int) -> void:
@@ -203,7 +245,22 @@ func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type
 	pending_weapon_level = weapon_level
 	_upgrade_slots = upgrade_slots
 	_free_slot = free_slot
-	_refill_slot = 0  # No refill in upgrade mode
+	_refill_slot = 0  # Will be set if we find a slot that needs refilling
+	
+	# Check which slots need refilling (same weapon type but depleted)
+	if mount_controller != null:
+		var slot1_weapon: WeaponAttachment = mount_controller._slot_manager.get_weapon_at_slot(1)
+		var slot2_weapon: WeaponAttachment = mount_controller._slot_manager.get_weapon_at_slot(2)
+		
+		# Check if slot 1 has same weapon type and needs refill
+		if slot1_weapon != null and slot1_weapon.weapon_type == weapon_type:
+			if slot1_weapon.current_ammo < slot1_weapon.max_ammo:
+				_refill_slot = 1
+		
+		# Check if slot 2 has same weapon type and needs refill (only if slot 1 doesn't)
+		if _refill_slot == 0 and slot2_weapon != null and slot2_weapon.weapon_type == weapon_type:
+			if slot2_weapon.current_ammo < slot2_weapon.max_ammo:
+				_refill_slot = 2
 	
 	# Update labels
 	_prompt_label.text = "Upgrade weapon with: %s?" % weapon_type.replace("_", " ").capitalize()
@@ -213,6 +270,8 @@ func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type
 		# Can upgrade slot(s) OR attach to free slot
 		if free_slot == 1:
 			_option_1_label.text = "[1] Attach to free slot 1"
+		elif _refill_slot == 1:
+			_option_1_label.text = "[1] Refill %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		elif upgrade_slots.has(1):
 			_option_1_label.text = "[1] Upgrade %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		else:
@@ -220,30 +279,43 @@ func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type
 		
 		if free_slot == 2:
 			_option_2_label.text = "[2] Attach to free slot 2"
+		elif _refill_slot == 2:
+			_option_2_label.text = "[2] Refill %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 		elif upgrade_slots.has(2):
 			_option_2_label.text = "[2] Upgrade %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 		else:
 			_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 	elif upgrade_slots.size() > 0:
 		# Can only upgrade
-		if upgrade_slots.has(1):
+		if _refill_slot == 1:
+			_option_1_label.text = "[1] Refill %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		elif upgrade_slots.has(1):
 			_option_1_label.text = "[1] Upgrade %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		else:
 			_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		
-		if upgrade_slots.has(2):
+		if _refill_slot == 2:
+			_option_2_label.text = "[2] Refill %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+		elif upgrade_slots.has(2):
 			_option_2_label.text = "[2] Upgrade %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 		else:
 			_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 	else:
-		# Standard replacement
-		_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
-		_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+		# Standard replacement - but check for refill slots
+		if _refill_slot == 1:
+			_option_1_label.text = "[1] Refill %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		else:
+			_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
+		
+		if _refill_slot == 2:
+			_option_2_label.text = "[2] Refill %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
+		else:
+			_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 	
 	_option_space_label.text = "[SPACE] Drop new weapon"
 	
 	_prompt_panel.visible = true
-	_logger.info("ui", self, "📋 showing upgrade prompt: %s (upgrade_slots=%s, free_slot=%d)" % [weapon_type, str(upgrade_slots), free_slot])
+	_logger.info("ui", self, "📋 showing upgrade prompt: %s (upgrade_slots=%s, free_slot=%d, refill_slot=%d)" % [weapon_type, str(upgrade_slots), free_slot, _refill_slot])
 
 func _drop_weapon() -> void:
 	if mount_controller == null:
