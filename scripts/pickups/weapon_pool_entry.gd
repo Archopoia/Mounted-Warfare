@@ -14,3 +14,4 @@ func _init(p_weapon_type: String = "rocket_launcher", p_level: int = 1) -> void:
 func _to_string() -> String:
 	return "WeaponPoolEntry(type=%s, level=%d)" % [weapon_type, level]
 
+
