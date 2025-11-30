@@ -22,17 +22,28 @@ var _attached_weapons: Array[WeaponAttachment] = []
 # Track stacked weapons per slot: {slot: [WeaponAttachment, ...]}
 var _stacked_weapons: Dictionary = {}  # {1: [weapon1, weapon2, ...], 2: [weapon1, weapon2, ...]}
 
-func initialize(mount_controller: MountController, slot_manager: WeaponSlotManagerClass, logger: Node) -> void:
+func initialize(mount_controller: MountController, slot_manager: WeaponSlotManagerClass, logger: Node, left_marker: Marker3D = null, right_marker: Marker3D = null) -> void:
 	_mount_controller = mount_controller
 	_slot_manager = slot_manager
 	_logger = logger
 	
-	# Get weapon markers from mount
-	_weapon_marker_left = mount_controller.get_node_or_null("WeaponMarkerLeft")
-	_weapon_marker_right = mount_controller.get_node_or_null("WeaponMarkerRight")
+	# Get weapon markers from mount (try passed parameters first, then fallback to node lookup)
+	if left_marker != null:
+		_weapon_marker_left = left_marker
+	else:
+		_weapon_marker_left = mount_controller.get_node_or_null("WeaponMarkers/WeaponMarkerLeft")
+		if _weapon_marker_left == null:
+			_weapon_marker_left = mount_controller.get_node_or_null("WeaponMarkerLeft")  # Fallback for old scenes
+	
+	if right_marker != null:
+		_weapon_marker_right = right_marker
+	else:
+		_weapon_marker_right = mount_controller.get_node_or_null("WeaponMarkers/WeaponMarkerRight")
+		if _weapon_marker_right == null:
+			_weapon_marker_right = mount_controller.get_node_or_null("WeaponMarkerRight")  # Fallback for old scenes
 	
 	if _logger:
-		_logger.debug("weapon", self, "🔧 WeaponManager initialized")
+		_logger.debug("weapon", self, "🔧 WeaponManager initialized (left_marker=%s, right_marker=%s)" % ["null" if _weapon_marker_left == null else _weapon_marker_left.name, "null" if _weapon_marker_right == null else _weapon_marker_right.name])
 
 ## Attach a weapon at a specific level (creates stacked weapons)
 func attach_weapon_at_level(weapon_type: String, weapon_color: Color, marker: Marker3D, level: int = 1, stored_current_ammo: int = -1, stored_max_ammo: int = -1) -> void:

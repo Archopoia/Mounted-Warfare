@@ -1,613 +1,388 @@
-[Arena/Mount#42077259260] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
-[Arena/Mount#42077259260] 🐞 DEBUG 🔧 WeaponSlotManager initialized
-[Arena/Mount#42077259260] 🐞 DEBUG 🔧 WeaponPickupHandler initialized
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔧 WeaponManager initialized
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🔧 WeaponInputHandler initialized
-[Mount/@Node@4#43083892244] 🐞 DEBUG 🔧 WeaponHUDManager initialized
-[Mount/@Node@5#43117446677] 🐞 DEBUG 🔧 WeaponAttackCoordinator initialized
-[Arena/Mount#42077259260] 🐞 DEBUG 🔌 Component signals connected
-[Arena/Mount#42077259260] 🐞 DEBUG 🔧 All components initialized
-[WeaponSpawners/WeaponSpawner1#42412803590] 🐞 DEBUG 🔧 validated weapon pool: 1 entries
-[WeaponSpawner1/WeaponPickup#43385882135] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher (level 1/1)
-[WeaponSpawner1/WeaponPickup#43385882135] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5
-[WeaponSpawners/WeaponSpawner1#42412803590] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner1#42412803590] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner1#42412803590] ℹ️ ✨ spawned pickup: type=rocket_launcher, level=1, pos=(8.0, 1.0, 8.0)
-[WeaponSpawners/WeaponSpawner1#42412803590] ℹ️ 🏭 weapon spawner ready: pool_size=1, respawn_delay=3.0s, pos=(8.0, 1.0, 8.0)
-[WeaponSpawner2/WeaponPickup#44174411293] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 1/2)
-[WeaponSpawner2/WeaponPickup#44174411293] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
-[WeaponSpawners/WeaponSpawner2#42429580807] ℹ️ ✨ spawned pickup: type=mine_layer, level=2, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawners/WeaponSpawner3#42446358024] 🐞 DEBUG 🎲 randomly selected weapon from pool: rocket_launcher level 2 (index 2 of 3)
-[WeaponSpawner4/WeaponPickup#45298484793] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 1/3)
-[WeaponSpawner4/WeaponPickup#45298484793] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(-12.0, 1.0, -8.0), delay=0.5
-[WeaponSpawners/WeaponSpawner4#42463135241] ℹ️ ✨ spawned pickup: type=autocannon, level=3, pos=(-12.0, 1.0, -8.0)
-[HUD/WeaponDisplayHUD#46674216550] ℹ️ 📺 weapon display HUD ready
-[HUD/WeaponReplacementHUD#47211087492] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[Mount/@Node@4#43083892244] ℹ️ 📺 HUD created for player mount
-[WeaponSpawner1/WeaponPickup#43385882135] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2)
-[WeaponSpawner1/WeaponPickup#43385882135] 🐞 DEBUG ✅ pickup enabled after delay
-[WeaponSpawner5/WeaponPickup#46053459527] ℹ️ ✨ weapon picked up: type=rocket_launcher, level=2, by=Mount
-[WeaponSpawners/WeaponSpawner5#42479912458] ℹ️ 📦 pickup collected: type=rocket_launcher, level=2, starting respawn timer (3.0s)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=rocket_launcher, level=2
-[Arena/Mount#42077259260] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No existing weapon type rocket_launcher found
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 Found empty slot 1
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING] process_pickup took 41 ms
-[Arena/Mount#42077259260] ℹ️ 🔍 Decision result: 0 (can_attach=true, free_slot=0, upgrade_slots=[])
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] apply_decision: result=0, type=rocket_launcher, level=2
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=rocket_launcher
-[root/RocketLauncher#74222405170] ℹ️ ⚔️ weapon attachment ready: type=rocket_launcher, ammo=30/30
-[WeaponMarkerLeft/RocketLauncher#74222405170] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerLeft
-[Arena/Mount#42077259260] 🐞 DEBUG ➕ Added weapon to slot 1 stack (size=1)
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 1 using lambda
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING START] update_display_hud() called
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=74222405170)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=74222405170, ammo=30/30
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=74222405170
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   reading ammo from weapon: current=30, max=30
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   cached ammo for slot 1: current=30, max=30
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 🎨 created weapon visual for slot 1: rocket_launcher
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=30/30
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING] Slot 1 update took 55 ms
-[Mount/@Node@4#43083892244] 🐞 DEBUG 🔌 connected weapon signals for slot 1 (weapon changed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ cleared slot 2
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING END] update_display_hud() took 96 ms total
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon attached: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), marker=WeaponMarkerLeft, ammo=30/30, slot=1
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 1 with: rocket_launcher
-[WeaponMarkerLeft/@Node3D@23#74826385065] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerLeft
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 30 -> 60 (+30)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 30 -> 60 (+30)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 2 stacked weapons, total ammo=60/60
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
-[Mount/@Node@2#43016783378] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 1 using lambda
-[Mount/@Node@2#43016783378] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=60, max_ammo=60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=60/60
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=60/60
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon stack attached: type=rocket_launcher, level=2, marker=WeaponMarkerLeft
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] apply_decision took 280 ms total
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 410 ms total
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🎲 randomly selected weapon from pool: autocannon level 2 (index 3 of 4)
-[WeaponSpawner5/WeaponPickup#108246599352] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 1/2) … (+2 suppressed)
-[WeaponSpawner5/WeaponPickup#108246599352] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to … (+4 suppressed)
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🔌 connected pickup to mount: Mount … (+4 suppressed)
-[WeaponSpawners/WeaponSpawner5#42479912458] ℹ️ ✨ spawned pickup: type=autocannon, level=2, pos=(0.0, 1.0, -12.0)
-[WeaponSpawner5/WeaponPickup#108246599352] 🐞 DEBUG 📦 physics collision created: size=(1.1, 0.46, 0.16), center=(-0.0, 0.15, 0.2) … (+4 suppressed)
-[WeaponSpawner2/WeaponPickup#44174411293] ℹ️ ✨ weapon picked up: type=mine_layer, level=2, by=Mount
-[WeaponSpawners/WeaponSpawner2#42429580807] ℹ️ 📦 pickup collected: type=mine_layer, level=2, starting respawn timer (3.0s)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer, level=2
-[Arena/Mount#42077259260] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No existing weapon type mine_layer found
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 Found empty slot 2
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING] process_pickup took 18 ms
-[Arena/Mount#42077259260] ℹ️ 🔍 Decision result: 3 (can_attach=true, free_slot=2, upgrade_slots=[1])
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 📋 showing upgrade prompt: mine_layer (upgrade_slots=[1], free_slot=2)
-[Mount/@Node@4#43083892244] ℹ️ 📋 showing pickup choice prompt for: mine_layer (level 2)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 71 ms total
-[WeaponSpawner5/WeaponPickup#108246599352] 🐞 DEBUG ✅ pickup enabled after delay … (+4 suppressed)
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🎯 USER SELECTED: [2] Attach to free slot 2
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ ➕ attaching to free slot 2 (level 2)
-[Arena/Mount#42077259260] ℹ️ ➕ attaching weapon to free slot 2: mine_layer (level 2)
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=mine_layer
-[root/MineLayer#134368724509] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
-[WeaponMarkerRight/MineLayer#134368724509] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerRight
-[Arena/Mount#42077259260] 🐞 DEBUG ➕ Added weapon to slot 2 stack (size=1) … (+1 suppressed)
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 2 using lambda
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING START] update_display_hud() called
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=74222405170)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=74222405170, ammo=60/60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=74222405170
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   reading ammo from weapon: current=60, max=60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   cached ammo for slot 1: current=60, max=60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=60/60
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING] Slot 1 update took 60 ms … (+1 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=134368724509)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=134368724509, ammo=20/20
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=134368724509
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 🎨 created weapon visual for slot 2: mine_layer
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=20/20
-[Mount/@Node@4#43083892244] 🐞 DEBUG 🔌 connected weapon signals for slot 2 (weapon changed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING END] update_display_hud() took 145 ms total
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerRight, ammo=20/20, slot=2
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 2 with: mine_layer
-[WeaponMarkerRight/@Node3D@28#135023035948] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerRight
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 20 -> 40 (+20)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 20 -> 40 (+20)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ UPGRADE COMPLETE: slot 2 now has 2 stacked weapons, total ammo=40/40
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
-[Mount/@Node@2#43016783378] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 2 using lambda
-[Mount/@Node@2#43016783378] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=40, max_ammo=40
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=40/40
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=40/40
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon stack attached: type=mine_layer, level=2, marker=WeaponMarkerRight
-[HUD/WeaponReplacementHUD#47211087492] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[WeaponSpawners/WeaponSpawner2#42429580807] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner2/WeaponPickup#145609459363] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 1/2) … (+1 suppressed)
-[WeaponSpawner2/WeaponPickup#145609459363] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
-[WeaponSpawners/WeaponSpawner2#42429580807] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner2#42429580807] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner2#42429580807] ℹ️ ✨ spawned pickup: type=mine_layer, level=2, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawner2/WeaponPickup#145609459363] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.7, 0.4), center=(0.0, 0.15, 0.2)
-[WeaponSpawner2/WeaponPickup#145609459363] 🐞 DEBUG ✅ pickup enabled after delay
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button pressed
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button pressed
-[WeaponMarkerLeft/RocketLauncher#74222405170] ℹ️ ⚡ starting secondary attack charge: type=rocket_launcher, ammo=60/60
-[Mount/@Node@5#43117446677] ℹ️ ⚡ started secondary attack charge for slot 1
-[WeaponMarkerRight/MineLayer#134368724509] ℹ️ ⚡ starting secondary attack charge: type=mine_layer, ammo=40/40
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=59/60
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=59/60
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button released (hold) - secondary attack
-[WeaponMarkerRight/MineLayer#134368724509] ℹ️ 💥 releasing secondary attack: type=mine_layer, charge_time=0.73, ammo_consumed=2, levels_charged=1, stack_count=2, base_count=8, scaled_count=24, level_power=2.00x, total_power=3.00x
-[root/MineProjectile#163007432379] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/MineProjectile#163007432379] 🐞 DEBUG 📐 initialized: dir=(0.20792, -0.681446, -0.701712), spread_dir=(0.158204, -0.628621, -0.761451), vel=(1.58204, -6.286209, -7.614508)
-[WeaponMarkerRight/MineLayer#134368724509] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(-15.13914, 0.997113, 18.88821), dir=(0.20792, -0.681446, -0.701712), color=(0.0, 1.0, 1.0, 1.0), scale=1.20
-[root/@RigidBody3D@31#163309422283] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/@RigidBody3D@31#163309422283] 🐞 DEBUG 📐 initialized: dir=(0.230299, -0.585543, -0.77724), spread_dir=(0.235693, -0.567897, -0.788633), vel=(2.356933, -5.678966, -7.886331)
-[Mount/@Node@5#43117446677] ℹ️ ⚡ released secondary attack with 2 stacked weapons in slot 2
-[root/MineProjectile#163007432379] 🐞 DEBUG 📏 initial velocity applied: (1.58204, -6.286209, -7.614508)
-[root/@RigidBody3D@31#163309422283] 🐞 DEBUG 📏 initial velocity applied: (2.356933, -5.678966, -7.886331)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button released (hold) - secondary attack
-[WeaponMarkerLeft/RocketLauncher#74222405170] ℹ️ 💥 releasing secondary attack: type=rocket_launcher, charge_time=0.81, ammo_consumed=4, levels_charged=1, stack_count=2, base_count=5, scaled_count=15, level_power=2.00x, total_power=3.00x
-[root/RocketProjectile#169164670659] ℹ️ 🚀 projectile spawned: type=, speed=54.00, damage=50.0, gravity=0.50
-[root/RocketProjectile#169164670659] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds
-[root/RocketProjectile#169164670659] 🐞 DEBUG 📐 initialized: dir=(0.246085, -0.499686, -0.830516), spread_dir=(0.248307, -0.504604, -0.826873), vel=(13.40858, -27.24861, -44.65113)
-[WeaponMarkerLeft/RocketLauncher#74222405170] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(-17.44025, 0.995122, 18.20638), dir=(0.246085, -0.499686, -0.830516), color=(1.0, 0.8, 0.0, 1.0), scale=2.50
-[root/@RigidBody3D@55#169500215108] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds
-[root/MineProjectile#163007432379] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/MineProjectile#163007432379] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/MineProjectile#163007432379] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/MineProjectile#163007432379] 🐞 DEBUG 💥 projectile destroyed
-[root/RocketProjectile#169164670659] 🐞 DEBUG 📏 initial velocity applied: (13.40858, -27.24861, -44.65113)
-[root/@RigidBody3D@31#163309422283] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/@RigidBody3D@31#163309422283] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/@RigidBody3D@31#163309422283] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/@RigidBody3D@31#163309422283] 🐞 DEBUG 💥 projectile destroyed
-[root/RocketProjectile#169164670659] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/RocketProjectile#169164670659] ℹ️ ⚔️ applying damage: 50.0 to StaticBody3D
-[root/RocketProjectile#169164670659] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0
-[root/RocketProjectile#169164670659] 🐞 DEBUG 💥 projectile destroyed
-[root/@RigidBody3D@67#170926278499] ℹ️ 💥 projectile hit: Obstacle2 (shape_index=0)
-[root/@RigidBody3D@67#170926278499] ℹ️ ⚔️ applying damage: 50.0 to Obstacle2
-[root/@RigidBody3D@42#165742118648] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+16 suppressed)
-[root/@RigidBody3D@42#165742118648] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+16 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button pressed
-[root/@RigidBody3D@45#166396430084] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+21 suppressed)
-[root/@RigidBody3D@45#166396430084] 🐞 DEBUG 💥 projectile destroyed … (+21 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button released (click) - primary attack
-[Mount/@Node@5#43117446677] ℹ️ 🎯 attacking with 2 stacked weapons in slot 1 (will consume 2 ammo: 1 per weapon × 2 weapons)
-[Mount/@Node@5#43117446677] ℹ️ 🔋 consumed 2 ammo (1 per weapon × 2 weapons): 56 -> 54
-[root/RocketProjectile#187703494455] ℹ️ 🚀 projectile spawned: type=, speed=30.00, damage=50.0, gravity=0.50
-[root/RocketProjectile#187703494455] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds
-[root/RocketProjectile#187703494455] 🐞 DEBUG 📐 initialized: dir=(0.284138, 0.000284, -0.958783), spread_dir=(0.286688, -0.012953, -0.957936), vel=(8.600643, -0.388584, -28.73809)
-[WeaponMarkerLeft/RocketLauncher#74222405170] 🐞 DEBUG 🚀 projectile spawned: pos=(-17.44056, 0.995378, 18.20628), dir=(0.284138, 0.000284, -0.958783)
-[WeaponMarkerLeft/RocketLauncher#74222405170] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=rocket_launcher
-[root/@RigidBody3D@84#188022261508] ℹ️ 🚀 projectile spawned: type=, speed=30.00, damage=50.0, gravity=0.50 … (+36 suppressed)
-[root/@RigidBody3D@84#188022261508] 🐞 DEBUG ⏱️ lifetime timer set: 5.00 seconds … (+13 suppressed)
-[root/@RigidBody3D@84#188022261508] 🐞 DEBUG 📐 initialized: dir=(0.284138, 0.000284, -0.958783), spread_dir=(0.284334, 0.001029, -0.958725), vel=(8.53001, 0.030874, -28.76175) … (+36 suppressed)
-[WeaponMarkerLeft/@Node3D@23#74826385065] 🐞 DEBUG 🚀 projectile spawned: pos=(-17.44074, 1.295378, 18.20632), dir=(0.284138, 0.000284, -0.958783)
-[WeaponMarkerLeft/@Node3D@23#74826385065] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=rocket_launcher
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=54/60 … (+5 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=54/60 … (+5 suppressed)
-[root/RocketProjectile#187703494455] 🐞 DEBUG 📏 initial velocity applied: (8.600643, -0.388584, -28.73809)
-[root/@RigidBody3D@84#188022261508] 🐞 DEBUG 📏 initial velocity applied: (8.53001, 0.030874, -28.76175) … (+36 suppressed)
-[root/@RigidBody3D@49#167268845332] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+6 suppressed)
-[root/@RigidBody3D@49#167268845332] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+6 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button pressed
-[root/RocketProjectile#187703494455] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/RocketProjectile#187703494455] ℹ️ ⚔️ applying damage: 50.0 to StaticBody3D
-[root/RocketProjectile#187703494455] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0
-[root/RocketProjectile#187703494455] 🐞 DEBUG 💥 projectile destroyed
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button released (click) - primary attack
-[root/MineProjectile#194280163086] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/MineProjectile#194280163086] 🐞 DEBUG 📐 initialized: dir=(0.284137, 0.000285, -0.958784), spread_dir=(0.26985, -0.036055, -0.962227), vel=(2.698498, -0.360547, -9.622272)
-[WeaponMarkerRight/MineLayer#134368724509] 🐞 DEBUG 🚀 projectile spawned: pos=(-15.13948, 0.996687, 18.88821), dir=(0.284137, 0.000285, -0.958784)
-[WeaponMarkerRight/MineLayer#134368724509] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
-[WeaponMarkerRight/@Node3D@28#135023035948] 🐞 DEBUG 🚀 projectile spawned: pos=(-15.13966, 1.296687, 18.88825), dir=(0.284137, 0.000285, -0.958784)
-[WeaponMarkerRight/@Node3D@28#135023035948] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
-[root/MineProjectile#194280163086] 🐞 DEBUG 📏 initial velocity applied: (2.698498, -0.360547, -9.622272)
-[root/MineProjectile#194280163086] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/MineProjectile#194280163086] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/MineProjectile#194280163086] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/MineProjectile#194280163086] 🐞 DEBUG 💥 projectile destroyed
-[root/@RigidBody3D@86#194615707445] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+8 suppressed)
-[root/@RigidBody3D@86#194615707445] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+8 suppressed)
-[root/@RigidBody3D@86#194615707445] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+12 suppressed)
-[root/@RigidBody3D@86#194615707445] 🐞 DEBUG 💥 projectile destroyed … (+12 suppressed)
-[WeaponSpawner2/WeaponPickup#145609459363] ℹ️ ✨ weapon picked up: type=mine_layer, level=2, by=Mount
-[WeaponSpawners/WeaponSpawner2#42429580807] ℹ️ 📦 pickup collected: type=mine_layer, level=2, starting respawn timer (3.0s)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer, level=2
-[Arena/Mount#42077259260] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 Found existing weapon type mine_layer in slot 2
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No empty slots found
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING] process_pickup took 43 ms
-[Arena/Mount#42077259260] ℹ️ 🔍 Decision result: 3 (can_attach=false, free_slot=0, upgrade_slots=[2])
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 📋 showing upgrade prompt: mine_layer (upgrade_slots=[2], free_slot=0)
-[Mount/@Node@4#43083892244] ℹ️ 📋 showing pickup choice prompt for: mine_layer (level 2)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 169 ms total
-[root/@RigidBody3D@73#171630921586] 🐞 DEBUG ⏱️ projectile lifetime expired
-[root/@RigidBody3D@73#171630921586] 🐞 DEBUG 💥 projectile destroyed … (+4 suppressed)
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🎯 USER SELECTED: [2] Upgrade weapon in slot 2
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🔋⬆️ refilling and upgrading weapon in slot 2: refill (1 level) + 1 upgrades
-[Mount/@Node@2#43016783378] ℹ️ 🔋 refilling weapon in slot 2: 36/40 -> 40/40
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=40/40 … (+1 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=40/40 … (+1 suppressed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING START] update_display_hud() called
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=74222405170)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=74222405170, ammo=54/60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=74222405170
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   reading ammo from weapon: current=54, max=60 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   cached ammo for slot 1: current=54, max=60 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=54/60
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING] Slot 1 update took 128 ms … (+1 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=134368724509)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=134368724509, ammo=40/40
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=134368724509
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=40/40
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING END] update_display_hud() took 274 ms total
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 2 with: mine_layer
-[root/MineLayer#237028509583] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20 … (+1 suppressed)
-[WeaponMarkerRight/@Node3D@87#237028509583] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerRight
-[Arena/Mount#42077259260] 🐞 DEBUG ➕ Added weapon to slot 2 stack (size=3) … (+1 suppressed)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 40 -> 60 (+20)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 40 -> 60 (+20)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ UPGRADE COMPLETE: slot 2 now has 3 stacked weapons, total ammo=60/60
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
-[Mount/@Node@2#43016783378] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 2 using lambda
-[Mount/@Node@2#43016783378] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=60, max_ammo=60
-[HUD/WeaponReplacementHUD#47211087492] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[WeaponSpawners/WeaponSpawner2#42429580807] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner2/WeaponPickup#250316064660] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 1/2) … (+1 suppressed)
-[WeaponSpawner2/WeaponPickup#250316064660] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
-[WeaponSpawners/WeaponSpawner2#42429580807] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner2#42429580807] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner2#42429580807] ℹ️ ✨ spawned pickup: type=mine_layer, level=2, pos=(-8.0, 1.0, 10.0)
-[WeaponSpawner2/WeaponPickup#250316064660] 🐞 DEBUG 📦 physics collision created: size=(0.4, 0.7, 0.4), center=(0.0, 0.15, 0.2)
-[WeaponSpawner2/WeaponPickup#250316064660] 🐞 DEBUG ✅ pickup enabled after delay
-[WeaponSpawner5/WeaponPickup#108246599352] ℹ️ ✨ weapon picked up: type=autocannon, level=2, by=Mount
-[WeaponSpawners/WeaponSpawner5#42479912458] ℹ️ 📦 pickup collected: type=autocannon, level=2, starting respawn timer (3.0s)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=autocannon, level=2
-[Arena/Mount#42077259260] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No existing weapon type autocannon found
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No empty slots found
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING] process_pickup took 43 ms
-[Arena/Mount#42077259260] ℹ️ 🔍 Decision result: 3 (can_attach=false, free_slot=0, upgrade_slots=[1, 2])
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 📋 showing weapon replacement prompt: autocannon
-[Mount/@Node@4#43083892244] ℹ️ 📋 showing pickup choice prompt for: autocannon (level 2)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 171 ms total
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🎯 USER SELECTED: [1] Replace weapon in slot 1
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🔄 replacing weapon in slot 1 with autocannon (level 2)
-[Arena/Mount#42077259260] ℹ️ 🔄 REPLACE_WEAPON: slot=1, type=autocannon, level=2
-[Mount/@Node@2#43016783378] ℹ️ 🔄 REPLACE_WEAPON_START: slot=1, type=autocannon, level=2
-[Mount/@Node@2#43016783378] ℹ️ 🗑️ REMOVING_STACK: slot=1, stack_size=2
-[RocketLauncher#74222405170] ℹ️ 🔓 weapon detached from mount: type=rocket_launcher
-[@Node3D@23#74826385065] ℹ️ 🔓 weapon detached from mount: type=rocket_launcher
-[Mount/@Node@2#43016783378] 🐞 DEBUG ✅ stack cleared for slot 1
-[Arena/Mount#42077259260] 🐞 DEBUG 🗑️ Cleared slot 1
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING START] update_display_hud() called
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ cleared slot 1
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING] Slot 1 update took 42 ms … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=134368724509)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=134368724509, ammo=60/60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=134368724509
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   reading ammo from weapon: current=60, max=60 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   cached ammo for slot 2: current=60, max=60 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=60/60
-[Mount/@Node@4#43083892244] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon) … (+1 suppressed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING END] update_display_hud() took 231 ms total
-[Mount/@Node@2#43016783378] ℹ️ ➕ ATTACHING_NEW_WEAPON: slot=1, type=autocannon, level=2
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=autocannon
-[root/Autocannon#285866985144] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=150/150
-[WeaponMarkerLeft/Autocannon#285866985144] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerLeft
-[Arena/Mount#42077259260] 🐞 DEBUG ➕ Added weapon to slot 1 stack (size=1)
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 1 using lambda
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=autocannon (id=285866985144)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=autocannon, id=285866985144, ammo=150/150
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=autocannon, weapon_id=285866985144
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 🎨 created weapon visual for slot 1: autocannon
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 1: weapon=autocannon, ammo=150/150
-[Mount/@Node@4#43083892244] 🐞 DEBUG 🔌 connected weapon signals for slot 1 (weapon changed)
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerLeft, ammo=150/150, slot=1
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 1 with: autocannon
-[WeaponMarkerLeft/@Node3D@92#286387078814] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerLeft
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 150 -> 300 (+150)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 150 -> 300 (+150)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 2 stacked weapons, total ammo=300/300
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
-[Mount/@Node@2#43016783378] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 1 using lambda
-[Mount/@Node@2#43016783378] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=300, max_ammo=300
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=300/300 … (+1 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=300/300 … (+1 suppressed)
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon stack attached: type=autocannon, level=2, marker=WeaponMarkerLeft
-[Mount/@Node@2#43016783378] ℹ️ ✅ REPLACE_WEAPON_COMPLETE: slot=1
-[HUD/WeaponReplacementHUD#47211087492] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING START] update_display_hud() called … (+1 suppressed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING] Slot 1 update took 1 ms … (+3 suppressed)
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🎲 randomly selected weapon from pool: autocannon level 1 (index 2 of 4)
-[WeaponSpawner5/WeaponPickup#301788563050] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 1/1) … (+1 suppressed)
-[WeaponSpawner5/WeaponPickup#301788563050] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner5#42479912458] ℹ️ ✨ spawned pickup: type=autocannon, level=1, pos=(0.0, 1.0, -12.0)
-[WeaponSpawner5/WeaponPickup#301788563050] 🐞 DEBUG 📦 physics collision created: size=(1.1, 0.16, 0.16), center=(-0.0, 0.0, 0.2)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button pressed
-[WeaponSpawner5/WeaponPickup#301788563050] 🐞 DEBUG ✅ pickup enabled after delay
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button pressed
-[WeaponMarkerLeft/Autocannon#285866985144] ℹ️ ⚡ starting secondary attack charge: type=autocannon, ammo=300/300
-[Mount/@Node@5#43117446677] ℹ️ ⚡ started secondary attack charge for slot 1 … (+1 suppressed)
-[WeaponMarkerRight/MineLayer#134368724509] ℹ️ ⚡ starting secondary attack charge: type=mine_layer, ammo=60/60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=299/300
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=299/300
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=278/300 … (+23 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=278/300 … (+23 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button released (hold) - secondary attack
-[WeaponMarkerLeft/Autocannon#285866985144] ℹ️ 💥 releasing secondary attack: type=autocannon, charge_time=1.89, ammo_consumed=37, levels_charged=2, stack_count=2, base_count=15, scaled_count=67, level_power=3.00x, total_power=4.50x
-[root/AutocannonProjectile#331048028031] ℹ️ 🚀 projectile spawned: type=, speed=100.00, damage=15.0, gravity=0.30
-[root/AutocannonProjectile#331048028031] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
-[root/AutocannonProjectile#331048028031] 🐞 DEBUG 📐 initialized: dir=(-0.637182, -0.664526, 0.390391), spread_dir=(-0.640551, -0.680305, 0.356201), vel=(-64.0551, -68.03054, 35.62009)
-[WeaponMarkerLeft/Autocannon#285866985144] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(4.598278, 0.990168, -18.34642), dir=(-0.637182, -0.664526, 0.390391), color=(1.0, 0.5, 1.0, 1.0), scale=1.80
-[root/@RigidBody3D@95#331383572346] ℹ️ 🚀 projectile spawned: type=, speed=100.00, damage=15.0, gravity=0.30 … (+1 suppressed)
-[root/@RigidBody3D@95#331383572346] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
-[root/@RigidBody3D@95#331383572346] 🐞 DEBUG 📐 initialized: dir=(-0.638007, -0.650986, 0.411296), spread_dir=(-0.61747, -0.658163, 0.430758), vel=(-61.747, -65.81627, 43.07584) … (+1 suppressed)
-[Mount/@Node@5#43117446677] ℹ️ ⚡ released secondary attack with 2 stacked weapons in slot 1 … (+1 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button released (hold) - secondary attack
-[WeaponMarkerRight/MineLayer#134368724509] ℹ️ 💥 releasing secondary attack: type=mine_layer, charge_time=1.87, ammo_consumed=5, levels_charged=2, stack_count=3, base_count=8, scaled_count=40, level_power=3.00x, total_power=6.00x
-[root/MineProjectile#347036715037] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/MineProjectile#347036715037] 🐞 DEBUG 📐 initialized: dir=(-0.46645, -0.681907, 0.563407), spread_dir=(-0.490335, -0.701818, 0.516742), vel=(-4.903355, -7.018185, 5.167417)
-[WeaponMarkerRight/MineLayer#134368724509] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(2.749626, 0.990173, -19.87694), dir=(-0.46645, -0.681907, 0.563407), color=(0.0, 1.0, 1.0, 1.0), scale=1.20 … (+23 suppressed)
-[root/AutocannonProjectile#331048028031] 🐞 DEBUG 📏 initial velocity applied: (-64.0551, -68.03054, 35.62009)
-[root/@RigidBody3D@95#331383572346] 🐞 DEBUG 📏 initial velocity applied: (-61.747, -65.81627, 43.07584) … (+1 suppressed)
-[root/MineProjectile#347036715037] 🐞 DEBUG 📏 initial velocity applied: (-4.903355, -7.018185, 5.167417)
-[root/@RigidBody3D@221#346231408653] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+4 suppressed)
-[root/@RigidBody3D@221#346231408653] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+4 suppressed)
-[root/@RigidBody3D@221#346231408653] 🐞 DEBUG 🎯 direct hit: 15.0 damage
-[root/@RigidBody3D@221#346231408653] 🐞 DEBUG 💥 projectile destroyed … (+4 suppressed)
-[root/MineProjectile#347036715037] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
-[root/MineProjectile#347036715037] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+3 suppressed)
-[root/MineProjectile#347036715037] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+3 suppressed)
-[root/MineProjectile#347036715037] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
-[root/@RigidBody3D@227#347338704932] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+4 suppressed)
-[root/AutocannonProjectile#331048028031] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/AutocannonProjectile#331048028031] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
-[root/AutocannonProjectile#331048028031] 🐞 DEBUG 🎯 direct hit: 15.0 damage
-[root/AutocannonProjectile#331048028031] 🐞 DEBUG 💥 projectile destroyed
-[root/@RigidBody3D@99#331903665849] ℹ️ 💥 projectile hit: Obstacle2 (shape_index=0) … (+1 suppressed)
-[root/@RigidBody3D@99#331903665849] ℹ️ ⚔️ applying damage: 15.0 to Obstacle2 … (+1 suppressed)
-[WeaponSpawner5/WeaponPickup#301788563050] ℹ️ ✨ weapon picked up: type=autocannon, level=1, by=Mount
-[WeaponSpawners/WeaponSpawner5#42479912458] ℹ️ 📦 pickup collected: type=autocannon, level=1, starting respawn timer (3.0s)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=autocannon, level=1
-[Arena/Mount#42077259260] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 Found existing weapon type autocannon in slot 1
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No empty slots found
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING] process_pickup took 20 ms
-[Arena/Mount#42077259260] ℹ️ 🔍 Decision result: 1 (can_attach=false, free_slot=0, upgrade_slots=[])
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] apply_decision: result=1, type=autocannon, level=1
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=300/300 … (+17 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=300/300 … (+17 suppressed)
-[Arena/Mount#42077259260] ℹ️ 🔋 Refilled weapon in slot 1: 263 -> 300/300
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] apply_decision took 38 ms total
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 110 ms total
-[root/@RigidBody3D@245#351264573549] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+54 suppressed)
-[root/@RigidBody3D@245#351264573549] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+54 suppressed)
-[root/@RigidBody3D@250#352355092609] 🐞 DEBUG 💥 projectile destroyed … (+64 suppressed)
-[root/@RigidBody3D@251#352573196421] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+23 suppressed)
-[root/@RigidBody3D@143#337071048491] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+41 suppressed)
-[root/@RigidBody3D@259#354318026917] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+17 suppressed)
-[root/@RigidBody3D@259#354318026917] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+17 suppressed)
-[root/@RigidBody3D@105#332608309052] 🐞 DEBUG ⏱️ projectile lifetime expired … (+4 suppressed)
-[root/@RigidBody3D@105#332608309052] 🐞 DEBUG 💥 projectile destroyed … (+19 suppressed)
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🎲 randomly selected weapon from pool: mine_layer level 3 (index 1 of 4)
-[WeaponSpawner5/WeaponPickup#393408940205] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 1/3) … (+1 suppressed)
-[WeaponSpawner5/WeaponPickup#393408940205] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner5#42479912458] ℹ️ ✨ spawned pickup: type=mine_layer, level=3, pos=(0.0, 1.0, -12.0)
-[WeaponSpawner5/WeaponPickup#393408940205] 🐞 DEBUG 📦 physics collision created: size=(0.4, 1.0, 0.4), center=(0.0, 0.3, 0.2)
-[WeaponSpawner5/WeaponPickup#393408940205] 🐞 DEBUG ✅ pickup enabled after delay
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button pressed
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button released (click) - primary attack
-[Mount/@Node@5#43117446677] ℹ️ 🎯 attacking with 2 stacked weapons in slot 1 (will consume 6 ammo: 3 per weapon × 2 weapons) … (+1 suppressed)
-[Mount/@Node@5#43117446677] ℹ️ 🔋 consumed 6 ammo (3 per weapon × 2 weapons): 300 -> 294 … (+1 suppressed)
-[root/AutocannonProjectile#406042183354] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30
-[root/AutocannonProjectile#406042183354] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
-[root/AutocannonProjectile#406042183354] 🐞 DEBUG 📐 initialized: dir=(0.730834, -0.052699, 0.680517), spread_dir=(0.746269, -0.022051, 0.665279), vel=(37.31345, -1.102562, 33.26396)
-[WeaponMarkerLeft/Autocannon#285866985144] 🐞 DEBUG 🚀 projectile spawned: pos=(8.487844, 0.99456, -16.28689), dir=(0.730834, -0.052699, 0.680517)
-[root/@RigidBody3D@270#406377727783] ℹ️ 🚀 projectile spawned: type=, speed=50.00, damage=15.0, gravity=0.30 … (+104 suppressed)
-[root/@RigidBody3D@270#406377727783] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+65 suppressed)
-[root/@RigidBody3D@270#406377727783] 🐞 DEBUG 📐 initialized: dir=(0.731851, -0.000364, 0.681464), spread_dir=(0.729892, -0.019673, 0.683279), vel=(36.49463, -0.983667, 34.16394) … (+104 suppressed)
-[WeaponMarkerLeft/Autocannon#285866985144] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon
-[WeaponMarkerLeft/@Node3D@92#286387078814] 🐞 DEBUG 🚀 projectile spawned: pos=(8.487911, 1.29456, -16.2868), dir=(0.730834, -0.052699, 0.680517)
-[WeaponMarkerLeft/@Node3D@92#286387078814] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=294/300
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=294/300
-[root/AutocannonProjectile#406042183354] 🐞 DEBUG 📏 initial velocity applied: (37.31345, -1.102562, 33.26396)
-[root/@RigidBody3D@270#406377727783] 🐞 DEBUG 📏 initial velocity applied: (36.49463, -0.983667, 34.16394) … (+104 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button pressed
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ right mouse button released (click) - primary attack
-[root/MineProjectile#411763214537] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
-[root/MineProjectile#411763214537] 🐞 DEBUG 📐 initialized: dir=(0.33391, -0.000274, 0.942605), spread_dir=(0.347282, 0.02725, 0.937365), vel=(3.472817, 0.272495, 9.373649)
-[WeaponMarkerRight/MineLayer#134368724509] 🐞 DEBUG 🚀 projectile spawned: pos=(9.152287, 0.993432, -12.56631), dir=(0.33391, -0.000274, 0.942605)
-[WeaponMarkerRight/MineLayer#134368724509] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
-[WeaponMarkerRight/@Node3D@28#135023035948] 🐞 DEBUG 🚀 projectile spawned: pos=(9.152379, 1.293432, -12.56625), dir=(0.33391, -0.000274, 0.942605)
-[WeaponMarkerRight/@Node3D@28#135023035948] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
-[root/MineProjectile#411763214537] 🐞 DEBUG 📏 initial velocity applied: (3.472817, 0.272495, 9.373649)
-[root/@RigidBody3D@286#410941130545] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0) … (+3 suppressed)
-[root/@RigidBody3D@286#410941130545] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3 … (+3 suppressed)
-[root/@RigidBody3D@286#410941130545] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+3 suppressed)
-[root/@RigidBody3D@286#410941130545] 🐞 DEBUG 💥 projectile destroyed … (+19 suppressed)
-[WeaponSpawner3/WeaponPickup#44778391082] ℹ️ ✨ weapon picked up: type=rocket_launcher, level=2, by=Mount
-[WeaponSpawners/WeaponSpawner3#42446358024] ℹ️ 📦 pickup collected: type=rocket_launcher, level=2, starting respawn timer (3.0s)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=rocket_launcher, level=2
-[Arena/Mount#42077259260] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No existing weapon type rocket_launcher found
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No empty slots found
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING] process_pickup took 20 ms
-[Arena/Mount#42077259260] ℹ️ 🔍 Decision result: 3 (can_attach=false, free_slot=0, upgrade_slots=[1, 2])
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 📋 showing weapon replacement prompt: rocket_launcher
-[Mount/@Node@4#43083892244] ℹ️ 📋 showing pickup choice prompt for: rocket_launcher (level 2)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 77 ms total
-[root/MineProjectile#411763214537] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/MineProjectile#411763214537] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
-[root/MineProjectile#411763214537] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
-[root/MineProjectile#411763214537] 🐞 DEBUG 💥 projectile destroyed
-[root/@RigidBody3D@272#406662940509] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+7 suppressed)
-[root/@RigidBody3D@272#406662940509] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+7 suppressed)
-[root/@RigidBody3D@292#412132312855] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+14 suppressed)
-[root/AutocannonProjectile#406042183354] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
-[root/AutocannonProjectile#406042183354] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
-[root/AutocannonProjectile#406042183354] 🐞 DEBUG 🎯 direct hit: 15.0 damage
-[root/AutocannonProjectile#406042183354] 🐞 DEBUG 💥 projectile destroyed
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🎯 USER SELECTED: [1] Replace weapon in slot 1
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🔄 replacing weapon in slot 1 with rocket_launcher (level 2)
-[Arena/Mount#42077259260] ℹ️ 🔄 REPLACE_WEAPON: slot=1, type=rocket_launcher, level=2
-[Mount/@Node@2#43016783378] ℹ️ 🔄 REPLACE_WEAPON_START: slot=1, type=rocket_launcher, level=2
-[Mount/@Node@2#43016783378] ℹ️ 🗑️ REMOVING_STACK: slot=1, stack_size=2
-[Autocannon#285866985144] ℹ️ 🔓 weapon detached from mount: type=autocannon
-[@Node3D@92#286387078814] ℹ️ 🔓 weapon detached from mount: type=autocannon
-[Mount/@Node@2#43016783378] 🐞 DEBUG ✅ stack cleared for slot 1
-[Arena/Mount#42077259260] 🐞 DEBUG 🗑️ Cleared slot 1
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING START] update_display_hud() called
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ cleared slot 1
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING] Slot 1 update took 20 ms … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=134368724509) … (+2 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=134368724509, ammo=52/60 … (+2 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=134368724509 … (+2 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   reading ammo from weapon: current=52, max=60 … (+4 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   cached ammo for slot 2: current=52, max=60 … (+4 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=52/60 … (+2 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon) … (+3 suppressed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING END] update_display_hud() took 151 ms total … (+2 suppressed)
-[Mount/@Node@2#43016783378] ℹ️ ➕ ATTACHING_NEW_WEAPON: slot=1, type=rocket_launcher, level=2
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=rocket_launcher
-[root/RocketLauncher#429949716031] ℹ️ ⚔️ weapon attachment ready: type=rocket_launcher, ammo=30/30 … (+1 suppressed)
-[WeaponMarkerLeft/RocketLauncher#429949716031] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerLeft
-[Arena/Mount#42077259260] 🐞 DEBUG ➕ Added weapon to slot 1 stack (size=1) … (+1 suppressed)
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 1 using lambda
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=429949716031)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=429949716031, ammo=30/30
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=429949716031
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 🎨 created weapon visual for slot 1: rocket_launcher
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=30/30
-[Mount/@Node@4#43083892244] 🐞 DEBUG 🔌 connected weapon signals for slot 1 (weapon changed)
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon attached: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), marker=WeaponMarkerLeft, ammo=30/30, slot=1
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 1 with: rocket_launcher
-[WeaponMarkerLeft/@Node3D@296#430436255290] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerLeft
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 30 -> 60 (+30)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 30 -> 60 (+30)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 2 stacked weapons, total ammo=60/60
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
-[Mount/@Node@2#43016783378] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 1 using lambda
-[Mount/@Node@2#43016783378] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=60, max_ammo=60
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=60/60 … (+2 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=60/60 … (+2 suppressed)
-[Mount/@Node@2#43016783378] ℹ️ ⚔️ weapon stack attached: type=rocket_launcher, level=2, marker=WeaponMarkerLeft
-[Mount/@Node@2#43016783378] ℹ️ ✅ REPLACE_WEAPON_COMPLETE: slot=1
-[HUD/WeaponReplacementHUD#47211087492] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[WeaponSpawners/WeaponSpawner3#42446358024] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawners/WeaponSpawner3#42446358024] 🐞 DEBUG 🎲 randomly selected weapon from pool: autocannon level 4 (index 0 of 3)
-[WeaponSpawner3/WeaponPickup#450451473962] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 1/4)
-[WeaponSpawner3/WeaponPickup#450451473962] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0), delay=0.5
-[WeaponSpawners/WeaponSpawner3#42446358024] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner3#42446358024] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner3#42446358024] ℹ️ ✨ spawned pickup: type=autocannon, level=4, pos=(12.0, 1.0, -5.0)
-[WeaponSpawner3/WeaponPickup#450451473962] 🐞 DEBUG 📦 physics collision created: size=(1.1, 1.06, 0.16), center=(-0.0, 0.45, 0.2)
-[WeaponSpawner3/WeaponPickup#450451473962] 🐞 DEBUG ✅ pickup enabled after delay
-[WeaponSpawner1/WeaponPickup#43385882135] ℹ️ ✨ weapon picked up: type=rocket_launcher, level=1, by=Mount
-[WeaponSpawners/WeaponSpawner1#42412803590] ℹ️ 📦 pickup collected: type=rocket_launcher, level=1, starting respawn timer (3.0s)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=rocket_launcher, level=1
-[Arena/Mount#42077259260] ℹ️ ✅ pickup confirmed for this mount, processing...
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 Found existing weapon type rocket_launcher in slot 1
-[Arena/Mount#42077259260] 🐞 DEBUG 🔍 No empty slots found
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING] process_pickup took 45 ms
-[Arena/Mount#42077259260] ℹ️ 🔍 Decision result: 3 (can_attach=false, free_slot=0, upgrade_slots=[1])
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 📋 showing upgrade prompt: rocket_launcher (upgrade_slots=[1], free_slot=0)
-[Mount/@Node@4#43083892244] ℹ️ 📋 showing pickup choice prompt for: rocket_launcher (level 1)
-[Arena/Mount#42077259260] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 174 ms total
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ 🎯 USER SELECTED: [1] Upgrade weapon in slot 1
-[HUD/WeaponReplacementHUD#47211087492] ℹ️ ⬆️ upgrading weapon in slot 1 with 1 levels (weapon already at full ammo)
-[Mount/@Node@2#43016783378] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 1 with: rocket_launcher
-[root/RocketLauncher#471456548506] ℹ️ ⚔️ weapon attachment ready: type=rocket_launcher, ammo=30/30 … (+1 suppressed)
-[WeaponMarkerLeft/@Node3D@301#471456548506] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerLeft
-[Arena/Mount#42077259260] 🐞 DEBUG ➕ Added weapon to slot 1 stack (size=3) … (+1 suppressed)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 60 -> 90 (+30)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 60 -> 90 (+30)
-[Mount/@Node@2#43016783378] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 3 stacked weapons, total ammo=90/90
-[Mount/@Node@2#43016783378] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
-[Mount/@Node@2#43016783378] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 1 using lambda
-[Mount/@Node@2#43016783378] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=90, max_ammo=90
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=90/90
-[Mount/@Node@4#43083892244] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=90/90
-[HUD/WeaponReplacementHUD#47211087492] 🐞 DEBUG 📋 hiding weapon replacement prompt
-[WeaponSpawners/WeaponSpawner1#42412803590] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
-[WeaponSpawner1/WeaponPickup#498618861087] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher (level 1/1) … (+4 suppressed)
-[WeaponSpawner1/WeaponPickup#498618861087] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5 … (+2 suppressed)
-[WeaponSpawners/WeaponSpawner1#42412803590] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
-[WeaponSpawners/WeaponSpawner1#42412803590] 🐞 DEBUG 🔌 connected pickup to mount: Mount
-[WeaponSpawners/WeaponSpawner1#42412803590] ℹ️ ✨ spawned pickup: type=rocket_launcher, level=1, pos=(8.0, 1.0, 8.0) … (+2 suppressed)
-[WeaponSpawner1/WeaponPickup#498618861087] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2)
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🔧 validated weapon pool: 4 entries … (+4 suppressed)
-[WeaponSpawner5/WeaponPickup#393408940205] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 3/3) … (+2 suppressed)
-[WeaponSpawners/WeaponSpawner5#42479912458] ℹ️ 🏭 weapon spawner ready: pool_size=4, respawn_delay=3.0s, pos=(0.0, 1.0, -12.0) … (+4 suppressed)
-[WeaponSpawner3/WeaponPickup#450451473962] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 4/4) … (+3 suppressed)
-[WeaponSpawners/WeaponSpawner5#42479912458] 🐞 DEBUG 🎲 randomly selected weapon from pool: rocket_launcher level 2 (index 0 of 4) … (+1 suppressed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING] Slot 2 update took 1 ms … (+5 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   reading ammo from weapon: current=52, max=60 … (+4 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   cached ammo for slot 2: current=52, max=60 … (+4 suppressed)
-[Mount/@Node@5#43117446677] ℹ️ ⚡ started secondary attack charge for slot 2 … (+1 suppressed)
-[WeaponMarkerRight/MineLayer#134368724509] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(2.749626, 0.990173, -19.87694), dir=(-0.234289, 0.930068, 0.282988), color=(0.0, 1.0, 1.0, 1.0), scale=1.20 … (+39 suppressed)
-[root/@RigidBody3D@293#412434302756] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00 … (+12 suppressed)
-[root/@RigidBody3D@293#412434302756] 🐞 DEBUG 📐 initialized: dir=(0.33391, -0.000274, 0.942605), spread_dir=(0.341627, 0.02035, 0.939615), vel=(3.41627, 0.203495, 9.396153) … (+12 suppressed)
-[root/@RigidBody3D@293#412434302756] 🐞 DEBUG 📏 initial velocity applied: (3.41627, 0.203495, 9.396153) … (+12 suppressed)
-[WeaponMarkerLeft/RocketLauncher#74222405170] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(-17.44025, 0.995122, 18.20638), dir=(0.245982, 0.500314, -0.830168), color=(1.0, 0.8, 0.0, 1.0), scale=2.50 … (+14 suppressed)
-[root/@RigidBody3D@290#411410892536] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+10 suppressed)
-[Mount/@Node@5#43117446677] ℹ️ ⚡ released secondary attack with 3 stacked weapons in slot 2 … (+1 suppressed)
-[root/@RigidBody3D@276#407166256862] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+6 suppressed)
-[root/@RigidBody3D@276#407166256862] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+6 suppressed)
-[root/@RigidBody3D@293#412434302756] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+1 suppressed)
-[root/@RigidBody3D@276#407166256862] 🐞 DEBUG 💥 projectile destroyed … (+12 suppressed)
-[root/@RigidBody3D@282#410471368912] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0) … (+5 suppressed)
-[root/@RigidBody3D@282#410471368912] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3 … (+5 suppressed)
-[root/RocketProjectile#187703494455] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
-[root/RocketProjectile#187703494455] ℹ️ ⚔️ applying damage: 50.0 to StaticBody3D … (+3 suppressed)
-[root/RocketProjectile#187703494455] 🐞 DEBUG 💣 applying splash damage: radius=3.00, damage=50.0 … (+3 suppressed)
-[root/RocketProjectile#187703494455] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
-[Mount/@Node@5#43117446677] ℹ️ 🎯 attacking with 3 stacked weapons in slot 2 (will consume 3 ammo: 1 per weapon × 3 weapons) … (+2 suppressed)
-[Mount/@Node@5#43117446677] ℹ️ 🔋 consumed 3 ammo (1 per weapon × 3 weapons): 55 -> 52 … (+2 suppressed)
-[root/MineProjectile#411763214537] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
-[root/MineProjectile#411763214537] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D … (+3 suppressed)
-[root/MineProjectile#411763214537] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0 … (+3 suppressed)
-[root/MineProjectile#411763214537] 🐞 DEBUG 💥 projectile destroyed … (+3 suppressed)
-[root/@RigidBody3D@171#340359382731] 🐞 DEBUG ⏱️ projectile lifetime expired … (+19 suppressed)
-[Mount/@Node@4#43083892244] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon) … (+3 suppressed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING START] update_display_hud() called … (+2 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=134368724509) … (+2 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=134368724509, ammo=52/60 … (+2 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=134368724509 … (+2 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=52/60 … (+2 suppressed)
-[Mount/@Node@4#43083892244] ℹ️ ⏱️ [TIMING END] update_display_hud() took 3 ms total … (+2 suppressed)
-[root/Autocannon#286387078814] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=150/150 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=autocannon (id=285866985144) … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=autocannon, id=285866985144, ammo=300/300 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=autocannon, weapon_id=285866985144 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 1: weapon=autocannon, ammo=300/300 … (+1 suppressed)
-[WeaponMarkerLeft/Autocannon#285866985144] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(4.598278, 0.990168, -18.34642), dir=(-0.637257, 0.664401, 0.390481), color=(1.0, 0.5, 1.0, 1.0), scale=1.80 … (+66 suppressed)
-[root/@RigidBody3D@276#407166256862] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+10 suppressed)
-[WeaponMarkerLeft/Autocannon#285866985144] 🐞 DEBUG 🚀 projectile spawned: pos=(11.41454, 0.992887, -13.36769), dir=(0.333457, 0.052062, 0.941327) … (+5 suppressed)
-[WeaponMarkerLeft/@Node3D@92#286387078814] 🐞 DEBUG 🚀 projectile spawned: pos=(11.41463, 1.292887, -13.36763), dir=(0.333457, 0.052062, 0.941327) … (+5 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button pressed … (+1 suppressed)
-[Mount/@Node@3#43050337811] 🐞 DEBUG 🖱️ left mouse button released (click) - primary attack … (+1 suppressed)
-[WeaponMarkerLeft/Autocannon#285866985144] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+1 suppressed)
-[WeaponMarkerLeft/@Node3D@92#286387078814] 🐞 DEBUG 💥 fired 3 projectiles (no ammo consumed): type=autocannon … (+1 suppressed)
-[WeaponMarkerRight/@Node3D@87#237028509583] 🐞 DEBUG 🚀 projectile spawned: pos=(9.152471, 1.593432, -12.5662), dir=(0.33391, -0.000274, 0.942605) … (+1 suppressed)
-[WeaponMarkerRight/@Node3D@87#237028509583] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=429949716031) … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=429949716031, ammo=60/60 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=429949716031 … (+1 suppressed)
-[HUD/WeaponDisplayHUD#46674216550] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=60/60 … (+1 suppressed)
+[Arena/Mount#42144368124] ℹ️ 🎮 mount ready; is_player=true, freeze=false, sleeping=false
+[Arena/Mount#42144368124] 🐞 DEBUG 🔧 WeaponSlotManager initialized
+[Arena/Mount#42144368124] 🐞 DEBUG 🔧 WeaponPickupHandler initialized
+[Arena/Mount#42144368124] ℹ️ 📍 Marker validation: left=found, right=found
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔧 WeaponManager initialized (left_marker=WeaponMarkerLeft, right_marker=WeaponMarkerRight)
+[Components/WeaponInputHandler#42513466888] 🐞 DEBUG 🔧 WeaponInputHandler initialized
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 🔧 WeaponHUDManager initialized
+[Components/WeaponAttackCoordinator#42547021322] 🐞 DEBUG 🔧 WeaponAttackCoordinator initialized
+[Arena/Mount#42144368124] 🐞 DEBUG 🔌 Component signals connected
+[Arena/Mount#42144368124] 🐞 DEBUG 🔧 All components initialized
+[WeaponSpawners/WeaponSpawner1#42580575756] 🐞 DEBUG 🔧 validated weapon pool: 1 entries
+[WeaponSpawner1/WeaponPickup#43503322649] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher (level 1/1)
+[WeaponSpawner1/WeaponPickup#43503322649] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5
+[WeaponSpawners/WeaponSpawner1#42580575756] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
+[WeaponSpawners/WeaponSpawner1#42580575756] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[WeaponSpawners/WeaponSpawner1#42580575756] ℹ️ ✨ spawned pickup: type=rocket_launcher, level=1, pos=(8.0, 1.0, 8.0)
+[WeaponSpawners/WeaponSpawner1#42580575756] ℹ️ 🏭 weapon spawner ready: pool_size=1, respawn_delay=3.0s, pos=(8.0, 1.0, 8.0)
+[WeaponSpawner2/WeaponPickup#44291851807] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 1/2)
+[WeaponSpawner2/WeaponPickup#44291851807] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(-8.0, 1.0, 10.0), delay=0.5
+[WeaponSpawners/WeaponSpawner2#42597352973] ℹ️ ✨ spawned pickup: type=mine_layer, level=2, pos=(-8.0, 1.0, 10.0)
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG 🎲 randomly selected weapon from pool: mine_layer level 1 (index 1 of 3)
+[WeaponSpawner4/WeaponPickup#45365593659] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 1/3)
+[WeaponSpawner4/WeaponPickup#45365593659] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(-12.0, 1.0, -8.0), delay=0.5
+[WeaponSpawners/WeaponSpawner4#42630907407] ℹ️ ✨ spawned pickup: type=autocannon, level=3, pos=(-12.0, 1.0, -8.0)
+[WeaponSpawners/WeaponSpawner5#42647684624] 🐞 DEBUG 🎲 randomly selected weapon from pool: autocannon level 2 (index 3 of 4)
+[HUD/WeaponDisplayHUD#46841988719] ℹ️ 📺 weapon display HUD ready
+[HUD/WeaponReplacementHUD#47378859656] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[Components/WeaponHUDManager#42530244105] ℹ️ 📺 HUD created for player mount
+[WeaponSpawner1/WeaponPickup#43503322649] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2)
+[WeaponSpawner1/WeaponPickup#43503322649] 🐞 DEBUG ✅ pickup enabled after delay
+[WeaponSpawner5/WeaponPickup#46137345606] ℹ️ ✨ weapon picked up: type=autocannon, level=2, by=Mount
+[WeaponSpawners/WeaponSpawner5#42647684624] ℹ️ 📦 pickup collected: type=autocannon, level=2, starting respawn timer (3.0s)
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=autocannon, level=2
+[Arena/Mount#42144368124] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 No existing weapon type autocannon found
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 Found empty slot 1
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING] process_pickup took 16 ms
+[Arena/Mount#42144368124] ℹ️ 🔍 Decision result: 0 (can_attach=true, free_slot=0, upgrade_slots=[])
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING START] apply_decision: result=0, type=autocannon, level=2
+[Components/WeaponManager#42496689671] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=autocannon
+[root/Autocannon#72074921574] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=150/150
+[WeaponMarkerLeft/Autocannon#72074921574] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerLeft
+[Arena/Mount#42144368124] 🐞 DEBUG ➕ Added weapon to slot 1 stack (size=1)
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 1 using lambda
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING START] update_display_hud() called
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=autocannon (id=72074921574)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=autocannon, id=72074921574, ammo=150/150
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=autocannon, weapon_id=72074921574
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   reading ammo from weapon: current=150, max=150
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   cached ammo for slot 1: current=150, max=150
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 🎨 created weapon visual for slot 1: autocannon
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 1: weapon=autocannon, ammo=150/150
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING] Slot 1 update took 60 ms
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 🔌 connected weapon signals for slot 1 (weapon changed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ cleared slot 2
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING END] update_display_hud() took 102 ms total
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerLeft, ammo=150/150, slot=1
+[Components/WeaponManager#42496689671] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 1 with: autocannon
+[WeaponMarkerLeft/@Node3D@18#72712455721] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerLeft
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 150 -> 300 (+150)
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 150 -> 300 (+150)
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ UPGRADE COMPLETE: slot 1 now has 2 stacked weapons, total ammo=300/300
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
+[Components/WeaponManager#42496689671] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 1 using lambda
+[Components/WeaponManager#42496689671] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=300, max_ammo=300
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=1, ammo=300/300
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=1, ammo=300/300
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon stack attached: type=autocannon, level=2, marker=WeaponMarkerLeft
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING END] apply_decision took 272 ms total
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 330 ms total
+[Components/WeaponInputHandler#42513466888] 🐞 DEBUG 🖱️ left mouse button pressed
+[WeaponMarkerLeft/Autocannon#72074921574] ℹ️ ⚡ starting secondary attack charge: type=autocannon, ammo=300/300
+[Components/WeaponAttackCoordinator#42547021322] ℹ️ ⚡ started secondary attack charge for slot 1
+[Components/WeaponInputHandler#42513466888] 🐞 DEBUG 🖱️ left mouse button released (hold) - secondary attack
+[WeaponMarkerLeft/Autocannon#72074921574] ℹ️ 💥 releasing secondary attack: type=autocannon, charge_time=0.40, ammo_consumed=7, levels_charged=0, stack_count=2, base_count=15, scaled_count=22, level_power=1.00x, total_power=1.50x
+[root/AutocannonProjectile#84842383010] ℹ️ 🚀 projectile spawned: type=, speed=70.00, damage=15.0, gravity=0.30
+[root/AutocannonProjectile#84842383010] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/AutocannonProjectile#84842383010] 🐞 DEBUG 📐 initialized: dir=(0.384549, -0.460134, 0.800249), spread_dir=(0.383807, -0.457574, 0.802071), vel=(26.86651, -32.03018, 56.14498)
+[WeaponMarkerLeft/Autocannon#72074921574] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(3.78536, 0.999649, -20.61654), dir=(0.384549, -0.460134, 0.800249), color=(1.0, 0.5, 1.0, 1.0), scale=1.35
+[root/@RigidBody3D@20#85177927273] ℹ️ 🚀 projectile spawned: type=, speed=70.00, damage=15.0, gravity=0.30
+[root/@RigidBody3D@20#85177927273] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/@RigidBody3D@20#85177927273] 🐞 DEBUG 📐 initialized: dir=(0.410817, -0.421233, 0.808574), spread_dir=(0.408294, -0.421577, 0.809672), vel=(28.58059, -29.51039, 56.67704)
+[Components/WeaponAttackCoordinator#42547021322] ℹ️ ⚡ released secondary attack with 2 stacked weapons in slot 1
+[root/AutocannonProjectile#84842383010] 🐞 DEBUG 📏 initial velocity applied: (26.86651, -32.03018, 56.14498)
+[root/@RigidBody3D@20#85177927273] 🐞 DEBUG 📏 initial velocity applied: (28.58059, -29.51039, 56.67704)
+[root/@RigidBody3D@58#89690998542] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/@RigidBody3D@58#89690998542] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/@RigidBody3D@58#89690998542] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/@RigidBody3D@58#89690998542] 🐞 DEBUG 💥 projectile destroyed
+[root/AutocannonProjectile#84842383010] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0)
+[root/AutocannonProjectile#84842383010] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3
+[root/AutocannonProjectile#84842383010] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/AutocannonProjectile#84842383010] 🐞 DEBUG 💥 projectile destroyed
+[root/@RigidBody3D@20#85177927273] ℹ️ 💥 projectile hit: Obstacle3 (shape_index=0)
+[root/@RigidBody3D@20#85177927273] ℹ️ ⚔️ applying damage: 15.0 to Obstacle3
+[WeaponSpawner3/WeaponPickup#44895831596] ℹ️ ✨ weapon picked up: type=mine_layer, level=1, by=Mount
+[WeaponSpawners/WeaponSpawner3#42614130190] ℹ️ 📦 pickup collected: type=mine_layer, level=1, starting respawn timer (3.0s)
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=mine_layer, level=1
+[Arena/Mount#42144368124] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 No existing weapon type mine_layer found
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 Found empty slot 2
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING] process_pickup took 16 ms
+[Arena/Mount#42144368124] ℹ️ 🔍 Decision result: 3 (can_attach=true, free_slot=2, upgrade_slots=[])
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 📋 showing weapon replacement prompt: mine_layer
+[Components/WeaponHUDManager#42530244105] ℹ️ 📋 showing pickup choice prompt for: mine_layer (level 1)
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 77 ms total
+[WeaponSpawners/WeaponSpawner5#42647684624] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
+[WeaponSpawners/WeaponSpawner5#42647684624] 🐞 DEBUG 🎲 randomly selected weapon from pool: mine_layer level 3 (index 1 of 4)
+[WeaponSpawner5/WeaponPickup#112524789345] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 1/3) … (+2 suppressed)
+[WeaponSpawner5/WeaponPickup#112524789345] ℹ️ 🎁 weapon pickup spawned: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), pos=(0.0, 1.0, -12.0), delay=0.5 … (+1 suppressed)
+[WeaponSpawners/WeaponSpawner5#42647684624] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to … (+4 suppressed)
+[WeaponSpawners/WeaponSpawner5#42647684624] 🐞 DEBUG 🔌 connected pickup to mount: Mount … (+4 suppressed)
+[WeaponSpawners/WeaponSpawner5#42647684624] ℹ️ ✨ spawned pickup: type=mine_layer, level=3, pos=(0.0, 1.0, -12.0) … (+1 suppressed)
+[WeaponSpawner5/WeaponPickup#112524789345] 🐞 DEBUG 📦 physics collision created: size=(0.4, 1.0, 0.4), center=(0.0, 0.3, 0.2) … (+4 suppressed)
+[WeaponSpawner5/WeaponPickup#112524789345] 🐞 DEBUG ✅ pickup enabled after delay … (+4 suppressed)
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 🎯 USER SELECTED: [2] Replace weapon in slot 2
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 🔄 replacing weapon in slot 2 with mine_layer (level 1)
+[Arena/Mount#42144368124] ℹ️ 🔄 REPLACE_WEAPON: slot=2, type=mine_layer, level=1
+[Components/WeaponManager#42496689671] ℹ️ 🔄 REPLACE_WEAPON_START: slot=2, type=mine_layer, level=1
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING START] update_display_hud() called
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=autocannon (id=72074921574)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=autocannon, id=72074921574, ammo=293/300
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=autocannon, weapon_id=72074921574
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   reading ammo from weapon: current=293, max=300
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   cached ammo for slot 1: current=293, max=300
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 1: weapon=autocannon, ammo=293/300
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING] Slot 1 update took 54 ms … (+1 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ cleared slot 2
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING END] update_display_hud() took 97 ms total
+[Components/WeaponManager#42496689671] ℹ️ ➕ ATTACHING_NEW_WEAPON: slot=2, type=mine_layer, level=1
+[Components/WeaponManager#42496689671] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=mine_layer
+[root/MineLayer#119218898539] ℹ️ ⚔️ weapon attachment ready: type=mine_layer, ammo=20/20
+[WeaponMarkerRight/MineLayer#119218898539] ℹ️ 🔗 weapon attached to mount: type=mine_layer, marker=WeaponMarkerRight
+[Arena/Mount#42144368124] 🐞 DEBUG ➕ Added weapon to slot 2 stack (size=1) … (+1 suppressed)
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 2 using lambda
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=119218898539)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=119218898539, ammo=20/20
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=119218898539
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 🎨 created weapon visual for slot 2: mine_layer
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=20/20
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 🔌 connected weapon signals for slot 2 (weapon changed)
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon attached: type=mine_layer, color=(0.0, 0.8, 1.0, 1.0), marker=WeaponMarkerRight, ammo=20/20, slot=2
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon stack attached: type=mine_layer, level=1, marker=WeaponMarkerRight
+[Components/WeaponManager#42496689671] ℹ️ ✅ REPLACE_WEAPON_COMPLETE: slot=2
+[HUD/WeaponReplacementHUD#47378859656] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[Components/WeaponInputHandler#42513466888] 🐞 DEBUG 🖱️ right mouse button pressed
+[Components/WeaponInputHandler#42513466888] 🐞 DEBUG 🖱️ right mouse button released (click) - primary attack
+[Components/WeaponAttackCoordinator#42547021322] ℹ️ 🎯 attacking with 1 stacked weapons in slot 2 (will consume 1 ammo: 1 per weapon × 1 weapons)
+[Components/WeaponAttackCoordinator#42547021322] ℹ️ 🔋 consumed 1 ammo (1 per weapon × 1 weapons): 20 -> 19
+[root/MineProjectile#135828342429] ℹ️ 🚀 projectile spawned: type=, speed=10.00, damage=30.0, gravity=1.00
+[root/MineProjectile#135828342429] 🐞 DEBUG 📐 initialized: dir=(0.196353, -0.000322, 0.980533), spread_dir=(0.116903, -0.044911, 0.992127), vel=(1.169035, -0.449112, 9.921273)
+[WeaponMarkerRight/MineLayer#119218898539] 🐞 DEBUG 🚀 projectile spawned: pos=(10.20827, 0.99621, 2.698367), dir=(0.196353, -0.000322, 0.980533)
+[WeaponMarkerRight/MineLayer#119218898539] 🐞 DEBUG 💥 fired 1 projectiles (no ammo consumed): type=mine_layer
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=19/20 … (+7 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=19/20 … (+7 suppressed)
+[root/MineProjectile#135828342429] 🐞 DEBUG 📏 initial velocity applied: (1.169035, -0.449112, 9.921273)
+[root/MineProjectile#135828342429] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/MineProjectile#135828342429] ℹ️ ⚔️ applying damage: 30.0 to StaticBody3D
+[root/MineProjectile#135828342429] 🐞 DEBUG 💣 applying splash damage: radius=2.00, damage=30.0
+[root/MineProjectile#135828342429] 🐞 DEBUG 💥 projectile destroyed
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG 🎲 randomly selected weapon from pool: autocannon level 4 (index 0 of 3)
+[WeaponSpawner3/WeaponPickup#146263770723] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 1/4) … (+4 suppressed)
+[WeaponSpawner3/WeaponPickup#146263770723] ℹ️ 🎁 weapon pickup spawned: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), pos=(12.0, 1.0, -5.0), delay=0.5 … (+1 suppressed)
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[WeaponSpawners/WeaponSpawner3#42614130190] ℹ️ ✨ spawned pickup: type=autocannon, level=4, pos=(12.0, 1.0, -5.0) … (+1 suppressed)
+[WeaponSpawner3/WeaponPickup#146263770723] 🐞 DEBUG 📦 physics collision created: size=(1.1, 1.06, 0.16), center=(-0.0, 0.45, 0.2)
+[WeaponSpawner3/WeaponPickup#146263770723] 🐞 DEBUG ✅ pickup enabled after delay
+[WeaponSpawner1/WeaponPickup#43503322649] ℹ️ ✨ weapon picked up: type=rocket_launcher, level=1, by=Mount
+[WeaponSpawners/WeaponSpawner1#42580575756] ℹ️ 📦 pickup collected: type=rocket_launcher, level=1, starting respawn timer (3.0s)
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=rocket_launcher, level=1
+[Arena/Mount#42144368124] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 No existing weapon type rocket_launcher found
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 No empty slots found
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING] process_pickup took 17 ms
+[Arena/Mount#42144368124] ℹ️ 🔍 Decision result: 3 (can_attach=false, free_slot=0, upgrade_slots=[])
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 📋 showing weapon replacement prompt: rocket_launcher
+[Components/WeaponHUDManager#42530244105] ℹ️ 📋 showing pickup choice prompt for: rocket_launcher (level 1)
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 64 ms total
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 🎯 USER SELECTED: [1] Replace weapon in slot 1
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 🔄 replacing weapon in slot 1 with rocket_launcher (level 1)
+[Arena/Mount#42144368124] ℹ️ 🔄 REPLACE_WEAPON: slot=1, type=rocket_launcher, level=1
+[Components/WeaponManager#42496689671] ℹ️ 🔄 REPLACE_WEAPON_START: slot=1, type=rocket_launcher, level=1
+[Components/WeaponManager#42496689671] ℹ️ 🗑️ REMOVING_STACK: slot=1, stack_size=2
+[Autocannon#72074921574] ℹ️ 🔓 weapon detached from mount: type=autocannon
+[@Node3D@18#72712455721] ℹ️ 🔓 weapon detached from mount: type=autocannon
+[Components/WeaponManager#42496689671] 🐞 DEBUG ✅ stack cleared for slot 1
+[Arena/Mount#42144368124] 🐞 DEBUG 🗑️ Cleared slot 1
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING START] update_display_hud() called … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=null
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ cleared slot 1
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING] Slot 1 update took 18 ms … (+5 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=119218898539) … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=119218898539, ammo=19/20 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=119218898539 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   reading ammo from weapon: current=19, max=20 … (+4 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   cached ammo for slot 2: current=19, max=20 … (+4 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=19/20 … (+1 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon) … (+3 suppressed)
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING END] update_display_hud() took 104 ms total … (+2 suppressed)
+[Components/WeaponManager#42496689671] ℹ️ ➕ ATTACHING_NEW_WEAPON: slot=1, type=rocket_launcher, level=1
+[Components/WeaponManager#42496689671] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=rocket_launcher
+[root/RocketLauncher#177133848361] ℹ️ ⚔️ weapon attachment ready: type=rocket_launcher, ammo=30/30
+[WeaponMarkerLeft/RocketLauncher#177133848361] ℹ️ 🔗 weapon attached to mount: type=rocket_launcher, marker=WeaponMarkerLeft
+[Arena/Mount#42144368124] 🐞 DEBUG ➕ Added weapon to slot 1 stack (size=1)
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 1 using lambda
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=177133848361)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=177133848361, ammo=30/30
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=177133848361
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 🎨 created weapon visual for slot 1: rocket_launcher
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=30/30
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 🔌 connected weapon signals for slot 1 (weapon changed)
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon attached: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), marker=WeaponMarkerLeft, ammo=30/30, slot=1
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon stack attached: type=rocket_launcher, level=1, marker=WeaponMarkerLeft
+[Components/WeaponManager#42496689671] ℹ️ ✅ REPLACE_WEAPON_COMPLETE: slot=1
+[HUD/WeaponReplacementHUD#47378859656] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[WeaponSpawners/WeaponSpawner1#42580575756] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
+[WeaponSpawner1/WeaponPickup#195202909721] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher (level 1/1)
+[WeaponSpawner1/WeaponPickup#195202909721] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(8.0, 1.0, 8.0), delay=0.5
+[WeaponSpawners/WeaponSpawner1#42580575756] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
+[WeaponSpawners/WeaponSpawner1#42580575756] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[WeaponSpawners/WeaponSpawner1#42580575756] ℹ️ ✨ spawned pickup: type=rocket_launcher, level=1, pos=(8.0, 1.0, 8.0)
+[WeaponSpawner1/WeaponPickup#195202909721] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.24, 0.24), center=(0.0, 0.0, 0.2)
+[WeaponSpawner3/WeaponPickup#146263770723] ℹ️ ✨ weapon picked up: type=autocannon, level=4, by=Mount
+[WeaponSpawners/WeaponSpawner3#42614130190] ℹ️ 📦 pickup collected: type=autocannon, level=4, starting respawn timer (3.0s)
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING START] _on_weapon_picked_up: pickup=WeaponPickup, mount=Mount, weapon_type=autocannon, level=4
+[Arena/Mount#42144368124] ℹ️ ✅ pickup confirmed for this mount, processing...
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 No existing weapon type autocannon found
+[Arena/Mount#42144368124] 🐞 DEBUG 🔍 No empty slots found
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING] process_pickup took 18 ms
+[Arena/Mount#42144368124] ℹ️ 🔍 Decision result: 3 (can_attach=false, free_slot=0, upgrade_slots=[])
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 📋 showing weapon replacement prompt: autocannon
+[Components/WeaponHUDManager#42530244105] ℹ️ 📋 showing pickup choice prompt for: autocannon (level 4)
+[Arena/Mount#42144368124] ℹ️ ⏱️ [TIMING END] _on_weapon_picked_up took 68 ms total
+[WeaponSpawner1/WeaponPickup#195202909721] 🐞 DEBUG ✅ pickup enabled after delay
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 🎯 USER SELECTED: [2] Replace weapon in slot 2
+[HUD/WeaponReplacementHUD#47378859656] ℹ️ 🔄 replacing weapon in slot 2 with autocannon (level 4)
+[Arena/Mount#42144368124] ℹ️ 🔄 REPLACE_WEAPON: slot=2, type=autocannon, level=4
+[Components/WeaponManager#42496689671] ℹ️ 🔄 REPLACE_WEAPON_START: slot=2, type=autocannon, level=4
+[Components/WeaponManager#42496689671] ℹ️ 🗑️ REMOVING_STACK: slot=2, stack_size=1
+[MineLayer#119218898539] ℹ️ 🔓 weapon detached from mount: type=mine_layer
+[Components/WeaponManager#42496689671] 🐞 DEBUG ✅ stack cleared for slot 2
+[Arena/Mount#42144368124] 🐞 DEBUG 🗑️ Cleared slot 2
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING START] update_display_hud() called … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=177133848361) … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=177133848361, ammo=30/30 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=177133848361 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   reading ammo from weapon: current=30, max=30 … (+4 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   cached ammo for slot 1: current=30, max=30 … (+4 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=30/30 … (+1 suppressed)
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING] Slot 1 update took 62 ms … (+5 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon) … (+3 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=null
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ cleared slot 2
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING END] update_display_hud() took 104 ms total … (+2 suppressed)
+[Components/WeaponManager#42496689671] ℹ️ ➕ ATTACHING_NEW_WEAPON: slot=2, type=autocannon, level=4
+[Components/WeaponManager#42496689671] ℹ️ ⏱️ [TIMING START] _attach_weapon: type=autocannon
+[root/Autocannon#216459642510] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=150/150 … (+1 suppressed)
+[WeaponMarkerRight/Autocannon#216459642510] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerRight
+[Arena/Mount#42144368124] 🐞 DEBUG ➕ Added weapon to slot 2 stack (size=1)
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔌 connected ammo_changed to check_upgrade_drops for slot 2 using lambda
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=autocannon (id=216459642510) … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=autocannon, id=216459642510, ammo=150/150 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=autocannon, weapon_id=216459642510 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 🎨 created weapon visual for slot 2: autocannon
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 2: weapon=autocannon, ammo=150/150 … (+2 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 🔌 connected weapon signals for slot 2 (weapon changed)
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon attached: type=autocannon, color=(1.0, 0.0, 0.5, 1.0), marker=WeaponMarkerRight, ammo=150/150, slot=2
+[Components/WeaponManager#42496689671] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 2 with: autocannon
+[WeaponMarkerRight/@Node3D@76#216979736309] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerRight
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 150 -> 300 (+150)
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 150 -> 300 (+150)
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ UPGRADE COMPLETE: slot 2 now has 2 stacked weapons, total ammo=300/300
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false
+[Components/WeaponManager#42496689671] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 2 using lambda
+[Components/WeaponManager#42496689671] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=300, max_ammo=300
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=300/300
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=300/300
+[Components/WeaponManager#42496689671] ℹ️ ⚔️ weapon stack attached: type=autocannon, level=4, marker=WeaponMarkerRight
+[Components/WeaponManager#42496689671] ℹ️ ✅ REPLACE_WEAPON_COMPLETE: slot=2
+[HUD/WeaponReplacementHUD#47378859656] 🐞 DEBUG 📋 hiding weapon replacement prompt
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG ⏰ respawn timer expired, spawning new pickup
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG 🎲 randomly selected weapon from pool: rocket_launcher level 2 (index 2 of 3)
+[WeaponSpawner3/WeaponPickup#232565769785] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher (level 1/2)
+[WeaponSpawner3/WeaponPickup#232565769785] ℹ️ 🎁 weapon pickup spawned: type=rocket_launcher, color=(1.0, 0.5, 0.0, 1.0), pos=(12.0, 1.0, -5.0), delay=0.5
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG 🔍 found 1 mount controllers to connect pickup to
+[WeaponSpawners/WeaponSpawner3#42614130190] 🐞 DEBUG 🔌 connected pickup to mount: Mount
+[WeaponSpawners/WeaponSpawner3#42614130190] ℹ️ ✨ spawned pickup: type=rocket_launcher, level=2, pos=(12.0, 1.0, -5.0)
+[WeaponSpawner3/WeaponPickup#232565769785] 🐞 DEBUG 📦 physics collision created: size=(1.0, 0.54, 0.24), center=(0.0, 0.15, 0.2)
+[Components/WeaponInputHandler#42513466888] 🐞 DEBUG 🖱️ right mouse button pressed
+[WeaponMarkerRight/Autocannon#216459642510] ℹ️ ⚡ starting secondary attack charge: type=autocannon, ammo=600/600
+[Components/WeaponAttackCoordinator#42547021322] ℹ️ ⚡ started secondary attack charge for slot 2
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=599/600 … (+2 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=599/600 … (+2 suppressed)
+[WeaponSpawner3/WeaponPickup#232565769785] 🐞 DEBUG ✅ pickup enabled after delay
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=578/600 … (+20 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=578/600 … (+20 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=557/600 … (+20 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=557/600 … (+20 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=537/600 … (+19 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=537/600 … (+19 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=517/600 … (+19 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=517/600 … (+19 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=497/600 … (+19 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=497/600 … (+19 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=477/600 … (+19 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=477/600 … (+19 suppressed)
+[Components/WeaponInputHandler#42513466888] 🐞 DEBUG 🖱️ right mouse button released (hold) - secondary attack
+[WeaponMarkerRight/Autocannon#216459642510] ℹ️ 💥 releasing secondary attack: type=autocannon, charge_time=6.84, ammo_consumed=136, levels_charged=4, stack_count=4, base_count=15, scaled_count=75, level_power=5.00x, total_power=12.50x
+[root/AutocannonProjectile#314757351053] ℹ️ 🚀 projectile spawned: type=, speed=100.00, damage=15.0, gravity=0.30
+[root/AutocannonProjectile#314757351053] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds
+[root/AutocannonProjectile#314757351053] 🐞 DEBUG 📐 initialized: dir=(0.651718, -0.664455, -0.365737), spread_dir=(0.653856, -0.644497, -0.396353), vel=(65.38561, -64.4497, -39.63531)
+[WeaponMarkerRight/Autocannon#216459642510] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(-22.21304, 0.991022, 8.299979), dir=(0.651718, -0.664455, -0.365737), color=(1.0, 0.5, 1.0, 1.0), scale=1.80
+[root/@RigidBody3D@82#315092895523] ℹ️ 🚀 projectile spawned: type=, speed=100.00, damage=15.0, gravity=0.30 … (+20 suppressed)
+[root/@RigidBody3D@82#315092895523] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+20 suppressed)
+[root/@RigidBody3D@82#315092895523] 🐞 DEBUG 📐 initialized: dir=(0.653173, -0.652405, -0.384359), spread_dir=(0.636333, -0.676342, -0.371001), vel=(63.63333, -67.63419, -37.10011) … (+20 suppressed)
+[Components/WeaponAttackCoordinator#42547021322] ℹ️ ⚡ released secondary attack with 4 stacked weapons in slot 2
+[root/AutocannonProjectile#314757351053] 🐞 DEBUG 📏 initial velocity applied: (65.38561, -64.4497, -39.63531)
+[root/@RigidBody3D@82#315092895523] 🐞 DEBUG 📏 initial velocity applied: (63.63333, -67.63419, -37.10011) … (+20 suppressed)
+[root/@RigidBody3D@226#332054661183] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+3 suppressed)
+[root/@RigidBody3D@226#332054661183] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+3 suppressed)
+[root/@RigidBody3D@226#332054661183] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+20 suppressed)
+[root/@RigidBody3D@226#332054661183] 🐞 DEBUG 💥 projectile destroyed … (+20 suppressed)
+[root/@RigidBody3D@204#329470969864] ℹ️ 💥 projectile hit: Obstacle2 (shape_index=0) … (+16 suppressed)
+[root/@RigidBody3D@204#329470969864] ℹ️ ⚔️ applying damage: 15.0 to Obstacle2 … (+16 suppressed)
+[root/@RigidBody3D@116#319136204557] ℹ️ 💥 projectile hit: WeaponPickup (shape_index=0)
+[root/@RigidBody3D@116#319136204557] ℹ️ ⚔️ applying damage: 15.0 to WeaponPickup
+[root/@RigidBody3D@160#324303587226] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+11 suppressed)
+[root/@RigidBody3D@160#324303587226] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+11 suppressed)
+[root/@RigidBody3D@118#319371085617] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+55 suppressed)
+[root/@RigidBody3D@88#315847870175] 🐞 DEBUG 💥 projectile destroyed … (+56 suppressed)
+[root/AutocannonProjectile#314757351053] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0)
+[root/AutocannonProjectile#314757351053] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D
+[root/AutocannonProjectile#314757351053] 🐞 DEBUG 🎯 direct hit: 15.0 damage
+[root/AutocannonProjectile#314757351053] 🐞 DEBUG 💥 projectile destroyed
+[WeaponSpawners/WeaponSpawner5#42647684624] 🐞 DEBUG 🔧 validated weapon pool: 4 entries … (+4 suppressed)
+[WeaponSpawner5/WeaponPickup#112524789345] 🐞 DEBUG 🎨 weapon visual loaded: mine_layer (level 3/3) … (+2 suppressed)
+[WeaponSpawners/WeaponSpawner5#42647684624] ℹ️ 🏭 weapon spawner ready: pool_size=4, respawn_delay=3.0s, pos=(0.0, 1.0, -12.0) … (+4 suppressed)
+[WeaponSpawner3/WeaponPickup#146263770723] 🐞 DEBUG 🎨 weapon visual loaded: autocannon (level 4/4) … (+3 suppressed)
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING] Slot 2 update took 1 ms … (+5 suppressed)
+[root/Autocannon#217600493304] ℹ️ ⚔️ weapon attachment ready: type=autocannon, ammo=150/150 … (+3 suppressed)
+[Arena/Mount#42144368124] 🐞 DEBUG ➕ Added weapon to slot 2 stack (size=4) … (+3 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📊 updated ammo display: slot=2, ammo=464/600 … (+13 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG 📊 ammo updated: slot=2, ammo=464/600 … (+13 suppressed)
+[WeaponMarkerLeft/Autocannon#72074921574] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(3.78536, 0.999649, -20.61654), dir=(0.3845, 0.460311, 0.800171), color=(1.0, 0.5, 1.0, 1.0), scale=1.35 … (+21 suppressed)
+[root/@RigidBody3D@228#332289542212] ℹ️ 🚀 projectile spawned: type=, speed=100.00, damage=15.0, gravity=0.30 … (+73 suppressed)
+[root/@RigidBody3D@228#332289542212] 🐞 DEBUG ⏱️ lifetime timer set: 3.00 seconds … (+73 suppressed)
+[root/@RigidBody3D@228#332289542212] 🐞 DEBUG 📐 initialized: dir=(0.651708, 0.664471, -0.365725), spread_dir=(0.657701, 0.658342, -0.366081), vel=(65.77013, 65.83418, -36.60809) … (+73 suppressed)
+[root/@RigidBody3D@228#332289542212] 🐞 DEBUG 📏 initial velocity applied: (65.77013, 65.83418, -36.60809) … (+73 suppressed)
+[root/@RigidBody3D@102#317492037308] ℹ️ 💥 projectile hit: StaticBody3D (shape_index=0) … (+46 suppressed)
+[root/@RigidBody3D@102#317492037308] ℹ️ ⚔️ applying damage: 15.0 to StaticBody3D … (+46 suppressed)
+[root/@RigidBody3D@102#317492037308] 🐞 DEBUG 🎯 direct hit: 15.0 damage … (+11 suppressed)
+[root/@RigidBody3D@102#317492037308] 🐞 DEBUG 💥 projectile destroyed … (+10 suppressed)
+[root/@RigidBody3D@146#322659420023] ℹ️ 💥 projectile hit: Obstacle2 (shape_index=0) … (+4 suppressed)
+[root/@RigidBody3D@146#322659420023] ℹ️ ⚔️ applying damage: 15.0 to Obstacle2 … (+4 suppressed)
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING START] update_display_hud() called … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=autocannon (id=216459642510) … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=autocannon, id=216459642510, ammo=600/600 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=autocannon, weapon_id=216459642510 … (+1 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   reading ammo from weapon: current=600, max=600 … (+4 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   cached ammo for slot 2: current=600, max=600 … (+4 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 2: weapon=autocannon, ammo=600/600 … (+1 suppressed)
+[Components/WeaponHUDManager#42530244105] 🐞 DEBUG ⏭️ skipped signal reconnect (same weapon) … (+3 suppressed)
+[Components/WeaponHUDManager#42530244105] ℹ️ ⏱️ [TIMING END] update_display_hud() took 2 ms total … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=2, weapon=mine_layer (id=119218898539) … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=mine_layer, id=119218898539, ammo=19/20 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=2, weapon_type=mine_layer, weapon_id=119218898539 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 2: weapon=mine_layer, ammo=19/20 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 update_weapon_slot CALLED: slot=1, weapon=rocket_launcher (id=177133848361) … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺   weapon details: type=rocket_launcher, id=177133848361, ammo=30/30 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG 📺 _update_slot_display: slot=1, weapon_type=rocket_launcher, weapon_id=177133848361 … (+2 suppressed)
+[HUD/WeaponDisplayHUD#46841988719] 🐞 DEBUG ✅ updated slot 1: weapon=rocket_launcher, ammo=30/30 … (+2 suppressed)
+[Components/WeaponManager#42496689671] ℹ️ ⏱️ [TIMING START] UPGRADING weapon in slot 2 with: autocannon … (+2 suppressed)
+[WeaponMarkerRight/@Node3D@78#217600493304] ℹ️ 🔗 weapon attached to mount: type=autocannon, marker=WeaponMarkerRight … (+2 suppressed)
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ MERGING AMMO: base_weapon.max_ammo 450 -> 600 (+150) … (+2 suppressed)
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ MERGING AMMO: base_weapon.current_ammo 450 -> 600 (+150) … (+2 suppressed)
+[Components/WeaponManager#42496689671] ℹ️ ⬆️ UPGRADE COMPLETE: slot 2 now has 4 stacked weapons, total ammo=600/600 … (+2 suppressed)
+[Components/WeaponManager#42496689671] 🐞 DEBUG 🔌 ammo_changed signal connected to check_upgrade_drops: false … (+2 suppressed)
+[Components/WeaponManager#42496689671] ℹ️ 🔌 connected ammo_changed signal to check_upgrade_drops for slot 2 using lambda … (+2 suppressed)
+[Components/WeaponManager#42496689671] 🐞 DEBUG 📡 emitting ammo_changed after upgrade: current_ammo=600, max_ammo=600 … (+2 suppressed)
+[WeaponSpawner3/WeaponPickup#232565769785] 🐞 DEBUG 🎨 weapon visual loaded: rocket_launcher (level 2/2) … (+1 suppressed)
+[WeaponMarkerRight/Autocannon#216459642510] 🐞 DEBUG ⚡ secondary projectile spawned: pos=(-22.21304, 0.991022, 8.299979), dir=(0.651708, 0.664471, -0.365725), color=(1.0, 0.5, 1.0, 1.0), scale=1.80 … (+74 suppressed)
+[root/@RigidBody3D@124#320075728704] ℹ️ 💥 projectile hit: WeaponPickup (shape_index=0) … (+3 suppressed)
+[root/@RigidBody3D@124#320075728704] ℹ️ ⚔️ applying damage: 15.0 to WeaponPickup … (+3 suppressed)

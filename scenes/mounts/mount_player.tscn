@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6m5plcc1j568"]
+[gd_scene load_steps=10 format=3 uid="uid://b6m5plcc1j568"]
 
 [ext_resource type="Script" uid="uid://cflmkpa2qlhgi" path="res://scripts/controllers/mount_controller.gd" id="1_b3j5m"]
+[ext_resource type="Script" uid="uid://btoa1kcv336eh" path="res://scripts/controllers/components/weapon_manager.gd" id="2_t708q"]
+[ext_resource type="Script" uid="uid://bfqx8i8xlyxts" path="res://scripts/controllers/components/weapon_input_handler.gd" id="3_jiq8h"]
+[ext_resource type="Script" uid="uid://jk8cht5ni1v0" path="res://scripts/controllers/components/weapon_hud_manager.gd" id="4_f0x2i"]
+[ext_resource type="Script" uid="uid://cti3i5xuedj0j" path="res://scripts/controllers/components/weapon_attack_coordinator.gd" id="5_d6twq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iph8f"]
 rough = true
@@ -42,8 +46,24 @@ shape = SubResource("BoxShape3D_body")
 mesh = SubResource("BoxMesh_body")
 surface_material_override/0 = SubResource("Mat_body")
 
-[node name="WeaponMarkerLeft" type="Marker3D" parent="."]
+[node name="WeaponMarkers" type="Node3D" parent="."]
+
+[node name="WeaponMarkerLeft" type="Marker3D" parent="WeaponMarkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, 0)
 
-[node name="WeaponMarkerRight" type="Marker3D" parent="."]
+[node name="WeaponMarkerRight" type="Marker3D" parent="WeaponMarkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, 0)
+
+[node name="Components" type="Node" parent="."]
+
+[node name="WeaponManager" type="Node" parent="Components"]
+script = ExtResource("2_t708q")
+
+[node name="WeaponInputHandler" type="Node" parent="Components"]
+script = ExtResource("3_jiq8h")
+
+[node name="WeaponHUDManager" type="Node" parent="Components"]
+script = ExtResource("4_f0x2i")
+
+[node name="WeaponAttackCoordinator" type="Node" parent="Components"]
+script = ExtResource("5_d6twq")

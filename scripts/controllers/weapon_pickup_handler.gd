@@ -139,10 +139,13 @@ func process_pickup(weapon_type: String, weapon_level: int, _pickup_color: Color
 				decision.can_attach_to_free = true
 				decision.free_slot = empty_slot.slot_id
 				decision.can_replace = true  # Allow replacing weapons in occupied slots
-				# Also mark all slots with weapons as replaceable
+				# Only mark slots with matching weapon type as upgradeable, others are replaceable
 				for slot_data in _slot_manager.get_all_slots():
 					if not slot_data.is_empty() and slot_data.slot_id != 0:
-						decision.upgrade_slots.append(slot_data.slot_id)
+						if slot_data.has_weapon_type(weapon_type):
+							# Same weapon type - can upgrade
+							decision.upgrade_slots.append(slot_data.slot_id)
+						# Different weapon type - can only replace (handled by can_replace flag)
 			else:
 				# Both slots are empty - auto-attach is fine for first weapon
 				decision.result = PickupResult.ATTACHED_TO_EMPTY_SLOT
@@ -153,10 +156,13 @@ func process_pickup(weapon_type: String, weapon_level: int, _pickup_color: Color
 	if _slot_manager.all_slots_full():
 		decision.can_replace = true
 		
-		# Mark all slots as replaceable
+		# Only mark slots with matching weapon type as upgradeable, others are replaceable
 		for slot_data in _slot_manager.get_all_slots():
 			if slot_data.slot_id != 0:  # Valid slot
-				decision.upgrade_slots.append(slot_data.slot_id)
+				if slot_data.has_weapon_type(weapon_type):
+					# Same weapon type - can upgrade
+					decision.upgrade_slots.append(slot_data.slot_id)
+				# Different weapon type - can only replace (handled by can_replace flag)
 		
 		# For non-player mounts, auto-replace left slot
 		if not _mount_controller.is_player:

@@ -26,16 +26,18 @@ const WeaponAttackCoordinatorClass = preload("res://scripts/controllers/componen
 @onready var _logger = _services.logger() if _services != null else get_node_or_null("/root/LoggerInstance")
 @onready var _camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
-@onready var _weapon_marker_left: Marker3D = $WeaponMarkerLeft
-@onready var _weapon_marker_right: Marker3D = $WeaponMarkerRight
+@onready var _weapon_marker_left: Marker3D = $WeaponMarkers/WeaponMarkerLeft
+@onready var _weapon_marker_right: Marker3D = $WeaponMarkers/WeaponMarkerRight
 
-# Component managers
+# Component nodes (visible in editor scene tree, organized under Components group)
+@onready var _weapon_manager: WeaponManagerClass = $Components/WeaponManager
+@onready var _input_handler: WeaponInputHandlerClass = $Components/WeaponInputHandler
+@onready var _hud_manager: WeaponHUDManagerClass = $Components/WeaponHUDManager
+@onready var _attack_coordinator: WeaponAttackCoordinatorClass = $Components/WeaponAttackCoordinator
+
+# Helper classes (created programmatically)
 var _slot_manager: WeaponSlotManagerClass = null
 var _pickup_handler: WeaponPickupHandlerClass = null
-var _weapon_manager: WeaponManagerClass = null
-var _input_handler: WeaponInputHandlerClass = null
-var _hud_manager: WeaponHUDManagerClass = null
-var _attack_coordinator: WeaponAttackCoordinatorClass = null
 
 # Pending weapon data for pickup prompts
 var _pending_weapon_type: String = ""
@@ -77,33 +79,80 @@ func _ready() -> void:
 		call_deferred("_create_hud")
 
 func _initialize_components() -> void:
-	# Initialize slot manager
+	# Initialize slot manager (helper class, not a node)
 	_slot_manager = WeaponSlotManagerClass.new(self, _weapon_marker_left, _weapon_marker_right, _logger)
 	
-	# Initialize pickup handler
+	# Initialize pickup handler (helper class, not a node)
 	_pickup_handler = WeaponPickupHandlerClass.new(self, _slot_manager, _logger)
 	
-	# Create and initialize component nodes
-	_weapon_manager = WeaponManagerClass.new()
-	add_child(_weapon_manager)
-	_weapon_manager.initialize(self, _slot_manager, _logger)
+	# Ensure Components group exists for organization
+	var components_group: Node = get_node_or_null("Components")
+	if components_group == null:
+		components_group = Node.new()
+		components_group.name = "Components"
+		add_child(components_group)
+		if _logger:
+			_logger.debug("weapon", self, "📁 Created Components group node")
 	
-	_input_handler = WeaponInputHandlerClass.new()
-	add_child(_input_handler)
+	# Create component nodes if they don't exist in the scene (fallback for backwards compatibility)
+	if _weapon_manager == null:
+		_weapon_manager = WeaponManagerClass.new()
+		_weapon_manager.name = "WeaponManager"
+		components_group.add_child(_weapon_manager)
+		if _logger:
+			_logger.warn("weapon", self, "⚠️ WeaponManager not found in scene, created programmatically")
+	
+	if _input_handler == null:
+		_input_handler = WeaponInputHandlerClass.new()
+		_input_handler.name = "WeaponInputHandler"
+		components_group.add_child(_input_handler)
+		if _logger:
+			_logger.warn("weapon", self, "⚠️ WeaponInputHandler not found in scene, created programmatically")
+	
+	if _hud_manager == null:
+		_hud_manager = WeaponHUDManagerClass.new()
+		_hud_manager.name = "WeaponHUDManager"
+		components_group.add_child(_hud_manager)
+		if _logger:
+			_logger.warn("weapon", self, "⚠️ WeaponHUDManager not found in scene, created programmatically")
+	
+	if _attack_coordinator == null:
+		_attack_coordinator = WeaponAttackCoordinatorClass.new()
+		_attack_coordinator.name = "WeaponAttackCoordinator"
+		components_group.add_child(_attack_coordinator)
+		if _logger:
+			_logger.warn("weapon", self, "⚠️ WeaponAttackCoordinator not found in scene, created programmatically")
+	
+	# Initialize component nodes (they may already exist in the scene)
+	# Verify markers are available before passing to WeaponManager
+	if _weapon_marker_left == null:
+		if _logger:
+			_logger.error("weapon", self, "❌ WeaponMarkerLeft is null! Checking paths...")
+		_weapon_marker_left = get_node_or_null("WeaponMarkers/WeaponMarkerLeft")
+		if _weapon_marker_left == null:
+			_weapon_marker_left = get_node_or_null("WeaponMarkerLeft")
+	
+	if _weapon_marker_right == null:
+		if _logger:
+			_logger.error("weapon", self, "❌ WeaponMarkerRight is null! Checking paths...")
+		_weapon_marker_right = get_node_or_null("WeaponMarkers/WeaponMarkerRight")
+		if _weapon_marker_right == null:
+			_weapon_marker_right = get_node_or_null("WeaponMarkerRight")
+	
+	if _logger:
+		_logger.info("weapon", self, "📍 Marker validation: left=%s, right=%s" % ["found" if _weapon_marker_left != null else "NULL", "found" if _weapon_marker_right != null else "NULL"])
+	
+	# Pass marker references directly (they should be set via @onready)
+	_weapon_manager.initialize(self, _slot_manager, _logger, _weapon_marker_left, _weapon_marker_right)
 	_input_handler.initialize(self, _logger)
-	
-	_hud_manager = WeaponHUDManagerClass.new()
-	add_child(_hud_manager)
 	_hud_manager.initialize(self, _logger)
-	
-	_attack_coordinator = WeaponAttackCoordinatorClass.new()
-	add_child(_attack_coordinator)
 	_attack_coordinator.initialize(self, _weapon_manager, _logger)
 	
 	# Connect component signals
 	_connect_component_signals()
 	
-	_logger.debug("weapon", self, "🔧 All components initialized")
+	if _logger:
+		_logger.debug("weapon", self, "🔧 All components initialized")
 
 func _connect_component_signals() -> void:
 	# WeaponManager signals
@@ -316,6 +365,10 @@ func _on_secondary_attack_updated(slot: int, delta: float) -> void:
 
 func _on_secondary_attack_released(slot: int) -> void:
 	_attack_coordinator.release_secondary_attack(slot)
+
+## Handle charge level update from weapon (delegates to attack coordinator)
+func _update_secondary_charge_level(weapon: WeaponAttachment, charge_level: int) -> void:
+	_attack_coordinator.update_secondary_charge_level(weapon, charge_level)
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Apply mount movement controls using real forces/torques

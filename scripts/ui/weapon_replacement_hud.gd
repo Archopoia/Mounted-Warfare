@@ -157,6 +157,12 @@ func _upgrade_weapon_slot(slot: int) -> void:
 	elif slot == 2:
 		weapon = mount_controller._slot_manager.get_weapon_at_slot(2)
 	
+	# CRITICAL: Check if weapon types match - if not, replace instead of upgrade
+	if weapon != null and weapon.weapon_type != pending_weapon_type:
+		_logger.info("ui", self, "🔄 weapon type mismatch: slot %d has %s, pickup is %s - replacing instead of upgrading" % [slot, weapon.weapon_type, pending_weapon_type])
+		_replace_weapon_slot(slot)
+		return
+	
 	var needs_refill: bool = false
 	var missing_ammo: int = 0
 	if weapon != null:
