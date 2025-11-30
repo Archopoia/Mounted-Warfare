@@ -24,6 +24,7 @@ var _weapon_hud: WeaponReplacementHUD = null
 var _weapon_display_hud: WeaponDisplayHUD = null
 var _pending_weapon_type: String = ""
 var _pending_weapon_color: Color = Color.WHITE
+var _pending_weapon_level: int = 1
 # Track stacked weapons per slot: {slot: [WeaponAttachment, ...]}
 var _stacked_weapons: Dictionary = {}  # {1: [weapon1, weapon2, ...], 2: [weapon1, weapon2, ...]}
 # Track secondary attack state
@@ -236,13 +237,14 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 		if is_player and _weapon_hud != null:
 			_pending_weapon_type = weapon_type
 			_pending_weapon_color = pickup.pickup_color
+			_pending_weapon_level = weapon_level
 			_weapon_hud.show_replacement_prompt(weapon_type, pickup.pickup_color, left_weapon.weapon_type, right_weapon.weapon_type)
-			_logger.info("weapon", self, "📋 showing replacement prompt for: %s" % weapon_type)
+			_logger.info("weapon", self, "📋 showing replacement prompt for: %s (level %d)" % [weapon_type, weapon_level])
 			return
 		else:
 			# For non-player mounts, replace the left weapon automatically
-			_logger.info("weapon", self, "🤖 auto-replacing left weapon with: %s" % weapon_type)
-			replace_weapon_in_slot(1, weapon_type, pickup.pickup_color)
+			_logger.info("weapon", self, "🤖 auto-replacing left weapon with: %s (level %d)" % [weapon_type, weapon_level])
+			replace_weapon_in_slot(1, weapon_type, pickup.pickup_color, weapon_level)
 			return
 	
 	# Find an available weapon marker
@@ -425,8 +427,11 @@ func _get_weapon_at_marker(marker: Marker3D) -> WeaponAttachment:
 	_logger.debug("weapon", self, "🔍 _get_weapon_at_marker: no weapon found")
 	return null
 
-func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color) -> void:
-	_logger.info("weapon", self, "🔄 REPLACE_WEAPON_START: slot=%d, type=%s" % [slot, weapon_type])
+func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color, weapon_level: int = -1) -> void:
+	# If weapon_level not provided, use pending weapon level (defaults to 1)
+	if weapon_level < 1:
+		weapon_level = _pending_weapon_level if _pending_weapon_level > 0 else 1
+	_logger.info("weapon", self, "🔄 REPLACE_WEAPON_START: slot=%d, type=%s, level=%d" % [slot, weapon_type, weapon_level])
 	
 	var marker: Marker3D = null
 	if slot == 1:
@@ -503,9 +508,9 @@ func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color)
 	
 	_logger.debug("weapon", self, "🔍 AFTER_REMOVAL: marker=%s, child_count=%d" % [marker.name, marker.get_child_count()])
 	
-	# Attach new weapon
-	_logger.info("weapon", self, "➕ ATTACHING_NEW_WEAPON: slot=%d, type=%s" % [slot, weapon_type])
-	_attach_weapon(weapon_type, weapon_color, marker)
+	# Attach new weapon at the specified level
+	_logger.info("weapon", self, "➕ ATTACHING_NEW_WEAPON: slot=%d, type=%s, level=%d" % [slot, weapon_type, weapon_level])
+	_attach_weapon_at_level(weapon_type, weapon_color, marker, weapon_level)
 	
 	_logger.debug("weapon", self, "🔍 AFTER_ATTACHMENT: marker=%s, child_count=%d" % [marker.name, marker.get_child_count()])
 	var verify_weapon: WeaponAttachment = _get_weapon_at_marker(marker)
@@ -520,6 +525,7 @@ func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color)
 	
 	_pending_weapon_type = ""
 	_pending_weapon_color = Color.WHITE
+	_pending_weapon_level = 1
 	
 	_logger.info("weapon", self, "✅ REPLACE_WEAPON_COMPLETE: slot=%d" % slot)
 
@@ -527,6 +533,7 @@ func drop_pending_weapon() -> void:
 	_logger.info("weapon", self, "🚫 dropped pending weapon: %s" % _pending_weapon_type)
 	_pending_weapon_type = ""
 	_pending_weapon_color = Color.WHITE
+	_pending_weapon_level = 1
 
 func refill_weapon_in_slot(slot: int) -> void:
 	var weapon: WeaponAttachment = null
