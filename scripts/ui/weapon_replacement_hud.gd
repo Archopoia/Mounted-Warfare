@@ -5,6 +5,7 @@ class_name WeaponReplacementHUD
 var mount_controller: MountController = null
 var pending_weapon_type: String = ""
 var pending_weapon_color: Color = Color.WHITE
+var pending_weapon_level: int = 1  # Store weapon level for upgrades
 var _refill_slot: int = 0  # Slot number that can be refilled (0 = no refill option)
 var _upgrade_slots: Array[int] = []  # Slots that can be upgraded
 var _free_slot: int = 0  # Free slot available (0 = none)
@@ -21,9 +22,10 @@ func _ready() -> void:
 	_logger = get_node_or_null("/root/LoggerInstance")
 	hide_prompt()
 
-func show_replacement_prompt(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String) -> void:
+func show_replacement_prompt(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, weapon_level: int = 1) -> void:
 	pending_weapon_type = weapon_type
 	pending_weapon_color = weapon_color
+	pending_weapon_level = weapon_level
 	_refill_slot = 0  # No refill option for standard replacement
 	
 	# Check if the new weapon matches either existing weapon
@@ -53,9 +55,10 @@ func show_replacement_prompt(weapon_type: String, weapon_color: Color, weapon_1_
 	_prompt_panel.visible = true
 	_logger.info("ui", self, "📋 showing weapon replacement prompt: %s" % weapon_type)
 
-func show_replacement_prompt_with_refill(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, refill_slot: int) -> void:
+func show_replacement_prompt_with_refill(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, refill_slot: int, weapon_level: int = 1) -> void:
 	pending_weapon_type = weapon_type
 	pending_weapon_color = weapon_color
+	pending_weapon_level = weapon_level
 	_refill_slot = refill_slot
 	
 	# Update labels - show refill option for the matching slot
@@ -76,6 +79,7 @@ func show_replacement_prompt_with_refill(weapon_type: String, weapon_color: Colo
 func hide_prompt() -> void:
 	_prompt_panel.visible = false
 	pending_weapon_type = ""
+	pending_weapon_level = 1
 	_logger.debug("ui", self, "📋 hiding weapon replacement prompt")
 
 func _input(event: InputEvent) -> void:
@@ -146,8 +150,37 @@ func _upgrade_weapon_slot(slot: int) -> void:
 	if mount_controller == null:
 		return
 	
-	_logger.info("ui", self, "⬆️ upgrading weapon in slot %d" % slot)
-	mount_controller.upgrade_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color)
+	# Check if weapon needs refill first
+	var weapon: WeaponAttachment = null
+	if slot == 1:
+		weapon = mount_controller._slot_manager.get_weapon_at_slot(1)
+	elif slot == 2:
+		weapon = mount_controller._slot_manager.get_weapon_at_slot(2)
+	
+	var needs_refill: bool = false
+	var missing_ammo: int = 0
+	if weapon != null:
+		missing_ammo = weapon.max_ammo - weapon.current_ammo
+		needs_refill = missing_ammo > 0
+	
+	if needs_refill and pending_weapon_level > 1:
+		# Refill first (consumes 1 level), then apply remaining levels as upgrades
+		_logger.info("ui", self, "🔋⬆️ refilling and upgrading weapon in slot %d: refill (1 level) + %d upgrades" % [slot, pending_weapon_level - 1])
+		
+		# Step 1: Refill missing ammo (consumes 1 level)
+		mount_controller.refill_weapon_in_slot(slot)
+		
+		# Step 2: Apply remaining levels as upgrades (weapon_level - 1, since 1 was used for refill)
+		var remaining_levels: int = pending_weapon_level - 1
+		if remaining_levels > 0:
+			for i in range(remaining_levels):
+				mount_controller.upgrade_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color)
+	else:
+		# Weapon is at full ammo, apply all levels as upgrades
+		_logger.info("ui", self, "⬆️ upgrading weapon in slot %d with %d levels (weapon already at full ammo)" % [slot, pending_weapon_level])
+		for i in range(pending_weapon_level):
+			mount_controller.upgrade_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color)
+	
 	hide_prompt()
 
 func _attach_to_free_slot(slot: int) -> void:
@@ -158,9 +191,10 @@ func _attach_to_free_slot(slot: int) -> void:
 	mount_controller.attach_weapon_to_slot(slot, pending_weapon_type, pending_weapon_color)
 	hide_prompt()
 
-func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, upgrade_slots: Array[int], free_slot: int) -> void:
+func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, upgrade_slots: Array[int], free_slot: int, weapon_level: int = 1) -> void:
 	pending_weapon_type = weapon_type
 	pending_weapon_color = weapon_color
+	pending_weapon_level = weapon_level
 	_upgrade_slots = upgrade_slots
 	_free_slot = free_slot
 	_refill_slot = 0  # No refill in upgrade mode

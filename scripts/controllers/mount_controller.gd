@@ -1,6 +1,11 @@
 extends RigidBody3D
 class_name MountController
 
+# Preload helper classes
+const WeaponSlotConstantsClass = preload("res://scripts/controllers/weapon_slot_constants.gd")
+const WeaponSlotManagerClass = preload("res://scripts/controllers/weapon_slot_manager.gd")
+const WeaponPickupHandlerClass = preload("res://scripts/controllers/weapon_pickup_handler.gd")
+
 ## Stride force applied when the mount moves forward (units: Newtons)
 @export var stride_force: float = 1800.0
 ## Halt force applied when the mount stops or reverses (units: Newtons)
@@ -27,6 +32,9 @@ var _pending_weapon_color: Color = Color.WHITE
 var _pending_weapon_level: int = 1
 # Track stacked weapons per slot: {slot: [WeaponAttachment, ...]}
 var _stacked_weapons: Dictionary = {}  # {1: [weapon1, weapon2, ...], 2: [weapon1, weapon2, ...]}
+# Helper classes for cleaner weapon management
+var _slot_manager: WeaponSlotManagerClass = null
+var _pickup_handler: WeaponPickupHandlerClass = null
 # Track secondary attack state
 var _left_button_held: bool = false
 var _right_button_held: bool = false
@@ -55,12 +63,24 @@ func _ready() -> void:
 		if is_instance_valid(_camera):
 			_camera.current = false
 	
+	# Initialize weapon management helpers
+	_initialize_weapon_managers()
+	
 	# Connect to weapon pickups in the scene (deferred to ensure scene tree is fully built)
 	call_deferred("_connect_to_weapon_pickups")
 	
 	# Create HUD for player mount
 	if is_player:
 		call_deferred("_create_hud")
+
+func _initialize_weapon_managers() -> void:
+	# Initialize slot manager
+	_slot_manager = WeaponSlotManagerClass.new(self, _weapon_marker_left, _weapon_marker_right, _logger)
+	
+	# Initialize pickup handler
+	_pickup_handler = WeaponPickupHandlerClass.new(self, _slot_manager, _logger)
+	
+	_logger.debug("weapon", self, "🔧 Weapon managers initialized")
 
 func _connect_to_weapon_pickups() -> void:
 	# Find all weapon pickups in the scene and connect to their signals
@@ -89,179 +109,65 @@ func _find_weapon_pickups_recursive(node: Node) -> Array[Node]:
 func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String, weapon_level: int = 1) -> void:
 	_logger.info("weapon", self, "📥 _on_weapon_picked_up CALLED: pickup=%s, mount=%s, weapon_type=%s, level=%d" % [pickup.name, mount.name, weapon_type, weapon_level])
 	
-	# Only attach if this weapon was picked up by THIS mount
+	# Only process if this weapon was picked up by THIS mount
 	if mount != self:
 		_logger.debug("weapon", self, "⏭️ skipping: pickup not for this mount (mount=%s, self=%s)" % [mount.name, name])
 		return
 	
 	_logger.info("weapon", self, "✅ pickup confirmed for this mount, processing...")
 	
-	# Get current weapons
-	var left_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_left)
-	var right_weapon: WeaponAttachment = _get_weapon_at_marker(_weapon_marker_right)
-	
-	_logger.info("weapon", self, "🔍 pickup check: left=%s, right=%s, picking_up=%s" % [
-		left_weapon.weapon_type if left_weapon != null else "null",
-		right_weapon.weapon_type if right_weapon != null else "null",
-		weapon_type
-	])
-	
-	# Check if we already have this weapon type in either slot
-	var left_matches: bool = left_weapon != null and left_weapon.weapon_type == weapon_type
-	var right_matches: bool = right_weapon != null and right_weapon.weapon_type == weapon_type
-	
-	_logger.debug("weapon", self, "🔍 checking matches: left_matches=%s, right_matches=%s" % [str(left_matches), str(right_matches)])
-	
-	# If we have matching weapons, check which ones need refill
-	if left_matches or right_matches:
-		var weapons_to_refill: Array[Dictionary] = []  # Array of {weapon: WeaponAttachment, slot: int, ammo: int}
-		
-		if left_matches:
-			_logger.info("weapon", self, "✅ found matching weapon in slot 1: type=%s, ammo=%d/%d" % [weapon_type, left_weapon.current_ammo, left_weapon.max_ammo])
-			if left_weapon.current_ammo < left_weapon.max_ammo:
-				weapons_to_refill.append({"weapon": left_weapon, "slot": 1, "ammo": left_weapon.current_ammo})
-		
-		if right_matches:
-			_logger.info("weapon", self, "✅ found matching weapon in slot 2: type=%s, ammo=%d/%d" % [weapon_type, right_weapon.current_ammo, right_weapon.max_ammo])
-			if right_weapon.current_ammo < right_weapon.max_ammo:
-				weapons_to_refill.append({"weapon": right_weapon, "slot": 2, "ammo": right_weapon.current_ammo})
-		
-		# If any weapon needs refill, refill the one with the least ammo (or just the first one)
-		if weapons_to_refill.size() > 0:
-			# Sort by ammo (lowest first) to refill the one that needs it most
-			weapons_to_refill.sort_custom(func(a, b): return a.ammo < b.ammo)
-			var target: Dictionary = weapons_to_refill[0]
-			var target_weapon: WeaponAttachment = target.weapon
-			var target_slot: int = target.slot
-			var old_ammo: int = target.ammo
-			
-			# If pickup level > 1, we can refill AND upgrade
-			# First refill missing ammo (if any), then use 1 level to upgrade, then remaining levels
-			if weapon_level > 1:
-				var missing_ammo: int = target_weapon.max_ammo - target_weapon.current_ammo
-				
-				_logger.info("weapon", self, "🔋 REFILLING AND UPGRADING weapon in slot %d: ammo=%d/%d, pickup_level=%d, missing_ammo=%d" % [target_slot, old_ammo, target_weapon.max_ammo, weapon_level, missing_ammo])
-				
-				# Step 1: First, just refill the missing ammo (no level cost, just restore current to max)
-				if missing_ammo > 0:
-					target_weapon.current_ammo = target_weapon.max_ammo
-					target_weapon.ammo_changed.emit(target_weapon.current_ammo, target_weapon.max_ammo)
-					_logger.info("weapon", self, "✅ REFILLED missing ammo: %d/%d (no level cost, just refill)" % [target_weapon.current_ammo, target_weapon.max_ammo])
-				
-				# Step 2: Use 1 level to upgrade (adds base_max_ammo to both current and max)
-				_upgrade_weapon_in_slot(target_slot, weapon_type, pickup.pickup_color)
-				
-				# Get updated weapon after first upgrade
-				target_weapon = _get_weapon_at_marker(_weapon_marker_left if target_slot == 1 else _weapon_marker_right)
-				if target_weapon == null:
-					_logger.error("weapon", self, "❌ Failed to get weapon after refill upgrade")
-					return
-				
-				_logger.info("weapon", self, "✅ REFILL + 1 UPGRADE COMPLETE (used 1 level): ammo now %d/%d" % [target_weapon.current_ammo, target_weapon.max_ammo])
-				
-				# Step 3: Upgrade remaining levels (weapon_level - 2)
-				# We already used 1 level for upgrade, so we have (weapon_level - 2) levels left
-				# Total levels used = 1 (upgrade) + (weapon_level - 2) (more upgrades) = weapon_level - 1
-				var remaining_levels: int = max(0, weapon_level - 2)
-				if remaining_levels > 0:
-					_logger.info("weapon", self, "⬆️ UPGRADING remaining %d levels" % remaining_levels)
-					for i in range(remaining_levels):
-						_upgrade_weapon_in_slot(target_slot, weapon_type, pickup.pickup_color)
-					
-					# Get final weapon state
-					target_weapon = _get_weapon_at_marker(_weapon_marker_left if target_slot == 1 else _weapon_marker_right)
-					if target_weapon != null:
-						_logger.info("weapon", self, "✅ UPGRADE COMPLETE: final ammo %d/%d (refill + 1 upgrade + %d more upgrades = %d total levels used)" % [target_weapon.current_ammo, target_weapon.max_ammo, remaining_levels, weapon_level - 1])
-			else:
-				# Level 1 pickup - just refill without upgrading
-				_logger.info("weapon", self, "🔋 REFILLING weapon in slot %d: %d/%d -> %d/%d" % [target_slot, old_ammo, target_weapon.max_ammo, target_weapon.max_ammo, target_weapon.max_ammo])
-				target_weapon.current_ammo = target_weapon.max_ammo
-				target_weapon.ammo_changed.emit(target_weapon.current_ammo, target_weapon.max_ammo)
-				_logger.info("weapon", self, "✅ REFILL COMPLETE: ammo now %d/%d" % [target_weapon.current_ammo, target_weapon.max_ammo])
-			return
-		
-		# Both matching weapons are at full ammo - offer upgrade or place in other slot
-		# Check if we can upgrade (stack) or place in free slot
-		var full_weapons: Array[Dictionary] = []  # Array of {weapon: WeaponAttachment, slot: int}
-		
-		if left_matches and left_weapon.current_ammo >= left_weapon.max_ammo:
-			full_weapons.append({"weapon": left_weapon, "slot": 1})
-		if right_matches and right_weapon.current_ammo >= right_weapon.max_ammo:
-			full_weapons.append({"weapon": right_weapon, "slot": 2})
-		
-		# Check for free slots (not matching weapon type)
-		var free_slot: int = 0
-		var free_marker: Marker3D = null
-		if not left_matches and left_weapon == null:
-			free_slot = 1
-			free_marker = _weapon_marker_left
-		elif not right_matches and right_weapon == null:
-			free_slot = 2
-			free_marker = _weapon_marker_right
-		
-		# If we have full weapons and this is a player, show upgrade/replace prompt
-		if full_weapons.size() > 0:
-			if is_player and _weapon_hud != null:
-				_pending_weapon_type = weapon_type
-				_pending_weapon_color = pickup.pickup_color
-				
-				# Determine which slots can be upgraded
-				var upgrade_slots: Array[int] = []
-				for full_data in full_weapons:
-					upgrade_slots.append(full_data.slot)
-				
-				_weapon_hud.show_upgrade_prompt(weapon_type, pickup.pickup_color, left_weapon.weapon_type if left_weapon != null else "", right_weapon.weapon_type if right_weapon != null else "", upgrade_slots, free_slot)
-				_logger.info("weapon", self, "📋 showing upgrade prompt for: %s (upgrade_slots=%s, free_slot=%d)" % [weapon_type, str(upgrade_slots), free_slot])
-				return
-			else:
-				# For non-player mounts, upgrade the first full weapon automatically
-				var target_data: Dictionary = full_weapons[0]
-				_logger.info("weapon", self, "🤖 auto-upgrading slot %d weapon with: %s (level %d)" % [target_data.slot, weapon_type, weapon_level])
-				# Apply all levels as upgrades (weapon is already at full ammo, so no refill needed)
-				for i in range(weapon_level):
-					_upgrade_weapon_in_slot(target_data.slot, weapon_type, pickup.pickup_color)
-				return
-		
-		# If we have a free slot, attach there
-		if free_marker != null:
-			_logger.info("weapon", self, "➕ attaching to free slot %d (same weapon type, but existing is full)" % free_slot)
-			# Use stored ammo if available (from dropped weapon)
-			var free_slot_ammo_current: int = pickup.stored_current_ammo if pickup.stored_current_ammo >= 0 else -1
-			var free_slot_ammo_max: int = pickup.stored_max_ammo if pickup.stored_max_ammo >= 0 else -1
-			_attach_weapon_at_level(weapon_type, pickup.pickup_color, free_marker, weapon_level, free_slot_ammo_current, free_slot_ammo_max)
-			return
-	
-	# We don't have this weapon type - check if slots are available
-	if left_weapon != null and right_weapon != null:
-		# Both slots are full with different weapons - show replacement prompt
-		if is_player and _weapon_hud != null:
-			_pending_weapon_type = weapon_type
-			_pending_weapon_color = pickup.pickup_color
-			_pending_weapon_level = weapon_level
-			_weapon_hud.show_replacement_prompt(weapon_type, pickup.pickup_color, left_weapon.weapon_type, right_weapon.weapon_type)
-			_logger.info("weapon", self, "📋 showing replacement prompt for: %s (level %d)" % [weapon_type, weapon_level])
-			return
-		else:
-			# For non-player mounts, replace the left weapon automatically
-			_logger.info("weapon", self, "🤖 auto-replacing left weapon with: %s (level %d)" % [weapon_type, weapon_level])
-			replace_weapon_in_slot(1, weapon_type, pickup.pickup_color, weapon_level)
-			return
-	
-	# Find an available weapon marker
-	var marker: Marker3D = null
-	if _weapon_marker_left != null and _weapon_marker_left.get_child_count() == 0:
-		marker = _weapon_marker_left
-	elif _weapon_marker_right != null and _weapon_marker_right.get_child_count() == 0:
-		marker = _weapon_marker_right
-	
-	if marker == null:
-		_logger.error("weapon", self, "❌ No weapon markers available for weapon attachment")
-		return
-	
-	# Create and attach the weapon (use stored ammo if available)
+	# Use pickup handler to process the pickup and make a decision
 	var stored_current: int = pickup.stored_current_ammo if pickup.stored_current_ammo >= 0 else -1
 	var stored_max: int = pickup.stored_max_ammo if pickup.stored_max_ammo >= 0 else -1
-	_attach_weapon_at_level(weapon_type, pickup.pickup_color, marker, weapon_level, stored_current, stored_max)
+	var decision: WeaponPickupHandlerClass.PickupDecision = _pickup_handler.process_pickup(weapon_type, weapon_level, pickup.pickup_color, stored_current, stored_max)
+	
+	# Handle the decision based on result
+	match decision.result:
+		WeaponPickupHandlerClass.PickupResult.ATTACHED_TO_EMPTY_SLOT:
+			_pickup_handler.apply_decision(decision, weapon_type, weapon_level, pickup.pickup_color, stored_current, stored_max)
+		
+		WeaponPickupHandlerClass.PickupResult.REFILLED_EXISTING:
+			_pickup_handler.apply_decision(decision, weapon_type, weapon_level, pickup.pickup_color, stored_current, stored_max)
+		
+		WeaponPickupHandlerClass.PickupResult.UPGRADED_EXISTING:
+			_pickup_handler.apply_decision(decision, weapon_type, weapon_level, pickup.pickup_color, stored_current, stored_max)
+		
+		WeaponPickupHandlerClass.PickupResult.AUTO_REPLACED:
+			_pickup_handler.apply_decision(decision, weapon_type, weapon_level, pickup.pickup_color, stored_current, stored_max)
+		
+		WeaponPickupHandlerClass.PickupResult.AUTO_UPGRADED:
+			_pickup_handler.apply_decision(decision, weapon_type, weapon_level, pickup.pickup_color, stored_current, stored_max)
+		
+		WeaponPickupHandlerClass.PickupResult.NEEDS_PLAYER_CHOICE:
+			# Show UI prompt for player to choose
+			_show_pickup_choice_prompt(weapon_type, weapon_level, pickup.pickup_color, decision)
+		
+		_:
+			_logger.error("weapon", self, "❌ Unknown pickup result: %d" % decision.result)
+
+func _show_pickup_choice_prompt(weapon_type: String, weapon_level: int, weapon_color: Color, decision: WeaponPickupHandlerClass.PickupDecision) -> void:
+	if not is_player or _weapon_hud == null:
+		_logger.error("weapon", self, "❌ Cannot show prompt: not player or HUD missing")
+		return
+	
+	# Store pending weapon data (use level from decision to ensure consistency)
+	_pending_weapon_type = weapon_type
+	_pending_weapon_color = weapon_color
+	_pending_weapon_level = decision.weapon_level  # Use level from decision
+	
+	# Get current weapon types for display
+	var left_weapon: WeaponAttachment = _slot_manager.get_weapon_at_slot(WeaponSlotConstantsClass.Slot.LEFT)
+	var right_weapon: WeaponAttachment = _slot_manager.get_weapon_at_slot(WeaponSlotConstantsClass.Slot.RIGHT)
+	var left_type: String = left_weapon.weapon_type if left_weapon != null else ""
+	var right_type: String = right_weapon.weapon_type if right_weapon != null else ""
+	
+	# Show appropriate prompt based on decision context
+	if decision.can_upgrade or decision.can_replace:
+		if decision.can_upgrade and decision.upgrade_slots.size() > 0:
+			_weapon_hud.show_upgrade_prompt(weapon_type, weapon_color, left_type, right_type, decision.upgrade_slots, decision.free_slot, decision.weapon_level)
+		else:
+			_weapon_hud.show_replacement_prompt(weapon_type, weapon_color, left_type, right_type, decision.weapon_level)
+		_logger.info("weapon", self, "📋 showing pickup choice prompt for: %s (level %d)" % [weapon_type, decision.weapon_level])
 
 ## Attach a weapon at a specific level (creates stacked weapons)
 ## If level > 1, creates multiple weapons stacked on top of each other
@@ -327,7 +233,7 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D, 
 	weapon.attach_to_mount(self, marker)
 	
 	# Determine which slot this marker belongs to
-	var slot: int = 1 if marker == _weapon_marker_left else 2
+	var slot: int = WeaponSlotConstantsClass.Slot.LEFT if marker == _weapon_marker_left else WeaponSlotConstantsClass.Slot.RIGHT
 	
 	# Initialize stack array for this slot if needed
 	if not _stacked_weapons.has(slot):
@@ -335,6 +241,10 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D, 
 	
 	# Add as first weapon in stack
 	_stacked_weapons[slot].append(weapon)
+	
+	# Sync with slot manager
+	if _slot_manager != null:
+		_slot_manager.add_weapon_to_slot(slot, weapon)
 	
 	# Track the weapon
 	_attached_weapons.append(weapon)
@@ -632,6 +542,11 @@ func _upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color
 	if not _stacked_weapons.has(slot):
 		_stacked_weapons[slot] = []
 	_stacked_weapons[slot].append(new_weapon)
+	
+	# Sync with slot manager
+	if _slot_manager != null:
+		_slot_manager.add_weapon_to_slot(slot, new_weapon)
+	
 	_attached_weapons.append(new_weapon)
 	
 	# Merge ammo: add the new weapon's ammo to the base weapon
