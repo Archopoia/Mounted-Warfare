@@ -134,10 +134,49 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 			var target_slot: int = target.slot
 			var old_ammo: int = target.ammo
 			
-			_logger.info("weapon", self, "🔋 REFILLING weapon in slot %d: %d/%d -> %d/%d" % [target_slot, old_ammo, target_weapon.max_ammo, target_weapon.max_ammo, target_weapon.max_ammo])
-			target_weapon.current_ammo = target_weapon.max_ammo
-			target_weapon.ammo_changed.emit(target_weapon.current_ammo, target_weapon.max_ammo)
-			_logger.info("weapon", self, "✅ REFILL COMPLETE: ammo now %d/%d" % [target_weapon.current_ammo, target_weapon.max_ammo])
+			# If pickup level > 1, we can refill AND upgrade
+			# First refill missing ammo (if any), then use 1 level to upgrade, then remaining levels
+			if weapon_level > 1:
+				var missing_ammo: int = target_weapon.max_ammo - target_weapon.current_ammo
+				
+				_logger.info("weapon", self, "🔋 REFILLING AND UPGRADING weapon in slot %d: ammo=%d/%d, pickup_level=%d, missing_ammo=%d" % [target_slot, old_ammo, target_weapon.max_ammo, weapon_level, missing_ammo])
+				
+				# Step 1: First, just refill the missing ammo (no level cost, just restore current to max)
+				if missing_ammo > 0:
+					target_weapon.current_ammo = target_weapon.max_ammo
+					target_weapon.ammo_changed.emit(target_weapon.current_ammo, target_weapon.max_ammo)
+					_logger.info("weapon", self, "✅ REFILLED missing ammo: %d/%d (no level cost, just refill)" % [target_weapon.current_ammo, target_weapon.max_ammo])
+				
+				# Step 2: Use 1 level to upgrade (adds base_max_ammo to both current and max)
+				_upgrade_weapon_in_slot(target_slot, weapon_type, pickup.pickup_color)
+				
+				# Get updated weapon after first upgrade
+				target_weapon = _get_weapon_at_marker(_weapon_marker_left if target_slot == 1 else _weapon_marker_right)
+				if target_weapon == null:
+					_logger.error("weapon", self, "❌ Failed to get weapon after refill upgrade")
+					return
+				
+				_logger.info("weapon", self, "✅ REFILL + 1 UPGRADE COMPLETE (used 1 level): ammo now %d/%d" % [target_weapon.current_ammo, target_weapon.max_ammo])
+				
+				# Step 3: Upgrade remaining levels (weapon_level - 2)
+				# We already used 1 level for upgrade, so we have (weapon_level - 2) levels left
+				# Total levels used = 1 (upgrade) + (weapon_level - 2) (more upgrades) = weapon_level - 1
+				var remaining_levels: int = max(0, weapon_level - 2)
+				if remaining_levels > 0:
+					_logger.info("weapon", self, "⬆️ UPGRADING remaining %d levels" % remaining_levels)
+					for i in range(remaining_levels):
+						_upgrade_weapon_in_slot(target_slot, weapon_type, pickup.pickup_color)
+					
+					# Get final weapon state
+					target_weapon = _get_weapon_at_marker(_weapon_marker_left if target_slot == 1 else _weapon_marker_right)
+					if target_weapon != null:
+						_logger.info("weapon", self, "✅ UPGRADE COMPLETE: final ammo %d/%d (refill + 1 upgrade + %d more upgrades = %d total levels used)" % [target_weapon.current_ammo, target_weapon.max_ammo, remaining_levels, weapon_level - 1])
+			else:
+				# Level 1 pickup - just refill without upgrading
+				_logger.info("weapon", self, "🔋 REFILLING weapon in slot %d: %d/%d -> %d/%d" % [target_slot, old_ammo, target_weapon.max_ammo, target_weapon.max_ammo, target_weapon.max_ammo])
+				target_weapon.current_ammo = target_weapon.max_ammo
+				target_weapon.ammo_changed.emit(target_weapon.current_ammo, target_weapon.max_ammo)
+				_logger.info("weapon", self, "✅ REFILL COMPLETE: ammo now %d/%d" % [target_weapon.current_ammo, target_weapon.max_ammo])
 			return
 		
 		# Both matching weapons are at full ammo - offer upgrade or place in other slot
@@ -176,8 +215,10 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 			else:
 				# For non-player mounts, upgrade the first full weapon automatically
 				var target_data: Dictionary = full_weapons[0]
-				_logger.info("weapon", self, "🤖 auto-upgrading slot %d weapon with: %s" % [target_data.slot, weapon_type])
-				_upgrade_weapon_in_slot(target_data.slot, weapon_type, pickup.pickup_color)
+				_logger.info("weapon", self, "🤖 auto-upgrading slot %d weapon with: %s (level %d)" % [target_data.slot, weapon_type, weapon_level])
+				# Apply all levels as upgrades (weapon is already at full ammo, so no refill needed)
+				for i in range(weapon_level):
+					_upgrade_weapon_in_slot(target_data.slot, weapon_type, pickup.pickup_color)
 				return
 		
 		# If we have a free slot, attach there

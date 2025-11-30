@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cshsnxckgrty0"]
+[gd_scene load_steps=20 format=3 uid="uid://cshsnxckgrty0"]
 
 [ext_resource type="PackedScene" uid="uid://b6m5plcc1j568" path="res://scenes/mounts/mount_player.tscn" id="1_kic2s"]
 [ext_resource type="Script" uid="uid://cyu588wufelot" path="res://scripts/pickups/weapon_pool_entry.gd" id="3_tucbp"]
@@ -19,14 +19,55 @@ size = Vector3(4, 3, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_tucbp"]
 size = Vector3(4, 3, 4)
 
-[sub_resource type="Resource" id="Resource_t1s84"]
+[sub_resource type="Resource" id="Resource_rocket_l1"]
+script = ExtResource("3_tucbp")
+weapon_type = "rocket_launcher"
+level = 1
+
+[sub_resource type="Resource" id="Resource_mine_l2"]
+script = ExtResource("3_tucbp")
+weapon_type = "mine_layer"
+level = 2
+
+[sub_resource type="Resource" id="Resource_autocannon_l4"]
 script = ExtResource("3_tucbp")
 weapon_type = "autocannon"
 level = 4
 
-[sub_resource type="Resource" id="Resource_de2y4"]
+[sub_resource type="Resource" id="Resource_mine_l1"]
 script = ExtResource("3_tucbp")
 weapon_type = "mine_layer"
+level = 1
+
+[sub_resource type="Resource" id="Resource_autocannon_l3"]
+script = ExtResource("3_tucbp")
+weapon_type = "autocannon"
+level = 3
+
+[sub_resource type="Resource" id="Resource_rocket_l2"]
+script = ExtResource("3_tucbp")
+weapon_type = "rocket_launcher"
+level = 2
+
+[sub_resource type="Resource" id="Resource_rocket_l3"]
+script = ExtResource("3_tucbp")
+weapon_type = "rocket_launcher"
+level = 3
+
+[sub_resource type="Resource" id="Resource_mine_l3"]
+script = ExtResource("3_tucbp")
+weapon_type = "mine_layer"
+level = 3
+
+[sub_resource type="Resource" id="Resource_autocannon_l1"]
+script = ExtResource("3_tucbp")
+weapon_type = "autocannon"
+level = 1
+
+[sub_resource type="Resource" id="Resource_autocannon_l2"]
+script = ExtResource("3_tucbp")
+weapon_type = "autocannon"
+level = 2
 
 [node name="Arena" type="Node3D"]
 
@@ -80,20 +121,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7467442, 1, 3.187521)
 
 [node name="WeaponSpawner1" parent="WeaponSpawners" instance=ExtResource("6_spawner5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 8)
-weapon_pool = Array[ExtResource("3_tucbp")]([])
+weapon_pool = Array[ExtResource("3_tucbp")]([SubResource("Resource_rocket_l1")])
 
 [node name="WeaponSpawner2" parent="WeaponSpawners" instance=ExtResource("6_spawner5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 10)
-weapon_pool = Array[ExtResource("3_tucbp")]([])
+weapon_pool = Array[ExtResource("3_tucbp")]([SubResource("Resource_mine_l2")])
 
 [node name="WeaponSpawner3" parent="WeaponSpawners" instance=ExtResource("6_spawner5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -5)
-weapon_pool = Array[ExtResource("3_tucbp")]([SubResource("Resource_t1s84"), SubResource("Resource_de2y4")])
+weapon_pool = Array[ExtResource("3_tucbp")]([SubResource("Resource_autocannon_l4"), SubResource("Resource_mine_l1"), SubResource("Resource_rocket_l2")])
 
 [node name="WeaponSpawner4" parent="WeaponSpawners" instance=ExtResource("6_spawner5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -8)
-weapon_pool = Array[ExtResource("3_tucbp")]([])
+weapon_pool = Array[ExtResource("3_tucbp")]([SubResource("Resource_autocannon_l3")])
 
 [node name="WeaponSpawner5" parent="WeaponSpawners" instance=ExtResource("6_spawner5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -12)
-weapon_pool = Array[ExtResource("3_tucbp")]([])
+weapon_pool = Array[ExtResource("3_tucbp")]([SubResource("Resource_rocket_l2"), SubResource("Resource_mine_l3"), SubResource("Resource_autocannon_l1"), SubResource("Resource_autocannon_l2")])

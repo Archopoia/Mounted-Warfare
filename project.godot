@@ -21,7 +21,7 @@ LoggerInstance="*res://scripts/core/logger.gd"
 
 [editor]
 
-movie_writer/movie_file="/home/soundboost/Bureau/Cursor/mounted-warfare/records/movie.avi"
+movie_writer/movie_file="res://records/movie.avi"
 
 [editor_plugins]
 
