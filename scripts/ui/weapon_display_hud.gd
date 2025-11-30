@@ -17,6 +17,7 @@ var mount_controller: MountController = null
 var _logger: Node
 var _weapon_visuals: Dictionary = {}  # Maps slot index to visual node
 var _weapon_ammo: Dictionary = {}  # Maps slot index to {current: int, max: int}
+var _weapon_types: Dictionary = {}  # Maps slot index to weapon_type (to avoid recreating visuals)
 
 func _ready() -> void:
 	_logger = get_node_or_null("/root/LoggerInstance")
@@ -65,12 +66,19 @@ func _update_slot_display(slot: int, weapon: WeaponAttachment) -> void:
 		_logger.error("ui", self, "❌ HUD slot %d UI elements not found" % slot)
 		return
 	
-	# Clear existing visual
-	if _weapon_visuals.has(slot):
-		var old_visual: Node = _weapon_visuals[slot]
-		if is_instance_valid(old_visual):
-			old_visual.queue_free()
-		_weapon_visuals.erase(slot)
+	# Clear existing visual only if weapon type changed or weapon removed
+	var current_weapon_type: String = _weapon_types.get(slot, "")
+	var new_weapon_type: String = weapon.weapon_type if weapon != null else ""
+	var weapon_type_changed: bool = current_weapon_type != new_weapon_type
+	
+	if weapon_type_changed:
+		# Clear existing visual
+		if _weapon_visuals.has(slot):
+			var old_visual: Node = _weapon_visuals[slot]
+			if is_instance_valid(old_visual):
+				old_visual.queue_free()
+			_weapon_visuals.erase(slot)
+		_weapon_types.erase(slot)
 	
 	# Clear label
 	label.text = ""
@@ -84,6 +92,7 @@ func _update_slot_display(slot: int, weapon: WeaponAttachment) -> void:
 		ammo_label.modulate = Color(0.5, 0.5, 0.5, 0.5)
 		ammo_label.visible = false
 		_weapon_ammo.erase(slot)
+		_weapon_types.erase(slot)  # Clear weapon type tracking
 	else:
 		# Weapon attached - show weapon info and visual
 		_logger.debug("ui", self, "📺 _update_slot_display: slot=%d, weapon_type=%s, weapon_id=%d" % [slot, weapon.weapon_type, weapon.get_instance_id()])
@@ -109,50 +118,54 @@ func _update_slot_display(slot: int, weapon: WeaponAttachment) -> void:
 		if weapon_color == Color.WHITE:
 			weapon_color = WeaponRegistry.get_weapon_color(weapon.weapon_type)
 		
-		# Create visual representation of the weapon
-		_create_weapon_visual(slot, weapon.weapon_type, weapon_color, visual_container)
+		# Only create visual if weapon type changed OR visual doesn't exist (reuse existing visual if same type)
+		if weapon_type_changed or not _weapon_visuals.has(slot):
+			_create_weapon_visual(slot, weapon.weapon_type, weapon_color, visual_container)
+			_weapon_types[slot] = weapon.weapon_type
 		
 		# Update panel color based on weapon
 		panel.modulate = Color(weapon_color.r * 0.5, weapon_color.g * 0.5, weapon_color.b * 0.5, 0.8)
 
 func _create_weapon_visual(slot: int, weapon_type: String, weapon_color: Color, container: Control) -> void:
 	# Create a simple colored panel to represent the weapon visually
+	# Optimized for performance - minimal theme overrides
 	var weapon_icon: Panel = Panel.new()
 	weapon_icon.custom_minimum_size = Vector2(120, 100)
 	
-	# Create style with weapon color
+	# Create simplified style with weapon color (fewer properties = faster)
 	var style_box: StyleBoxFlat = StyleBoxFlat.new()
 	style_box.bg_color = weapon_color
-	style_box.border_width_left = 3
-	style_box.border_width_top = 3
-	style_box.border_width_right = 3
-	style_box.border_width_bottom = 3
-	style_box.border_color = weapon_color * 1.5  # Brighter border
-	style_box.corner_radius_top_left = 5
-	style_box.corner_radius_top_right = 5
-	style_box.corner_radius_bottom_right = 5
-	style_box.corner_radius_bottom_left = 5
+	style_box.border_width_left = 2
+	style_box.border_width_top = 2
+	style_box.border_width_right = 2
+	style_box.border_width_bottom = 2
+	style_box.border_color = weapon_color * 1.3  # Slightly brighter border
+	style_box.corner_radius_top_left = 4
+	style_box.corner_radius_top_right = 4
+	style_box.corner_radius_bottom_right = 4
+	style_box.corner_radius_bottom_left = 4
 	weapon_icon.add_theme_stylebox_override("panel", style_box)
 	
-	# Add weapon name label
+	# Add weapon name label (simplified - fewer theme overrides)
 	var name_label: Label = Label.new()
-	name_label.text = WeaponRegistry.get_weapon_name(weapon_type).substr(0, 12)  # Truncate if too long
+	var weapon_name: String = WeaponRegistry.get_weapon_name(weapon_type)
+	if weapon_name.length() > 12:
+		weapon_name = weapon_name.substr(0, 12)
+	name_label.text = weapon_name
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	name_label.add_theme_color_override("font_color", Color.WHITE)
-	name_label.add_theme_color_override("font_shadow_color", Color.BLACK)
-	name_label.add_theme_constant_override("shadow_offset_x", 1)
-	name_label.add_theme_constant_override("shadow_offset_y", 1)
+	# Skip shadow for performance - just use white text
 	
 	container.add_child(weapon_icon)
 	weapon_icon.add_child(name_label)
 	
-	# Center the label in the panel
+	# Center the label in the panel (simplified anchors)
 	name_label.set_anchors_preset(Control.PRESET_FULL_RECT)
-	name_label.offset_left = 5
-	name_label.offset_top = 5
-	name_label.offset_right = -5
-	name_label.offset_bottom = -5
+	name_label.offset_left = 4
+	name_label.offset_top = 4
+	name_label.offset_right = -4
+	name_label.offset_bottom = -4
 	
 	# Store reference
 	_weapon_visuals[slot] = weapon_icon

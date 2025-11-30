@@ -51,6 +51,17 @@ func process_pickup(weapon_type: String, weapon_level: int, _pickup_color: Color
 	var existing_slot: WeaponSlotManagerClass.SlotData = _slot_manager.find_slot_with_weapon_type(weapon_type)
 	var empty_slot: WeaponSlotManagerClass.SlotData = _slot_manager.find_empty_slot()
 	
+	# Debug logging
+	if _logger:
+		if existing_slot != null:
+			_logger.debug("weapon", _mount_controller, "🔍 Found existing weapon type %s in slot %d" % [weapon_type, existing_slot.slot_id])
+		else:
+			_logger.debug("weapon", _mount_controller, "🔍 No existing weapon type %s found" % weapon_type)
+		if empty_slot != null:
+			_logger.debug("weapon", _mount_controller, "🔍 Found empty slot %d" % empty_slot.slot_id)
+		else:
+			_logger.debug("weapon", _mount_controller, "🔍 No empty slots found")
+	
 	# Check if we have matching weapon type
 	if existing_slot != null:
 		var base_weapon: WeaponAttachment = existing_slot.get_base_weapon()
@@ -114,8 +125,27 @@ func process_pickup(weapon_type: String, weapon_level: int, _pickup_color: Color
 		if not _mount_controller.is_player:
 			decision.result = PickupResult.ATTACHED_TO_EMPTY_SLOT
 		else:
-			# Even for players, attach to empty slot automatically if available
-			decision.result = PickupResult.ATTACHED_TO_EMPTY_SLOT
+			# For players: always show prompt if ANY slot has a weapon (give player choice)
+			# Only auto-attach if BOTH slots are empty (first weapon pickup)
+			var has_any_weapon: bool = false
+			for slot_data in _slot_manager.get_all_slots():
+				if not slot_data.is_empty():
+					has_any_weapon = true
+					break
+			
+			if has_any_weapon:
+				# At least one slot has a weapon - show prompt so player can choose
+				decision.result = PickupResult.NEEDS_PLAYER_CHOICE
+				decision.can_attach_to_free = true
+				decision.free_slot = empty_slot.slot_id
+				decision.can_replace = true  # Allow replacing weapons in occupied slots
+				# Also mark all slots with weapons as replaceable
+				for slot_data in _slot_manager.get_all_slots():
+					if not slot_data.is_empty() and slot_data.slot_id != 0:
+						decision.upgrade_slots.append(slot_data.slot_id)
+			else:
+				# Both slots are empty - auto-attach is fine for first weapon
+				decision.result = PickupResult.ATTACHED_TO_EMPTY_SLOT
 		
 		return decision
 	
@@ -145,6 +175,10 @@ func process_pickup(weapon_type: String, weapon_level: int, _pickup_color: Color
 
 ## Apply pickup decision (called after decision is made)
 func apply_decision(decision: PickupDecision, weapon_type: String, weapon_level: int, pickup_color: Color, stored_current_ammo: int = -1, stored_max_ammo: int = -1) -> void:
+	var apply_start: int = Time.get_ticks_msec()
+	if _logger:
+		_logger.info("weapon", _mount_controller, "⏱️ [TIMING START] apply_decision: result=%d, type=%s, level=%d" % [decision.result, weapon_type, weapon_level])
+	
 	match decision.result:
 		PickupResult.ATTACHED_TO_EMPTY_SLOT:
 			_attach_to_slot(decision.target_slot, weapon_type, weapon_level, pickup_color, stored_current_ammo, stored_max_ammo)
@@ -166,6 +200,10 @@ func apply_decision(decision: PickupDecision, weapon_type: String, weapon_level:
 			if _logger:
 				_logger.debug("weapon", _mount_controller, "📋 Player choice needed for pickup")
 			# Store pending data in mount controller (will be handled there)
+	
+	var apply_total: int = Time.get_ticks_msec() - apply_start
+	if _logger:
+		_logger.info("weapon", _mount_controller, "⏱️ [TIMING END] apply_decision took %d ms total" % apply_total)
 
 func _attach_to_slot(slot_id: int, weapon_type: String, weapon_level: int, weapon_color: Color, stored_current_ammo: int, stored_max_ammo: int) -> void:
 	if _mount_controller.has_method("_attach_weapon_at_level"):

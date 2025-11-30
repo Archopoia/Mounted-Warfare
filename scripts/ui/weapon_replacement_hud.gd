@@ -134,8 +134,8 @@ func _replace_weapon_slot(slot: int) -> void:
 	if mount_controller == null:
 		return
 	
-	_logger.info("ui", self, "🔄 replacing weapon in slot %d with %s" % [slot, pending_weapon_type])
-	mount_controller.replace_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color)
+	_logger.info("ui", self, "🔄 replacing weapon in slot %d with %s (level %d)" % [slot, pending_weapon_type, pending_weapon_level])
+	mount_controller.replace_weapon_in_slot(slot, pending_weapon_type, pending_weapon_color, pending_weapon_level)
 	hide_prompt()
 
 func _refill_weapon_slot(slot: int) -> void:
@@ -187,8 +187,8 @@ func _attach_to_free_slot(slot: int) -> void:
 	if mount_controller == null:
 		return
 	
-	_logger.info("ui", self, "➕ attaching to free slot %d" % slot)
-	mount_controller.attach_weapon_to_slot(slot, pending_weapon_type, pending_weapon_color)
+	_logger.info("ui", self, "➕ attaching to free slot %d (level %d)" % [slot, pending_weapon_level])
+	mount_controller.attach_weapon_to_slot(slot, pending_weapon_type, pending_weapon_color, pending_weapon_level)
 	hide_prompt()
 
 func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type: String, weapon_2_type: String, upgrade_slots: Array[int], free_slot: int, weapon_level: int = 1) -> void:
@@ -205,12 +205,16 @@ func show_upgrade_prompt(weapon_type: String, weapon_color: Color, weapon_1_type
 	# Determine what options to show
 	if upgrade_slots.size() > 0 and free_slot > 0:
 		# Can upgrade slot(s) OR attach to free slot
-		if upgrade_slots.has(1):
+		if free_slot == 1:
+			_option_1_label.text = "[1] Attach to free slot 1"
+		elif upgrade_slots.has(1):
 			_option_1_label.text = "[1] Upgrade %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		else:
 			_option_1_label.text = "[1] Replace %s (Slot 1)" % weapon_1_type.replace("_", " ").capitalize()
 		
-		if upgrade_slots.has(2):
+		if free_slot == 2:
+			_option_2_label.text = "[2] Attach to free slot 2"
+		elif upgrade_slots.has(2):
 			_option_2_label.text = "[2] Upgrade %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()
 		else:
 			_option_2_label.text = "[2] Replace %s (Slot 2)" % weapon_2_type.replace("_", " ").capitalize()

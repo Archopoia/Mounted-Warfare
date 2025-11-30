@@ -89,7 +89,8 @@ func _setup_detection_area() -> void:
 	
 	# Disable monitoring initially
 	_detection_area.monitoring = false
-	_detection_area.monitorable = false
+	# Defer monitorable to avoid "blocked during in/out signal" error
+	_detection_area.call_deferred("set", "monitorable", false)
 
 func _apply_ejection_velocity() -> void:
 	if _ejection_velocity != Vector3.ZERO:
