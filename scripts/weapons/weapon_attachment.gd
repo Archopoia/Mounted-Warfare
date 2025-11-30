@@ -288,7 +288,6 @@ func update_secondary_charge(delta: float) -> void:
 	
 	# Consume ammo if we've accumulated at least 1 unit
 	if ammo_consumed_this_frame > 0 and current_ammo >= ammo_consumed_this_frame:
-		var old_ammo: int = current_ammo
 		current_ammo -= ammo_consumed_this_frame
 		_charged_ammo_consumed += ammo_consumed_this_frame
 		_fractional_ammo_accumulator -= float(ammo_consumed_this_frame)  # Subtract consumed amount
@@ -299,6 +298,7 @@ func update_secondary_charge(delta: float) -> void:
 		if ammo_per_level <= 0:
 			ammo_per_level = 1  # Minimum 1 ammo per level
 		
+		# Integer division is intentional here - we want whole levels only
 		var new_charge_level: int = _charged_ammo_consumed / ammo_per_level
 		
 		# If charge level increased, update visual feedback
@@ -347,14 +347,13 @@ func release_secondary_attack(stack_multiplier: int = 1) -> void:
 	# Get base secondary attack properties
 	var base_secondary_projectile_count: int = WeaponRegistry.get_secondary_projectile_count(weapon_type)
 	var secondary_color: Color = WeaponRegistry.get_secondary_color(weapon_type)
-	var ammo_per_second: float = WeaponRegistry.get_secondary_ammo_per_second(weapon_type)
 	
 	# Calculate power based on charge levels (10% of base max ammo per level)
 	var ammo_per_level: int = int(_base_max_ammo * 0.1)
 	if ammo_per_level <= 0:
 		ammo_per_level = 1  # Minimum 1 ammo per level
 	
-	# Calculate number of levels charged
+	# Calculate number of levels charged (integer division is intentional - whole levels only)
 	var levels_charged: int = _charged_ammo_consumed / ammo_per_level
 	# Cap levels at stack multiplier (can't charge more levels than weapons in stack)
 	levels_charged = min(levels_charged, stack_multiplier)
@@ -464,7 +463,7 @@ func _secondary_autocannon(spawn_position: Vector3, direction: Vector3, count: i
 		_spawn_secondary_projectile(spawn_position, fire_direction, color, projectile_scale, speed_multiplier)
 
 ## Spawn a secondary attack projectile with custom color, scale, and speed multiplier
-func _spawn_secondary_projectile(spawn_position: Vector3, direction: Vector3, color: Color, scale: float, speed_mult: float = 1.2) -> void:
+func _spawn_secondary_projectile(spawn_position: Vector3, direction: Vector3, color: Color, projectile_scale: float, speed_mult: float = 1.2) -> void:
 	# Load projectile scene based on weapon type
 	var projectile_scene_path: String = WeaponRegistry.get_projectile_scene_path(weapon_type)
 	var projectile_scene: PackedScene = load(projectile_scene_path)
@@ -483,7 +482,7 @@ func _spawn_secondary_projectile(spawn_position: Vector3, direction: Vector3, co
 	
 	# Set secondary attack properties
 	projectile.projectile_color = color
-	projectile.projectile_scale = scale
+	projectile.projectile_scale = projectile_scale
 	projectile.speed *= speed_mult  # Speed multiplier based on power
 	
 	# Add to scene tree
@@ -500,7 +499,7 @@ func _spawn_secondary_projectile(spawn_position: Vector3, direction: Vector3, co
 	# Initialize projectile
 	projectile.initialize(direction, _attached_to_mount, weapon_type)
 	
-	_logger.debug("weapon", self, "⚡ secondary projectile spawned: pos=%s, dir=%s, color=%s, scale=%.2f" % [spawn_position, direction, color, scale])
+	_logger.debug("weapon", self, "⚡ secondary projectile spawned: pos=%s, dir=%s, color=%s, scale=%.2f" % [spawn_position, direction, color, projectile_scale])
 
 ## Visual feedback: flicker weapon red for primary attack
 func _flicker_weapon_red() -> void:
@@ -601,4 +600,3 @@ func _stop_charging_visual_feedback() -> void:
 		
 		material.albedo_color = weapon_color
 		material.emission = weapon_color * 0.3
-

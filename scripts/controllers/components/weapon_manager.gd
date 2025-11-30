@@ -43,7 +43,13 @@ func initialize(mount_controller: MountController, slot_manager: WeaponSlotManag
 			_weapon_marker_right = mount_controller.get_node_or_null("WeaponMarkerRight")  # Fallback for old scenes
 	
 	if _logger:
-		_logger.debug("weapon", self, "🔧 WeaponManager initialized (left_marker=%s, right_marker=%s)" % ["null" if _weapon_marker_left == null else _weapon_marker_left.name, "null" if _weapon_marker_right == null else _weapon_marker_right.name])
+		var left_marker_name: String = "null"
+		var right_marker_name: String = "null"
+		if _weapon_marker_left != null:
+			left_marker_name = _weapon_marker_left.name
+		if _weapon_marker_right != null:
+			right_marker_name = _weapon_marker_right.name
+		_logger.debug("weapon", self, "🔧 WeaponManager initialized (left_marker=%s, right_marker=%s)" % [left_marker_name, right_marker_name])
 
 ## Attach a weapon at a specific level (creates stacked weapons)
 func attach_weapon_at_level(weapon_type: String, weapon_color: Color, marker: Marker3D, level: int = 1, stored_current_ammo: int = -1, stored_max_ammo: int = -1) -> void:
@@ -60,14 +66,16 @@ func attach_weapon_at_level(weapon_type: String, weapon_color: Color, marker: Ma
 			_attach_weapon(weapon_type, weapon_color, marker, stored_current_ammo, stored_max_ammo)
 		else:
 			# Additional weapons - upgrade the stack
-			var slot: int = WeaponSlotConstantsClass.Slot.LEFT if marker == _weapon_marker_left else WeaponSlotConstantsClass.Slot.RIGHT
+			# Determine which slot this marker belongs to
+			var slot: int = WeaponSlotConstantsClass.Slot.LEFT
+			if marker != _weapon_marker_left:
+				slot = WeaponSlotConstantsClass.Slot.RIGHT
 			upgrade_weapon_in_slot(slot, weapon_type, weapon_color)
 	
 	if _logger:
 		_logger.info("weapon", self, "⚔️ weapon stack attached: type=%s, level=%d, marker=%s" % [weapon_type, level, marker.name])
 
 func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D, stored_current_ammo: int = -1, stored_max_ammo: int = -1) -> void:
-	var attach_start: int = Time.get_ticks_msec()
 	if _logger:
 		_logger.info("weapon", self, "⏱️ [TIMING START] _attach_weapon: type=%s" % weapon_type)
 	
@@ -113,7 +121,9 @@ func _attach_weapon(weapon_type: String, weapon_color: Color, marker: Marker3D, 
 	weapon.attach_to_mount(_mount_controller, marker)
 	
 	# Determine which slot this marker belongs to
-	var slot: int = WeaponSlotConstantsClass.Slot.LEFT if marker == _weapon_marker_left else WeaponSlotConstantsClass.Slot.RIGHT
+	var slot: int = WeaponSlotConstantsClass.Slot.LEFT
+	if marker != _weapon_marker_left:
+		slot = WeaponSlotConstantsClass.Slot.RIGHT
 	
 	# Initialize stack array for this slot if needed
 	if not _stacked_weapons.has(slot):
@@ -217,7 +227,6 @@ func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color,
 
 ## Upgrade weapon in a slot
 func upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color) -> void:
-	var upgrade_start: int = Time.get_ticks_msec()
 	if _logger:
 		_logger.info("weapon", self, "⏱️ [TIMING START] UPGRADING weapon in slot %d with: %s" % [slot, weapon_type])
 	
@@ -407,7 +416,9 @@ func check_upgrade_drops(slot: int, new_ammo: int, max_ammo: int) -> void:
 		weapon_dropped.emit(top_weapon, slot)
 		
 		# Remove from scene
-		var marker: Marker3D = _weapon_marker_left if slot == 1 else _weapon_marker_right
+		var marker: Marker3D = _weapon_marker_left
+		if slot != 1:
+			marker = _weapon_marker_right
 		if marker != null:
 			if marker.is_ancestor_of(top_weapon):
 				if _logger:
@@ -534,4 +545,3 @@ func refill_weapon_in_slot(slot: int) -> void:
 	weapon.current_ammo = weapon.max_ammo
 	weapon.ammo_changed.emit(weapon.current_ammo, weapon.max_ammo)
 	hud_update_needed.emit(slot)
-

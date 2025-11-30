@@ -23,7 +23,7 @@ const WeaponAttackCoordinatorClass = preload("res://scripts/controllers/componen
 @export var is_player: bool = false
 
 @onready var _services: Node = get_node_or_null("/root/Services")
-@onready var _logger = _services.logger() if _services != null else get_node_or_null("/root/LoggerInstance")
+@onready var _logger: Node = null
 @onready var _camera: Camera3D = $CameraRig/SpringArm3D/Camera3D
 @onready var _spring_arm: SpringArm3D = $CameraRig/SpringArm3D
 @onready var _weapon_marker_left: Marker3D = $WeaponMarkers/WeaponMarkerLeft
@@ -45,6 +45,12 @@ var _pending_weapon_color: Color = Color.WHITE
 var _pending_weapon_level: int = 1
 
 func _ready() -> void:
+	# Initialize logger
+	if _services != null:
+		_logger = _services.logger()
+	else:
+		_logger = get_node_or_null("/root/LoggerInstance")
+	
 	# Ensure RigidBody3D is in RIGID mode and awake for physics to work
 	freeze = false
 	sleeping = false
@@ -140,7 +146,9 @@ func _initialize_components() -> void:
 			_weapon_marker_right = get_node_or_null("WeaponMarkerRight")
 	
 	if _logger:
-		_logger.info("weapon", self, "📍 Marker validation: left=%s, right=%s" % ["found" if _weapon_marker_left != null else "NULL", "found" if _weapon_marker_right != null else "NULL"])
+		var left_status: String = "found" if _weapon_marker_left != null else "NULL"
+		var right_status: String = "found" if _weapon_marker_right != null else "NULL"
+		_logger.info("weapon", self, "📍 Marker validation: left=%s, right=%s" % [left_status, right_status])
 	
 	# Pass marker references directly (they should be set via @onready)
 	_weapon_manager.initialize(self, _slot_manager, _logger, _weapon_marker_left, _weapon_marker_right)
@@ -204,8 +212,12 @@ func _on_weapon_picked_up(pickup: WeaponPickup, mount: Node, weapon_type: String
 	
 	# Use pickup handler to process the pickup and make a decision
 	var handler_start: int = Time.get_ticks_msec()
-	var stored_current: int = pickup.stored_current_ammo if pickup.stored_current_ammo >= 0 else -1
-	var stored_max: int = pickup.stored_max_ammo if pickup.stored_max_ammo >= 0 else -1
+	var stored_current: int = -1
+	var stored_max: int = -1
+	if pickup.stored_current_ammo >= 0:
+		stored_current = pickup.stored_current_ammo
+	if pickup.stored_max_ammo >= 0:
+		stored_max = pickup.stored_max_ammo
 	var decision: WeaponPickupHandlerClass.PickupDecision = _pickup_handler.process_pickup(weapon_type, weapon_level, pickup.pickup_color, stored_current, stored_max)
 	var handler_time: int = Time.get_ticks_msec() - handler_start
 	_logger.info("weapon", self, "⏱️ [TIMING] process_pickup took %d ms" % handler_time)
@@ -252,8 +264,12 @@ func _show_pickup_choice_prompt(weapon_type: String, weapon_level: int, weapon_c
 	# Get current weapon types for display
 	var left_weapon: WeaponAttachment = _slot_manager.get_weapon_at_slot(WeaponSlotConstantsClass.Slot.LEFT)
 	var right_weapon: WeaponAttachment = _slot_manager.get_weapon_at_slot(WeaponSlotConstantsClass.Slot.RIGHT)
-	var left_type: String = left_weapon.weapon_type if left_weapon != null else ""
-	var right_type: String = right_weapon.weapon_type if right_weapon != null else ""
+	var left_type: String = ""
+	var right_type: String = ""
+	if left_weapon != null:
+		left_type = left_weapon.weapon_type
+	if right_weapon != null:
+		right_type = right_weapon.weapon_type
 	
 	# Use HUD manager to show prompt
 	_hud_manager.show_pickup_choice_prompt(weapon_type, weapon_level, weapon_color, decision, left_type, right_type)
@@ -318,7 +334,9 @@ func _drop_weapon_as_pickup(weapon: WeaponAttachment, slot: int) -> void:
 	
 	# Set initial position
 	var marker: Marker3D = _weapon_marker_left if slot == 1 else _weapon_marker_right
-	var spawn_position: Vector3 = marker.global_position if marker != null else global_position
+	var spawn_position: Vector3 = global_position
+	if marker != null:
+		spawn_position = marker.global_position
 	spawn_position += mount_up * 0.5  # Slightly above
 	
 	if pickup.is_inside_tree():
@@ -420,7 +438,10 @@ func _upgrade_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color
 func replace_weapon_in_slot(slot: int, weapon_type: String, weapon_color: Color, weapon_level: int = -1) -> void:
 	# If weapon_level not provided, use pending weapon level (defaults to 1)
 	if weapon_level < 1:
-		weapon_level = _pending_weapon_level if _pending_weapon_level > 0 else 1
+		if _pending_weapon_level > 0:
+			weapon_level = _pending_weapon_level
+		else:
+			weapon_level = 1
 	
 	if _logger:
 		_logger.info("weapon", self, "🔄 REPLACE_WEAPON: slot=%d, type=%s, level=%d" % [slot, weapon_type, weapon_level])
